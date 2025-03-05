@@ -1,0 +1,29 @@
+.about {
+  width: 137%;
+  margin-bottom: 50px;
+  padding: 10px 50px 10px 10px;
+  background-color: rgb(246, 246, 246);
+}
+
+.profile-image{
+  border: none;
+  margin-left: 42%;
+  border-radius: 20px;
+  width: 15%;
+}
+
+.intro {
+  font-family: open-sans;
+  margin-left: 45.8%;
+}
+
+.blurb {
+  font-family: open-sans;
+  margin-left: 42.7%;
+  white-space: nowrap;
+}
+
+@font-face {
+  font-family: open-sans;
+  src: url(/OpenSans-BoldItalic.ttf);
+}
