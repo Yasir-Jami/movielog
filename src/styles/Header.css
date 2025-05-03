@@ -1,3 +1,32 @@
 .header {
+  width: 100%;
+  display: flex;
+  align-items: normal;
   font-family: sans-serif;
+  background: #ffc300;
+  border-radius: 15px;
+}
+
+.header h1 {
+  color: #010101;
+}
+
+.header li {
+  width: 100%;
+  display: flex;
+  align-items: normal;
+  justify-content: space-between;
+  font-family: sans-serif;
+  color: green;
+}
+
+.header img {
+  border-style: solid;
+}
+
+.logo{
+  margin: 0;
+  padding: 0;
+  height: 10%;
+  width: 10%;
 }

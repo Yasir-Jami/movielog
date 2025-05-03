@@ -1,0 +1,35 @@
+.movie-container {
+  border-style: solid;
+  border-color: #010101;
+  margin-left: 17%;
+  margin-top: 3%;
+  color: red;
+  height: 200px;
+  width: 70%;
+}
+
+.movie-node {
+  border-style: none;
+}
+
+.movie-image {
+  border-style: none;
+  margin: auto;
+  width: 50%;
+  border: 3px solid green;
+  padding: 10px;
+  height: 50px;
+  width: 50px;
+}
+
+.movie-title {
+  color: green;
+}
+
+p {
+  color: #fdfdfd;
+  padding-top: 1%;
+  padding-left: 2%;
+  font-size: 120%; 
+}
+
