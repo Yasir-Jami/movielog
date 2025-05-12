@@ -4,32 +4,38 @@
   margin-left: 17%;
   margin-top: 3%;
   color: red;
-  height: 200px;
   width: 70%;
-}
-
-.movie-node {
-  border-style: none;
+  padding-left: 1%;
+  padding-bottom: 2%;
 }
 
 .movie-image {
   border-style: none;
-  margin: auto;
-  width: 50%;
-  border: 3px solid green;
-  padding: 10px;
-  height: 50px;
-  width: 50px;
+  border: 3px solid white;
+  height: 60%;
+  width: 60%;
+  margin-right: 5%;
+  margin-top: 5%;
+}
+
+.movie-node {  
+  display: inline-block;
+  text-align: center;
+  color: black;
 }
 
 .movie-title {
+  color: white;
+  
+}
+
+.movie-user-rating {
   color: green;
 }
 
 p {
   color: #fdfdfd;
   padding-top: 1%;
-  padding-left: 2%;
   font-size: 120%; 
 }
 

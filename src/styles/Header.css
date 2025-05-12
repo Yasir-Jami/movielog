@@ -4,29 +4,54 @@
   align-items: normal;
   font-family: sans-serif;
   background: #ffc300;
-  border-radius: 15px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
 }
 
-.header h1 {
+.logo{
+  height: 5%;
+  width: 5%;
+  margin-top: 1%;
+  display: inline-block;
+} 
+
+.header-title {
   color: #010101;
+  margin: auto;
+  width: 50%;
+  font-family: opensans-bold;
+  display: inline-block;
+}
+
+.logo-title {
+  margin-left: 1%;
 }
 
 .header li {
   width: 100%;
   display: flex;
-  align-items: normal;
-  justify-content: space-between;
-  font-family: sans-serif;
+  font-family: opensans-bold;
   color: green;
 }
 
-.header img {
-  border-style: solid;
+.header button {
+  height: 20%;
+  width: 15%;
+  border-style: dotted;
+  margin-right: 1%;
+  background-color: green;
+  transition: 0.8s;
 }
 
-.logo{
-  margin: 0;
-  padding: 0;
-  height: 10%;
-  width: 10%;
+.header button:hover {
+  background-color: white;
+}
+
+.header button::after {
+  background-color: blue;
+}
+
+@font-face {
+  font-family: opensans-bold;
+  src: url(/fonts/OpenSans-Bold.ttf);
 }

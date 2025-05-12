@@ -1,0 +1,18 @@
+footer {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  margin-right: 1%;
+  color: black;
+  font-family: opensans;
+}
+
+.github-logo {
+  height: 10px;
+  width: 10px;
+}
+
+@font-face {
+  font-family: opensans;
+  src: url(/fonts/OpenSans-Regular.ttf);
+}
