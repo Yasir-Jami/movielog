@@ -1,63 +1,69 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
-let apiKey: string = import.meta.env.VITE_API_KEY;
+const serverUrl: string = import.meta.env.VITE_SERVER_URL;
+const moviePath: string = import.meta.env.VITE_SERVER_API_MOVIE_PATH;
+const movieTitle: string = import.meta.env.VITE_MOVIE_TITLE;
 
-function getApiData () { 
+interface Query {
+  Title: string,
+  Year: string,
+  Plot: string,
+  Response: string,
+}
+
+function getMovieApiData () { 
   const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  
+  const query = apiQueryBuilder(movieTitle);
+
   useEffect(() => {
     // Make GET request to fetch data
     axios
-        .get("http://www.omdbapi.com/?i=tt1630029&apikey="+apiKey)
+        .get(`${serverUrl}${moviePath}`, {
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          params: {
+            query: query,
+          },
+        })
         .then((response) => {
             setData(response.data);
-            setLoading(false);
         })
         .catch((err) => {
-            setError(err.message);
-            setLoading(false);
+            console.log("Error while getting movie data: ", err)
         });
-  }, []);
-
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  });
 
   return data;
 }
 
-function getApiImage() {
-  const data = getApiData();
-  return data;
+/**
+ * Builds a query before calling external movie API based on passed arguments
+ * Query rules for OMDB
+ * Title: ?t= (e.g. ?t=avatar+way+of+water)
+ * Year: y= (e.g. y=2014)
+ * Plot: &plot=full (short or full, short by default and only needs an option for full)
+ * Response: &r= (json or xml, json by default and only needs an option for xml)
+ * Example: http://www.omdbapi.com/?t=hunter+x+hunter&y=2011-2013&plot=full&r=xml
+ * Title: "hunter x hunter"
+ * Year: "2011-2013"
+ * Plot: full
+ * Response: xml
+ * @returns {string} Final query
+ */
+function apiQueryBuilder(title: string, year: string, plot: string, response: string) {
+  const newQuery: Query = {
+    Title: `?t=${title}`,
+    Year: `y=${year}`,
+    Plot: `plot=${plot}`,
+    Response: `${response}`
+  }
+
+  newQuery.Title = newQuery.Title.replace(/ /g, '+');
+  const finalQuery = newQuery.Title;
+
+  return finalQuery;
 }
 
-/*
-function getApiImage() {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  
-  useEffect(() => {
-    // Make GET request to fetch data
-    axios
-        .get("http://www.img.omdbapi.com/?i=tt1630029&apikey="+apiKey)
-        .then((response) => {
-            setData(response.data);
-            setLoading(false);
-        })
-        .catch((err) => {
-            setError(err.message);
-            setLoading(false);
-        });
-  }, []);
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
-
-  return data;
-}
-*/
-
-
-export default getApiData
+export default getMovieApiData

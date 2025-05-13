@@ -12,6 +12,7 @@ interface MovieInfo {
   Title: string,
   Poster: string,
   Year: number,
+  Plot: string,
   imdbRating: string,
 }
 
@@ -24,8 +25,6 @@ function MovieNode() {
     Plot: movieApi.Plot,
     imdbRating: movieApi.imdbRating,
   }
-  
-  console.log(movieApi);
 
   return(
   <div className ="movie-node">

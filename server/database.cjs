@@ -14,15 +14,15 @@ const dbName = process.env.VITE_DB_NAME;
 const dbUser = process.env.VITE_DB_COLLECTION_USER;
 
 async function checkCollections() {
-  const client = new MongoClient(uri);
+  const mongoClient = new MongoClient(uri);
   try {
-      await client.connect();
-      const collections = await client.db(dbName).collections(); // retrieve list of collections from db
+      await mongoClient.connect();
+      const collections = await mongoClient.db(dbName).collections(); // retrieve list of collections from db
       collections.forEach((collection) => console.log(collection.s.namespace.collection)); // loops through each collection in the collection array
   } catch (e) {
     console.error(e);
   } finally {
-    await client.close();
+    await mongoClient.close();
   }
 }
 

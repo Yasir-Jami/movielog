@@ -19,11 +19,11 @@ async function addUser(
   userLastName,
   userEmail,
   userPassword) {
-  const client = new MongoClient(uri);
+  const mongoClient = new MongoClient(uri);
 
   try {
-    await client.connect();
-    const database = client.db(dbName);
+    await mongoClient.connect();
+    const database = mongoClient.db(dbName);
     const users = database.collection(dbUser);
 
     const newUser = {
@@ -39,7 +39,7 @@ async function addUser(
   } catch (err) {
     console.error('Error updating documents:', err);
   } finally {
-    await client.close();
+    await mongoClient.close();
   }
 }
 
@@ -47,22 +47,23 @@ async function addUser(
  * Gets all first and last names of users from the database.
  */
 async function getUserNames() {
-  const client = new MongoClient(uri);
+  const mongoClient = new MongoClient(uri);
 
   try {
-    await client.connect();
-    const database = client.db(dbName);
+    await mongoClient.connect();
+    const database = mongoClient.db(dbName);
     const users = database.collection(dbUser);
 
     // Field to grab is after projection: (name, email, password, etc.)
     const cursor = users.find({}, { projection: { _id: 0 } });
-    const names = await cursor.toArray();
+    const userData = await cursor.toArray();
     console.log('User Names:', names.map(user => user.name));
+    console.log('User Emails:', names.map(user => user.email));
 
   } catch (err) {
     console.error('Error getting user names:', err);
   } finally {
-    await client.close();
+    await mongoClient.close();
   }
 }
 
