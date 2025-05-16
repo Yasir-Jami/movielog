@@ -1,0 +1,32 @@
+Quick Setup Guide: https://docs.bitnami.com/general/infrastructure/nodejs/get-started/get-started/
+
+// Restart systemctl and enable newly-added server daemon
+sudo systemctl daemon-reexec
+sudo systemctl daemon-reload
+sudo systemctl enable mserver
+sudo systemctl start mserver
+
+// Check status
+sudo systemctl status mserver
+
+File located at /etc/systemd/system/mserver.service
+
+Alternate method using tmux (current method):
+
+1. tmux
+2. node server.cjs
+3. Press Ctrl+B, D to detach
+4. Server should function without ssh connection
+
+To delete a tmux session:
+1. tmux ls (check list of sessions)
+2. tmux kill-session -t [session name]
+
+To access a detached session:
+tmux attach -t n (where n is session name)
+
+
+Connecting to database:
+
+Open manual ssl connection: 
+1. openssl s_client -connect ac-8tdtfgm-shard-00-00.07cxnsy.mongodb.net:27017 -servername ac-8tdtfgm-shard-00-00.07cxnsy.mongodb.net

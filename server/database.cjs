@@ -1,17 +1,11 @@
 // Import libraries
 const user = require("./user.cjs");
 const {MongoClient} = require("mongodb");
-require("dotenv").config({path: "../.env"});
-const express = require('express');
-const cors = require('cors');
-const app = express();
+require("dotenv").config({path: "./.env"});
 
 // MongoDB
-const uri = process.env.VITE_ATLAS_URI;
-const dbName = process.env.VITE_DB_NAME;
-
-// Database Collection Names
-const dbUser = process.env.VITE_DB_COLLECTION_USER;
+const uri = process.env.ATLAS_URI;
+const dbName = process.env.DB_NAME;
 
 async function checkCollections() {
   const mongoClient = new MongoClient(uri);
@@ -26,4 +20,5 @@ async function checkCollections() {
   }
 }
 
-user.addUser("Greg", "Gregson", "gregory@gmail.com", "greg123");
+checkCollections();
+//user.addUser("Greg", "Gregson", "gregory@gmail.com", "greg123");

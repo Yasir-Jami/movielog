@@ -1,0 +1,1 @@
+tmux attach-session -t "$SERVER_SESSION_NAME"
