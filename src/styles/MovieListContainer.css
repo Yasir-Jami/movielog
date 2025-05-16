@@ -1,20 +1,20 @@
 .movie-container {
   border-style: solid;
   border-color: #010101;
-  margin-left: 17%;
+  margin-left: 13%;
   margin-top: 3%;
-  color: red;
   width: 70%;
   padding-left: 1%;
   padding-bottom: 2%;
 }
 
+.list-name {
+  padding-top: 1%;
+}
+
 .movie-image {
-  border-style: none;
   border: 3px solid white;
-  height: 60%;
-  width: 60%;
-  margin-right: 5%;
+  width: 50%;
   margin-top: 5%;
 }
 
@@ -22,11 +22,12 @@
   display: inline-block;
   text-align: center;
   color: black;
+  margin-top: 1%;
 }
 
 .movie-title {
-  color: white;
-  
+  color: yellow;
+  font-size: 0.9em;
 }
 
 .movie-user-rating {
@@ -35,7 +36,11 @@
 
 p {
   color: #fdfdfd;
-  padding-top: 1%;
-  font-size: 120%; 
+  font-family: opensans-bold;
 }
 
+
+@font-face {
+  font-family: opensans-bold;
+  src: url(/fonts/OpenSans-Bold.ttf);
+}

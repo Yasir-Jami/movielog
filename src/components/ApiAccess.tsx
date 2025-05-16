@@ -1,17 +1,20 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-const serverUrl: string = import.meta.env.VITE_SERVER_URL;
+//const serverUrl: string = import.meta.env.VITE_LOCAL_SERVER_URL;
+const serverUrl: string = import.meta.env.VITE_REMOTE_SERVER_URL;
 const moviePath: string = import.meta.env.VITE_SERVER_API_MOVIE_PATH;
 const movieTitle: string = import.meta.env.VITE_MOVIE_TITLE;
 
 interface Query {
   Title: string,
+  /*
   Year: string,
   Plot: string,
   Response: string,
+  */
 }
 
-function getMovieApiData () { 
+function getMovieApiData() { 
   const [data, setData] = useState([]);
   const query = apiQueryBuilder(movieTitle);
 
@@ -32,7 +35,7 @@ function getMovieApiData () {
         .catch((err) => {
             console.log("Error while getting movie data: ", err)
         });
-  });
+  }, []);
 
   return data;
 }
@@ -49,14 +52,22 @@ function getMovieApiData () {
  * Year: "2011-2013"
  * Plot: full
  * Response: xml
+ * imdb ID: ?i=
  * @returns {string} Final query
  */
-function apiQueryBuilder(title: string, year: string, plot: string, response: string) {
+function apiQueryBuilder(
+  title: string, 
+  /*
+  year: string, 
+  plot: string, 
+  response: string */) {
   const newQuery: Query = {
     Title: `?t=${title}`,
+    /*
     Year: `y=${year}`,
     Plot: `plot=${plot}`,
     Response: `${response}`
+    */
   }
 
   newQuery.Title = newQuery.Title.replace(/ /g, '+');

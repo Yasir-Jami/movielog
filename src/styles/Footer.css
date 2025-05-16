@@ -5,12 +5,16 @@ footer {
   margin-right: 1%;
   color: black;
   font-family: opensans;
+  font-size: 1em;
+  display: end;
 }
 
 .github-logo {
-  height: 10px;
-  width: 10px;
+  height: 10%;
+  width: 10%;
 }
+
+
 
 @font-face {
   font-family: opensans;

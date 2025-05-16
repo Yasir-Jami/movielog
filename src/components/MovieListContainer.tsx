@@ -2,34 +2,35 @@ import "/src/styles/MovieListContainer.css"
 import clapperboard_placeholder from "/src/assets/clapperboard-transparent.png"
 import API from "./ApiAccess.tsx"
 
-let movieTitle: string = "Movie Title";
+let defaultMovieTitleText: string = "Movie Title";
 let defaultListText: string = "New List";
-let futureListText: string = "To Watch";
-let pastListText: string = "Previously Watched";
-let presentListText: string = "Currently Watching";
 
 interface MovieInfo {
-  Title: string,
-  Poster: string,
-  Year: number,
-  Plot: string,
+  title: string,
+  poster: string,
+  year: number,
+  plot: string,
   imdbRating: string,
+}
+
+interface MovieContainerProps {
+  listName: string;
 }
 
 function MovieNode() {
   const movieApi = API();
   const movieInfo: MovieInfo = {
-    Title: movieApi.Title,
-    Poster: movieApi.Poster,
-    Year: movieApi.Year,
-    Plot: movieApi.Plot,
+    title: movieApi.Title,
+    poster: movieApi.Poster,
+    year: movieApi.Year,
+    plot: movieApi.Plot,
     imdbRating: movieApi.imdbRating,
   }
 
   return(
   <div className ="movie-node">
-    <img src={movieInfo.Poster} className="movie-image"></img>
-    <p className="movie-title">{movieInfo.Title}</p>
+    <img src={movieInfo.poster} className="movie-image"></img>
+    <p className="movie-title">{movieInfo.title}</p>
   </div>
   )
 }
@@ -42,10 +43,12 @@ function renderMultipleComponents(component: Component, amount: number) {
 }
 */
 
-function MovieListContainer(){ 
+function MovieListContainer(props: MovieContainerProps){ 
+  const {listName} = props;
+  
   return(
     <div className = "movie-container">
-      <p>{presentListText}</p>
+      <p className="list-name">{listName}</p>
       <MovieNode />
       <MovieNode />
       <MovieNode />
