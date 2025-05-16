@@ -42,7 +42,7 @@ app.get(`${DATABASE_PATH}${USER_PATH}`, async (req, res) => {
 });
 
 // Movie API
-app.get(`${USER_PATH}`, async (req, res) => {
+app.get(`${MOVIE_PATH}`, async (req, res) => {
   try {
     query = req.query.query;
     
