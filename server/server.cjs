@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const axios = require("axios")
-require("dotenv").config({path: ".env"});
+require("dotenv").config({path: "./.env"});
 
 // Configuration Variables
 const API_LINK = process.env.OMDB_API_LINK;
