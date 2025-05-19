@@ -1,24 +1,29 @@
 import "/src/styles/MovieListContainer.css"
-import clapperboard_placeholder from "/src/assets/clapperboard-transparent.png"
+//import clapperboard_placeholder from "/src/assets/clapperboard-transparent.png"
 import API from "./ApiAccess.tsx"
 
-let defaultMovieTitleText: string = "Movie Title";
-let defaultListText: string = "New List";
+interface MovieContainerProps {
+  listName: string,
+}
 
 interface MovieInfo {
   title: string,
   poster: string,
-  year: number,
+  year: string,
   plot: string,
   imdbRating: string,
 }
 
-interface MovieContainerProps {
-  listName: string;
+interface MovieApiResponse {
+  Title: string,
+  Poster: string,
+  Year: string,
+  Plot: string,
+  imdbRating: string,
 }
 
 function MovieNode() {
-  const movieApi = API();
+  const movieApi = API() as MovieApiResponse;
   const movieInfo: MovieInfo = {
     title: movieApi.Title,
     poster: movieApi.Poster,
