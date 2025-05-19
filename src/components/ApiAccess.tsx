@@ -14,7 +14,7 @@ interface Query {
   */
 }
 
-function getMovieApiData() { 
+function getMovieApiData() : object { 
   const [data, setData] = useState([]);
   const query = apiQueryBuilder(movieTitle);
 
