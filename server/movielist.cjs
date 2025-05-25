@@ -1,9 +1,11 @@
 class MovieList {
-  constructor(uri, dbName, movieListCollectionName) {
+  constructor(uri, dbName, collectionName) {
     this.uri = uri;
     this.dbName = dbName;
-    this.movieListCollectionName = movieListCollectionName;
+    this.collectionName = collectionName;
   }
+
+
 }
 
-modules.export = MovieList;
+module.exports = MovieList;

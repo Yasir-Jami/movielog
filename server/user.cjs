@@ -3,10 +3,10 @@ const {MongoClient} = require("mongodb");
 require("dotenv").config({path: "./.env"});
 
 class User {
-  constructor(uri, dbName, dbUser) {
+  constructor(uri, dbName, collectionName) {
     this.uri = uri;
     this.dbName = dbName;
-    this.dbUser = dbUser;
+    this.collectionName = collectionName;
   }
   /**
    * This function creates a new user in the database based on given arguments. Fails if not all parameters are fulfilled.
@@ -25,7 +25,7 @@ class User {
     try {
       await mongoClient.connect();
       const database = mongoClient.db(dbName);
-      const users = database.collection(dbUser);
+      const users = database.collection(collectionName);
 
       const newUser = {
         firstName: userFirstName,
@@ -53,7 +53,7 @@ class User {
     try {
       await mongoClient.connect();
       const database = mongoClient.db(dbName);
-      const users = database.collection(dbUser);
+      const users = database.collection(collectionName);
 
       // Field to grab is after projection: (name, email, password, etc.)
       const cursor = users.find({}, { projection: { _id: 0 } });
