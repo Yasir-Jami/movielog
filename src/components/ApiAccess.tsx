@@ -33,7 +33,7 @@ function getMovieApiData() : object {
             setData(response.data);
         })
         .catch((err) => {
-            console.log("Error while getting movie data: ", err)
+            console.log("Error while getting movie data: ", err);
         });
   }, []);
 

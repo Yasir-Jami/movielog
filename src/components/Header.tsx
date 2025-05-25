@@ -1,15 +1,17 @@
 import "/src/styles/Header.css"
-import clapperboardlogo from "/src/assets/clapperboard-transparent.png"
 
 function Header(){
   return (
     <div className="header">
-      <img src={clapperboardlogo} className="logo" alt="main-logo" ></img>
-      <h1 className="header-title">movielog</h1>
-      <li>Home</li>
-      <li>Movies</li>
-      <button>Sign Up</button>
-      <button>Sign In</button>
+      <div className="header-container">
+        <h1 className="header-title">movielog</h1>
+          <ul>
+            <a href="/"><li>Home</li></a>
+            <a href="/movies"><li>Movies</li></a>
+            <a href="/lists"><li>Lists</li></a>
+            <a href="/favorites"><li>Favorites</li></a>
+          </ul>
+      </div>
     </div>
   )
 }

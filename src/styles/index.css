@@ -1,6 +1,5 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
@@ -18,15 +17,12 @@ a {
   color: #646cff;
   text-decoration: inherit;
 }
-a:hover {
-  color: #535bf2;
-}
+
 
 body {
   margin: 0;
-  display: flex;
+  
   place-items: center;
-  min-width: 320px;
   min-height: 100vh;
 }
 
@@ -71,11 +67,36 @@ button:focus-visible {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: sans-serif;
 }
 
 .container{
-  width: 100vw;
-  min-height: 100vh;
-  background-color: #6575a2; 
+  width: 99vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #F3F4F6 0%, #E5E7EB 100%);
+}
+
+.main {
+  position: absolute;
+  width: 80%;
+  height: 150%;
+  left: calc(50% - 1504px/2 - 0.15px);
+  top: 12%;
+}
+
+h1 {
+  position: relative;
+  width: 418.37px;
+  height: 36px;
+  left: 0px;
+  top: 0px;
+
+  font-family: 'Segoe UI';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 36px;
+  /* identical to box height, or 120% */
+
+  color: #1F2937;
+
 }
