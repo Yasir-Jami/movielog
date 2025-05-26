@@ -1,0 +1,24 @@
+Source: https://www.npmjs.com/package/pm2
+
+pm2 start   <app_name|namespace|id|'all'|json_conf>
+pm2 stop    <app_name|namespace|id|'all'|json_conf>
+pm2 restart <app_name|namespace|id|'all'|json_conf>
+
+pm2 status
+pm2 describe <id|app_name> 
+pm2 monit (monitor logs)
+
+# Logging
+pm2 logs (get logs)
+  pm2 logs APP-NAME       # Display APP-NAME logs
+  pm2 logs --json         # JSON output
+  pm2 logs --format       # Formatted output
+
+  pm2 flush               # Flush all logs
+  pm2 reloadLogs          # Reload all logs
+
+# Install latest PM2 version
+  $ npm install pm2@latest -g
+# Save process list, exit old PM2 & restore all processes
+  $ pm2 update
+Note: PM2 updates are seamless

@@ -18,7 +18,7 @@ const database = new Database();
 let apiCounter = 0;
 
 // Middleware to enable Cross-Origin Resource Sharing (CORS)
-/*const allowedOrigins = ['https://movielog.ca', '75.159.63.134'];
+const allowedOrigins = ['https://movielog.ca', '75.159.63.134', 'https://6834b2292c0ad7154898e83d--earnest-pika-ec3ae8.netlify.app/'];
 
 const corsOptions = {
   origin: function (origin, callback) {
@@ -30,8 +30,7 @@ const corsOptions = {
   },
 };
 
-app.use(cors(corsOptions));
-*/
+//app.use(cors(corsOptions));
 app.use(cors());
 
 // Database User API

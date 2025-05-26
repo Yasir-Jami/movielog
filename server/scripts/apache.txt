@@ -1,0 +1,13 @@
+Find apache in /opt/bitnami/apache2
+
+Commands for handling apache server (https://docs.bitnami.com/aws/faq/administration/control-services/)
+
+Get status of all services: sudo /opt/bitnami/ctlscript.sh status
+
+Start all services: sudo /opt/bitnami/ctlscript.sh start
+
+Stop all services: sudo /opt/bitnami/ctlscript.sh stop
+
+Restart only apache: sudo /opt/bitnami/ctlscript.sh restart apache (or exclude apache to restart all)
+
+
