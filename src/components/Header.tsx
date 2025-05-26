@@ -1,4 +1,5 @@
 import "/src/styles/Header.css"
+import User from "./User.tsx"
 
 function Header(){
   return (
@@ -10,6 +11,7 @@ function Header(){
             <a href="/movies"><li>Movies</li></a>
             <a href="/lists"><li>Lists</li></a>
             <a href="/favorites"><li>Favorites</li></a>
+            <User />
           </ul>
       </div>
     </div>

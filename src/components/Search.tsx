@@ -1,7 +1,7 @@
 import "/src/styles/Form.css"
 
 
-function form () {
+function search () {
   const placeholderText = "Search for movies...";
 
   return (
@@ -12,4 +12,4 @@ function form () {
 
 }
 
-export default form
+export default search

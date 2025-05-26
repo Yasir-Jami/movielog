@@ -1,27 +1,23 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-//const serverUrl: string = import.meta.env.VITE_LOCAL_SERVER_URL;
 const serverUrl: string = import.meta.env.VITE_REMOTE_SERVER_URL;
 const moviePath: string = import.meta.env.VITE_SERVER_API_MOVIE_PATH;
 const movieTitle: string = import.meta.env.VITE_MOVIE_TITLE;
 
 interface Query {
-  Title: string,
-  /*
-  Year: string,
-  Plot: string,
-  Response: string,
-  */
+  Title?: string,
+  ImdbId?: string,
 }
 
 function getMovieApiData() : object { 
   const [data, setData] = useState([]);
   const query = apiQueryBuilder(movieTitle);
+  const url = `${serverUrl}${moviePath}`;
 
   useEffect(() => {
     // Make GET request to fetch data
     axios
-        .get(`${serverUrl}${moviePath}`, {
+        .get(url, {
           headers: {
             'Content-Type': 'application/json'
           },
@@ -55,26 +51,24 @@ function getMovieApiData() : object {
  * imdb ID: ?i=
  * @returns {string} Final query
  */
-function apiQueryBuilder(
-  title: string, 
-  /*
-  year: string, 
-  plot: string, 
-  response: string */) {
+function apiQueryBuilder(title?: string, id?: string): string {
   const newQuery: Query = {
     Title: `?t=${title}`,
-    /*
-    Year: `y=${year}`,
-    Plot: `plot=${plot}`,
-    Response: `${response}`
-    */
+    ImdbId: `?i=${id}`,
+  }
+  let finalQuery = "";
+
+  if (newQuery.Title != null) {
+    newQuery.Title = newQuery.Title.replace(/ /g, '+');
+    finalQuery = newQuery.Title;
   }
 
-  newQuery.Title = newQuery.Title.replace(/ /g, '+');
-  const finalQuery = newQuery.Title;
+  // Search by Imdb ID
+  else if (newQuery.ImdbId != null) {
+    finalQuery = newQuery.ImdbId;
+  }
 
   return finalQuery;
 }
-
 
 export default getMovieApiData
