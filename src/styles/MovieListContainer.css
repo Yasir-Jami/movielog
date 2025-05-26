@@ -13,7 +13,7 @@
 }
 
 .movie-image {
-  border: 3px solid white;
+  border: 3px solid darkblue;
   width: 50%;
   margin-top: 5%;
 }
@@ -26,7 +26,7 @@
 }
 
 .movie-title {
-  color: yellow;
+  color: darkred;
   font-size: 0.9em;
 }
 
@@ -35,10 +35,9 @@
 }
 
 p {
-  color: #fdfdfd;
+  color: darkblue;
   font-family: opensans-bold;
 }
-
 
 @font-face {
   font-family: opensans-bold;
