@@ -1,6 +1,6 @@
 .header {
   position: fixed;
-  height: 64px;
+  height: 4em;
   left: 0px;
   right: 0px;
   top: 0px;
@@ -11,57 +11,62 @@
 }
 
 .header-container {
-  position: absolute;
-  width: 1536px;
-  height: 3.5em;
-  left: calc(50% - 1536px/2);
-  top: 0px;
-}
-
-.h1 {
-  position: absolute;
+  width: 100%;
+  height: 100%;
 }
 
 .header-title {
   position: absolute;
-  height: 1.25em;
-  left: 2.5em;
-  top: calc(50% - 1.25em/2);
-
   font-family: 'Segoe UI';
   font-style: normal;
   font-weight: 700;
-  font-size: 24px;
-  line-height: 32px;
+  font-size: 1.5em;
+  line-height: 1.5em;
   color: #000000;
 }
 
-.header-container ul {
+.header ul {
   display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
   list-style: none;
-  padding: 0;
-  margin: 0;
   /* or 150% */
-  padding-left: 37%;
-  padding-top: 1.2%;
-
   color: #1F2937;
 }
 
 li {
-  margin-right: 2em;
+  margin-right: 2rem;
   font-family: 'Segoe UI';
   font-style: normal;
   font-weight: 600;
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 1rem;
+  line-height: 1.5rem;
 }
 
-.nav li:hover {
-  color: white;
+li:hover {
+  color: green;
 }
-
 
 a { 
   color: inherit; 
 } 
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.3em 1.2em;
+  margin-right: 1em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}

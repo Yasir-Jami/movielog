@@ -1,12 +1,12 @@
 // Handle rendering of user's lists and favorites depending on if they are logged in or not
-
+import "/src/styles/Header.css"
 var userLoggedIn = false;
 
 function User() {
   // Add logout button
   if (userLoggedIn) {
     return(
-    <div>
+    <div className="user">
       User logged in!
     </div>
   )
@@ -14,8 +14,9 @@ function User() {
   // Add sign in and sign up button
   else {
     return(
-      <div>
-        <b>User not logged in</b>
+      <div className="user-buttons">
+        <button className="login-button">Login</button>
+        <button className="register-button">Register</button>
       </div>
     )
   }
