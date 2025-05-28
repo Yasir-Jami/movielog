@@ -1,6 +1,6 @@
 import "/src/styles/MovieListContainer.css"
 //import clapperboard_placeholder from "/src/assets/clapperboard-transparent.png"
-import API from "./api/ApiAccess.tsx"
+import Movie_API from "./api/ApiAccess.tsx"
 
 interface MovieContainerProps {
   listName: string,
@@ -24,7 +24,7 @@ interface MovieApiResponse {
 }
 
 function MovieNode() {
-  const movieApi = API() as MovieApiResponse;
+  const movieApi = Movie_API() as MovieApiResponse;
   const movieInfo: MovieInfo = {
     title: movieApi.Title,
     poster: movieApi.Poster,
