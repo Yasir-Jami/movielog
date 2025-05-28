@@ -23,16 +23,28 @@
   font-size: 1.5em;
   line-height: 1.5em;
   color: #000000;
+  left: 14rem;
+  top: 0.6rem;
+  transition: 0.25s;
+}
+
+.header-title:hover {
+  border-bottom: 2px;
 }
 
 .header ul {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   padding: 1rem;
   list-style: none;
   /* or 150% */
   color: #1F2937;
+}
+
+.header ul > button {
+  display: inline;
 }
 
 li {
@@ -58,10 +70,11 @@ button {
   padding: 0.3em 1.2em;
   margin-right: 1em;
   font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
+  font-weight: 600;
+  font-family: 'Segoe UI';
+  font-style: normal;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: border-color 0.16s;
 }
 button:hover {
   border-color: #646cff;
@@ -69,4 +82,18 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+.login-button {
+  color: #2563EB;
+  font-weight: 500;
+}
+
+.register-button {
+  color: #fff;
+  background-color: #2563EB;
+  font-weight: 500;
+}
+.register-button:hover {
+  border-color: black;
 }

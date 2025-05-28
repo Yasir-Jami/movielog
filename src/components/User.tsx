@@ -9,7 +9,7 @@ function User() {
     <div className="user">
       User logged in!
     </div>
-  )
+    )
   }
   // Add sign in and sign up button
   else {
