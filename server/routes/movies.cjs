@@ -1,7 +1,6 @@
 // Movie API
-const express = require('express');
+const router = require('express').Router();
 const axios = require('axios');
-const router = express.Router();
 
 const API_LINK = process.env.OMDB_API_LINK;
 const API_KEY = process.env.OMDB_API_KEY;
