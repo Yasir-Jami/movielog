@@ -15,8 +15,8 @@ function User() {
   else {
     return(
       <div className="user-buttons">
-        <button className="login-button">Login</button>
-        <button className="register-button">Register</button>
+        <a href="/login"><button className="login-button">Login</button></a>
+        <a href="/register"><button className="register-button">Register</button></a>
       </div>
     )
   }
