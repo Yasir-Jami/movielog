@@ -1,0 +1,92 @@
+// Libraries
+const mongoose = require("mongoose");
+const express = require('express');
+const User = require('../models/user.model.cjs');
+const router = express.Router();
+require("dotenv").config({path: "./.env"});
+
+// Create user
+router.post('/', async (req, res) => {
+  try {
+    const user = await User.create(req.body);
+    res.status(201).json({ user });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+  /**
+   * This function creates a new user in the database based on given arguments. Fails if not all parameters are fulfilled.
+   * @param {string} userFirstName First name
+   * @param {string} userLastName Last name
+   * @param {string} userEmail Email
+   * @param {string} userPassword Password (hashed)
+   */
+  async function createUser(
+    userFirstName,
+    userLastName,
+    userEmail,
+    userPassword) {
+    const mongoClient = new MongoClient(uri);
+
+    try {
+      await mongoClient.connect();
+      const database = mongoClient.db(dbName);
+      const users = database.collection(collectionName);
+
+      const newUser = {
+        firstName: userFirstName,
+        lastName: userLastName,
+        email: userEmail,
+        password: userPassword // Always hash passwords in real apps
+      };
+
+      const result = await users.insertOne(newUser);
+      console.log(`New user created with the following id: ${result.insertedId}`);
+
+    } catch (err) {
+      console.error('Error updating documents:', err);
+    } finally {
+      await mongoClient.close();
+    }
+  }
+
+  /**
+   * Gets all first and last names of users from the database.
+   */
+  async function getUserNames() {
+    const mongoClient = new MongoClient(uri);
+
+    try {
+      await mongoClient.connect();
+      const database = mongoClient.db(dbName);
+      const users = database.collection(collectionName);
+
+      // Field to grab is after projection: (name, email, password, etc.)
+      const cursor = users.find({}, { projection: { _id: 0 } });
+      const userData = await cursor.toArray();
+      console.log('User Names:', names.map(user => user.name));
+      console.log('User Emails:', names.map(user => user.email));
+
+    } catch (err) {
+      console.error('Error getting user names:', err);
+    } finally {
+      await mongoClient.close();
+    }
+  }
+
+  async function getUserLists() {
+    const mongoClient = new MongoClient(uri);
+    try {
+        await mongoClient.connect();
+        const collections = await mongoClient.db(dbName).collections(); // retrieve list of collections from db
+        
+        collections.forEach((collection) => console.log(collection.s.namespace.collection)); // loops through each collection in the collection array
+    } catch (e) {
+      console.error(e);
+    } finally {
+      await mongoClient.close();
+    }
+  }
+
+module.exports = router;

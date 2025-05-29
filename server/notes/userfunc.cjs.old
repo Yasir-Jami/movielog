@@ -1,21 +1,11 @@
-// Libraries
-const {MongoClient} = require("mongodb");
-require("dotenv").config({path: "./.env"});
-
-class User {
-  constructor(uri, dbName, collectionName) {
-    this.uri = uri;
-    this.dbName = dbName;
-    this.collectionName = collectionName;
-  }
-  /**
+/**
    * This function creates a new user in the database based on given arguments. Fails if not all parameters are fulfilled.
    * @param {string} userFirstName First name
    * @param {string} userLastName Last name
    * @param {string} userEmail Email
    * @param {string} userPassword Password (hashed)
    */
-  async createUser(
+  async function createUser(
     userFirstName,
     userLastName,
     userEmail,
@@ -47,7 +37,7 @@ class User {
   /**
    * Gets all first and last names of users from the database.
    */
-  async getUserNames() {
+  async function getUserNames() {
     const mongoClient = new MongoClient(uri);
 
     try {
@@ -68,7 +58,7 @@ class User {
     }
   }
 
-  async getUserLists() {
+  async function getUserLists() {
     const mongoClient = new MongoClient(uri);
     try {
         await mongoClient.connect();
@@ -81,7 +71,3 @@ class User {
       await mongoClient.close();
     }
   }
-
-}
-
-module.exports = User;
