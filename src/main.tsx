@@ -3,6 +3,8 @@ import { createRoot } from 'react-dom/client';
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import '/src/styles/index.css';
 import App from './App.tsx';
+import Login from './components/Login.tsx';
+import Register from './components/Register.tsx';
 import Header from './components/Header.tsx';
 
 const router = createBrowserRouter([
@@ -10,13 +12,15 @@ const router = createBrowserRouter([
   {path: "/movies", element: <App />},
   {path: "/lists", element: <App />},
   {path: "/favorites", element: <App />},
-  {path: "/register", element: <App />},
-  {path: "/login", element: <App />},
+  {path: "/login", element: <Login />},
+  {path: "/register", element: <Register />},
 ]);
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
+    <div className="container">
     <Header />
-    <RouterProvider router={router}/>
+      <RouterProvider router={router}/>
+    </div>
   </StrictMode>,
 )

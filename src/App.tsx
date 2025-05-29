@@ -16,7 +16,6 @@ export default function App() {
   
   return(
   <div>
-    <div className="container">
       <div className="main">
         <h1>{searchText}</h1>
         <MovieListContainer listName = {presentListText} numberOfNodes={presentNodeCount} />
@@ -24,6 +23,5 @@ export default function App() {
         <MovieListContainer listName = {pastListText} numberOfNodes={pastNodeCount}/>
       </div>
     </div>
-  </div>
   );
 }
