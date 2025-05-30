@@ -17,4 +17,6 @@ function Header(){
   )
 }
 
+console.log(User.name);
+
 export default Header

@@ -5,12 +5,12 @@ import MovieListContainer from "./components/MovieListContainer.tsx";
 let presentListText: string = "Currently Watching";
 let futureListText: string = "To Watch";
 let pastListText: string = "Watched";
+//let searchText: string = "Find a movie you like";
+let searchText: string = "";
 
-let presentNodeCount: number = 2;
-let futureNodeCount: number = 3;
-let pastNodeCount: number = 5;
-
-let searchText: string = "Find a movie you like";
+let presentMovieCount: number = 2;
+let futureMovieCount: number = 3;
+let pastMovieCount: number = 5;
 
 export default function App() {
   
@@ -18,9 +18,9 @@ export default function App() {
   <div>
       <div className="main">
         <h1>{searchText}</h1>
-        <MovieListContainer listName = {presentListText} numberOfNodes={presentNodeCount} />
-        <MovieListContainer listName = {futureListText} numberOfNodes={futureNodeCount}/>
-        <MovieListContainer listName = {pastListText} numberOfNodes={pastNodeCount}/>
+        <MovieListContainer listName = {presentListText} movieCount={presentMovieCount} />
+        <MovieListContainer listName = {futureListText} movieCount={futureMovieCount}/>
+        <MovieListContainer listName = {pastListText} movieCount={pastMovieCount}/>
       </div>
     </div>
   );

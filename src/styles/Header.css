@@ -84,16 +84,17 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-.login-button {
+.header-login-button {
   color: #2563EB;
+  background-color: #FFF;
   font-weight: 500;
 }
 
-.register-button {
+.header-register-button {
   color: #fff;
   background-color: #2563EB;
   font-weight: 500;
 }
-.register-button:hover {
+.header-register-button:hover {
   border-color: black;
 }
