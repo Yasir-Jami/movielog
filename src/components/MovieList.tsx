@@ -1,7 +1,7 @@
 import "/src/styles/MovieList.css"
 //import clapperboard_placeholder from "/src/assets/clapperboard-transparent.png"
 import Movie_API from "./api/ApiAccess.tsx"
-import AddMovie from "./AddMovie.tsx"
+//import AddMovie from "./AddMovie.tsx"
 
 interface MovieListProps {
   listName: string,
@@ -51,7 +51,7 @@ function MovieList(props: MovieListProps){
       {[...Array(movieCount)].map((_, i) => (
         <MovieNode key={i} />
       ))}
-      <AddMovie />
+      
     </div>
   );
 }

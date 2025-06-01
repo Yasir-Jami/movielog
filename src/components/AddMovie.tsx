@@ -1,4 +1,4 @@
-import plusSign from "./svgs/plus-1469-svgrepo-com.svg"
+//import plusSign from "./svgs/plus-1469-svgrepo-com.svg"
 import "/src/styles/AddMovie.css"
 
 function AddMovie () {
