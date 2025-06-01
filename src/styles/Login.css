@@ -1,0 +1,13 @@
+.login-container {
+  display: flex;
+  margin-top: 8rem;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+input {
+  margin-bottom: 2rem;
+  padding-left: 2rem;
+  padding-top: 1rem;
+}

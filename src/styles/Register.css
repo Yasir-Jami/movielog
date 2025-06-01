@@ -1,3 +1,20 @@
-p{
-  top: 300px;
+.registration-form {
+  border-radius: 8px;
+  display: flex;
+  margin-top: 8rem;
+  flex-direction: column;
+  background: lightblue;
+  margin-left: 35rem;
+  margin-right: 35rem;
+  padding: 100px;
+}
+
+input {
+  margin-bottom: 2rem;
+  border: 0.2em solid transparent;
+  border-radius: 8px;
+}
+
+.register-button {
+  background-color: #2563EB;
 }

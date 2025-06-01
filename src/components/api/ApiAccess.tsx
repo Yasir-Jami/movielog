@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-const serverUrl: string = import.meta.env.VITE_REMOTE_SERVER_URL;
-const moviePath: string = import.meta.env.VITE_SERVER_API_MOVIE_PATH;
+const serverUrl: string = import.meta.env.VITE_API_BASE_URL;
+const moviePath: string = import.meta.env.VITE_API_MOVIE_PATH;
 const movieTitle: string = import.meta.env.VITE_MOVIE_TITLE;
 
 interface Query {
