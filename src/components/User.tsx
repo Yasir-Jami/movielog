@@ -1,15 +1,17 @@
 // Handle rendering of user's lists and favorites depending on if they are logged in or not
 import "/src/styles/Header.css"
-import React, {useState} from 'react';
+import {useState} from 'react';
 var userEmail = "greg@gmail.com";
 
 function User() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  /*
   const handleLogin = () => {
     setIsLoggedIn(true);
     console.log("User has logged in");
   }
+  */
 
   const handleLogout = () => {
     setIsLoggedIn(false);
