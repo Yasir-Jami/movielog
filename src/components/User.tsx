@@ -1,22 +1,37 @@
 // Handle rendering of user's lists and favorites depending on if they are logged in or not
 import "/src/styles/Header.css"
-var userLoggedIn = false;
+import React, {useState} from 'react';
 var userEmail = "greg@gmail.com";
 
 function User() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+    console.log("User has logged in");
+  }
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    console.log("User has logged out");
+  }
+
   // Add logout button
-  if (userLoggedIn) {
+  if (isLoggedIn) {
     return(
-    <div className="user">
-      Logged in as {userEmail}
+    <div className="user-area">
+      <p>Logged in as {userEmail}</p>
+      {/*<a href="."><button className="header-logout-button" onClick={onLogout}>Logout</button></a>*/}
+      <button className="header-logout-button" onClick={handleLogout}>Logout</button>
     </div>
     )
   }
   // Add sign in and sign up button
   else {
     return(
-      <div className="user-buttons">
-        <a href="/login"><button className="header-login-button">Login</button></a>
+      <div className="user-area">
+        {/*<a href="/login"><button className="header-login-button">Login</button></a>*/}
+        <button className="header-login-button" onClick={handleLogin}>Login</button>
         <a href="/register"><button className="header-register-button">Register</button></a>
       </div>
     )

@@ -1,9 +1,9 @@
-import "/src/styles/MovieListContainer.css"
+import "/src/styles/MovieList.css"
 //import clapperboard_placeholder from "/src/assets/clapperboard-transparent.png"
 import Movie_API from "./api/ApiAccess.tsx"
 import AddMovie from "./AddMovie.tsx"
 
-interface MovieContainerProps {
+interface MovieListProps {
   listName: string,
   movieCount: number,
 }
@@ -42,7 +42,7 @@ function MovieNode() {
   )
 }
 
-function MovieListContainer(props: MovieContainerProps){ 
+function MovieList(props: MovieListProps){ 
   const {listName, movieCount} = props;
 
   return(
@@ -56,4 +56,4 @@ function MovieListContainer(props: MovieContainerProps){
   );
 }
 
-export default MovieListContainer
+export default MovieList

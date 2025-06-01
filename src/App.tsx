@@ -1,5 +1,5 @@
 //import Footer from "./components/Footer.tsx";
-import MovieListContainer from "./components/MovieListContainer.tsx";
+import MovieList from "./components/MovieList.tsx";
 
 // Movie Container variables
 let presentListText: string = "Currently Watching";
@@ -18,9 +18,9 @@ export default function App() {
   <div>
       <div className="main">
         <h1>{searchText}</h1>
-        <MovieListContainer listName = {presentListText} movieCount={presentMovieCount} />
-        <MovieListContainer listName = {futureListText} movieCount={futureMovieCount}/>
-        <MovieListContainer listName = {pastListText} movieCount={pastMovieCount}/>
+        <MovieList listName = {presentListText} movieCount={presentMovieCount} />
+        <MovieList listName = {futureListText} movieCount={futureMovieCount}/>
+        <MovieList listName = {pastListText} movieCount={pastMovieCount}/>
       </div>
     </div>
   );
