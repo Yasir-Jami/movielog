@@ -30,8 +30,8 @@ function User() {
   else {
     return(
       <div className="user-area">
-        {/*<a href="/login"><button className="header-login-button">Login</button></a>*/}
-        <button className="header-login-button" onClick={handleLogin}>Login</button>
+        {/*<button className="header-login-button" onClick={handleLogin}>Login</button>*/}
+        <a href="/login"><button className="header-login-button">Login</button></a>
         <a href="/register"><button className="header-register-button">Register</button></a>
       </div>
     )
