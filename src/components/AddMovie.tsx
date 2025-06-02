@@ -1,16 +1,15 @@
-//import plusSign from "./svgs/plus-1469-svgrepo-com.svg"
-import "/src/styles/AddMovie.css"
+import plusSign from "./svgs/plus-1469-svgrepo-com.svg"
+import "/src/styles/MovieList.css"
 
 function AddMovie () {
-  /*
+  
   return(
-    <div>
+    <div className="add-movie-container">
       <img className="add-movie-button" src={plusSign}></img>
       <p className="add-movie-text">Add Movie...</p>
     </div>
   )
-  */
+  
 }
-
 
 export default AddMovie
