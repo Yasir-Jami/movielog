@@ -2,16 +2,11 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 const serverUrl: string = import.meta.env.VITE_API_BASE_URL;
 const moviePath: string = import.meta.env.VITE_API_MOVIE_PATH;
-const movieTitle: string = import.meta.env.VITE_MOVIE_TITLE;
+import {MovieQuery, MovieInfo} from "src/MovieInterfaces.ts"
 
-interface Query {
-  Title?: string,
-  ImdbId?: string,
-}
-
-function getMovieApiData() : object { 
-  const [data, setData] = useState([]);
-  const query = apiQueryBuilder(movieTitle);
+function getMovieApiData(props: MovieQuery): MovieInfo { 
+  const [data, setData] = useState<MovieInfo>();
+  const query = apiQueryBuilder(props.Title, props.ImdbId);
   const url = `${serverUrl}${moviePath}`;
 
   useEffect(() => {
@@ -32,7 +27,18 @@ function getMovieApiData() : object {
             console.log("Error while getting movie data: ", err);
         });
   }, []);
-
+  
+  // TODO - pass a real error if no data is retrieved
+  if (data == null) {
+    const fakeData: MovieInfo = {
+      Title: "",
+      Poster: "nothing"
+    }
+    console.log("Failure: "+fakeData);
+    return fakeData;
+  }
+  
+  console.log("Success: " + data.Title, data.Poster, data.ImdbRating);
   return data;
 }
 
@@ -52,7 +58,7 @@ function getMovieApiData() : object {
  * @returns {string} Final query
  */
 function apiQueryBuilder(title?: string, id?: string): string {
-  const newQuery: Query = {
+  const newQuery: MovieQuery = {
     Title: `?t=${title}`,
     ImdbId: `?i=${id}`,
   }
