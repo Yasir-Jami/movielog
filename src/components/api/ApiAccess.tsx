@@ -25,7 +25,7 @@ function getMovieApiData(props: MovieQuery): MovieInfo {
         .catch((err) => {
             console.log("Error while getting movie data: ", err);
         });
-  }, []);
+  }, [movieQuery]);
   
   // TODO - pass an error object if no data is retrieved
   if (movieData == null) {

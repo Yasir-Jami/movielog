@@ -4,8 +4,7 @@ import {MovieQuery, MovieInfo} from "src/interfaces.ts"
 
 // Movie Container variables
 let defaultQuery: MovieQuery = {
-  Title: "hunter+x+hunter",
-  ImdbId: "",
+  Title: "hunter x hunter",
 }
 let presentListText: string = "Currently Watching";
 let futureListText: string = "To Watch";

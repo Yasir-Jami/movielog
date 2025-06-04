@@ -1,4 +1,4 @@
-.login-container {
+.login-form {
   display: flex;
   margin-top: 8rem;
   align-items: center;
@@ -6,8 +6,7 @@
   flex-direction: column;
 }
 
-input {
+.login-form input {
   margin-bottom: 2rem;
-  padding-left: 2rem;
-  padding-top: 1rem;
+  
 }
