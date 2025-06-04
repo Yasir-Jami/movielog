@@ -1,6 +1,6 @@
 import MovieList from "./MovieList.tsx";
 import MovieAPI from "./api/ApiAccess.tsx"
-import {MovieQuery, MovieInfo} from "src/MovieInterfaces.ts"
+import {MovieQuery, MovieInfo} from "src/interfaces.ts"
 
 // Movie Container variables
 let defaultQuery: MovieQuery = {
@@ -33,6 +33,9 @@ function getMovieData(query: MovieQuery): MovieInfo {
 }
 
 function MainContent () {
+  
+  
+  
   return (
   <div className="main">
     <h1>{searchText}</h1>
@@ -40,6 +43,10 @@ function MainContent () {
     <MovieList listName = {futureListText} movieCount={futureMovieCount} movieInfo={getMovieData(defaultQuery)}/>
     <MovieList listName = {pastListText} movieCount={pastMovieCount} movieInfo={getMovieData(defaultQuery)}/>
   </div>
+  )
+
+  return (
+    <div className="error-movie-retrieval">Error. Failed to retrieve movie data.</div>
   )
 }
 

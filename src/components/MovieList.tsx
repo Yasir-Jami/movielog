@@ -1,6 +1,6 @@
 import "/src/styles/MovieList.css"
 import AddMovie from "./AddMovie.tsx"
-import {MovieInfo} from "src/MovieInterfaces.ts"
+import {MovieInfo} from "src/interfaces.ts"
 
 interface MovieListProps {
   listName: string,

@@ -10,3 +10,15 @@ export interface MovieQuery {
   Title?: string,
   ImdbId?: string,
 }
+
+
+export interface ErrorInfo {
+  message: string,
+  status?: number,
+ 
+}
+
+export interface ApiError extends ErrorInfo {
+  message: string,
+  status?: number,
+}

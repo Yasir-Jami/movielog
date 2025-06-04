@@ -2,34 +2,33 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 const serverUrl: string = import.meta.env.VITE_API_BASE_URL;
 const moviePath: string = import.meta.env.VITE_API_MOVIE_PATH;
-import {MovieQuery, MovieInfo} from "src/MovieInterfaces.ts"
+import {MovieQuery, MovieInfo} from "src/interfaces"
 
 function getMovieApiData(props: MovieQuery): MovieInfo { 
-  const [data, setData] = useState<MovieInfo>();
-  const query = apiQueryBuilder(props.Title, props.ImdbId);
+  const [movieData, setMovieData] = useState<MovieInfo>();
+  const movieQuery = apiQueryBuilder(props.Title, props.ImdbId);
   const url = `${serverUrl}${moviePath}`;
 
   useEffect(() => {
     // Make GET request to fetch data
-    axios
-        .get(url, {
+    axios.get(url, {
           headers: {
             'Content-Type': 'application/json'
           },
           params: {
-            query: query,
+            query: movieQuery,
           },
         })
         .then((response) => {
-            setData(response.data);
+            setMovieData(response.data);
         })
         .catch((err) => {
             console.log("Error while getting movie data: ", err);
         });
   }, []);
   
-  // TODO - pass a real error if no data is retrieved
-  if (data == null) {
+  // TODO - pass an error object if no data is retrieved
+  if (movieData == null) {
     const fakeData: MovieInfo = {
       Title: "",
       Poster: "nothing"
@@ -38,8 +37,7 @@ function getMovieApiData(props: MovieQuery): MovieInfo {
     return fakeData;
   }
   
-  console.log("Success: " + data.Title, data.Poster, data.ImdbRating);
-  return data;
+  return movieData;
 }
 
 /**
