@@ -74,18 +74,11 @@ h1 {
 }
 
 h1 {
-  position: relative;
-  width: 418.37px;
-  height: 36px;
-  left: 0px;
-  top: 0px;
-
   font-family: 'Segoe UI';
   font-style: normal;
   font-weight: 700;
-  font-size: 30px;
-  line-height: 36px;
-  /* identical to box height, or 120% */
+  font-size: 2rem;
+  line-height: 2.5rem;
 
   color: #1F2937;
 }

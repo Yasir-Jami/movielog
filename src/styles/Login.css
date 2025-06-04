@@ -1,12 +1,82 @@
 .login-form {
+  border-radius: 8px;
+  border: 2px solid grey;
   display: flex;
   margin-top: 8rem;
-  align-items: center;
-  justify-content: center;
   flex-direction: column;
+  background: orange;
+  margin-left: 40rem;
+  margin-right: 40rem;
+  padding-left: 5rem;
+  padding-right: 5rem;
+  padding-top: 10rem;
+  padding-bottom: 10rem;
+  align-items: center;
+}
+
+.login-form h1 {
+  margin-bottom: 1rem; 
+}
+
+.login-form label {
+  font-family: 'Segoe UI';
+  font-style: normal;
+  font-weight: 700;
+  line-height: 2rem;
 }
 
 .login-form input {
+  width: 70%;
   margin-bottom: 2rem;
+  border: 0.2em solid transparent;
+  border-radius: 8px; 
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.2rem;
+  margin-top: 0.3rem;
+}
+
+.email-input {
   
+}
+
+.password-input {
+
+}
+
+.login-button {
+  background-color: #2563EB;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.3em 1.2em;
+  font-size: 1em;
+  font-weight: 600;
+  font-family: 'Segoe UI';
+  font-style: normal;
+  cursor: pointer;
+  transition: opacity 0.12s;
+  color: white;
+}
+
+.login-button:hover{
+  opacity: 80%;
+}
+
+.login-button:active {
+  opacity: 60%;
+}
+
+.login-messages {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+
+.no-account-message {
+  text-align: center;
+}
+
+.create-account-message {
+  text-align: center;
 }

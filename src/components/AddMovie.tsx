@@ -1,7 +1,7 @@
-import plusSign from "./svgs/plus-1469-svgrepo-com.svg"
+import plusSign from "/src/assets/svgs/plus-1469-svgrepo-com.svg"
 import "/src/styles/MovieList.css"
 
-function AddMovie () {
+function AddMovie() {
   
   return(
     <div className="add-movie-container">
