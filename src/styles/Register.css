@@ -45,6 +45,9 @@
 }
 
 .password-input{
+  background-image: url(/src/assets/svgs/email-8-svgrepo-com.svg);
+  background-position: 1px 1px;
+  background-repeat: no-repeat;
 
 }
 

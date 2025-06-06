@@ -1,9 +1,9 @@
 //import Footer from "./components/Footer.tsx";
 import MainContent from "./components/MainContent.tsx";
-import {useEffect, useState} from 'react';
+//import {useEffect, useState} from 'react';
 
 export default function App() {
-  const [isReady, setIsReady] = useState(false);
+  //const [isReady, setIsReady] = useState(false);
 
   /*
   if (!isReady) {

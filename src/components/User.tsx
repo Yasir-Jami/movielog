@@ -1,30 +1,16 @@
 // Handle rendering of user's lists and favorites depending on if they are logged in or not
 import "/src/styles/Header.css"
-import {useState} from 'react';
-var userEmail = "greg@gmail.com";
+import { useAuth } from "./AuthContext.tsx";
 
 function User() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  /*
-  const handleLogin = () => {
-    setIsLoggedIn(true);
-    console.log("User has logged in");
-  }
-  */
-
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-    console.log("User has logged out");
-  }
+  const {user, isAuthenticated, logout} = useAuth();
 
   // Add logout button
-  if (isLoggedIn) {
+  if (isAuthenticated && user) {
     return(
     <div className="user-area">
-      <p>Logged in as {userEmail}</p>
-      {/*<a href="."><button className="header-logout-button" onClick={onLogout}>Logout</button></a>*/}
-      <button className="header-logout-button" onClick={handleLogout}>Logout</button>
+      <p>Logged in as {user.email}</p>
+      <a href="/home"><button className="header-logout-button" onClick={logout}>Logout</button></a>
     </div>
     )
   }

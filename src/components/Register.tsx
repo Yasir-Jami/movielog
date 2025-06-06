@@ -1,9 +1,9 @@
 // Handles register/sign up page
-import {useForm, SubmitHandler, SubmitErrorHandler} from 'react-hook-form';
+import {useForm, SubmitHandler, /*SubmitErrorHandler*/} from 'react-hook-form';
 import { toast } from "react-toastify";
 import "/src/styles/Register.css"
 
-let registerUrl: string = `${import.meta.env.VITE_API_BASE_URL}${import.meta.env.VITE_API_USER_PATH}${import.meta.env.VITE_API_REGISTER_PATH}`;
+let registerUrl: string = `${import.meta.env.VITE_API_BASE_URL}${import.meta.env.VITE_API_USERS}${import.meta.env.VITE_API_REGISTER}`;
 
 interface RegisterFormValues {
   email: string,
@@ -28,12 +28,14 @@ function Register() {
       if (!response.ok) {
         // Handle all non-2XX requests
         const errorData = await response.json();
-        console.error("Error:", errorData);
+        console.error("Error: ", errorData.message);
+        toast.error("Error:", errorData.message);
         return;
       }
 
       const result = await response.json();
-      toast(`User successfully registered: ${result}`);
+      toast("User successfully registered");
+      console.log("Registration response:" + result);
     }
     catch (error) {
       console.error("Request failed:", error)

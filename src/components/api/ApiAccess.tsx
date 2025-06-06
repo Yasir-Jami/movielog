@@ -33,7 +33,6 @@ function getMovieApiData(props: MovieQuery): MovieInfo {
       Title: "",
       Poster: "nothing"
     }
-    console.log("Failure: "+fakeData);
     return fakeData;
   }
   

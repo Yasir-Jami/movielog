@@ -17,17 +17,21 @@ let pastMovieCount: number = 5;
 //let searchText: string = "Find a movie you like";
 let searchText: string = "";
 
+/*
 function getMovieLists() {
-  //let movieLists = []; // List of lists, each sublist will contain the full movie list data
+  let movieLists = []; // List of lists, each sublist will contain the full movie list data
 	//get data from database (list name, number of movies in list, array containing IDs of all movies, will need to preserve order added)
-	//movieLists.push([listName, numberOfMovies, array of movie IDs with preserved order])
+	movieLists.push([listName, numberOfMovies, array of movie IDs with preserved order])
 	
-	//return movieLists
+	return movieLists
 }
+*/
 
 //TODO - Retrieve info by making queries to database based on title/IMDB ID
 function getMovieData(query: MovieQuery): MovieInfo {
   const data: MovieInfo = MovieAPI(query);
+  
+
   return data;
 }
 
