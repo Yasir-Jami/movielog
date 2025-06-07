@@ -2,38 +2,41 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 const serverUrl: string = import.meta.env.VITE_API_BASE_URL;
 const moviePath: string = import.meta.env.VITE_API_MOVIE_PATH;
-const movieTitle: string = import.meta.env.VITE_MOVIE_TITLE;
+import {MovieQuery, MovieInfo} from "src/interfaces"
 
-interface Query {
-  Title?: string,
-  ImdbId?: string,
-}
-
-function getMovieApiData() : object { 
-  const [data, setData] = useState([]);
-  const query = apiQueryBuilder(movieTitle);
+function getMovieFromApi(props: MovieQuery): MovieInfo { 
+  const [movieData, setMovieData] = useState<MovieInfo>();
+  const movieQuery = apiQueryBuilder(props.Title, props.ImdbId);
   const url = `${serverUrl}${moviePath}`;
 
   useEffect(() => {
     // Make GET request to fetch data
-    axios
-        .get(url, {
+    axios.get(url, {
           headers: {
             'Content-Type': 'application/json'
           },
           params: {
-            query: query,
+            query: movieQuery,
           },
         })
         .then((response) => {
-            setData(response.data);
+            setMovieData(response.data);
         })
         .catch((err) => {
-            console.log("Error while getting movie data: ", err);
+            logger.log("Error while getting movie data: ", err);
         });
-  }, []);
-
-  return data;
+  }, [movieQuery]);
+  
+  // TODO - pass an error object if no data is retrieved
+  if (movieData == null) {
+    const fakeData: MovieInfo = {
+      Title: "",
+      Poster: "nothing"
+    }
+    return fakeData;
+  }
+  
+  return movieData;
 }
 
 /**
@@ -52,7 +55,7 @@ function getMovieApiData() : object {
  * @returns {string} Final query
  */
 function apiQueryBuilder(title?: string, id?: string): string {
-  const newQuery: Query = {
+  const newQuery: MovieQuery = {
     Title: `?t=${title}`,
     ImdbId: `?i=${id}`,
   }
@@ -71,4 +74,4 @@ function apiQueryBuilder(title?: string, id?: string): string {
   return finalQuery;
 }
 
-export default getMovieApiData
+export default getMovieFromApi

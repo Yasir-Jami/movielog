@@ -1,57 +1,46 @@
 import "/src/styles/MovieList.css"
-//import clapperboard_placeholder from "/src/assets/clapperboard-transparent.png"
-import Movie_API from "./api/ApiAccess.tsx"
 //import AddMovie from "./AddMovie.tsx"
+import {MovieInfo} from "src/interfaces.ts"
 
 interface MovieListProps {
   listName: string,
   movieCount: number,
+  movieInfo: MovieInfo,
 }
 
-interface MovieInfo {
-  title: string,
-  poster: string,
-  year: string,
-  plot: string,
-  imdbRating: string,
+interface MovieNodeProps {
+  movieInfo: MovieInfo,
 }
 
-interface MovieApiResponse {
-  Title: string,
-  Poster: string,
-  Year: string,
-  Plot: string,
-  imdbRating: string,
-}
-
-function MovieNode() {
-  const movieApi = Movie_API() as MovieApiResponse;
+function MovieNode(props: MovieNodeProps) {
   const movieInfo: MovieInfo = {
-    title: movieApi.Title,
-    poster: movieApi.Poster,
-    year: movieApi.Year,
-    plot: movieApi.Plot,
-    imdbRating: movieApi.imdbRating,
+    Title: props.movieInfo.Title,
+    Poster: props.movieInfo.Poster,
+    Year: props.movieInfo.Year,
+    Plot: props.movieInfo.Plot,
+    ImdbRating: props.movieInfo.ImdbRating,
   }
 
   return(
   <div className ="movie-node">
-    <img src={movieInfo.poster} className="movie-image"></img>
-    <p className="movie-title">{movieInfo.title}</p>
+    <img src={movieInfo.Poster} className="movie-image"/>
+    <p className="movie-title">{movieInfo.Title}</p>
   </div>
   )
 }
 
 function MovieList(props: MovieListProps){ 
-  const {listName, movieCount} = props;
+  const {listName, movieCount, movieInfo} = props;
 
   return(
-    <div className = "movie-container">
+    <div className="movie-list-container">
       <p className="list-name">{listName}</p>
-      {[...Array(movieCount)].map((_, i) => (
-        <MovieNode key={i} />
-      ))}
-      
+      <div className="movie-node-container">
+        {[...Array(movieCount)].map((_, i) => (
+          <MovieNode key={i} movieInfo={movieInfo} />
+        ))}
+      {/*<AddMovie />*/}
+      </div>
     </div>
   );
 }

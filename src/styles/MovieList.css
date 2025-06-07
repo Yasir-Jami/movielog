@@ -1,10 +1,5 @@
-.movie-container {
-  /*
-  border-style: solid;
-  border-color: #010101;
-  
-  */
-  border-radius: 12px;
+.movie-list-container {
+  border-radius: 0.75rem;
   background: #EFF6FF;
   box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 4px 6px -4px rgba(0, 0, 0, 0.1);
 
@@ -15,9 +10,38 @@
   padding-bottom: 2%;
 }
 
+.movie-node-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.movie-node {
+  margin-top: 2%;
+}
+
+.movie-image {
+  display: block;
+  margin: auto;
+  width: 50%;
+  border-radius: 0.5rem;
+}
+
+.movie-title {
+  color: darkred;
+  font-size: 1rem;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.movie-user-rating {
+  color: green;
+}
+
+.movie-list-container p {
+  font-family: opensans-bold;
+}
+
 .list-name {
-  left: 0px;
-  top: 0px;
   padding-top: 1%;
   font-family: 'Segoe UI';
   font-style: normal;
@@ -25,39 +49,24 @@
   font-size: 1.25rem;
   line-height: 1.75rem;
   color: #1F2937;
-  
-}
-
-.movie-image {
-  border: 3px solid darkblue;
-  width: 50%;
-  margin-top: 5%;
-}
-
-.movie-node {  
-  display: inline-block;
-  text-align: center;
-  color: black;
-  margin-top: 1%;
-}
-
-.movie-title {
-  color: darkred;
-  font-size: 0.9em;
-  padding-right: 3rem;
-  padding-left: 3rem;
-}
-
-.movie-user-rating {
-  color: green;
-}
-
-p {
-  color: darkblue;
-  font-family: opensans-bold;
 }
 
 @font-face {
   font-family: opensans-bold;
   src: url(/fonts/OpenSans-Bold.ttf);
+}
+
+/*Add Movie CSS*/
+.add-movie-container {
+  margin: auto;
+}
+
+.add-movie-button {
+  width: 5rem;
+  display: block;
+  margin: auto;
+}
+
+.add-movie-text {
+  margin-top: 0.5rem;
 }

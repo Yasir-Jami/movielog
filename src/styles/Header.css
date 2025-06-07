@@ -12,9 +12,10 @@
   box-shadow: 0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -2px rgba(0, 0, 0, 0.1);
 }
 
-.header-container {
-  width: 100%;
-  height: 100%;
+.header img {
+  height: 50%;
+  margin-right: 0.8rem;
+  margin-left: 5rem;
 }
 
 .header-title {
@@ -26,6 +27,7 @@
   color: #000000;
   left: 14rem;
   top: 0.6rem;
+  cursor: pointer;
   transition: 0.25s;
 }
 
@@ -36,15 +38,15 @@
 .header ul {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   padding: 1rem;
   list-style: none;
   /* or 150% */
   color: #1F2937;
+  width: 100%;
 }
 
-li {
+.header li {
   font-family: 'Segoe UI';
   font-style: normal;
   font-weight: 600;
@@ -53,15 +55,15 @@ li {
   margin-right: 2rem;
 }
 
-li:hover {
+.header li:hover {
   color: green;
 }
 
-a { 
+.header a { 
   color: inherit; 
 } 
 
-button {
+.header button {
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.3em 1.2em;
@@ -73,11 +75,11 @@ button {
   cursor: pointer;
   transition: border-color 0.16s;
 }
-button:hover {
+.header button:hover {
   border-color: #646cff;
 }
-button:focus,
-button:focus-visible {
+.header button:focus,
+.header button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
@@ -102,6 +104,6 @@ button:focus-visible {
   margin-right: 5rem;
 }
 
-.gap-4 {
-    gap: calc(var(--spacing) * 4);
+#header-user-email {
+  margin-right: 2rem; 
 }

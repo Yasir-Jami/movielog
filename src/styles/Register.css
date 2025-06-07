@@ -1,20 +1,89 @@
 .registration-form {
   border-radius: 8px;
+  border: 2px solid grey;
   display: flex;
   margin-top: 8rem;
   flex-direction: column;
   background: lightblue;
-  margin-left: 35rem;
-  margin-right: 35rem;
-  padding: 100px;
+  margin-left: 40rem;
+  margin-right: 40rem;
+  padding-left: 5rem;
+  padding-right: 5rem;
+  padding-top: 10rem;
+  padding-bottom: 10rem;
+  align-items: center;
 }
 
-input {
+.registration-form h1 {
+  margin-bottom: 1rem; 
+}
+
+.registration-form label {
+  font-family: 'Segoe UI';
+  font-style: normal;
+  font-weight: 700;
+  line-height: 2rem;
+}
+
+.registration-form input {
+  width: 70%;
   margin-bottom: 2rem;
   border: 0.2em solid transparent;
-  border-radius: 8px;
+  border-radius: 8px; 
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.2rem;
+  margin-top: 0.3rem;
+  
+}
+
+.email-input {
+  background-image: url(/src/assets/svgs/email-8-svgrepo-com.svg);
+  background-position: 1px 1px;
+  background-repeat: no-repeat;
+  
+}
+
+.password-input{
+  background-image: url(/src/assets/svgs/email-8-svgrepo-com.svg);
+  background-position: 1px 1px;
+  background-repeat: no-repeat;
+
 }
 
 .register-button {
   background-color: #2563EB;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.3em 1.2em;
+  font-size: 1em;
+  font-weight: 600;
+  font-family: 'Segoe UI';
+  font-style: normal;
+  cursor: pointer;
+  transition: opacity 0.12s;
+  color: white;
+}
+
+.register-button:hover{
+  opacity: 80%;
+}
+
+.register-button:active {
+  opacity: 60%;
+}
+
+.register-messages {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+
+.have-account-message {
+  text-align: center;
+}
+
+.login-account-message {
+  text-align: center;
 }
