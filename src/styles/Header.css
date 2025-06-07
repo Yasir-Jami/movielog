@@ -27,6 +27,7 @@
   color: #000000;
   left: 14rem;
   top: 0.6rem;
+  cursor: pointer;
   transition: 0.25s;
 }
 

@@ -39,7 +39,7 @@ function MovieList(props: MovieListProps){
         {[...Array(movieCount)].map((_, i) => (
           <MovieNode key={i} movieInfo={movieInfo} />
         ))}
-      <AddMovie />
+      {/*<AddMovie />*/}
       </div>
     </div>
   );

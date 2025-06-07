@@ -6,15 +6,15 @@ import {MovieQuery, MovieInfo} from "src/interfaces.ts"
 
 // Movie Container variables
 let defaultQuery: MovieQuery = {
-  Title: "hunter x hunter",
+  Title: "the matrix",
 }
 let presentListText: string = "Currently Watching";
 let futureListText: string = "To Watch";
 let pastListText: string = "Watched";
 
-let presentMovieCount: number = 3;
-let futureMovieCount: number = 3;
-let pastMovieCount: number = 5;
+let presentMovieCount: number = 1;
+let futureMovieCount: number = 2;
+let pastMovieCount: number = 3;
 
 //let searchText: string = "Find a movie you like";
 let searchText: string = "";
