@@ -1,5 +1,5 @@
 import "/src/styles/MovieList.css"
-import AddMovie from "./AddMovie.tsx"
+//import AddMovie from "./AddMovie.tsx"
 import {MovieInfo} from "src/interfaces.ts"
 
 interface MovieListProps {
