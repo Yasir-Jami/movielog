@@ -57,6 +57,7 @@
 
 .header li:hover {
   color: green;
+  cursor: pointer;
 }
 
 .header a { 
@@ -77,6 +78,7 @@
 }
 .header button:hover {
   border-color: #646cff;
+  opacity: 95%;
 }
 .header button:focus,
 .header button:focus-visible {
@@ -93,9 +95,6 @@
   color: #fff;
   background-color: #2563EB;
   font-weight: 500;
-}
-.header-register-button:hover {
-  border-color: black;
 }
 
 .user-area {
