@@ -11,7 +11,7 @@ function getNotification(message: string) {
 
 
 function Notification(component: React.Component) {
-  console.log(component);
+  logger.log(component);
   
   
   

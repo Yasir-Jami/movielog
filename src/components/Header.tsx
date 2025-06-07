@@ -12,7 +12,7 @@ function Header(){
           <a href="/movies"><li>Movies</li></a>
           <a href="/favorites"><li>Favorites</li></a>
         </ul>
-        <User />
+        <User/>
     </div>
   )
 }

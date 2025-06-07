@@ -2,7 +2,7 @@ import { createContext, useContext, useState, useEffect, ReactNode } from 'react
 
 interface User {
   email: string,
-  // Add other elements like email
+  // Add other elements if necessary
 }
 
 interface AuthContextType {
@@ -16,26 +16,28 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ( {children}: {children: ReactNode} ) => {
   const [user, setUserState] = useState<User | null>(null);
+  const authUser = 'authUser';
 
   useEffect(() => {
-    const storedUser = localStorage.getItem('authUser');
+    const storedUser = localStorage.getItem(authUser);
     if (storedUser) {
       try {
         const parsedUser: User = JSON.parse(storedUser);
         setUserState(parsedUser);
       } catch (e) {
-        console.error('Failed to parse user from localStorage:', e);
-        localStorage.removeItem('authUser');
+        logger.error('Failed to parse user from localStorage:', e);
+        localStorage.removeItem(authUser);
       }
     }
   }, []);
 
   const setUser = (user: User | null) => {
     setUserState(user);
+    
     if (user) {
-      localStorage.setItem('authUser', JSON.stringify(user));
+      localStorage.setItem(authUser, JSON.stringify(user));
     } else {
-      localStorage.removeItem('authUser');
+      localStorage.removeItem(authUser);
     }
   };
 
@@ -50,10 +52,10 @@ export const AuthProvider = ( {children}: {children: ReactNode} ) => {
   )
 }
 
-export const useAuth = (): AuthContextType => {
+export const UseAuth = (): AuthContextType => {
   const context = useContext(AuthContext);
   if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
+    throw new Error('UseAuth must be used within an AuthProvider');
   }
   return context;
 };

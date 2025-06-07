@@ -8,6 +8,9 @@ import Register from './components/Register.tsx';
 import Header from './components/Header.tsx';
 import { AuthProvider } from './components/AuthContext.tsx';
 import { ToastContainer } from "react-toastify";
+import logger from './logger.ts';
+
+globalThis.logger = logger;
 
 const router = createBrowserRouter([
   {

@@ -103,6 +103,6 @@
   margin-right: 5rem;
 }
 
-.gap-4 {
-    gap: calc(var(--spacing) * 4);
+#header-user-email {
+  margin-right: 2rem; 
 }

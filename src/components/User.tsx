@@ -1,29 +1,29 @@
 // Handle rendering of user's lists and favorites depending on if they are logged in or not
 import "/src/styles/Header.css"
-import { useAuth } from "./AuthContext.tsx";
+import { UseAuth } from "./AuthContext";
 
 function User() {
-  const {user, isAuthenticated, logout} = useAuth();
+  const {user, isAuthenticated, logout} = UseAuth();
+  logger.log("Authenticated status: " + isAuthenticated);
 
-  // Add logout button
+  // Logged in
   if (isAuthenticated && user) {
     return(
     <div className="user-area">
-      <p>Logged in as {user.email}</p>
+      <p id="header-user-email">Logged in as {user.email}</p>
       <a href="/home"><button className="header-logout-button" onClick={logout}>Logout</button></a>
     </div>
     )
   }
-  // Add sign in and sign up button
-  else {
-    return(
-      <div className="user-area">
-        {/*<button className="header-login-button" onClick={handleLogin}>Login</button>*/}
-        <a href="/login"><button className="header-login-button">Login</button></a>
-        <a href="/register"><button className="header-register-button">Register</button></a>
-      </div>
-    )
-  }
+
+  // Logged out
+  return(
+    <div className="user-area">
+      {/*<button className="header-login-button" onClick={handleLogin}>Login</button>*/}
+      <a href="/login"><button className="header-login-button">Login</button></a>
+      <a href="/register"><button className="header-register-button">Register</button></a>
+    </div>
+  )
   
 }
 

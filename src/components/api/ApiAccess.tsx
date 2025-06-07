@@ -4,7 +4,7 @@ const serverUrl: string = import.meta.env.VITE_API_BASE_URL;
 const moviePath: string = import.meta.env.VITE_API_MOVIE_PATH;
 import {MovieQuery, MovieInfo} from "src/interfaces"
 
-function getMovieApiData(props: MovieQuery): MovieInfo { 
+function getMovieFromApi(props: MovieQuery): MovieInfo { 
   const [movieData, setMovieData] = useState<MovieInfo>();
   const movieQuery = apiQueryBuilder(props.Title, props.ImdbId);
   const url = `${serverUrl}${moviePath}`;
@@ -23,7 +23,7 @@ function getMovieApiData(props: MovieQuery): MovieInfo {
             setMovieData(response.data);
         })
         .catch((err) => {
-            console.log("Error while getting movie data: ", err);
+            logger.log("Error while getting movie data: ", err);
         });
   }, [movieQuery]);
   
@@ -74,4 +74,4 @@ function apiQueryBuilder(title?: string, id?: string): string {
   return finalQuery;
 }
 
-export default getMovieApiData
+export default getMovieFromApi

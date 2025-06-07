@@ -28,32 +28,49 @@ function Register() {
       if (!response.ok) {
         // Handle all non-2XX requests
         const errorData = await response.json();
-        console.error("Error: ", errorData.message);
+        logger.error("Error: ", errorData.message);
         toast.error("Error:", errorData.message);
         return;
       }
 
       const result = await response.json();
       toast("User successfully registered");
-      console.log("Registration response:" + result);
+      logger.log("Registration response:" + result);
     }
     catch (error) {
-      console.error("Request failed:", error)
+      logger.error("Request failed:", error)
     }
   }
   
-  //const onSubmit: SubmitHandler<RegisterFormValues> = (data) => console.log(data);
-  //const onError: SubmitErrorHandler<RegisterFormValues> = (errors) => console.log(errors);
+  //const onSubmit: SubmitHandler<RegisterFormValues> = (data) => logger.log(data);
+  //const onError: SubmitErrorHandler<RegisterFormValues> = (errors) => logger.log(errors);
   
   return (
     <div className="registration-container">
       <form className="registration-form" onSubmit={handleSubmit(onSubmit, /*onError*/)} action={registerUrl} method="POST">
         <h1>Create an account</h1>
+        {/*Email field*/}
         <label htmlFor="email">Email Address</label>
-        <input className="email-input" type="email" placeholder="Enter your email" {...register("email", {required: true})}/>
+        <input 
+        type="email" 
+        placeholder="Email"
+        {...register("email", {required: true})}/>
+        
+        {/*Password field*/}
         <label htmlFor="password">Password</label>
-        <input className="password-input" type="password" placeholder="Enter a password" {...register("password", {required: true})}/>
-        {/*<input type="password" placeholder="Enter password again" {...register("confirmPassword", {required: true})}/>*/}
+        <input 
+        type="password" 
+        placeholder="Password" 
+        {...register("password", {required: true})}/>
+        
+        {/*Confirm Password field
+        <label htmlFor="password">Confirm Password</label>
+        <input 
+        type="password" 
+        placeholder="Confirm Password" 
+        {...register("confirmPassword", {required: true})}/>
+        */}
+
         <button type="submit" className="register-button">Register</button>
       </form>
       <div className="register-messages">

@@ -1,5 +1,5 @@
 import {useForm, SubmitHandler, /*SubmitErrorHandler*/} from 'react-hook-form';
-import { useAuth } from './AuthContext.tsx';
+import { UseAuth } from './AuthContext.tsx';
 import { toast } from "react-toastify";
 import "/src/styles/Login.css"
 import { useNavigate } from "react-router-dom";
@@ -12,7 +12,7 @@ interface LoginFormValues {
 
 function Login() {
   const {register, handleSubmit} = useForm<LoginFormValues>();
-  const { setUser } = useAuth();
+  const { setUser } = UseAuth();
   const navigate = useNavigate();
   // Play loading spinner
   
@@ -29,31 +29,32 @@ function Login() {
       if (!response.ok) {
         // Handle all non-2XX requests
         const errorData = await response.json();
-        console.error("Error:", errorData);
+        logger.error("Error:", errorData);
         return;
       }
 
       else if (response.ok) {
-        console.log("Login was successful");
-        setUser(userData);
+        logger.log("Login was successful");
+        const { password, ...userDataNoPassword } = userData;
+        setUser(userDataNoPassword);
 
         navigate(import.meta.env.VITE_PATH_HOME);
         toast("Logged in");
       }
 
       else {
-        console.log("Server gave an invalid response.");
+        logger.log("Server gave an invalid response.");
         toast("Server gave an invalid response.");
       }
 
     }
     catch (error) {
-      console.error("Request failed:", error);
+      logger.error("Request failed:", error);
     }
   }
   
-  //const onSubmit: SubmitHandler<LoginFormValues> = (data) => console.log(data);
-  //const onError: SubmitErrorHandler<LoginFormValues> = (errors) => console.log(errors);
+  //const onSubmit: SubmitHandler<LoginFormValues> = (data) => logger.log(data);
+  //const onError: SubmitErrorHandler<LoginFormValues> = (errors) => logger.log(errors);
   
   return (
     <div className="login-container">
@@ -64,14 +65,14 @@ function Login() {
         <label htmlFor="email">Email Address</label>
         <input 
         type="email" 
-        placeholder="Enter your email"
+        placeholder="Email"
         {...register("email", {required: true})}/>
         
         {/*Password field*/}
         <label htmlFor="password">Password</label>
         <input 
         type="password" 
-        placeholder="Enter a password" 
+        placeholder="Password" 
         {...register("password", {required: true})}/>
         
         <button type="submit" className="login-button">Log In</button>
