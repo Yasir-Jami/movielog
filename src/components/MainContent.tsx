@@ -1,7 +1,7 @@
 import MovieList from "./MovieList.tsx";
 import MovieAPI from "./api/ApiAccess.tsx"
 import { UseAuth } from "./AuthContext.tsx";
-//import AddMovieList from "./AddMovieList.tsx";
+import AddMovieList from "./AddMovieList.tsx";
 import {MovieQuery, MovieInfo} from "src/interfaces.ts"
 
 // Movie Container variables
@@ -43,7 +43,7 @@ function getMovieData(query: MovieQuery): MovieInfo {
 }
 
 function MainContent () {
-  const {user, isAuthenticated } = UseAuth();
+  const { user, isAuthenticated } = UseAuth();
   let content: any;
 
   if (isAuthenticated && user) {
@@ -72,7 +72,7 @@ function MainContent () {
       movieCount={pastMovieCount} 
       movieInfo={getMovieData(defaultQuery)}
     />
-    {/*<AddMovieList/>*/}
+    <AddMovieList/>
     </>
   );
 

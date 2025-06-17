@@ -2,7 +2,6 @@
   border-radius: 0.75rem;
   background: #EFF6FF;
   box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 4px 6px -4px rgba(0, 0, 0, 0.1);
-
   margin-left: 5%;
   margin-top: 3%;
   width: 80rem;
@@ -69,4 +68,85 @@
 
 .add-movie-text {
   margin-top: 0.5rem;
+}
+
+/* Elements related to creating a new movie list */
+.create-list-container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-right: 1rem;
+}
+
+.create-list-button {
+  width: 5rem;
+  margin: auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  transition: opacity 0.08s;
+}
+
+.create-list-button:hover {
+  cursor: pointer;
+  opacity: 50%;
+}
+
+.create-list-text {
+  font-family: opensans-bold;
+  font-weight: 500;
+  font-size: 1.25rem;
+  color: darkgreen;
+  margin: auto; 
+}
+
+.create-list-text.hovered {
+  opacity: 80%;
+  
+}
+
+/* Elements related to modal display when creating a new movie list */
+.create-movie-list-modal {
+  /*display: none; /* Hidden by default */
+  display: flex;
+  position: absolute; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  /* margin: 15% auto; /* 15% from the top and centered */
+  padding-top: 1rem;
+  padding-left: 1rem;
+  padding-bottom: 5rem;
+  margin: auto;
+  border: 1px solid #888;
+  width: 25%; /* Could be more or less, depending on screen size */
+  margin:0 auto;
+  background:#f7f7f7;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left:-250px;
+  margin-top:-250px;
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.close:hover, .close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }

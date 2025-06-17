@@ -3,7 +3,6 @@ import clapperboard from "/src/assets/svgs/clapperboard.svg"
 import User from "./User.tsx"
 import { useNavigate } from "react-router-dom"
 
-
 function Header(){
   const navigate = useNavigate();
 

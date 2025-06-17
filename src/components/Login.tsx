@@ -43,8 +43,8 @@ function Login() {
       }
 
       else {
-        logger.log("Server gave an invalid response.");
-        toast("Server gave an invalid response.");
+        logger.log("Server returned  an invalid response.");
+        toast("Server returned an invalid response.");
       }
 
     }

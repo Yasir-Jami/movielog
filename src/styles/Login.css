@@ -2,20 +2,31 @@
   border-radius: 8px;
   border: 2px solid grey;
   display: flex;
-  margin-top: 8rem;
+  align-items: center;
   flex-direction: column;
-  background: orange;
-  margin-left: 40rem;
-  margin-right: 40rem;
+  background: linear-gradient(to right, #ffa751, #ffe259);
   padding-left: 5rem;
   padding-right: 5rem;
   padding-top: 10rem;
   padding-bottom: 10rem;
-  align-items: center;
+  /*
+  margin: auto;
+  margin-top: 8rem;
+  width: 80%;
+  */
+  margin-top: 8rem;
+  margin-left: 40rem;
+  margin-right: 40rem;
 }
 
 .login-form h1 {
   margin-bottom: 1rem; 
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    background-color: lightblue;
+  }
 }
 
 .login-form label {
@@ -34,14 +45,6 @@
   padding-bottom: 0.5rem;
   padding-left: 0.2rem;
   margin-top: 0.3rem;
-}
-
-.email-input {
-  
-}
-
-.password-input {
-
 }
 
 .login-button {

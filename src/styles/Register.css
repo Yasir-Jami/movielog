@@ -4,7 +4,7 @@
   display: flex;
   margin-top: 8rem;
   flex-direction: column;
-  background: lightblue;
+  background: linear-gradient(to right, #add8e6, #ffffff);
   margin-left: 40rem;
   margin-right: 40rem;
   padding-left: 5rem;

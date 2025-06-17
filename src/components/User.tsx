@@ -6,14 +6,13 @@ import { UseAuth } from "./AuthContext";
 function User() {
   const {user, isAuthenticated, logout} = UseAuth();
   const navigate = useNavigate();
-  logger.log("Authenticated status: " + isAuthenticated);
 
   // Logged in
   if (isAuthenticated && user) {
     return(
     <div className="user-area">
       <p id="header-user-email">Logged in as {user.email}</p>
-      <a href="/home"><button className="header-logout-button" onClick={logout}>Logout</button></a>
+      <a href="/"><button className="header-logout-button" onClick={logout}>Logout</button></a>
     </div>
     )
   }
