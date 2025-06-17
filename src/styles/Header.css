@@ -3,12 +3,13 @@
   display: flex;
   padding-left: 5rem;
   align-items: center;
+  
   height: 4rem;
   left: 0px;
   right: 0px;
   top: 0px;
   z-index: 100;
-  background: #FFE433;
+  background: linear-gradient(to right, #ffeb3b, #fbc02d, #f57f17);
   box-shadow: 0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -2px rgba(0, 0, 0, 0.1);
 }
 
@@ -32,7 +33,7 @@
 }
 
 .header-title:hover {
-  border-bottom: 2px;
+  outline: 4px auto -webkit-focus-ring-color;
 }
 
 .header ul {
@@ -76,25 +77,35 @@
   cursor: pointer;
   transition: border-color 0.16s;
 }
-.header button:hover {
-  border-color: #646cff;
-  opacity: 95%;
-}
+
 .header button:focus,
 .header button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-.header-login-button {
-  color: #2563EB;
-  background-color: #FFF;
+.header-login-button, .header-logout-button {
+  background: #fff;
+  color: #f57f17;
+  border: none;
+  transition: box-shadow 0.3s ease, transform 0.5s ease;
   font-weight: 500;
 }
 
+.header-login-button:hover, .header-logout-button:hover {
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+  transform: translateY(-1px);
+}
+
 .header-register-button {
+  background: #333;
   color: #fff;
-  background-color: #2563EB;
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+  border-radius: 4px;
   font-weight: 500;
+}
+.header-register-button:hover {
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
 }
 
 .user-area {
@@ -105,4 +116,5 @@
 
 #header-user-email {
   margin-right: 2rem; 
+  
 }
