@@ -22,3 +22,5 @@ pm2 logs (get logs)
 # Save process list, exit old PM2 & restore all processes
   $ pm2 update
 Note: PM2 updates are seamless
+
+https://pm2.keymetrics.io/docs/usage/quick-start/

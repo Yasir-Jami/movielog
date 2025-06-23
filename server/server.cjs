@@ -4,12 +4,14 @@ const app = express();
 const mongoose = require('mongoose');
 require("dotenv").config({path: "./.env"});
 
+// Paths to routes
 const userRoutes = require(`./routes/users.cjs`);
 const movieRoutes = require(`./routes/movies.cjs`);
-/*
-const dbRoutes = require(`./routes/database.cjs`);
-const { default: router } = require(`./routes/user.cjs`);
-*/
+const movieListRoutes = require(`./routes/movielists.cjs`);
+
+// Get port if provided, default to 5000
+var args = require('minimist')(process.argv.slice(2));
+const port = args.port || process.env.PORT;
 
 // Config variables
 const USER_PATH = process.env.SERVER_PATH_USER;
@@ -19,8 +21,7 @@ const dbName = process.env.DATABASE_NAME;
 
 // Middleware to enable Cross-Origin Resource Sharing (CORS)
 const allowedOrigins = [
-  'https://movielog.ca', 
-  '75.159.63.134',
+  'https://movielog.ca',
 ];
 
 const corsOptions = {
@@ -34,22 +35,30 @@ const corsOptions = {
   },
 };
 
-if (process.env.ENVIRONMENT == "prod") {app.use(cors(corsOptions));} 
-else {app.use(cors());}
+// CORS
+if (port == 6000) {
+  app.use(cors());
+  console.log("Running devserver");
+}
+else {
+  app.use(cors(corsOptions));
+}
 
-app.use(express.json());
-
+// Connect to MongoDB cloud
 mongoose.connect(process.env.ATLAS_URI, {dbName}, {
   })
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.error('MongoDB connection error:', err));
 
+app.use(express.json());
+// Routes
 app.use('/users', userRoutes);
 app.use('/movies', movieRoutes);
-//app.use(DATABASE_PATH, dbRoutes);
+app.use('/movielists', movieListRoutes);
 
-// Start the server
-const port = process.env.PORT || 5000;
+// Start server
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+
+// TODO research joi validation - validates incoming requests to ensure they are correct instead of relying on HTTP 400

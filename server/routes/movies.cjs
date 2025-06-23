@@ -10,8 +10,8 @@ router.get('/', async (req, res) => {
     query = req.query.query;
 
     const url = `${API_LINK}${query}&apikey=${API_KEY}`;
-    console.log("Query:", query);
-    console.log("Final URL:", url);
+	  console.log(query);
+	  console.log(url);
     // Send request
     const response = await axios.get(url);
     res.json(response.data); // Send the response as JSON 
