@@ -62,25 +62,13 @@ function MainContent () {
       movieCount={presentMovieCount} 
       movieInfo={getMovieData(defaultQuery)}
     />
-    <MovieList 
-      listName = {futureListText} 
-      movieCount={futureMovieCount} 
-      movieInfo={getMovieData(defaultQuery)}
-    />
-    <MovieList 
-      listName = {pastListText} 
-      movieCount={pastMovieCount} 
-      movieInfo={getMovieData(defaultQuery)}
-    />
-    <AddMovieList/>
     </>
   );
 
   // On success
   return (
     <div className="main">
-      <h1>{searchText}</h1>
-      {content}
+      
       </div>
   )
 

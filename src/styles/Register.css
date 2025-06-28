@@ -2,9 +2,9 @@
   border-radius: 8px;
   border: 2px solid grey;
   display: flex;
-  margin-top: 8rem;
   flex-direction: column;
   background: linear-gradient(to right, #add8e6, #ffffff);
+  margin-top: 3rem;
   margin-left: 40rem;
   margin-right: 40rem;
   padding-left: 5rem;

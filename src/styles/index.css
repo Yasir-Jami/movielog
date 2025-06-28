@@ -20,9 +20,8 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-html {
-  background: linear-gradient(0deg, #1F2937 0%, #374151 50%, #6B7280 100%);
-  height: 100vh;
+html, body {
+  background: linear-gradient(to bottom right, #fff8e1, #ffecb3, #fff8e1);
   z-index: 0;
   background-attachment: fixed;
 }
@@ -70,14 +69,7 @@ h1 {
   box-sizing: border-box;
 }
 
-.main {
-  display: flex;
-  flex-direction: column;
-  width: 80%;
-  height: 150vh;
-  margin-left: 11%;
-  margin-top: 5%;
-}
+
 
 h1 {
   font-family: 'Segoe UI';
