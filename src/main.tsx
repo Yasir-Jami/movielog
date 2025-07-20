@@ -4,8 +4,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import '/src/styles/index.css';
 import Layout from "./Layout"
 import App from './App.tsx';
-import Login from './components/Login.tsx';
-import Register from './components/Register.tsx';
+import Login from './components/ui/Login.tsx';
+import Register from './components/ui/Register.tsx';
 import { AuthProvider } from './components/AuthContext.tsx';
 import { ToastContainer } from "react-toastify";
 import logger from './logger.ts';

@@ -1,7 +1,7 @@
-import MovieList from "./MovieList.tsx";
-import MovieAPI from "./api/ApiAccess.tsx"
-import { UseAuth } from "./AuthContext.tsx";
-import AddMovieList from "./AddMovieList.tsx";
+import MovieList from "../MovieList.tsx";
+import MovieAPI from "../api/ApiAccess.tsx"
+import { UseAuth } from "../AuthContext.tsx";
+import Sidebar from "./Sidebar.tsx"
 import {MovieQuery, MovieInfo} from "src/interfaces.ts"
 
 // Movie Container variables
@@ -68,8 +68,8 @@ function MainContent () {
   // On success
   return (
     <div className="main">
-      
-      </div>
+      <Sidebar />
+    </div>
   )
 
   // On failure

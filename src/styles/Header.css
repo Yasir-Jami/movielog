@@ -37,14 +37,15 @@
 }
 
 .header__title {
+  font-family: Inter-Bold;
   font-size: 1.875rem;
   font-weight: 700;
   margin: 0;
 }
 
 .header__subtitle {
+  font-family: Inter-Regular;
   font-size: 0.875rem;
-  
   margin: 0;
 }
 

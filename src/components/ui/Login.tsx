@@ -1,5 +1,5 @@
 import {useForm, SubmitHandler, /*SubmitErrorHandler*/} from 'react-hook-form';
-import { UseAuth } from './AuthContext.tsx';
+import { UseAuth } from '../AuthContext.tsx';
 import { toast } from "react-toastify";
 import "/src/styles/Login.css"
 import { useNavigate } from "react-router-dom";

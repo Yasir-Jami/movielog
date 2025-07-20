@@ -1,7 +1,7 @@
 // Handle rendering of user's lists and favorites depending on if they are logged in or not
 import "/src/styles/Header.css"
 import { useNavigate } from "react-router-dom";
-import { UseAuth } from "./AuthContext";
+import { UseAuth } from "../AuthContext";
 import { LogIn, UserPlus } from "lucide-react";
 
 function User() {

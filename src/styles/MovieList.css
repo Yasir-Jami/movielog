@@ -50,11 +50,6 @@
   color: #1F2937;
 }
 
-@font-face {
-  font-family: opensans-bold;
-  src: url(/fonts/OpenSans-Bold.ttf);
-}
-
 /*Add Movie CSS*/
 .add-movie-container {
   margin: auto;

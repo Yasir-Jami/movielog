@@ -1,7 +1,7 @@
 import plusSign from "/src/assets/svgs/plus-1469-svgrepo-com.svg"
 import "/src/styles/MovieList.css"
 import { useState } from "react";
-import { UseAuth, AuthContextType } from "./AuthContext";
+import { UseAuth, AuthContextType } from "../AuthContext";
 
 interface CreateListData {
   listName: string,

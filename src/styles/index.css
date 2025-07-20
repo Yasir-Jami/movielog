@@ -88,3 +88,27 @@ h1 {
   left: 11%;
   top: 12%;
 }
+
+/* --- Fonts --- */
+
+/* Open Sans */
+@font-face {
+  font-family: OpenSans-Regular;
+  src: url(/fonts/OpenSans/OpenSans-Regular.ttf);
+}
+
+@font-face {
+  font-family: OpenSans-Bold;
+  src: url(/fonts/OpenSans/OpenSans-Bold.ttf);
+}
+
+/* Inter */
+@font-face {
+  font-family: Inter-Regular;
+  src: url(/fonts/Inter/Inter_18pt-Regular.ttf);
+}
+
+@font-face {
+  font-family: Inter-Bold;
+  src: url(/fonts/Inter/Inter_18pt-Bold.ttf);
+}
