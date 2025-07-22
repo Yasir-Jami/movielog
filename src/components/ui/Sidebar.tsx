@@ -1,13 +1,13 @@
 import "/src/styles/Sidebar.css"
+import { SidebarProps, SidebarItemProps } from "src/interfaces.ts";
 import { useState } from "react";
 
 function Sidebar() {
   const [sidebarVisiblity, setSidebarVisiblity] = useState(true);
+  //const { selectedList } = props;
 
   function toggleSidebar() {
     setSidebarVisiblity(sidebarVisiblity => !sidebarVisiblity);
-    
-
   }
 
   function retrieveLists() {
@@ -15,26 +15,47 @@ function Sidebar() {
 
   }
 
-  const SideBarItem = () => {
+  function selectList() {
+    // Highlight selected list by ID
+    
+  }
+
+  const SideBarItem = (props: SidebarItemProps) => {
+    const {itemLabel, itemIcon} = props;
+    
     return (
       <div className="sidebar__item">
-        <img className="sidebar__item-icon" src="/src/assets/svgs/play-button.svg"/>
-        <p className="sidebar__item-name">Watching</p>
+        <img className="sidebar__item-icon" src={itemIcon}/>
+        <p className="sidebar__item-label">{itemLabel}</p>
       </div>
     )
-
   }
 
   const SidebarLists = () => {
-    // Get number of lists from database
-    // Display appropriately
+    const watchingListProps: SidebarItemProps = {
+      itemLabel: "Watching",
+      itemIcon:  "/src/assets/svgs/play-button.svg"
+    }
+
+    const watchedListProps: SidebarItemProps = {
+      itemLabel: "Watched",
+      itemIcon:  "/src/assets/svgs/checkmark-svgrepo-com.svg"
+    }
+
+    const toWatchListProps: SidebarItemProps = {
+      itemLabel: "To Watch",
+      itemIcon:  "/src/assets/svgs/clock-svgrepo-com.svg"
+    }
 
     return (
       <div className="sidebar__list">
-        <SideBarItem />
-        {/* Get each list node
+        <SideBarItem {...watchingListProps}/>
+        <SideBarItem {...watchedListProps}/>
+        <SideBarItem {...toWatchListProps}/>
+        {/* 
+        Get each list from database
         {[...Array(movieCount)].map((_, i) => (
-          <SideBarItem key={i} listName={listName} />
+          <SideBarItem key={i} {listName} />
         ))}
         */}
         <div className="sidebar__add-item">

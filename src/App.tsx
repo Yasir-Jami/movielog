@@ -14,9 +14,7 @@ export default function App() {
 
   else if (isReady) {
   */
- return(
-  <div>
+ return (
     <MainContent />
-  </div>
  )
   }

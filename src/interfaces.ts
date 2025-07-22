@@ -12,6 +12,15 @@ export interface MovieQuery {
 }
 
 
+export interface SidebarProps {
+  selectedList: number,
+}
+
+export interface SidebarItemProps {
+  itemLabel: string,
+  itemIcon?: string,
+}
+
 export interface ErrorInfo {
   message: string,
   status?: number,

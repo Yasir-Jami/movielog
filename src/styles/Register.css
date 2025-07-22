@@ -82,8 +82,10 @@
 
 .have-account-message {
   text-align: center;
+  color: black;
 }
 
 .login-account-message {
+  color: #646cff;
   text-align: center;
 }
