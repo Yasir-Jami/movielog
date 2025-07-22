@@ -1,16 +1,19 @@
 .sidebar {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
   margin-top: 1rem;
   margin-left: 0.75rem;
   width: 14%;
   height: 45em;
-  border-style: solid;
   border-radius: 0.50rem;
+  background: white;
 }
 
-.sidebar__container-label {
+.sidebar__container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.sidebar__label {
   font-family: Inter-Bold;
   color: black;
   font-size: 150%;
@@ -18,9 +21,78 @@
   margin-bottom: 1.25rem;
 }
 
-.sidebar__container-add-list-item {
-  border-style: solid;
+.sidebar__chevron {
+  width: 20%;
+  position: relative;
+  left: 93%;
+  top: 45%;
+  background-color: white;
+  border-radius: 5rem;
+  cursor: pointer;
+  transition: opacity transform 0.08s;
+  -webkit-user-drag: none;
+}
+
+.sidebar__chevron-left:hover {
+  opacity: 90%;
+  transform: scaleX(-1);
+}
+
+.sidebar__item {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  border-style: none;
+  background-color: white;
   border-radius: 0.50rem;
   height: 3rem;
   width: 15rem;
+  margin-bottom: 0.75rem;
+  transition: 0.08s;
+  cursor: pointer;
+}
+
+.sidebar__item:hover {
+  opacity: 90%;
+}
+
+.sidebar__item:active {
+  opacity: 80%;
+}
+
+.sidebar__item-name {
+  font-family: Inter-Regular;
+}
+
+.sidebar__item-icon {
+  margin-left: 1rem;
+  margin-right: 0.50rem;
+  width: 9%;
+}
+
+.sidebar__add-item {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  background: radial-gradient(circle, #ff9966, #ff5e62);
+  border-style: none;
+  border-radius: 0.50rem;
+  height: 3rem;
+  width: 15rem;
+  cursor: pointer;
+  transition: opacity 0.08s;
+  -webkit-user-drag: none;
+}
+
+.sidebar__add-item:hover {
+  opacity: 90%;
+}
+
+.sidebar__add-item:active {
+  opacity: 80%;
+}
+
+.sidebar__add-item-plus-sign {
+  width: 16%;
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
 }
