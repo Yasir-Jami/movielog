@@ -1,7 +1,5 @@
-import MovieList from "./MovieList.tsx";
-import MovieAPI from "../api/ApiAccess.tsx"
-import { UseAuth } from "../AuthContext.tsx";
-import Sidebar from "./Sidebar.tsx"
+import Sidebar from "src/components/ui/Sidebar";
+import MovieList from "src/components/ui/MovieList";
 import {MovieQuery, MovieInfo, SidebarProps } from "src/interfaces.ts";
 
 //const {isAuthenticated, user} = UseAuth();

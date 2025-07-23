@@ -6,6 +6,12 @@ export interface MovieInfo {
   ImdbRating?: string,
 }
 
+export interface MovieGridProps {
+  movieListName: string,
+  movieCount: number,
+  movieArray: Array<MovieInfo>,
+}
+
 export interface MovieQuery {
   Title?: string,
   ImdbId?: string,

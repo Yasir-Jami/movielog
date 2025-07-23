@@ -1,23 +1,29 @@
 import "/src/styles/MovieList.css";
-//import AddMovie from "./AddMovie.tsx"
+import { MovieGridProps, MovieInfo } from "src/interfaces";
+import Searchbar from "src/components/ui/Searchbar"
 import MovieGrid from "src/components/ui/MovieGrid";
-import { MovieInfo } from "src/interfaces.ts";
-
-interface MovieListProps {
-  listName: string,
-  movieCount: number,
-  movieInfo: MovieInfo,
-}
 
 function MovieList() {
+  const moviesArray: MovieInfo[] = [];
+  
+  const movieProps: MovieGridProps = {
+    movieListName: "",
+    movieCount: 12,
+    movieArray: moviesArray,
+  }
+
+  const movieCount = 13;
 
   return (
     <div className="list-container">
-      <div className="list-container__search"></div>
-      <MovieGrid />
+      <Searchbar />
+      <div className="list-container__metadata">
+        <h2 className="list-container__list-name">Watching</h2>
+        <p className="list-container__movie-count">{movieCount} movies</p>
+      </div>
+      <MovieGrid {...movieProps}/>
     </div>
   )
 }
-
 
 export default MovieList;
