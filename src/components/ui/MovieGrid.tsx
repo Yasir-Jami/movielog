@@ -1,4 +1,4 @@
-import { MovieGridProps } from "interfaces";
+//import { MovieGridProps } from "interfaces";
 import "@styles/MovieList.css"
 import MovieCard from "@components/ui/MovieCard";
 import testMovieArray from "tests/DummyMovieData";
@@ -12,7 +12,8 @@ interface MovieInfo {
   ImdbRating?: string,
 }
 
-function MovieGrid (props: MovieGridProps) {
+//function MovieGrid (props: MovieGridProps) {
+function MovieGrid () {
   //const { movieListName, movieCount, movieArray } = props;
   const data: MovieInfo[] = testMovieArray();
 
