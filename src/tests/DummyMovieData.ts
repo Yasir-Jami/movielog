@@ -68,9 +68,7 @@ function testMovieArray(): MovieInfo[] {
   }
 
   movieArray.push(movie1, movie2, movie3, movie4, movie5, movie6, movie7, movie8, movie9);
-
-  console.log(movieArray);
-
+  
   return movieArray;
 }
 
