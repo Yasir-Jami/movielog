@@ -40,13 +40,19 @@
   background-color: white;
   border-radius: 5rem;
   cursor: pointer;
-  transition: opacity transform 0.08s;
+  transition: all 0.08s;
   -webkit-user-drag: none;
 }
 
-.sidebar__chevron-left:hover {
+/*
+.sidebar__chevron:hover {
   opacity: 90%;
   transform: scaleX(-1);
+}
+*/
+
+.sidebar__chevron:hover {
+  background-color: rgb(235, 235, 235);
 }
 
 .sidebar__item {

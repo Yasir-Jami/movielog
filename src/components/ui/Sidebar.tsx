@@ -11,7 +11,8 @@ function Sidebar() {
   const selectedListId: number = 0;
 
   function toggleSidebar() {
-    setSidebarVisiblity(sidebarVisiblity => !sidebarVisiblity);
+    //setSidebarVisiblity(sidebarVisiblity => !sidebarVisiblity);
+    
   }
 
   function retrieveLists() {
