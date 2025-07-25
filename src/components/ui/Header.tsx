@@ -1,17 +1,11 @@
 import "/src/styles/Header.css"
-import clapperboard from "/src/assets/svgs/clapperboard.svg"
 import User from "./User.tsx"
 import { Film } from "lucide-react"
 import { useNavigate } from "react-router-dom"
-import { ButtonHTMLAttributes, ReactHTMLElement, useState } from 'react';
 
 function Header(){
   const navigate = useNavigate();
   //const [selectedButton, setSelectedButton] = useState(false);
-
-  function changeTab(path: string) {
-    navigate(path);
-  }
 
   return (
     <div className="header">

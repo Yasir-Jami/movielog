@@ -8,7 +8,7 @@ function MovieList() {
   const moviesArray: MovieInfo[] = [];
   
   const movieProps: MovieGridProps = {
-    movieListName: "",
+    movieListName: "Watching",
     movieCount: 9,
     movieArray: moviesArray,
   }
@@ -20,12 +20,12 @@ function MovieList() {
       <Searchbar />
       <div className="list-container__info">
         <div className="list-container__metadata">
-          <h2 className="list-container__list-name">Watching</h2>
+          <h2 className="list-container__list-name">{movieProps.movieListName}</h2>
           <p className="list-container__movie-count">{movieCount} movies</p>
         </div>
         <AddMovie />
       </div>
-      <MovieGrid {...movieProps}/>
+      <MovieGrid />
     </div>
   )
 }
