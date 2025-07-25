@@ -82,7 +82,7 @@
 }
 
 .header li:hover {
-  color: green;
+  color: cyan;
   cursor: pointer;
 }
 

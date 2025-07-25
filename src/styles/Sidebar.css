@@ -7,7 +7,7 @@
   height: 45em;
   border-radius: 1.10rem;
   /*box-shadow: #ff5e62;*/
-  background: green;
+  background: rgba(0, 0, 0, 0.8);
 }
 
 @media (max-width: 768px) {

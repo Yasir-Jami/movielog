@@ -26,11 +26,12 @@ function Header(){
               <p className="header__subtitle">Your personal movie backlog</p>
             </div>
 
-            {/* Navigation */}
+          {/* Navigation 
             <nav className="header__nav">
                 <button onClick={() => changeTab('/movies')}>Movies</button>
                 <button onClick={() => changeTab('/favorites')}>Favorites</button>
             </nav>
+          */}
           </div>
 
           <div className="header__actions">

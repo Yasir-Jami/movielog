@@ -7,8 +7,8 @@ import { Calendar } from "lucide-react";
 //function MovieCard(props: MovieInfo) {
 function MovieCard() {
   //const { Title, Poster } = props;
-  const Title: string = "Hunter X Hunter";
-  const Poster: string = "https://m.media-amazon.com/images/M/MV5BYzYxOTlkYzctNGY2MC00MjNjLWIxOWMtY2QwYjcxZWIwMmEwXkEyXkFqcGc@._V1_SX300.jpg";
+  const Title: string = "The Matrix";
+  const Poster: string = "https://m.media-amazon.com/images/M/MV5BN2NmN2VhMTQtMDNiOS00NDlhLTliMjgtODE2ZTY0ODQyNDRhXkEyXkFqcGc@._V1_SX300.jpg";
 
   return(
     <div className="movie-card">
