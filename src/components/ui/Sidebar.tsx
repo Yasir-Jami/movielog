@@ -3,6 +3,8 @@ import { SidebarItemProps } from "interfaces.ts";
 import playButtonIcon from "/src/assets/svgs/play-button.svg";
 import checkmarkIcon from "/src/assets/svgs/checkmark-svgrepo-com.svg";
 import clockIcon from "/src/assets/svgs/clock-svgrepo-com.svg";
+import addListIcon from "/src/assets/svgs/plus-mini-1523-svgrepo-com.svg";
+import sidebarChevron from "/src/assets/svgs/left-chevron.svg";
 
 function Sidebar() {
   function toggleSidebar() {
@@ -49,7 +51,7 @@ function Sidebar() {
         ))}
         */}
         <div className="sidebar__add-item">
-          <img className="sidebar__add-item-plus-sign" src="/src/assets/svgs/plus-mini-1523-svgrepo-com.svg"></img>
+          <img className="sidebar__add-item-plus-sign" src={addListIcon}></img>
         </div>
       </div>
     )
@@ -59,7 +61,7 @@ function Sidebar() {
     <div className="sidebar">
       <img 
       className="sidebar__chevron" 
-      src="/src/assets/svgs/left-chevron.svg"
+      src={sidebarChevron}
       onClick={toggleSidebar}
       />
       <div className="sidebar__container">
