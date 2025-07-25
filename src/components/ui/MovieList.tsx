@@ -9,11 +9,12 @@ function MovieList() {
   
   const movieProps: MovieGridProps = {
     movieListName: "Watching",
+    //movieCount: moviesArray.length,
     movieCount: 9,
     movieArray: moviesArray,
   }
 
-  const movieCount = 9;
+  // Retrieve list to render
 
   return (
     <div className="list-container">
@@ -21,7 +22,7 @@ function MovieList() {
       <div className="list-container__info">
         <div className="list-container__metadata">
           <h2 className="list-container__list-name">{movieProps.movieListName}</h2>
-          <p className="list-container__movie-count">{movieCount} movies</p>
+          <p className="list-container__movie-count">{movieProps.movieCount} movies</p>
         </div>
         <AddMovie />
       </div>

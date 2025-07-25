@@ -1,6 +1,7 @@
 .header {
   position: sticky;
   top: 0;
+  width: 100%;
   z-index: 100;
   background: linear-gradient(to right, #ffeb3b, #fbc02d, #f57f17);
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
