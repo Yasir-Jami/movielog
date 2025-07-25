@@ -1,72 +1,21 @@
-.movie-list-container {
-  border-radius: 0.75rem;
-  background: #EFF6FF;
-  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 4px 6px -4px rgba(0, 0, 0, 0.1);
-
+.list-container {
+  position: relative;
+  margin-top: 2rem;
   margin-left: 5%;
-  margin-top: 3%;
-  width: 80rem;
-  padding-left: 1%;
-  padding-bottom: 2%;
+  width: 60%;
+  min-width: 200px;
+  height: 50rem;
+  border-radius: 1.10rem;
+  /*box-shadow: #ff5e62;*/
 }
 
-.movie-node-container {
+.list-container__metadata {
+  margin-top: 1rem;
+}
+
+.movie-grid {
   display: flex;
-  flex-direction: row;
-}
-
-.movie-node {
-  margin-top: 2%;
-}
-
-.movie-image {
-  display: block;
-  margin: auto;
-  width: 50%;
-  border-radius: 0.5rem;
-}
-
-.movie-title {
-  color: darkred;
-  font-size: 1rem;
-  text-align: center;
-  margin-top: 0.5rem;
-}
-
-.movie-user-rating {
-  color: green;
-}
-
-.movie-list-container p {
-  font-family: opensans-bold;
-}
-
-.list-name {
-  padding-top: 1%;
-  font-family: 'Segoe UI';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 1.25rem;
-  line-height: 1.75rem;
-  color: #1F2937;
-}
-
-@font-face {
-  font-family: opensans-bold;
-  src: url(/fonts/OpenSans-Bold.ttf);
-}
-
-/*Add Movie CSS*/
-.add-movie-container {
-  margin: auto;
-}
-
-.add-movie-button {
-  width: 5rem;
-  display: block;
-  margin: auto;
-}
-
-.add-movie-text {
-  margin-top: 0.5rem;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  margin-top: 1.75rem;
 }

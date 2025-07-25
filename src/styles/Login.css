@@ -1,21 +1,32 @@
-.login-form {
+
+.login-container {
   border-radius: 8px;
   border: 2px solid grey;
-  display: flex;
-  margin-top: 8rem;
-  flex-direction: column;
-  background: orange;
-  margin-left: 40rem;
-  margin-right: 40rem;
-  padding-left: 5rem;
-  padding-right: 5rem;
-  padding-top: 10rem;
-  padding-bottom: 10rem;
+  background: linear-gradient(to right, #ffa751, #ffe259);
+  margin: 5% auto;
+  padding: 7rem 5rem 4rem 5rem;
+  gap: 1rem;
+  width: 35%;
   align-items: center;
+  justify-content: center;
+  min-width: 28rem;
+}
+
+.login-form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .login-form h1 {
   margin-bottom: 1rem; 
+  
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    background-color: lightblue;
+  }
 }
 
 .login-form label {
@@ -26,26 +37,18 @@
 }
 
 .login-form input {
-  width: 70%;
-  margin-bottom: 2rem;
+  width: 60%;
+  margin-bottom: 1rem;
   border: 0.2em solid transparent;
   border-radius: 8px; 
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   padding-left: 0.2rem;
   margin-top: 0.3rem;
-}
-
-.email-input {
-  
-}
-
-.password-input {
-
+  min-width: 15rem;
 }
 
 .login-button {
-  background-color: #2563EB;
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.3em 1.2em;
@@ -55,7 +58,9 @@
   font-style: normal;
   cursor: pointer;
   transition: opacity 0.12s;
-  color: white;
+  background-color: white;
+  color: #f57f17;
+  margin-top: 0.25rem;
 }
 
 .login-button:hover{
@@ -70,7 +75,7 @@
   text-align: center;
   display: flex;
   flex-direction: column;
-  margin-top: 1rem;
+  margin-top: 3rem;
 }
 
 .no-account-message {

@@ -3,7 +3,14 @@ export interface MovieInfo {
   Poster: string,
   Year?: string,
   Plot?: string,
+  Genre?: string,
   ImdbRating?: string,
+}
+
+export interface MovieGridProps {
+  movieListName: string,
+  movieCount: number,
+  movieArray: Array<MovieInfo>,
 }
 
 export interface MovieQuery {
@@ -11,6 +18,15 @@ export interface MovieQuery {
   ImdbId?: string,
 }
 
+
+export interface SidebarProps {
+  selectedList: number,
+}
+
+export interface SidebarItemProps {
+  itemLabel: string,
+  itemIcon?: string,
+}
 
 export interface ErrorInfo {
   message: string,

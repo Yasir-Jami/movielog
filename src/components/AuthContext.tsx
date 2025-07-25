@@ -5,11 +5,11 @@ interface User {
   // Add other elements if necessary
 }
 
-interface AuthContextType {
+export interface AuthContextType {
   user: User | null;
+  isAuthenticated: boolean;
   setUser: (user: User | null) => void;
   logout: () => void;
-  isAuthenticated: boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);

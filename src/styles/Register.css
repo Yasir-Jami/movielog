@@ -1,21 +1,23 @@
-.registration-form {
+.registration-container {
   border-radius: 8px;
   border: 2px solid grey;
+  background: linear-gradient(to right, #add8e6, #ffffff);
+  margin: 5% auto;
+  padding: 7rem 5rem 4rem 5rem; 
+  gap: 1rem;
+  width: 35%;
+  align-items: center;
+  min-width: 28rem;
+}
+
+.registration-form {
   display: flex;
-  margin-top: 8rem;
   flex-direction: column;
-  background: lightblue;
-  margin-left: 40rem;
-  margin-right: 40rem;
-  padding-left: 5rem;
-  padding-right: 5rem;
-  padding-top: 10rem;
-  padding-bottom: 10rem;
   align-items: center;
 }
 
 .registration-form h1 {
-  margin-bottom: 1rem; 
+  margin-bottom: 1.25rem;
 }
 
 .registration-form label {
@@ -23,18 +25,19 @@
   font-style: normal;
   font-weight: 700;
   line-height: 2rem;
+  gap: none;
 }
 
 .registration-form input {
-  width: 70%;
-  margin-bottom: 2rem;
+  width: 60%;
   border: 0.2em solid transparent;
   border-radius: 8px; 
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   padding-left: 0.2rem;
   margin-top: 0.3rem;
-  
+  margin-bottom: 1rem;
+  min-width: 15rem;
 }
 
 .email-input {
@@ -48,42 +51,45 @@
   background-image: url(/src/assets/svgs/email-8-svgrepo-com.svg);
   background-position: 1px 1px;
   background-repeat: no-repeat;
-
 }
 
 .register-button {
-  background-color: #2563EB;
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.3em 1.2em;
+  margin-bottom: 1rem;
   font-size: 1em;
   font-weight: 600;
   font-family: 'Segoe UI';
   font-style: normal;
   cursor: pointer;
   transition: opacity 0.12s;
+  background-color: black;
   color: white;
+  margin-top: 0.25rem;
 }
 
 .register-button:hover{
-  opacity: 80%;
+  background-color: rgb(59, 59, 59);
 }
 
 .register-button:active {
-  opacity: 60%;
+  background-color: rgb(117, 117, 117);
 }
 
 .register-messages {
   text-align: center;
   display: flex;
   flex-direction: column;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 }
 
 .have-account-message {
   text-align: center;
+  color: black;
 }
 
 .login-account-message {
+  color: #646cff;
   text-align: center;
 }

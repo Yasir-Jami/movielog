@@ -13,10 +13,3 @@ footer {
   height: 10%;
   width: 10%;
 }
-
-
-
-@font-face {
-  font-family: opensans;
-  src: url(/fonts/OpenSans-Regular.ttf);
-}

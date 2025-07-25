@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 const serverUrl: string = import.meta.env.VITE_API_BASE_URL;
-const moviePath: string = import.meta.env.VITE_API_MOVIE_PATH;
+const moviePath: string = import.meta.env.VITE_API_MOVIES;
 import {MovieQuery, MovieInfo} from "src/interfaces"
 
 function getMovieFromApi(props: MovieQuery): MovieInfo { 

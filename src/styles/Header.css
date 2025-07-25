@@ -1,38 +1,69 @@
 .header {
-  position: fixed;
-  display: flex;
-  padding-left: 5rem;
-  align-items: center;
-  height: 4rem;
-  left: 0px;
-  right: 0px;
-  top: 0px;
+  position: sticky;
+  top: 0;
   z-index: 100;
-  background: #FFE433;
-  box-shadow: 0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -2px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(to right, #ffeb3b, #fbc02d, #f57f17);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
-.header img {
-  height: 50%;
-  margin-right: 0.8rem;
-  margin-left: 5rem;
+.header__container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1.5rem;
 }
 
-.header-title {
-  font-family: 'Segoe UI';
-  font-style: normal;
+.header__content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header__brand {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  
+}
+
+.header__logo-container {
+  padding: 0.2rem;
+    
+}
+
+.header__logo {
+  color: black;
+  height: 2rem;
+  width: 2rem;
+  transition: all 0.08s;
+}
+
+.header__logo:hover {
+  transform: scale(1.05);
+}
+
+.header__title {
+  font-family: Inter-Bold;
+  font-size: 1.875rem;
   font-weight: 700;
-  font-size: 1.5em;
-  line-height: 1.5em;
-  color: #000000;
-  left: 14rem;
-  top: 0.6rem;
-  cursor: pointer;
-  transition: 0.25s;
+  margin: 0;
 }
 
-.header-title:hover {
-  border-bottom: 2px;
+.header__subtitle {
+  font-family: Inter-Regular;
+  color: black;
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+/*
+.header__nav {
+  display: none;
+}
+*/
+
+.header__logo-container {
+  cursor: pointer;
+  margin-right: 0px;
 }
 
 .header ul {
@@ -56,13 +87,15 @@
 }
 
 .header li:hover {
-  color: green;
+  color: cyan;
   cursor: pointer;
 }
 
 .header a { 
   color: inherit; 
 } 
+
+/* User Auth Area */
 
 .header button {
   border-radius: 8px;
@@ -74,35 +107,49 @@
   font-family: 'Segoe UI';
   font-style: normal;
   cursor: pointer;
+  line-height: 1.5rem;
   transition: border-color 0.16s;
 }
-.header button:hover {
-  border-color: #646cff;
-  opacity: 95%;
-}
-.header button:focus,
-.header button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
 
-.header-login-button {
-  color: #2563EB;
-  background-color: #FFF;
+.user-auth__login-button, .user-auth__logout-button {
+  background: #fff;
+  color: #f57f17;
+  border: none;
+  transition: box-shadow 0.3s ease, transform 0.5s ease;
   font-weight: 500;
 }
 
-.header-register-button {
+.user-auth__login-button:hover, .user-auth__logout-button:hover {
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+  transform: translateY(-1px);
+}
+
+.user-auth__register-button {
+  background: #333;
   color: #fff;
-  background-color: #2563EB;
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+  border-radius: 0.25rem;
   font-weight: 500;
 }
+.user-auth__register-button:hover {
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
 
-.user-area {
+.user-auth {
   display: flex;
   align-items: center;
   margin-right: 5rem;
 }
 
-#header-user-email {
+.user-auth__user-email {
   margin-right: 2rem; 
+}
+
+.user-auth__login-icon {
+  margin-right: 0.5rem;
+}
+
+.user-auth__register-icon {
+  margin-right: 0.5rem;
 }
