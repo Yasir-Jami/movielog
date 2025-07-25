@@ -4,11 +4,8 @@ import { Calendar } from "lucide-react";
 
 // • - use to separate year and genre
 
-//function MovieCard(props: MovieInfo) {
-function MovieCard() {
-  //const { Title, Poster } = props;
-  const Title: string = "The Matrix";
-  const Poster: string = "https://m.media-amazon.com/images/M/MV5BN2NmN2VhMTQtMDNiOS00NDlhLTliMjgtODE2ZTY0ODQyNDRhXkEyXkFqcGc@._V1_SX300.jpg";
+function MovieCard(props: MovieInfo) {
+  const { Title, Poster, Year, Genre } = props;
 
   return(
     <div className="movie-card">
@@ -18,9 +15,9 @@ function MovieCard() {
       <div className="movie-card__metadata">
         
         <Calendar className="movie-card__calendar"/>
-        <p className="movie-card__year">2011</p>
+        <p className="movie-card__year">{Year}</p>
         <p className="movie-card__separator">•</p> 
-        <p className="movie-card__genre">Adventure</p> 
+        <p className="movie-card__genre">{Genre}</p> 
       </div>
     </div>
   )

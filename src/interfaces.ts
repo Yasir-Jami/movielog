@@ -3,6 +3,7 @@ export interface MovieInfo {
   Poster: string,
   Year?: string,
   Plot?: string,
+  Genre?: string,
   ImdbRating?: string,
 }
 
