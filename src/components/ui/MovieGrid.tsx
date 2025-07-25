@@ -1,6 +1,6 @@
-import { MovieGridProps } from "src/interfaces";
-import "src/styles/MovieList.css"
-import MovieCard from "src/components/ui/MovieCard";
+import { MovieGridProps } from "interfaces";
+import "@styles/MovieList.css"
+import MovieCard from "@components/ui/MovieCard";
 
 function MovieGrid (props: MovieGridProps) {
   const { movieListName, movieCount, movieArray } = props;

@@ -1,6 +1,6 @@
-import Sidebar from "src/components/ui/Sidebar";
-import MovieList from "src/components/ui/MovieList";
-import {MovieQuery, MovieInfo, SidebarProps } from "src/interfaces.ts";
+import Sidebar from "@components/ui/Sidebar";
+import MovieList from "@components/ui/MovieList";
+import {MovieQuery, MovieInfo, SidebarProps } from "interfaces.ts";
 
 //const {isAuthenticated, user} = UseAuth();
 

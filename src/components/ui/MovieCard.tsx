@@ -1,5 +1,5 @@
-import { MovieInfo } from "src/interfaces";
-import "src/styles/MovieList.css"
+import { MovieInfo } from "interfaces";
+import "@styles/MovieCard.css"
 import { Calendar } from "lucide-react";
 
 // • - use to separate year and genre
@@ -7,8 +7,8 @@ import { Calendar } from "lucide-react";
 //function MovieCard(props: MovieInfo) {
 function MovieCard() {
   //const { Title, Poster } = props;
-  const Title = "Hunter X Hunter";
-  const Poster = "https://m.media-amazon.com/images/M/MV5BYzYxOTlkYzctNGY2MC00MjNjLWIxOWMtY2QwYjcxZWIwMmEwXkEyXkFqcGc@._V1_SX300.jpg";
+  const Title: string = "Hunter X Hunter";
+  const Poster: string = "https://m.media-amazon.com/images/M/MV5BYzYxOTlkYzctNGY2MC00MjNjLWIxOWMtY2QwYjcxZWIwMmEwXkEyXkFqcGc@._V1_SX300.jpg";
 
   return(
     <div className="movie-card">
