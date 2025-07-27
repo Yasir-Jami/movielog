@@ -68,7 +68,7 @@ function AddMovie() {
         <div className="add-movie__modal-buttons">
           <span 
           className="add-movie__modal-close-button"
-          onClick={() => {setModalVisibility(AddMovieModalDisplay.Invisible)}}>
+          onClick={() => {toggleModal}}>
             Cancel
           </span>
           <span className="add-movie__modal-add-button">Add Movie</span>
@@ -77,8 +77,16 @@ function AddMovie() {
     )
 }
 
+  function toggleModal() {
+    const toggle: AddMovieModalDisplay = modalVisibility ? AddMovieModalDisplay.Invisible : AddMovieModalDisplay.Visible;
+    console.log(toggle);
+    setModalVisibility(toggle);
+  }
+
   return (
-    <div className="add-movie" onClick={() => setModalVisibility(AddMovieModalDisplay.Visible)}>
+    <div 
+    className="add-movie" 
+    onClick={() => {toggleModal}}>
       <AddMovieModal />
       <div className="add-movie__button">
         <Plus className="add-movie__plus-sign"/>

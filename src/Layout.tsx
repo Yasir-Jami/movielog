@@ -1,6 +1,10 @@
 // Main App layout
-import { Outlet } from 'react-router-dom';
+import { createBrowserRouter, Outlet } from 'react-router-dom';
 import Header from './components/ui/Header'
+import ErrorFallback from "./ErrorFallback.tsx";
+import App from './App.tsx';
+import Login from './components/ui/Login.tsx';
+import Register from './components/ui/Register.tsx';
 
 const Layout = () => {
   return (
@@ -13,4 +17,20 @@ const Layout = () => {
   );
 };
 
-export default Layout
+const AppRoutes = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout />,
+    errorElement: <ErrorFallback/>,
+    children: [
+      { index: true, element: <App />},
+      { path: "home", element: <App />},
+      { path: "movies", element: <App />},
+      { path: "favorites", element: <App />},
+      { path: "login", element: <Login />},
+      { path: "register", element: <Register />},
+    ],
+  }
+]);
+
+export default AppRoutes;
