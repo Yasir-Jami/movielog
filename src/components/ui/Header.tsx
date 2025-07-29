@@ -32,8 +32,8 @@ function Header(){
               <User/>
             </div>
           </div>
-          
         </div>
+
       </div>
     </div>
   )

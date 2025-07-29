@@ -1,11 +1,29 @@
 import "/src/styles/MovieList.css";
 import { MovieGridProps, MovieInfo } from "interfaces";
+import { useEffect, useState } from "react";
 import Searchbar from "@components/ui/Searchbar"
 import MovieGrid from "@components/ui/MovieGrid";
 import AddMovie from "@components/ui/AddMovie";
+import { getUserCookie } from "@components/Cookie";
+
+function getMovieLists(cookie: string) {
+  
+
+  useEffect(() => {
+    const getLists = async () => {
+      const response = await fetch("URL");
+      const data = await response.json();
+      
+    }
+
+
+  }, []);
+
+}
 
 function MovieList() {
   const moviesArray: MovieInfo[] = [];
+  const userCookie: string = getUserCookie();
   
   const movieProps: MovieGridProps = {
     movieListName: "Watching",

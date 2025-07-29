@@ -1,12 +1,14 @@
 // Main App layout
 import { createBrowserRouter, Outlet } from 'react-router-dom';
-import Header from './components/ui/Header'
+import Header from '@components/ui/Header';
 import ErrorFallback from "./ErrorFallback.tsx";
 import App from './App.tsx';
+import Cookie from "@components/Cookie.tsx";
 import Login from './components/ui/Login.tsx';
 import Register from './components/ui/Register.tsx';
 
 const Layout = () => {
+  Cookie();
   return (
     <>
     <Header />

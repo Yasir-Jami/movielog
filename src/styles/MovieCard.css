@@ -43,27 +43,29 @@
   align-self: start;
   color: grey;
   gap: 0.25rem;
+  line-height: 0.75rem;
 }
 
 .movie-card__calendar {
   padding-left: 0.25rem;
   padding-bottom: 0.7rem;
+  margin-right: 0.125rem;
 }
 
 .movie-card__year {
   font-family: Inter-Regular;
   margin-right: 0.25rem;
   margin-left: -0.15rem;
-  font-size: calc(0.45vw + 0.45vh);
+  font-size: 0.85rem;
 }
 
 .movie-card__separator {
   font-family: Inter-Regular;
-  font-size: calc(0.4vw + 0.4vh);
+  font-size: 0.75rem;
 }
 
 .movie-card__genre {
   font-family: Inter-Regular;
   font-size: calc(0.45vw + 0.45vh);
-  margin-left: 0.25rem;
+  font-size: 0.85rem;
 }

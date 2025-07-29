@@ -4,8 +4,14 @@ import { useState } from "react";
 import playButtonIcon from "/src/assets/svgs/play-button.svg";
 import checkmarkIcon from "/src/assets/svgs/checkmark-svgrepo-com.svg";
 import clockIcon from "/src/assets/svgs/clock-svgrepo-com.svg";
-import addListIcon from "/src/assets/svgs/plus-mini-1523-svgrepo-com.svg";
+import AddMovieList from "./AddMovieList";
 import sidebarChevron from "/src/assets/svgs/left-chevron.svg";
+
+// Get lists from server
+function getLists() {
+
+}
+
 
 function Sidebar() {
   const [sidebarActive, setSidebarActive] = useState<Boolean>(true);
@@ -43,15 +49,13 @@ function Sidebar() {
         <SideBarItem {...watchingListProps}/>
         <SideBarItem {...watchedListProps}/>
         <SideBarItem {...watchLaterListProps}/>
-        {/* 
-        Get each list from database
-        {[...Array(movieCount)].map((_, i) => (
+        {/*
+        {[...Array(listCount)].map((_, i) => (
           <SideBarItem key={i} {listName} />
         ))}
         */}
-        <div className={styles["sidebar__add-item"]}>
-          <img className={styles["sidebar__add-item-plus-sign"]} src={addListIcon}></img>
-        </div>
+        
+        <AddMovieList />
       </div>
     )
   }
