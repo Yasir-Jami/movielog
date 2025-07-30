@@ -30,29 +30,18 @@ function generateUserCookie() {
 
   useEffect(() => {
     const generateCookie = async () => {
-      const response = await fetch(url, {
+      await fetch(url, {
         method: 'GET',
         credentials: 'include',
         headers: {
           'Content-type': 'application/json',
         }
-      });
-
-      const responseData = await response.json();
-
-      if (!response.ok) {
-        logger.error("Error:", responseData);
-        return;
-      }
-
-      else if (response.ok) {
-        // Create a new list
-        logger.log("Generated new cookie:", responseData);
-      }
-
-      else {
-        logger.log("Server returned an invalid response.")
-      }
+      })
+      .then(res => res.json())
+      .then(data => {
+        console.log("User ID from cookie route: ", data.userId);
+      })
+      .catch(err => logger.error("Cookie fetch error", err));
     }
 
     generateCookie();
@@ -62,11 +51,15 @@ function generateUserCookie() {
 
 function Cookie() {
   let cookie: string = getCookie(userCookie);
+  console.log(cookie);
+  console.log("Document cookies:", document.cookie);
 
   if (cookie.length == 0) {
     generateUserCookie();
-    console.log("New User ID:", cookie);
+    console.log("New User ID:", document.cookie);
   }
+
+  console.log("Document cookies after:", document.cookie);
   
 }
 
