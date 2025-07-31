@@ -70,13 +70,11 @@ function AddMovie() {
           onClick={() => setModalVisibility(AddMovieModalDisplay.Invisible)}>
             Cancel
           </span>
-          <span className="add-movie__modal-add-button">Add Movie</span>
+          <span className="add-movie__modal-add-button">Add</span>
         </div>
       </div>
     )
 }
-
-
 
   return (
     <div className="add-movie">

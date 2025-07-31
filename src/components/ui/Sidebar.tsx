@@ -1,11 +1,11 @@
-import styles from "/src/styles/Sidebar.module.css"
+import styles from "@styles/Sidebar.module.css"
 import { SidebarItemProps } from "interfaces.ts";
 import { useState } from "react";
 import playButtonIcon from "/src/assets/svgs/play-button.svg";
 import checkmarkIcon from "/src/assets/svgs/checkmark-svgrepo-com.svg";
 import clockIcon from "/src/assets/svgs/clock-svgrepo-com.svg";
-import AddMovieList from "./AddMovieList";
 import sidebarChevron from "/src/assets/svgs/left-chevron.svg";
+import CreateMovieList from "./CreateMovieList";
 
 // Get lists from server
 function getLists() {
@@ -14,8 +14,8 @@ function getLists() {
 
 
 function Sidebar() {
-  const [sidebarActive, setSidebarActive] = useState<Boolean>(true);
-  const [sidebarButton, setSidebarButton] = useState<Boolean>(true);
+  const [sidebarActive, setSidebarActive] = useState<boolean>(true);
+  const [sidebarButton, setSidebarButton] = useState<boolean>(true);
 
   const SideBarItem = (props: SidebarItemProps) => {
     const {itemLabel, itemIcon}: SidebarItemProps = props;
@@ -55,7 +55,7 @@ function Sidebar() {
         ))}
         */}
         
-        <AddMovieList />
+        <CreateMovieList />
       </div>
     )
   }
