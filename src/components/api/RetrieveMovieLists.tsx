@@ -2,7 +2,7 @@ import { MovieLists } from "interfaces";
 
 const getListsUrl = "GG";
 
-async function retrieveMovieLists(userCookie: string): Promise<MovieLists[] | null> {
+async function retrieveMovieLists(): Promise<MovieLists[] | null> {
     let movieLists: MovieLists[] = [];
 
     try {
@@ -11,7 +11,6 @@ async function retrieveMovieLists(userCookie: string): Promise<MovieLists[] | nu
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(userCookie),
     });
 
     if (!response.ok) {

@@ -1,54 +1,24 @@
 import styles from "@styles/CreateMovieList.module.css";
 import addListIcon from "/src/assets/svgs/plus-mini-1523-svgrepo-com.svg";
-import { useEffect, useState, useId } from "react";
+import { useState, useId } from "react";
 
-function createNewList(listName: string) {
+async function createNewList(listName: string) {
   const url = `${import.meta.env.VITE_API_BASE_URL}${import.meta.env.VITE_API_MOVIE_LISTS}${import.meta.env.VITE_API_CREATE_LIST}`;
-
-    useEffect(() => {
-      const storeNewList = async () => {
-        await fetch(url, {
-          method: "GET",
-          headers: {
-
-          },
-        });
-
-      }
-      
-      storeNewList();
-    });
-    /*
-    
-    try {
-      const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json',
-        },
-        body: JSON.stringify(newListData),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        logger.error("Error:", errorData);
-        return;
-      }
-
-      else if (response.ok) {
-        // Create a new list
-        logger.log("Creating new list", listName);
-      }
-
-      else {
-        logger.log("Server returned an invalid response.")
-      }
-    }
-    catch (err) {
-      logger.log("Error:", err); 
-    }
-      */
-  }
+  
+  await fetch(url, {
+    method: 'POST',
+    credentials: 'include',
+    headers: {
+      'Content-type': 'application/json',
+    },
+    body: JSON.stringify( { listName: listName } ),
+  })
+  .then(res => res.json())
+  .then(data => {
+    console.log("New list created:", data);
+  })
+    .catch(err => logger.error("Error:", err));
+}
 
 function CreateMovieList() {
   const [isModalVisible, setisModalVisible] = useState<boolean>(false);
@@ -61,8 +31,6 @@ function CreateMovieList() {
       
       let modalVisible = isModalVisible;
       let createListClassName: string = modalVisible ? "create-movie-list-modal" : "create-movie-list__modal--hidden";
-
-      console.log(createListClassName);
   
       return (
         <div className={styles[createListClassName]}>
@@ -72,19 +40,19 @@ function CreateMovieList() {
               <input 
               className={styles["create-movie-list-modal__input"]} 
               name="list-name"
-              placeholder="List Name" 
+              placeholder="List name"
               id={id}
               onChange={e => setListNameInput((e.target as HTMLInputElement).value)}>
               </input>
               <div className={styles["create-movie-list__modal-buttons"]}>
                 <span 
                 className={styles["create-movie-list__modal-close-button"]}
-                onClick={() => {setisModalVisible(false); setIsButtonVisible(true);}}>
+                onClick={() => {showButton()}}>
                   Cancel
                 </span>
                 <span 
                 className={styles["create-movie-list__modal-add-button"]} 
-                onClick={() => {createNewList(listNameInput); setIsButtonVisible(true);}}>Create</span>
+                onClick={() => {createNewList(listNameInput); showButton()}}>Create</span>
               </div>
             </form>
           </div>
@@ -92,9 +60,19 @@ function CreateMovieList() {
       )
     }
 
+    function showModal(): void {
+      setisModalVisible(true);
+      setIsButtonVisible(false);
+    }
+
+    function showButton(): void {
+      setisModalVisible(false);
+      setIsButtonVisible(true);
+    }
+
   return (
     <div className={styles["create-movie-list"]}>
-      <div className={styles[buttonVisible]} onClick={() => {setIsButtonVisible(false); setisModalVisible(true)}}>
+      <div className={styles[buttonVisible]} onClick={() => {showModal()}}>
         <img className={styles["create-movie-list-icon"]} src={addListIcon}></img>
       </div>
       <CreateMovieListModal/>
