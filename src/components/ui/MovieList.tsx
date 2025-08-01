@@ -1,10 +1,10 @@
 import "/src/styles/MovieList.css";
 import { MovieGridProps, MovieInfo } from "interfaces";
-import { useEffect, useState } from "react";
 import Searchbar from "@components/ui/Searchbar"
 import MovieGrid from "@components/ui/MovieGrid";
 import AddMovie from "@components/ui/AddMovie";
 
+/*
 function getMovieLists() {
   
 
@@ -19,6 +19,7 @@ function getMovieLists() {
   }, []);
 
 }
+*/
 
 function MovieList() {
   const moviesArray: MovieInfo[] = [];

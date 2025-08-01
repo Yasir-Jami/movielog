@@ -7,12 +7,6 @@ import clockIcon from "/src/assets/svgs/clock-svgrepo-com.svg";
 import sidebarChevron from "/src/assets/svgs/left-chevron.svg";
 import CreateMovieList from "./CreateMovieList";
 
-// Get lists from server
-function getLists() {
-
-}
-
-
 function Sidebar() {
   const [sidebarActive, setSidebarActive] = useState<boolean>(true);
   const [sidebarButton, setSidebarButton] = useState<boolean>(true);
