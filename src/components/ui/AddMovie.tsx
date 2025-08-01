@@ -1,5 +1,5 @@
-import { useState } from "react";
 import "@styles/AddMovie.css";
+import { useState } from "react";
 import { Plus } from "lucide-react";
 
 enum AddMovieModalDisplay {
@@ -13,7 +13,6 @@ enum ModalTypes {
   };
 
 function AddMovie() {
-
   const [modalVisibility, setModalVisibility] = useState<AddMovieModalDisplay>(AddMovieModalDisplay.Invisible);
   const [modalType, setModalType] = useState<ModalTypes>(ModalTypes.Default);
 
@@ -68,19 +67,19 @@ function AddMovie() {
         <div className="add-movie__modal-buttons">
           <span 
           className="add-movie__modal-close-button"
-          onClick={() => {setModalVisibility(AddMovieModalDisplay.Invisible)}}>
+          onClick={() => setModalVisibility(AddMovieModalDisplay.Invisible)}>
             Cancel
           </span>
-          <span className="add-movie__modal-add-button">Add Movie</span>
+          <span className="add-movie__modal-add-button">Add</span>
         </div>
       </div>
     )
 }
 
   return (
-    <div className="add-movie" onClick={() => setModalVisibility(AddMovieModalDisplay.Visible)}>
+    <div className="add-movie">
       <AddMovieModal />
-      <div className="add-movie__button">
+      <div className="add-movie__button" onClick={() => {setModalVisibility(AddMovieModalDisplay.Visible)}}>
         <Plus className="add-movie__plus-sign"/>
         <p className="add-movie__text">Add Movie</p>
       </div>

@@ -2,18 +2,10 @@
 import "@styles/MovieList.css"
 import MovieCard from "@components/ui/MovieCard";
 import testMovieArray from "tests/DummyMovieData";
-
-interface MovieInfo {
-  Title: string,
-  Poster: string,
-  Year?: string,
-  Plot?: string,
-  Genre?: string,
-  ImdbRating?: string,
-}
+import { MovieInfo } from "interfaces";
 
 //function MovieGrid (props: MovieGridProps) {
-function MovieGrid () {
+function MovieGrid() {
   //const { movieListName, movieCount, movieArray } = props;
   const data: MovieInfo[] = testMovieArray();
 

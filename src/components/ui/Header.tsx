@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom"
 
 function Header(){
   const navigate = useNavigate();
+  
   //const [selectedButton, setSelectedButton] = useState(false);
 
   return (
@@ -19,14 +20,15 @@ function Header(){
               <h1 className="header__title">movielog</h1>
               <p className="header__subtitle">Your personal movie backlog</p>
             </div>
-
-          {/* Navigation 
+            
+            {/*
             <nav className="header__nav">
-                <button onClick={() => changeTab('/movies')}>Movies</button>
-                <button onClick={() => changeTab('/favorites')}>Favorites</button>
-            </nav>
+                <button className="header__movies" onClick={() => navigate('/')}>Movies</button>
+                <button className="header__favorites" onClick={() => navigate('/favorites')}>Favorites</button>
+            </nav>          
           */}
           </div>
+           
 
           <div className="header__actions">
             {/* Auth Buttons */}
@@ -34,8 +36,8 @@ function Header(){
               <User/>
             </div>
           </div>
-          
         </div>
+
       </div>
     </div>
   )

@@ -1,6 +1,6 @@
 .header {
-  position: sticky;
   top: 0;
+  width: 100%;
   z-index: 100;
   background: linear-gradient(to right, #ffeb3b, #fbc02d, #f57f17);
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
@@ -152,4 +152,56 @@
 
 .user-auth__register-icon {
   margin-right: 0.5rem;
+}
+
+
+
+.header__mobile-nav {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header__mobile-auth {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.header__mobile-auth-btn {
+  flex: 1;
+  max-width: 8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+}
+
+@media (min-width: 768px) {
+  .header__nav {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .header__auth {
+    display: flex;
+  }
+
+  .header__mobile-nav {
+    display: none;
+  }
+
+  .header__mobile-auth {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .header__brand {
+    gap: 2rem;
+  }
 }

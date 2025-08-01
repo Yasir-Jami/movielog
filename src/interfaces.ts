@@ -7,6 +7,10 @@ export interface MovieInfo {
   ImdbRating?: string,
 }
 
+export interface MovieLists {
+  movieLists: MovieInfo[]
+}
+
 export interface MovieGridProps {
   movieListName: string,
   movieCount: number,

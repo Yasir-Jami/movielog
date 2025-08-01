@@ -1,0 +1,33 @@
+.favorites {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  width: 100%;
+  margin: auto;
+  margin-top: 10%;
+  max-width: 70%;
+  height: 50vh;
+  padding: 2rem;
+  background-color: #fefefe;
+  border: 1px solid #888;
+  border-radius: 1rem;
+}
+
+.input-container {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+}
+
+.favorites-input {
+  width: 85%;
+  padding: 0.25rem;
+}
+
+.list-item {  
+  list-style: none;
+}
+
+.list-item--hidden {
+  display: none;
+}

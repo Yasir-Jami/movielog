@@ -1,0 +1,116 @@
+.create-movie-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.create-movie-list__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 0.50rem;
+  height: 3rem;
+  width: 12rem;
+  cursor: pointer;
+  transition: opacity 0.16s;
+}
+
+.create-movie-list__button--hidden {
+  display: none;
+}
+
+.create-movie-list__button:hover {
+  background-color: rgb(243, 242, 242);
+}
+
+.create-movie-list-icon {
+  width: 16%;
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(128deg) brightness(0%) contrast(103%);
+}
+
+.create-movie-list__modal {
+  width: 100%; 
+  height: 100%;
+}
+
+.create-movie-list__modal--hidden {
+  display: none;
+}
+
+.create-movie-list__modal-container {
+  width: 70%;
+  padding: 2rem;
+  background-color: #fefefe;
+  border: 1px solid #888;
+  border-radius: 1rem;
+  margin-left: 2rem;
+}
+
+.create-movie-list__modal-header {
+  margin-bottom: 0.50rem;
+  color: black;
+}
+
+.create-movie-list-modal__input {
+  height: 2.5rem;
+  width: 100%;
+  min-width: 10rem;
+  padding-left: 0.75rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  background-color: white;
+  border: 1px solid;
+  border-radius: 0.50rem;
+  border-color: #e5e7eb;
+}
+
+.create-movie-list-modal__input:focus {
+  border-color: #f97316;
+  box-shadow: 0 0 0 2px #f973161a;
+  outline: none;
+}
+
+.create-movie-list__modal-buttons {
+  display: flex;
+  
+  justify-content: center;
+  margin-top: 1rem;
+  margin-right: 1rem;
+  gap: 1.50rem;
+}
+
+.create-movie-list__modal-add-button {
+  padding: 0.35rem;
+  height: 2.25rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border: none;
+  border-radius: 0.35rem;
+  color: white;
+  background-color: #f97316;
+  cursor: pointer;
+  transition: all 0.16s;
+}
+
+.create-movie-list__modal-close-button {
+  padding: 0.35rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  height: 2.25rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.35rem;
+  background-color: white;
+  color: #1f2937;
+  cursor: pointer;
+  transition: all 0.16s;
+}
+
+.create-movie-list__modal-close-button:hover, .create-movie-list__modal-close:focus {
+  background-color: rgb(243, 242, 242);
+}
+
+.create-movie-list__modal-add-button:hover, .create-movie-list__modal-add:focus {
+  background-color: #ea580c;
+}

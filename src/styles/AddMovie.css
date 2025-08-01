@@ -54,11 +54,11 @@
   background-color: #fefefe;
   border: 1px solid #888;
   border-radius: 1rem;
-  
 }
 
 .add-movie__modal-header {
   margin-bottom: 0.50rem;
+  color: black;
 }
 
 .add-movie-modal__search {
