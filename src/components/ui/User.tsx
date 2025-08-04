@@ -1,5 +1,4 @@
-// Handle rendering of user's lists and favorites depending on if they are logged in or not
-import "/src/styles/Header.css"
+import "/src/styles/User.css"
 import { useNavigate } from "react-router-dom";
 import { UseAuth } from "../AuthContext";
 import { LogIn, UserPlus } from "lucide-react";
@@ -23,13 +22,14 @@ function User() {
   else {
     content = (
       <>
-      <button className="user-auth__login-button" onClick={() => navigate('/login')}>
-        <LogIn className="user-auth__login-icon" size={16} />
-        Login
+        <button className="user-auth__login-button" onClick={() => navigate('/login')}>
+          <LogIn className="user-auth__login-icon" size={16} />
+          Login
         </button>
-      <button className="user-auth__register-button" onClick={() => navigate('/register')}>
-        <UserPlus className="user-auth__register-icon" size={16} />
-        Register
+
+        <button className="user-auth__register-button" onClick={() => navigate('/register')}>
+          <UserPlus className="user-auth__register-icon" size={16} />
+          Register
         </button>
       </>
     )
@@ -44,4 +44,4 @@ function User() {
   
 }
 
-export default User
+export default User;

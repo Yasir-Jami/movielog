@@ -40,12 +40,10 @@
 }
 
 .create-movie-list__modal-container {
-  width: 70%;
-  padding: 2rem;
   background-color: #fefefe;
   border: 1px solid #888;
   border-radius: 1rem;
-  margin-left: 2rem;
+  padding: 2rem;
 }
 
 .create-movie-list__modal-header {

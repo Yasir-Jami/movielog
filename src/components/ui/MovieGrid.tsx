@@ -7,19 +7,19 @@ import { MovieInfo } from "interfaces";
 //function MovieGrid (props: MovieGridProps) {
 function MovieGrid() {
   //const { movieListName, movieCount, movieArray } = props;
-  const data: MovieInfo[] = testMovieArray();
+  const movie: MovieInfo[] = testMovieArray();
 
   return (
     <div className="movie-grid">
-      <MovieCard {...data[0]}/>
-      <MovieCard {...data[1]}/>
-      <MovieCard {...data[2]}/>
-      <MovieCard {...data[3]}/>
-      <MovieCard {...data[4]}/>
-      <MovieCard {...data[5]}/>
-      <MovieCard {...data[6]}/>
-      <MovieCard {...data[7]}/>
-      <MovieCard {...data[8]}/>
+      <MovieCard {...movie[0]}/>
+      <MovieCard {...movie[1]}/>
+      <MovieCard {...movie[2]}/>
+      <MovieCard {...movie[3]}/>
+      <MovieCard {...movie[4]}/>
+      <MovieCard {...movie[5]}/>
+      <MovieCard {...movie[6]}/>
+      <MovieCard {...movie[7]}/>
+      <MovieCard {...movie[8]}/>
 
       {/* Nodes */}
     </div>

@@ -25,6 +25,7 @@
   font-style: normal;
   font-weight: 700;
   line-height: 2rem;
+  color: black;
   gap: none;
 }
 
@@ -38,13 +39,13 @@
   margin-top: 0.3rem;
   margin-bottom: 1rem;
   min-width: 15rem;
+  background-color: white;
 }
 
 .email-input {
   background-image: url(/src/assets/svgs/email-8-svgrepo-com.svg);
   background-position: 1px 1px;
   background-repeat: no-repeat;
-  
 }
 
 .password-input{

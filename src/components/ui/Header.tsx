@@ -20,13 +20,6 @@ function Header(){
               <h1 className="header__title">movielog</h1>
               <p className="header__subtitle">Your personal movie backlog</p>
             </div>
-            
-            {/*
-            <nav className="header__nav">
-                <button className="header__movies" onClick={() => navigate('/')}>Movies</button>
-                <button className="header__favorites" onClick={() => navigate('/favorites')}>Favorites</button>
-            </nav>          
-          */}
           </div>
            
 

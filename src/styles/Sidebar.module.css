@@ -27,13 +27,6 @@
   background-color: rgba(24, 24, 24, 0.8);;
 }
 
-@media (max-width: 768px) {
-  .sidebar {
-    width: 100%;
-    margin-left: 0;
-  }
-}
-
 .sidebar__container {
   display: flex;
   flex-direction: column;
