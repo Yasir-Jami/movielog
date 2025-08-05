@@ -1,7 +1,8 @@
 import {useForm, SubmitHandler, /*SubmitErrorHandler*/} from 'react-hook-form';
 import { UseAuth } from '../AuthContext.tsx';
 import { toast } from "react-toastify";
-import "/src/styles/Login.css"
+import "/src/styles/Login.css";
+import { Mail, Lock } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 let loginUrl: string = `${import.meta.env.VITE_API_BASE_URL}${import.meta.env.VITE_API_USERS}${import.meta.env.VITE_API_LOGIN}`;
 
@@ -11,7 +12,7 @@ interface LoginFormValues {
 }
 
 function Login() {
-  const {register, handleSubmit} = useForm<LoginFormValues>();
+  const { register, handleSubmit } = useForm<LoginFormValues>();
   const { setUser } = UseAuth();
   const navigate = useNavigate();
   // Play loading spinner
@@ -43,7 +44,7 @@ function Login() {
       }
 
       else {
-        logger.log("Server returned  an invalid response.");
+        logger.log("Server returned an invalid response.");
         toast("Server returned an invalid response.");
       }
 
@@ -62,18 +63,22 @@ function Login() {
         <h1>Log in to your account</h1>
         
         {/*Email field*/}
-        <label htmlFor="email">Email Address</label>
-        <input 
-        type="email" 
-        placeholder="Email"
-        {...register("email", {required: true})}/>
+        <div className="email-field">
+          <Mail className="email-icon"/>
+          <input 
+          type="email" 
+          placeholder="Email"
+          {...register("email", {required: true})}></input>
+        </div>
         
         {/*Password field*/}
-        <label htmlFor="password">Password</label>
-        <input 
-        type="password" 
-        placeholder="Password" 
-        {...register("password", {required: true})}/>
+        <div className="password-field">
+          <Lock className="password-icon"/>
+          <input 
+          type="password" 
+          placeholder="Password" 
+          {...register("password", {required: true})}></input>
+        </div>
         
         <button type="submit" className="login-button">Log In</button>
       </form>

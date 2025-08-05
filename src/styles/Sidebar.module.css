@@ -113,3 +113,10 @@
 .sidebar__item--disabled {
   display: none;
 }
+
+@media (max-width: 768px) {
+  .sidebar, .sidebar--hidden {
+    display: none;
+  }
+
+}

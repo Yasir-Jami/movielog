@@ -1,8 +1,4 @@
-
 .login-container {
-  border-radius: 8px;
-  border: 2px solid grey;
-  background: linear-gradient(to right, #ffa751, #ffe259);
   margin: 5% auto;
   padding: 7rem 5rem 4rem 5rem;
   gap: 1rem;
@@ -37,16 +33,24 @@
 }
 
 .login-form input {
-  width: 60%;
-  margin-bottom: 1rem;
-  border: 0.2em solid transparent;
+  width: 40%;
+  border: 1.2rem solid transparent;
   border-radius: 8px; 
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  padding-left: 0.2rem;
+  padding-left: 2.5rem;
+  padding-top: 0.45rem;
+  padding-bottom: 0.25rem;
   margin-top: 0.3rem;
+  margin-bottom: 1rem;
   min-width: 15rem;
   background-color: white;
+  height: 2.5rem;
+  border: 1px solid;
+  border-radius: 0.50rem;
+  border-color: #e5e7eb;
+}
+
+.login-form input::placeholder {
+  font-size: 1rem;
 }
 
 .login-button {
@@ -59,8 +63,8 @@
   font-style: normal;
   cursor: pointer;
   transition: opacity 0.12s;
-  background-color: white;
-  color: #f57f17;
+  color: white;
+  background-color: #f57f17;
   margin-top: 0.25rem;
 }
 

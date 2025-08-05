@@ -20,3 +20,9 @@
   gap: 2.5rem;
   margin-top: 1.75rem;
 }
+
+@media (max-width: 768px) {
+  .movie-grid {
+    width: 200%;
+  }
+}

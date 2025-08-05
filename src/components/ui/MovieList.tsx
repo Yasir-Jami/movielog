@@ -1,5 +1,5 @@
 import "/src/styles/MovieList.css";
-import { MovieGridProps, MovieInfo } from "interfaces";
+import { MovieGridProps, MovieInfo } from "types";
 import Searchbar from "@components/ui/Searchbar"
 import MovieGrid from "@components/ui/MovieGrid";
 import AddMovie from "@components/ui/AddMovie";

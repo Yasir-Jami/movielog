@@ -15,10 +15,8 @@ function Searchbar() {
           placeholder={placeholderText} 
         />
       </div>
-        
     </div>
   )
-
 }
 
 export default Searchbar;

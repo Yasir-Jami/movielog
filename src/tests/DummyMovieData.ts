@@ -1,4 +1,4 @@
-import { MovieInfo } from "interfaces";
+import { MovieInfo } from "types";
 
 function testMovieArray(): MovieInfo[] {
   let movieArray: MovieInfo[] = [];

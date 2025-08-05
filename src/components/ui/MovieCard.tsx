@@ -1,8 +1,6 @@
 import "@styles/MovieCard.css";
-import { MovieInfo } from "interfaces";
+import { MovieInfo } from "types";
 import { Calendar } from "lucide-react";
-
-// • - use to separate year and genre
 
 function MovieCard(props: MovieInfo) {
   const { Title, Poster, Year, Genre } = props;

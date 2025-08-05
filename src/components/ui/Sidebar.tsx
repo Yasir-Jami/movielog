@@ -1,5 +1,5 @@
 import styles from "@styles/Sidebar.module.css"
-import { SidebarItemProps } from "interfaces.ts";
+import { SidebarItemProps } from "types";
 import { useState } from "react";
 import playButtonIcon from "/src/assets/svgs/play-button.svg";
 import checkmarkIcon from "/src/assets/svgs/checkmark-svgrepo-com.svg";

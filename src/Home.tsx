@@ -1,6 +1,8 @@
 import MainContent from "./components/ui/MainContent.tsx";
+import Header from '@components/ui/Header';
+import "@styles/index.css";
 
-export default function App() {
+export default function Home() {
   //const [isReady, setIsReady] = useState(false);
 
   /*
@@ -12,5 +14,10 @@ export default function App() {
 
   else if (isReady) {
   */
- return <MainContent />
+ return (
+  <div>
+  <Header/>
+  <MainContent />
+  </div>
+  )
 }

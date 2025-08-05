@@ -1,7 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { RouterProvider } from 'react-router-dom';
-import '/src/styles/index.css';
 import AppRoutes from "./Layout.tsx"
 import { AuthProvider } from './components/AuthContext.tsx';
 import { ToastContainer } from "react-toastify";

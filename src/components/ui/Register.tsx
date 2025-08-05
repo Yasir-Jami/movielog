@@ -1,7 +1,8 @@
 // Handles register/sign up page
 import {useForm, SubmitHandler, /*SubmitErrorHandler*/} from 'react-hook-form';
 import { toast } from "react-toastify";
-import "/src/styles/Register.css"
+import "/src/styles/Register.css";
+import { Mail, Lock } from "lucide-react";
 
 let registerUrl: string = `${import.meta.env.VITE_API_BASE_URL}${import.meta.env.VITE_API_USERS}${import.meta.env.VITE_API_REGISTER}`;
 
@@ -50,18 +51,22 @@ function Register() {
       <form className="registration-form" onSubmit={handleSubmit(onSubmit, /*onError*/)} action={registerUrl} method="POST">
         <h1>Create an account</h1>
         {/*Email field*/}
-        <label htmlFor="email">Email Address</label>
-        <input 
-        type="email" 
-        placeholder="Email"
-        {...register("email", {required: true})}/>
+        <div className="email-field">
+          <Mail className="email-icon"/>
+          <input 
+          type="email" 
+          placeholder="Email"
+          {...register("email", {required: true})}></input>
+        </div>
         
         {/*Password field*/}
-        <label htmlFor="password">Password</label>
-        <input 
-        type="password" 
-        placeholder="Password" 
-        {...register("password", {required: true})}/>
+        <div className="password-field">
+          <Lock className="password-icon"/>
+          <input 
+          type="password" 
+          placeholder="Password" 
+          {...register("password", {required: true})}></input>
+        </div>
         
         {/*Confirm Password field
         <label htmlFor="password">Confirm Password</label>

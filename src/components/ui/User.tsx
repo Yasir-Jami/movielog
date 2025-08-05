@@ -1,7 +1,7 @@
 import "/src/styles/User.css"
 import { useNavigate } from "react-router-dom";
 import { UseAuth } from "../AuthContext";
-import { LogIn, UserPlus } from "lucide-react";
+import { LogIn, LogOut, UserPlus } from "lucide-react";
 
 function User() {
   const {user, isAuthenticated, logout} = UseAuth();
@@ -9,11 +9,13 @@ function User() {
   let content: any;
 
   // Logged in
-  if (isAuthenticated && user) {
+  if (user && isAuthenticated) {
     content = (
       <>
-      <p className="user-auth__email">Logged in as {user.email}</p>
-      <a href="/"><button className="user-auth__logout-button" onClick={logout}>Logout</button></a>
+      <a href="/"><button className="user-auth__logout-button" onClick={logout}>
+        Logout
+        <LogOut className="user-auth__login-icon" size={16} />
+      </button></a>
       </>
     )
   }

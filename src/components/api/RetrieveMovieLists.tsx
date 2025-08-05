@@ -1,4 +1,4 @@
-import { MovieLists } from "interfaces";
+import { MovieLists } from "types";
 
 const getListsUrl = "GG";
 

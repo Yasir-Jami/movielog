@@ -1,8 +1,7 @@
-//import { MovieGridProps } from "interfaces";
 import "@styles/MovieList.css"
 import MovieCard from "@components/ui/MovieCard";
 import testMovieArray from "tests/DummyMovieData";
-import { MovieInfo } from "interfaces";
+import { MovieInfo } from "types";
 
 //function MovieGrid (props: MovieGridProps) {
 function MovieGrid() {
