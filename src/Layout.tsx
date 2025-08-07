@@ -1,9 +1,9 @@
 // Main App layout
 import { createBrowserRouter, Outlet } from 'react-router-dom';
 import ErrorFallback from "./ErrorFallback.tsx";
-import Home from './Home.tsx';
-import Login from './components/ui/Login.tsx';
-import Register from './components/ui/Register.tsx';
+import Home from './components/pages/Home.tsx';
+import Login from './components/pages/Login.tsx';
+import Register from './components/pages/Register.tsx';
 import Favorites from '@components/ui/Favorites.tsx';
 
 const Layout = () => {

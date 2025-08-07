@@ -5,7 +5,6 @@
   width: 35%;
   align-items: center;
   justify-content: center;
-  min-width: 28rem;
 }
 
 .login-form {
@@ -16,13 +15,7 @@
 }
 
 .login-form h1 {
-  margin-bottom: 1rem; 
-}
-
-@media only screen and (max-width: 600px) {
-  body {
-    background-color: lightblue;
-  }
+  margin-bottom: 1rem;
 }
 
 .login-form label {
@@ -66,6 +59,8 @@
   color: white;
   background-color: #f57f17;
   margin-top: 0.25rem;
+  min-width: 15rem;
+  height: 2.25rem;
 }
 
 .login-button:hover{

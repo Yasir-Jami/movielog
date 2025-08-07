@@ -2,7 +2,7 @@ import "/src/styles/MovieList.css";
 import { MovieGridProps, MovieInfo } from "types";
 import Searchbar from "@components/ui/Searchbar"
 import MovieGrid from "@components/ui/MovieGrid";
-import AddMovie from "@components/ui/AddMovie";
+import MovieActions from "@components/ui/MovieActions";
 
 /*
 function getMovieLists() {
@@ -31,18 +31,14 @@ function MovieList() {
     movieArray: moviesArray,
   }
 
-  // Retrieve list to render
-
   return (
     <div className="list-container">
       <Searchbar />
-      <div className="list-container__info">
         <div className="list-container__metadata">
           <h2 className="list-container__list-name">{movieProps.movieListName}</h2>
           <p className="list-container__movie-count">{movieProps.movieCount} movies</p>
         </div>
-        <AddMovie />
-      </div>
+      <MovieActions />
       <MovieGrid />
     </div>
   )

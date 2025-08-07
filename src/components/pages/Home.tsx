@@ -1,4 +1,4 @@
-import MainContent from "./components/ui/MainContent.tsx";
+import MainContent from "@components/ui/MainContent";
 import Header from '@components/ui/Header';
 import "@styles/index.css";
 

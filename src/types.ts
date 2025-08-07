@@ -22,7 +22,6 @@ export interface MovieQuery {
   ImdbId?: string,
 }
 
-
 export interface SidebarProps {
   selectedList: number,
 }

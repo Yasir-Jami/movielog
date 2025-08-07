@@ -1,6 +1,6 @@
 /* Add Movie Button */
+
 .add-movie__button {
-  position: absolute;
   display: flex;
   width: 12%;
   min-width: 140px;

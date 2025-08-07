@@ -1,8 +1,9 @@
 // Handles register/sign up page
 import {useForm, SubmitHandler, /*SubmitErrorHandler*/} from 'react-hook-form';
 import { toast } from "react-toastify";
-import "/src/styles/Register.css";
+import "@styles/Register.css";
 import { Mail, Lock } from "lucide-react";
+import AuthHeader from "@components/ui/AuthHeader";
 
 let registerUrl: string = `${import.meta.env.VITE_API_BASE_URL}${import.meta.env.VITE_API_USERS}${import.meta.env.VITE_API_REGISTER}`;
 
@@ -47,40 +48,43 @@ function Register() {
   //const onError: SubmitErrorHandler<RegisterFormValues> = (errors) => logger.log(errors);
   
   return (
-    <div className="registration-container">
-      <form className="registration-form" onSubmit={handleSubmit(onSubmit, /*onError*/)} action={registerUrl} method="POST">
-        <h1>Create an account</h1>
-        {/*Email field*/}
-        <div className="email-field">
-          <Mail className="email-icon"/>
-          <input 
-          type="email" 
-          placeholder="Email"
-          {...register("email", {required: true})}></input>
-        </div>
-        
-        {/*Password field*/}
-        <div className="password-field">
-          <Lock className="password-icon"/>
+    <div className="registration-page">
+      <AuthHeader />
+      <div className="registration-container">
+        <form className="registration-form" onSubmit={handleSubmit(onSubmit, /*onError*/)} action={registerUrl} method="POST">
+          <h1>Create an account</h1>
+          {/*Email field*/}
+          <div className="email-field">
+            <Mail className="email-icon"/>
+            <input 
+            type="email" 
+            placeholder="Email"
+            {...register("email", {required: true})}></input>
+          </div>
+          
+          {/*Password field*/}
+          <div className="password-field">
+            <Lock className="password-icon"/>
+            <input 
+            type="password" 
+            placeholder="Password" 
+            {...register("password", {required: true})}></input>
+          </div>
+          
+          {/*Confirm Password field
+          <label htmlFor="password">Confirm Password</label>
           <input 
           type="password" 
-          placeholder="Password" 
-          {...register("password", {required: true})}></input>
-        </div>
-        
-        {/*Confirm Password field
-        <label htmlFor="password">Confirm Password</label>
-        <input 
-        type="password" 
-        placeholder="Confirm Password" 
-        {...register("confirmPassword", {required: true})}/>
-        */}
+          placeholder="Confirm Password" 
+          {...register("confirmPassword", {required: true})}/>
+          */}
 
-        <button type="submit" className="register-button">Register</button>
-      </form>
-      <div className="register-messages">
-        <p className="have-account-message">Already have an account?</p>
-        <a href="/login"><p className="login-account-message">Log in</p></a>
+          <button type="submit" className="register-button">Register</button>
+        </form>
+        <div className="register-messages">
+          <p className="have-account-message">Already have an account?</p>
+          <a href="/login"><p className="login-account-message">Log in</p></a>
+        </div>
       </div>
     </div>
   )
