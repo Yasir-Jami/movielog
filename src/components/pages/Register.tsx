@@ -52,7 +52,7 @@ function Register() {
       <AuthHeader />
       <div className="registration-container">
         <form className="registration-form" onSubmit={handleSubmit(onSubmit, /*onError*/)} action={registerUrl} method="POST">
-          <h1>Create an account</h1>
+          <h1 className="registration-form-header">Create an account</h1>
           {/*Email field*/}
           <div className="email-field">
             <Mail className="email-icon"/>

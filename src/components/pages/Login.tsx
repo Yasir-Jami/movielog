@@ -64,7 +64,7 @@ function Login() {
       <AuthHeader />
       <div className="login-container">
         <form className="login-form" onSubmit={handleSubmit(onSubmit, /*onError*/)} action={loginUrl} method="POST">
-          <h1>Log in to your account</h1>
+          <h1 className="login-form-header">Log in to your account</h1>
           
           {/*Email field*/}
           <div className="email-field">
