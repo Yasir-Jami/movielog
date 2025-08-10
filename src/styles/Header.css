@@ -10,7 +10,7 @@
 .header__container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 1.5rem;
+  padding: 1.45rem;
 }
 
 .header__content {
@@ -44,7 +44,6 @@
   font-family: Inter-Bold;
   font-size: 1.875rem;
   font-weight: 700;
-  margin: 0;
 }
 
 .header__subtitle {
@@ -61,8 +60,8 @@
 .header button {
   border-radius: 8px;
   border: 1px solid transparent;
-  padding: 0.3em 1.2em;
-  font-size: 1em;
+  padding: 0.3rem 1.2rem;
+  font-size: 1rem;
   font-weight: 600;
   font-family: 'Segoe UI';
   font-style: normal;
