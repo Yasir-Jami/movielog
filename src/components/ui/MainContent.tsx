@@ -5,6 +5,7 @@ function MainContent () {
   // On success
   return (
     <div className="main">
+      <Sidebar/>
       <MovieList/>
     </div>
   )

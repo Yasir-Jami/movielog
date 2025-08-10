@@ -15,7 +15,7 @@ function Sidebar() {
     const {itemLabel, itemIcon}: SidebarItemProps = props;
     
     return (
-      <div className={styles.sidebar__item}>
+      <div className={styles.sidebar__item} onClick={() => {logger.log("Sidebar item clicked")}}>
         <img className={styles["sidebar__item-icon"]} src={itemIcon}/>
         <p className={styles["sidebar__item-label"]}>{itemLabel}</p>
       </div>
@@ -38,14 +38,20 @@ function Sidebar() {
       itemIcon:  clockIcon,
     }
 
+    const defaultListProps: SidebarItemProps[] = [watchingListProps, watchedListProps, watchLaterListProps];
+
+    //const customListProps: SidebarItemProps[] = customLists();
+
     return (
       <div className={styles.sidebar__list}>
-        <SideBarItem {...watchingListProps}/>
-        <SideBarItem {...watchedListProps}/>
-        <SideBarItem {...watchLaterListProps}/>
+        {[...Array(defaultListProps.length)].map((_, i) => (
+          <SideBarItem key={i} {...defaultListProps[i]} />
+        ))}
+
         {/*
-        {[...Array(listCount)].map((_, i) => (
-          <SideBarItem key={i} {listName} />
+        
+        {[...Array(customListProps.length)].map((_, i) => (
+          <SideBarItem key={i} {...customListProps[i]} />
         ))}
         */}
         

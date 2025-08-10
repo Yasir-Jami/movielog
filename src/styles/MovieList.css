@@ -1,9 +1,8 @@
 .list-container {
-  position: relative;
-  margin: 2% auto;
+  margin-top: 2%;
+  margin-left: 8%;
   min-width: 200px;
   width: 60%;
-  height: 50rem;
 }
 
 .list-container__metadata {
@@ -17,7 +16,6 @@
 
 .movie-actions {
   display: flex;
-  justify-content: end;
 }
 
 .movie-grid {

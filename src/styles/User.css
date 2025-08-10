@@ -1,3 +1,10 @@
+.user-auth {
+  display: flex;
+  align-items: end;
+  margin-right: 5rem;
+  gap: 1rem;
+}
+
 .user-auth__login-button, .user-auth__logout-button {
   display: flex;
   align-items: center;
@@ -27,12 +34,6 @@
   transform: translateY(-1px);
 }
 
-.user-auth {
-  display: flex;
-  align-items: center;
-  margin-right: 5rem;
-}
-
 .user-auth__login-icon {
   margin-right: 0.5rem;
 }
@@ -41,10 +42,10 @@
   margin-right: 0.5rem;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   .user-auth {
-    display: flex;
-  } 
+    margin-right: 0;
+  }
 
   .user-auth__register-button {
     display: none;

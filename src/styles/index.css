@@ -67,6 +67,10 @@ h1 {
   top: 12%;
 }
 
+.main {
+  display: flex;
+}
+
 /* --- Fonts --- */
 
 /* Open Sans */

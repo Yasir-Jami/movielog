@@ -2,9 +2,8 @@
   margin: 5% auto;
   padding: 7rem 5rem 4rem 5rem; 
   gap: 1rem;
-  width: 35%;
+  
   align-items: center;
-  min-width: 28rem;
 }
 
 .registration-form {
@@ -58,7 +57,6 @@
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.3em 1.2em;
-  margin-bottom: 1rem;
   font-size: 1em;
   font-weight: 600;
   font-family: 'Segoe UI';
@@ -68,6 +66,8 @@
   background-color: black;
   color: white;
   margin-top: 0.25rem;
+  min-width: 15rem;
+  height: 2.25rem;
 }
 
 .register-button:hover{
@@ -79,10 +79,13 @@
 }
 
 .register-messages {
-  text-align: center;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
   flex-direction: column;
-  margin-top: 1.5rem;
+  margin: 0 auto;
+  margin-top: 1.75rem;
 }
 
 .have-account-message {
@@ -93,4 +96,10 @@
 .login-account-message {
   color: #646cff;
   text-align: center;
+}
+
+@media (max-width: 480px) {
+  .register-messages {
+    width: 100%;
+  }
 }

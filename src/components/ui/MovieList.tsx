@@ -1,6 +1,6 @@
 import "/src/styles/MovieList.css";
 import { MovieGridProps, MovieInfo } from "types";
-import Searchbar from "@components/ui/Searchbar"
+import MovieSearch from "@components/ui/MovieSearch"
 import MovieGrid from "@components/ui/MovieGrid";
 import MovieActions from "@components/ui/MovieActions";
 
@@ -33,7 +33,7 @@ function MovieList() {
 
   return (
     <div className="list-container">
-      <Searchbar />
+      <MovieSearch />
         <div className="list-container__metadata">
           <h2 className="list-container__list-name">{movieProps.movieListName}</h2>
           <p className="list-container__movie-count">{movieProps.movieCount} movies</p>

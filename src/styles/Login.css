@@ -2,7 +2,6 @@
   margin: 5% auto;
   padding: 7rem 5rem 4rem 5rem;
   gap: 1rem;
-  width: 35%;
   align-items: center;
   justify-content: center;
 }
@@ -72,10 +71,13 @@
 }
 
 .login-messages {
-  text-align: center;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
   flex-direction: column;
-  margin-top: 3rem;
+  margin: 0 auto;
+  margin-top: 1.75rem;
 }
 
 .no-account-message {
@@ -85,4 +87,10 @@
 
 .create-account-message {
   text-align: center;
+}
+
+@media (max-width: 480px) {
+  .login-messages {
+    width: 100%;
+  }
 }
