@@ -1,13 +1,13 @@
-import "/src/styles/Searchbar.css"
+import "/src/styles/MovieSearch.css"
 import { Search } from "lucide-react";
 
-function Searchbar() {
+function MovieSearch() {
   const placeholderText = "Search movies...";
   
   return (
     <div className="movie-search">
       <div className="movie-search__input-wrapper">
-        <Search className="movie-search__icon"/>
+        <Search className="movie-search__icon" size={16}/>
         <input 
           name="movie-searchbar"
           className="movie-search__textbox" 
@@ -15,10 +15,8 @@ function Searchbar() {
           placeholder={placeholderText} 
         />
       </div>
-        
     </div>
   )
-
 }
 
-export default Searchbar;
+export default MovieSearch;

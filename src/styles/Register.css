@@ -1,13 +1,8 @@
 .registration-container {
-  border-radius: 8px;
-  border: 2px solid grey;
-  background: linear-gradient(to right, #add8e6, #ffffff);
   margin: 5% auto;
   padding: 7rem 5rem 4rem 5rem; 
   gap: 1rem;
-  width: 35%;
   align-items: center;
-  min-width: 28rem;
 }
 
 .registration-form {
@@ -25,39 +20,46 @@
   font-style: normal;
   font-weight: 700;
   line-height: 2rem;
+  color: black;
   gap: none;
 }
 
 .registration-form input {
-  width: 60%;
-  border: 0.2em solid transparent;
+  width: 40%;
+  border: 1.2rem solid transparent;
   border-radius: 8px; 
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  padding-left: 0.2rem;
+  padding-left: 2.5rem;
+  padding-top: 0.45rem;
+  padding-bottom: 0.25rem;
   margin-top: 0.3rem;
   margin-bottom: 1rem;
   min-width: 15rem;
+  background-color: white;
+  height: 2.5rem;
+  border: 1px solid;
+  border-radius: 0.50rem;
+  border-color: #e5e7eb;
 }
 
-.email-input {
-  background-image: url(/src/assets/svgs/email-8-svgrepo-com.svg);
-  background-position: 1px 1px;
-  background-repeat: no-repeat;
-  
+.registration-form input:hover {
+  border-color: #b8b8b8;
 }
 
-.password-input{
-  background-image: url(/src/assets/svgs/email-8-svgrepo-com.svg);
-  background-position: 1px 1px;
-  background-repeat: no-repeat;
+.registration-form input::placeholder {
+  font-size: 1rem;
+}
+
+.email-icon, .password-icon {
+  position: absolute;
+  margin-left: 0.5rem;
+  margin-top: 0.75rem;
+  color: #9ca3af;
 }
 
 .register-button {
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.3em 1.2em;
-  margin-bottom: 1rem;
   font-size: 1em;
   font-weight: 600;
   font-family: 'Segoe UI';
@@ -67,6 +69,8 @@
   background-color: black;
   color: white;
   margin-top: 0.25rem;
+  min-width: 15rem;
+  height: 2.25rem;
 }
 
 .register-button:hover{
@@ -78,10 +82,13 @@
 }
 
 .register-messages {
-  text-align: center;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
   flex-direction: column;
-  margin-top: 1.5rem;
+  margin: 0 auto;
+  margin-top: 1.75rem;
 }
 
 .have-account-message {
@@ -92,4 +99,10 @@
 .login-account-message {
   color: #646cff;
   text-align: center;
+}
+
+@media (max-width: 480px) {
+  .register-messages {
+    width: 100%;
+  }
 }
