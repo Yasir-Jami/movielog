@@ -16,8 +16,7 @@
 }
 
 .user-auth__login-button:hover, .user-auth__logout-button:hover {
-  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
-  transform: translateY(-1px);
+  
 }
 
 .user-auth__register-button {
@@ -30,8 +29,7 @@
   font-weight: 500;
 }
 .user-auth__register-button:hover {
-  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.1);
-  transform: translateY(-1px);
+ 
 }
 
 .user-auth__login-icon {

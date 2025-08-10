@@ -51,10 +51,10 @@
 }
 
 .sidebar__chevron {
-  width: 18%;
+  width: 14%;
   position: relative;
-  left: 93%;
-  top: 9%;
+  left: 94%;
+  top: 6%;
   background-color: white;
   border-radius: 5rem;
   cursor: pointer;
@@ -63,10 +63,10 @@
 }
 
 .sidebar__chevron--closed {
-  width: 18%;
+  width: 14%;
   position: relative;
-  left: 93%;
-  top: 9%;
+  left: 94%;
+  top: 6%;
   background-color: white;
   border-radius: 5rem;
   cursor: pointer;

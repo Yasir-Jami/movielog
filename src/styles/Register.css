@@ -2,7 +2,6 @@
   margin: 5% auto;
   padding: 7rem 5rem 4rem 5rem; 
   gap: 1rem;
-  
   align-items: center;
 }
 
@@ -40,6 +39,10 @@
   border: 1px solid;
   border-radius: 0.50rem;
   border-color: #e5e7eb;
+}
+
+.registration-form input:hover {
+  border-color: #b8b8b8;
 }
 
 .registration-form input::placeholder {

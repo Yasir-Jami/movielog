@@ -1,3 +1,4 @@
+// Favorites, Filter by, Add Movie
 
 import AddMovie from "@components/ui/AddMovie";
 import "@styles/MovieList.css";
