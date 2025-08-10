@@ -13,8 +13,9 @@
   color: black;
 }
 
-.login-form h1 {
-  margin-bottom: 1rem;
+.login-form-header {
+  margin-bottom: 1.25rem;
+  white-space: nowrap;
 }
 
 .login-form label {
@@ -50,9 +51,12 @@
 }
 
 .login-button {
+  margin-top: 0.25rem;
+  padding: 0.3em 1.2em;
+  min-width: 15rem;
+  height: 2.25rem;
   border-radius: 8px;
   border: 1px solid transparent;
-  padding: 0.3em 1.2em;
   font-size: 1em;
   font-weight: 600;
   font-family: 'Segoe UI';
@@ -61,9 +65,6 @@
   transition: opacity 0.12s;
   color: white;
   background-color: #f57f17;
-  margin-top: 0.25rem;
-  min-width: 15rem;
-  height: 2.25rem;
 }
 
 .login-button:hover{
@@ -78,8 +79,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 30%;
   flex-direction: column;
+  width: 30%;
   margin: 0 auto;
   margin-top: 1.75rem;
 }

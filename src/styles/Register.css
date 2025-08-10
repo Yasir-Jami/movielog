@@ -2,7 +2,10 @@
   margin: 5% auto;
   padding: 7rem 5rem 4rem 5rem; 
   gap: 1rem;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .registration-form {
@@ -11,8 +14,9 @@
   align-items: center;
 }
 
-.registration-form h1 {
+.registration-form-header {
   margin-bottom: 1.25rem;
+  white-space: nowrap;
 }
 
 .registration-form label {
@@ -51,15 +55,20 @@
 
 .email-icon, .password-icon {
   position: absolute;
-  margin-left: 0.5rem;
+  margin-left: 0.6rem;
   margin-top: 0.75rem;
+  width: 1.35rem;
   color: #9ca3af;
 }
 
 .register-button {
+  margin-top: 0.25rem;
+  margin-bottom: 1rem;
+  padding: 0.3em 1.2em;
+  min-width: 15rem;
+  height: 2.25rem;
   border-radius: 8px;
   border: 1px solid transparent;
-  padding: 0.3em 1.2em;
   font-size: 1em;
   font-weight: 600;
   font-family: 'Segoe UI';
@@ -68,9 +77,6 @@
   transition: opacity 0.12s;
   background-color: black;
   color: white;
-  margin-top: 0.25rem;
-  min-width: 15rem;
-  height: 2.25rem;
 }
 
 .register-button:hover{
@@ -87,8 +93,6 @@
   align-items: center;
   width: 30%;
   flex-direction: column;
-  margin: 0 auto;
-  margin-top: 1.75rem;
 }
 
 .have-account-message {
@@ -105,4 +109,5 @@
   .register-messages {
     width: 100%;
   }
+
 }
