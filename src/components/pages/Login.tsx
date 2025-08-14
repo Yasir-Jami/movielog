@@ -1,5 +1,5 @@
 import {useForm, SubmitHandler, /*SubmitErrorHandler*/} from 'react-hook-form';
-import { UseAuth } from '../AuthContext.tsx';
+import { UseAuth } from '@components/contexts/AuthContext.tsx';
 import { toast } from "react-toastify";
 import "@styles/Login.css";
 import { Mail, Lock } from "lucide-react";

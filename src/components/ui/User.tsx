@@ -1,6 +1,6 @@
 import "/src/styles/User.css"
 import { useNavigate } from "react-router-dom";
-import { UseAuth } from "../AuthContext";
+import { UseAuth } from "@components/contexts/AuthContext";
 import { LogIn, LogOut, UserPlus } from "lucide-react";
 
 function User() {

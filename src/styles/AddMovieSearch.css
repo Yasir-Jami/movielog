@@ -1,0 +1,39 @@
+.add-movie__search {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.15rem;
+}
+
+.add-movie__search-result {
+  display: flex;
+  align-items: center;
+  color: black;
+  font-family: Inter-Regular;
+  border: 1px solid;
+  cursor: pointer;
+}
+
+.add-movie__search-result:hover {
+  background-color: rgb(243, 243, 243);
+}
+
+.search-result-metadata {
+  display: flex;
+  gap: 1rem;
+  justify-content: end;
+  margin-right: 2.5rem;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.search-result-poster {
+  width: 10%;
+}
+
+.search-result-title {
+  margin-left: 0.50rem;
+}
+
+.search-result-genre {
+  text-overflow: ellipsis;
+}

@@ -1,21 +1,25 @@
-import styles from "@styles/Sidebar.module.css"
+import styles from "@styles/Sidebar.module.css";
+import CreateMovieList from "@components/ui/CreateMovieList";
+import ChangeMovieList from "@components/utils/ChangeMovieList";
+import RetrieveMovieLists from "@components/utils/RetrieveMovieLists";
 import { SidebarItemProps } from "types";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { MovieList } from "types";
 import playButtonIcon from "/src/assets/svgs/play-button.svg";
 import checkmarkIcon from "/src/assets/svgs/checkmark-svgrepo-com.svg";
 import clockIcon from "/src/assets/svgs/clock-svgrepo-com.svg";
 import sidebarChevron from "/src/assets/svgs/left-chevron.svg";
-import CreateMovieList from "./CreateMovieList";
 
 function Sidebar() {
   const [sidebarActive, setSidebarActive] = useState<boolean>(true);
   const [sidebarButton, setSidebarButton] = useState<boolean>(true);
+  const [listData, setListData] = useState<MovieList[]>([]);
 
   const SideBarItem = (props: SidebarItemProps) => {
     const {itemLabel, itemIcon}: SidebarItemProps = props;
     
     return (
-      <div className={styles.sidebar__item} onClick={() => {logger.log("Sidebar item clicked")}}>
+      <div className={styles.sidebar__item} onClick={() => {ChangeMovieList(itemLabel)}}>
         <img className={styles["sidebar__item-icon"]} src={itemIcon}/>
         <p className={styles["sidebar__item-label"]}>{itemLabel}</p>
       </div>
@@ -40,16 +44,32 @@ function Sidebar() {
 
     const defaultListProps: SidebarItemProps[] = [watchingListProps, watchedListProps, watchLaterListProps];
 
-    //const customListProps: SidebarItemProps[] = customLists();
+    // Get custom lists
+    /*
+    useEffect(() => { 
+      async function getCustomLists() {
+        const lists = await RetrieveMovieLists();
+        setListData(lists);
+      }
+      
+      getCustomLists();
+    }, []);
+
+    const customListProps: SidebarItemProps[] = listData.map(list => ({
+      itemLabel: list.listName,
+      itemIcon: undefined,
+    }));
+
+    console.log(customListProps);
+    */
 
     return (
       <div className={styles.sidebar__list}>
         {[...Array(defaultListProps.length)].map((_, i) => (
-          <SideBarItem key={i} {...defaultListProps[i]} />
+          <SideBarItem key={i} {...defaultListProps[i]}/>
         ))}
 
-        {/*
-        
+        {/* 
         {[...Array(customListProps.length)].map((_, i) => (
           <SideBarItem key={i} {...customListProps[i]} />
         ))}

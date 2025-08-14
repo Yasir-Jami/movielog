@@ -1,4 +1,5 @@
 import "@styles/AddMovie.css";
+import AddMovieSearch from "@components/ui/AddMovieSearch";
 import { useState } from "react";
 import { Plus } from "lucide-react";
 
@@ -34,9 +35,7 @@ function AddMovie() {
     if (modalType == ModalTypes.Default) {
       modalContent = (
         <div className={modalType}>
-          <form className="add-movie-modal__form">
-            <input className="add-movie-modal__search" name="movie-title" placeholder="Search for a movie..."/>
-          </form>
+          <AddMovieSearch />
         </div>
       )
     }

@@ -7,6 +7,10 @@ export interface MovieInfo {
   ImdbRating?: string,
 }
 
+export interface MovieList {
+  listName: string,
+}
+
 export interface MovieLists {
   movieLists: MovieInfo[]
 }
@@ -34,7 +38,6 @@ export interface SidebarItemProps {
 export interface ErrorInfo {
   message: string,
   status?: number,
- 
 }
 
 export interface ApiError extends ErrorInfo {

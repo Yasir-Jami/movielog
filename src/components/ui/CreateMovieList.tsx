@@ -3,7 +3,6 @@ import addListIcon from "/src/assets/svgs/plus-mini-1523-svgrepo-com.svg";
 import { useState, useId } from "react";
 
 async function createNewList(listName: string) {
-  //const url = `${import.meta.env.VITE_API_BASE_URL}${import.meta.env.VITE_API_MOVIE_LISTS}${import.meta.env.VITE_API_CREATE_LIST}`;
   const url = `${import.meta.env.VITE_API_LOCAL_URL}${import.meta.env.VITE_API_MOVIE_LISTS}${import.meta.env.VITE_API_CREATE_LIST}`;
   
   await fetch(url, {
@@ -18,7 +17,7 @@ async function createNewList(listName: string) {
   .then(data => {
     console.log("New list created:", data);
   })
-    .catch(err => logger.error("Error:", err));
+  .catch(err => logger.error("Error:", err));
 }
 
 function CreateMovieList() {
@@ -37,7 +36,7 @@ function CreateMovieList() {
         <div className={styles[createListClassName]}>
           <div className={styles["create-movie-list__modal-container"]}>
             <h3 className={styles["create-movie-list__modal-header"]}>Create New List</h3>
-            <form className={styles["create-movie-list__form"]}>
+            <form className={styles["create-movie-list__form"]} onSubmit={() => {createNewList(listNameInput); showButton()}}>
               <input 
               className={styles["create-movie-list-modal__input"]} 
               name="list-name"
