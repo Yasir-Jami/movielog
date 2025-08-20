@@ -3,7 +3,7 @@ import MovieListContainer from "@components/ui/MovieListContainer";
 import { MovieList } from "types";
 import { useEffect, useState } from "react";
 
-async function getMovieList({ listName } : {listName: string}) {
+async function getMovieList(listName: string) {
   const url = `${import.meta.env.VITE_API_BASE_URL}${import.meta.env.VITE_API_MOVIE_LISTS}${import.meta.env.VITE_API_RETRIEVE_LIST}`;
   let list = {} as MovieList;
   
@@ -19,7 +19,6 @@ async function getMovieList({ listName } : {listName: string}) {
   .then(data => {
     list.listName = data.listWithMovies.listName || "Watching";
     list.movies = data.listWithMovies.movies || [];
-
     return list;
   })
   .catch(err => logger.error("Error:", err));
@@ -32,15 +31,15 @@ function MainContent () {
     listName: "Watching",
     movies: [],
   }
-  
   const [selectedList, setSelectedList] = useState<string>(placeholderList.listName);
   const [currentMovieList, setCurrentMovieList] = useState<MovieList>(placeholderList);
 
-  useEffect(() => {
-    async function getListData() {
-      const retrievedList = await getMovieList({listName: selectedList});
+  async function getListData() {
+      const retrievedList = await getMovieList(selectedList);
       setCurrentMovieList(retrievedList);
-    }
+  }
+  
+  useEffect(() => {
     getListData();
   }, [])
   
@@ -48,7 +47,7 @@ function MainContent () {
   return (
     <div className="main">
       <Sidebar onSelectList={setSelectedList}/>
-      <MovieListContainer currentMovieList={currentMovieList} updateCurrentList={setCurrentMovieList}/>
+      <MovieListContainer currentMovieList={currentMovieList} updateCurrentList={getListData}/>
     </div>
   )
 }

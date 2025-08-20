@@ -2,14 +2,14 @@ import "@styles/AddMovie.css";
 import AddMovieSearch from "@components/ui/AddMovieSearch";
 import { AddMovieModalDisplay } from "types";
 import { MovieInfo, MovieList } from "types";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Plus } from "lucide-react";
 
 interface AddMovieProps {
   modalVisibility: AddMovieModalDisplay,
   setModalVisibility: React.Dispatch<React.SetStateAction<AddMovieModalDisplay>>,
   currentMovieList: MovieList,
-  updateCurrentList: React.Dispatch<React.SetStateAction<MovieList>>,
+  updateCurrentList: () => Promise<void>,
 }
 
 enum ModalTypes {
@@ -17,7 +17,10 @@ enum ModalTypes {
     Custom="add-movie__modal-content--custom"
 };
 
-async function addMovieToList(movie: MovieInfo | undefined, movieList: MovieList) {
+async function addMovieToList(
+  movie: MovieInfo, 
+  movieList: MovieList, 
+  updateCurrentList: () => Promise<void>) {
   const url = `${import.meta.env.VITE_API_BASE_URL}${import.meta.env.VITE_API_MOVIE_LISTS}${import.meta.env.VITE_API_ADD_MOVIE}`;
   
   await fetch(url, {
@@ -31,16 +34,16 @@ async function addMovieToList(movie: MovieInfo | undefined, movieList: MovieList
   .then(res => res.json())
   .then(data => {
     logger.log(data);
+    updateCurrentList();
   })
-  .catch(err => logger.error("Error:", err));
-  
+  .catch(err => logger.error("Error:", err)); 
 }
 
-function AddMovie({modalVisibility, setModalVisibility, currentMovieList}: AddMovieProps) {
+function AddMovie({modalVisibility, setModalVisibility, currentMovieList, updateCurrentList}: AddMovieProps) {
   const [modalType, setModalType] = useState<ModalTypes>(ModalTypes.Default);
 
   const handleMovieSelection = (selectedMovie: MovieInfo) => {
-    addMovieToList(selectedMovie, currentMovieList);
+    addMovieToList(selectedMovie, currentMovieList, updateCurrentList);
   }
 
   function AddMovieModal() {

@@ -8,7 +8,7 @@ import AddMovie from "@components/ui/AddMovie";
 
 interface MovieListContainerProps {
   currentMovieList: MovieList,
-  updateCurrentList: React.Dispatch<React.SetStateAction<MovieList>>,
+  updateCurrentList: () => Promise<void>,
 }
 
 function MovieListContainer({currentMovieList, updateCurrentList}: MovieListContainerProps) {
