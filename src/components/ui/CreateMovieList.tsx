@@ -3,7 +3,7 @@ import addListIcon from "/src/assets/svgs/plus-mini-1523-svgrepo-com.svg";
 import { useState, useId } from "react";
 
 async function createNewList(listName: string) {
-  const url = `${import.meta.env.VITE_API_LOCAL_URL}${import.meta.env.VITE_API_MOVIE_LISTS}${import.meta.env.VITE_API_CREATE_LIST}`;
+  const url = `${import.meta.env.VITE_API_BASE_URL}${import.meta.env.VITE_API_MOVIE_LISTS}${import.meta.env.VITE_API_CREATE_LIST}`;
   
   await fetch(url, {
     method: 'POST',

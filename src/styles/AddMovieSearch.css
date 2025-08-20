@@ -1,12 +1,12 @@
 .add-movie__search {
   display: flex;
   flex-direction: column;
-  margin-top: 0.15rem;
 }
 
 .add-movie__search-result {
   display: flex;
   align-items: center;
+  gap: 1rem;
   color: black;
   font-family: Inter-Regular;
   border: 1px solid;
@@ -19,21 +19,30 @@
 
 .search-result-metadata {
   display: flex;
-  gap: 1rem;
-  justify-content: end;
-  margin-right: 2.5rem;
+  flex: 1;
   align-items: center;
-  flex-grow: 1;
+  justify-content: space-between;
 }
 
 .search-result-poster {
-  width: 10%;
+  width: 12%;
 }
 
 .search-result-title {
-  margin-left: 0.50rem;
+  max-width: 60%;
 }
 
 .search-result-genre {
   text-overflow: ellipsis;
+}
+
+.search-result-year {
+  min-width: 4rem;
+  margin-right: 1rem;
+}
+
+@media (max-width: 480px) {
+  .search-result-year {
+    margin-left: 1rem;
+  }
 }

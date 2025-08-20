@@ -5,14 +5,13 @@ export interface MovieInfo {
   Plot?: string,
   Genre?: string,
   ImdbRating?: string,
+  imdbID: string,
 }
 
 export interface MovieList {
+  listId?: number,
   listName: string,
-}
-
-export interface MovieLists {
-  movieLists: MovieInfo[]
+  movies: MovieInfo[],
 }
 
 export interface MovieGridProps {
@@ -31,8 +30,10 @@ export interface SidebarProps {
 }
 
 export interface SidebarItemProps {
+  itemId: number,
   itemLabel: string,
   itemIcon?: string,
+  itemCount?: number,
 }
 
 export interface ErrorInfo {
@@ -44,3 +45,10 @@ export interface ApiError extends ErrorInfo {
   message: string,
   status?: number,
 }
+
+
+/* Enums */
+export enum AddMovieModalDisplay {
+    Invisible="add-movie__modal",
+    Visible="add-movie__modal--active"
+};

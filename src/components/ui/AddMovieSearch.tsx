@@ -1,12 +1,19 @@
 import "@styles/AddMovieSearch.css";
 import { MovieInfo } from "types";
+import { AddMovieModalDisplay } from "types";
+import ImageNotFound from "assets/svgs/image-not-found.svg";
 //import DummyMovieInfo from "tests/DummyMovieData";
 //import { Star } from "lucide-react";
 import { useState, useEffect } from "react";
 
+interface AddMovieSearchProps {
+  setModalVisibility: React.Dispatch<React.SetStateAction<AddMovieModalDisplay>>;
+  onMovieSelect: (movie: MovieInfo) => void,
+}
+
 async function SearchForMovie({ searchTerm } : {searchTerm: string}) {
-  const url = `${import.meta.env.VITE_API_LOCAL_URL}${import.meta.env.VITE_API_MOVIES}${import.meta.env.VITE_API_SEARCH_MOVIES}`;
-  let searchResults: MovieInfo[] = []
+  const url = `${import.meta.env.VITE_API_BASE_URL}${import.meta.env.VITE_API_MOVIES}${import.meta.env.VITE_API_SEARCH_MOVIES}`;
+  let searchResults: MovieInfo[] = [];
 
   await fetch(url, {
     method: 'POST',
@@ -22,6 +29,7 @@ async function SearchForMovie({ searchTerm } : {searchTerm: string}) {
       Title: movie.Title,
       Poster: movie.Poster,
       Year: movie.Year,
+      ImdbID: movie.imdbID,
     }));
 
     return searchResults;
@@ -31,13 +39,13 @@ async function SearchForMovie({ searchTerm } : {searchTerm: string}) {
   return searchResults;
 }
 
-function AddMovieSearch() {
+function AddMovieSearch({setModalVisibility, onMovieSelect}: AddMovieSearchProps) {
   const [movieInput, setMovieInput] = useState<string>('');
   const [debouncedInput, setDebouncedInput] = useState<string>('');
   const [results, setResults] = useState<MovieInfo[]>([]);
 
   useEffect(() => {
-    const handler = setTimeout(() => setDebouncedInput(movieInput), 200);
+    const handler = setTimeout(() => setDebouncedInput(movieInput), 400);
     return () => clearTimeout(handler);
   }, [movieInput]);
 
@@ -64,15 +72,22 @@ function AddMovieSearch() {
         name="movie-title" 
         placeholder="Search for a movie..." 
         value={movieInput}
-        onChange={e => {const value = (e.target as HTMLInputElement).value; setMovieInput(value); SearchForMovie({searchTerm: value})}}/>
+        onChange={e => setMovieInput(e.target.value)}/>
       </form>
 
       <div className="add-movie__search">
-        {results.map((result, i) => (
-          <div className="add-movie__search-result">
-            <img className="search-result-poster" src={result.Poster}></img>
-            <span className="search-result-title" key={i}>{result.Title}</span>
+        {results.map((result, index) => (
+          <div 
+          className="add-movie__search-result" 
+          key={result.imdbID || `${result.Title}--${index}`} 
+          onClick={() => {setModalVisibility(AddMovieModalDisplay.Invisible); onMovieSelect(result)}}>
+            <img 
+            className="search-result-poster" 
+            src={result.Poster} 
+            alt="movie-image" 
+            onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = ImageNotFound}}></img>
             <div className="search-result-metadata">
+              <span className="search-result-title">{result.Title}</span>
               <span className="search-result-year">{result.Year}</span>
               {/* 
               <span className="search-result-genre">{result.Genre}</span>
@@ -90,8 +105,5 @@ function AddMovieSearch() {
     </div>
   )
 }
-
-
-
 
 export default AddMovieSearch;

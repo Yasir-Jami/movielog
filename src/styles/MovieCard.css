@@ -3,11 +3,10 @@
   flex-direction: column;
   align-items: center;
   background-color: white;
-  width: 10rem;
+  width: 11rem;
   height: 20rem;
   border-radius: 1rem;
   margin-bottom: 1rem;
-  border-top: 5rem;
   transition: transform 0.2s;
 }
 
@@ -38,6 +37,7 @@
 
 .movie-card__metadata {
   display: flex;
+  flex-direction: column;
   margin-top: 0.75rem;
   margin-left: 0.25rem;
   align-self: start;
@@ -45,34 +45,36 @@
   gap: 0.25rem;
 }
 
-.movie-card__calendar {
-  padding-left: 0.25rem;
-  padding-bottom: 0.7rem;
-  margin-right: 0.125rem;
-}
-
 .movie-card__year {
+  display: flex;
   font-family: Inter-Regular;
   margin-right: 0.25rem;
   margin-left: -0.15rem;
   font-size: 0.85rem;
 }
 
-.movie-card__separator {
-  font-family: Inter-Regular;
-  font-size: 0.75rem;
+.movie-card__calendar {
+  padding-left: 0.25rem;
+  padding-bottom: 0.6rem;
+  margin-right: 0.25rem;
 }
 
 .movie-card__genre {
+  display: flex;
   font-family: Inter-Regular;
-  font-size: 0.85rem;
-  
+  font-size: 0.85rem; 
+}
+
+.movie-card__mask {
+  padding-left: 0.25rem;
+  padding-bottom: 0.7rem;
+  margin-right: 0.125rem;
 }
 
 @media (max-width: 480px) {
   .movie-card {
     width: 8rem;
-    height: 17rem;
+    height: 18rem;
   }
 
   .movie-card__title {

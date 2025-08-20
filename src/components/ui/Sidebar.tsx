@@ -1,25 +1,25 @@
 import styles from "@styles/Sidebar.module.css";
 import CreateMovieList from "@components/ui/CreateMovieList";
-import ChangeMovieList from "@components/utils/ChangeMovieList";
-import RetrieveMovieLists from "@components/utils/RetrieveMovieLists";
 import { SidebarItemProps } from "types";
-import { useState, useEffect } from "react";
-import { MovieList } from "types";
+import { useState } from "react";
 import playButtonIcon from "/src/assets/svgs/play-button.svg";
 import checkmarkIcon from "/src/assets/svgs/checkmark-svgrepo-com.svg";
 import clockIcon from "/src/assets/svgs/clock-svgrepo-com.svg";
 import sidebarChevron from "/src/assets/svgs/left-chevron.svg";
 
-function Sidebar() {
+interface SidebarProps {
+  onSelectList: React.Dispatch<React.SetStateAction<string>>;
+}
+
+function Sidebar({onSelectList}: SidebarProps) {
   const [sidebarActive, setSidebarActive] = useState<boolean>(true);
   const [sidebarButton, setSidebarButton] = useState<boolean>(true);
-  const [listData, setListData] = useState<MovieList[]>([]);
 
   const SideBarItem = (props: SidebarItemProps) => {
     const {itemLabel, itemIcon}: SidebarItemProps = props;
     
     return (
-      <div className={styles.sidebar__item} onClick={() => {ChangeMovieList(itemLabel)}}>
+      <div className={styles.sidebar__item} onClick={() => {onSelectList(itemLabel)}}>
         <img className={styles["sidebar__item-icon"]} src={itemIcon}/>
         <p className={styles["sidebar__item-label"]}>{itemLabel}</p>
       </div>
@@ -28,16 +28,19 @@ function Sidebar() {
 
   const SidebarLists = () => {
     const watchingListProps: SidebarItemProps = {
+      itemId: 0,
       itemLabel: "Watching",
       itemIcon:  playButtonIcon,
     }
 
     const watchedListProps: SidebarItemProps = {
+      itemId: 1,
       itemLabel: "Watched",
       itemIcon:  checkmarkIcon,
     }
 
     const watchLaterListProps: SidebarItemProps = {
+      itemId: 2,
       itemLabel: "Watch Later",
       itemIcon:  clockIcon,
     }
@@ -55,7 +58,8 @@ function Sidebar() {
       getCustomLists();
     }, []);
 
-    const customListProps: SidebarItemProps[] = listData.map(list => ({
+    const customListProps: SidebarItemProps[] = listData.map((list, index) => ({
+      itemId: index + 3,
       itemLabel: list.listName,
       itemIcon: undefined,
     }));
@@ -90,7 +94,7 @@ function Sidebar() {
     return style;
   }
 
-  function sidebarButtonStatus():string {
+  function sidebarButtonStatus(): string {
     const style = sidebarButton ? styles.sidebar__chevron : styles["sidebar__chevron--closed"];
     return style;
   }
