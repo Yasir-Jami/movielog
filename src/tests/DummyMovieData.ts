@@ -72,5 +72,4 @@ function testMovieArray(): MovieInfo[] {
   return movieArray;
 }
 
-
 export default testMovieArray;

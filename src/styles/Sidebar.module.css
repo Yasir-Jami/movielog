@@ -91,6 +91,7 @@
   width: 12rem;
   margin-bottom: 0.75rem;
   transition: 0.08s;
+  border: 2px solid grey;
   cursor: pointer;
 }
 

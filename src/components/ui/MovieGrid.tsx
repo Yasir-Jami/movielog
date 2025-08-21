@@ -1,26 +1,21 @@
-import "@styles/MovieList.css"
+import "@styles/MovieListContainer.css"
 import MovieCard from "@components/ui/MovieCard";
-import testMovieArray from "tests/DummyMovieData";
-import { MovieInfo } from "types";
+import { MovieList } from "types";
+
+interface MovieGridProps {
+  currentMovieList: MovieList,
+}
 
 //function MovieGrid (props: MovieGridProps) {
-function MovieGrid() {
-  //const { movieListName, movieCount, movieArray } = props;
-  const movie: MovieInfo[] = testMovieArray();
+function MovieGrid({currentMovieList}: MovieGridProps) {
+  const list = currentMovieList;
+  const movieCount = list?.movies?.length || 0;
 
   return (
     <div className="movie-grid">
-      <MovieCard {...movie[0]}/>
-      <MovieCard {...movie[1]}/>
-      <MovieCard {...movie[2]}/>
-      <MovieCard {...movie[3]}/>
-      <MovieCard {...movie[4]}/>
-      <MovieCard {...movie[5]}/>
-      <MovieCard {...movie[6]}/>
-      <MovieCard {...movie[7]}/>
-      <MovieCard {...movie[8]}/>
-
-      {/* Nodes */}
+      {[...Array(movieCount)].map((_, i) => (
+          <MovieCard key={i} {...list.movies[i]}/>
+      ))}
     </div>
   )
 

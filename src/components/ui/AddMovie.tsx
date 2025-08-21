@@ -1,20 +1,50 @@
 import "@styles/AddMovie.css";
+import AddMovieSearch from "@components/ui/AddMovieSearch";
+import { AddMovieModalDisplay } from "types";
+import { MovieInfo, MovieList } from "types";
 import { useState } from "react";
 import { Plus } from "lucide-react";
 
-enum AddMovieModalDisplay {
-    Invisible="add-movie__modal",
-    Visible="add-movie__modal--active"
-  };
+interface AddMovieProps {
+  modalVisibility: AddMovieModalDisplay,
+  setModalVisibility: React.Dispatch<React.SetStateAction<AddMovieModalDisplay>>,
+  currentMovieList: MovieList,
+  updateCurrentList: () => Promise<void>,
+}
 
 enum ModalTypes {
     Default="add-movie__modal-content--default",
     Custom="add-movie__modal-content--custom"
-  };
+};
 
-function AddMovie() {
-  const [modalVisibility, setModalVisibility] = useState<AddMovieModalDisplay>(AddMovieModalDisplay.Invisible);
+async function addMovieToList(
+  movie: MovieInfo, 
+  movieList: MovieList, 
+  updateCurrentList: () => Promise<void>) {
+  const url = `${import.meta.env.VITE_API_BASE_URL}${import.meta.env.VITE_API_MOVIE_LISTS}${import.meta.env.VITE_API_ADD_MOVIE}`;
+  
+  await fetch(url, {
+    method: 'POST',
+    credentials: 'include',
+    headers: {
+      'Content-type': 'application/json',
+    },
+    body: JSON.stringify( { movie: movie, listName: movieList.listName } ),
+  })
+  .then(res => res.json())
+  .then(data => {
+    logger.log(data);
+    updateCurrentList();
+  })
+  .catch(err => logger.error("Error:", err)); 
+}
+
+function AddMovie({modalVisibility, setModalVisibility, currentMovieList, updateCurrentList}: AddMovieProps) {
   const [modalType, setModalType] = useState<ModalTypes>(ModalTypes.Default);
+
+  const handleMovieSelection = (selectedMovie: MovieInfo) => {
+    addMovieToList(selectedMovie, currentMovieList, updateCurrentList);
+  }
 
   function AddMovieModal() {
     let modalVisible = modalVisibility;
@@ -34,9 +64,7 @@ function AddMovie() {
     if (modalType == ModalTypes.Default) {
       modalContent = (
         <div className={modalType}>
-          <form className="add-movie-modal__form">
-            <input className="add-movie-modal__search" name="movie-title" placeholder="Search for a movie..."/>
-          </form>
+          <AddMovieSearch setModalVisibility={setModalVisibility} onMovieSelect={handleMovieSelection}/>
         </div>
       )
     }
@@ -46,7 +74,9 @@ function AddMovie() {
       modalContent = (
         <div className={modalType}>
           <form className="add-movie-modal__form">
-            <p>Search for a title</p>
+            <p>Title</p>
+            <p>Year</p>
+            <p>Genre</p>
           </form>
         </div>
       )

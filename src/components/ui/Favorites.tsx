@@ -4,7 +4,7 @@ import { useState, useId } from "react";
 function Favorites() {
   const [input, setInput] = useState('');
   const id = useId();
-  console.log(input);
+  logger.log(input);
 
   return (
     <div className={styles.favorites} >
@@ -22,7 +22,6 @@ function Favorites() {
         <li className={styles["list-item"]}>Bob</li>
         <li className={styles["list-item"]}>Lima</li>
         <li className={styles["list-item"]}>Bean</li>
-        <li className={styles["list-item"]}>Ligma</li>
       </div>
       
     </div>

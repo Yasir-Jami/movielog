@@ -15,9 +15,9 @@ async function createNewList(listName: string) {
   })
   .then(res => res.json())
   .then(data => {
-    console.log("New list created:", data);
+    logger.log("New list created:", data);
   })
-    .catch(err => logger.error("Error:", err));
+  .catch(err => logger.error("Error:", err));
 }
 
 function CreateMovieList() {
@@ -36,7 +36,7 @@ function CreateMovieList() {
         <div className={styles[createListClassName]}>
           <div className={styles["create-movie-list__modal-container"]}>
             <h3 className={styles["create-movie-list__modal-header"]}>Create New List</h3>
-            <form className={styles["create-movie-list__form"]}>
+            <form className={styles["create-movie-list__form"]} onSubmit={() => {createNewList(listNameInput); showButton()}}>
               <input 
               className={styles["create-movie-list-modal__input"]} 
               name="list-name"

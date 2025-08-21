@@ -1,9 +1,9 @@
-import { MovieLists } from "types";
+import { MovieList } from "types";
 
 const getListsUrl = "GG";
 
-async function retrieveMovieLists(): Promise<MovieLists[] | null> {
-    let movieLists: MovieLists[] = [];
+async function retrieveMovieLists(): Promise<MovieList[] | null> {
+    let movieLists: MovieList[] = [];
 
     try {
       const response: Response = await fetch(getListsUrl, {
