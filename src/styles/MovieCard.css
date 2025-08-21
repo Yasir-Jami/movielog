@@ -4,7 +4,6 @@
   align-items: center;
   background-color: white;
   width: 11rem;
-  height: 20rem;
   border-radius: 1rem;
   margin-bottom: 1rem;
   transition: transform 0.2s;
@@ -23,7 +22,7 @@
   height: 68%;
   border-top-left-radius: inherit;
   border-top-right-radius: inherit;
-  object-fit: fill;
+  object-fit: cover;
 }
 
 .movie-card__title {
@@ -71,10 +70,10 @@
   margin-right: 0.125rem;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 720px) {
   .movie-card {
-    width: 8rem;
-    height: 18rem;
+    width: 10rem;
+    height: 20rem;
   }
 
   .movie-card__title {

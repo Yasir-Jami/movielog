@@ -57,7 +57,7 @@ function AddMovieSearch({setModalVisibility, onMovieSelect}: AddMovieSearchProps
 
     async function fetchAndSetMovies() {
       const movies = await SearchForMovie({ searchTerm: debouncedInput });
-      console.log("Movies:", movies);
+      logger.log("Movies:", movies);
       setResults(movies);
     }
 

@@ -5,7 +5,7 @@ export interface MovieInfo {
   Plot?: string,
   Genre?: string,
   ImdbRating?: string,
-  imdbID: string,
+  imdbID?: string,
 }
 
 export interface MovieList {

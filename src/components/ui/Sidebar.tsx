@@ -64,7 +64,7 @@ function Sidebar({onSelectList}: SidebarProps) {
       itemIcon: undefined,
     }));
 
-    console.log(customListProps);
+    logger.log(customListProps);
     */
 
     return (

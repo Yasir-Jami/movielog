@@ -15,7 +15,7 @@ async function createNewList(listName: string) {
   })
   .then(res => res.json())
   .then(data => {
-    console.log("New list created:", data);
+    logger.log("New list created:", data);
   })
   .catch(err => logger.error("Error:", err));
 }

@@ -41,7 +41,7 @@ function MainContent () {
   
   useEffect(() => {
     getListData();
-  }, [])
+  }, [selectedList])
   
   // On success
   return (
