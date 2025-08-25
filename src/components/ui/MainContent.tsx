@@ -1,7 +1,7 @@
 import Sidebar from "@components/ui/Sidebar";
 import MovieListContainer from "@components/ui/MovieListContainer";
-import { MovieList } from "types";
-import { useEffect, useState } from "react";
+import { MovieList, MovieInfo } from "types";
+import React, { useEffect, useState } from "react";
 
 async function getMovieList(listName: string) {
   const url = `${import.meta.env.VITE_API_BASE_URL}${import.meta.env.VITE_API_MOVIE_LISTS}${import.meta.env.VITE_API_RETRIEVE_LIST}`;
@@ -31,8 +31,23 @@ function MainContent () {
     listName: "Watching",
     movies: [],
   }
+  
   const [selectedList, setSelectedList] = useState<string>(placeholderList.listName);
   const [currentMovieList, setCurrentMovieList] = useState<MovieList>(placeholderList);
+
+  /*
+  function addNewMovieToList(
+    movieList: MovieList, 
+    movie: MovieInfo, 
+    setCurrentMovieList: React.Dispatch<React.SetStateAction<MovieList>>) {
+    logger.log("Movie:", movie);
+    logger.log("Movie array:", movieList.movies);
+    movieList.movies.push(movie);
+    logger.log("Movie array after adding movie:", movieList.movies);
+  
+    //setCurrentMovieList(movieList);
+  }
+  */
 
   async function getListData() {
       const retrievedList = await getMovieList(selectedList);
@@ -41,13 +56,13 @@ function MainContent () {
   
   useEffect(() => {
     getListData();
-  }, [selectedList])
+  }, [selectedList])  
   
   // On success
   return (
     <div className="main">
-      <Sidebar onSelectList={setSelectedList}/>
-      <MovieListContainer currentMovieList={currentMovieList} updateCurrentList={getListData}/>
+      <Sidebar onSelectList={setSelectedList} selectedListName={currentMovieList.listName}/>
+      <MovieListContainer currentMovieList={currentMovieList} addNewMovieToList={setCurrentMovieList}/>
     </div>
   )
 }

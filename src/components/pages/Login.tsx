@@ -1,7 +1,7 @@
-import {useForm, SubmitHandler, /*SubmitErrorHandler*/} from 'react-hook-form';
-import { UseAuth } from '@components/contexts/AuthContext.tsx';
-import { toast } from "react-toastify";
 import "@styles/Login.css";
+import { useForm, SubmitHandler, /*SubmitErrorHandler*/ } from 'react-hook-form';
+import { UseAuth } from '@components/contexts/AuthContext.tsx';
+import { toast, Slide } from "react-toastify";
 import { Mail, Lock } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import AuthHeader from "@components/ui/AuthHeader";
@@ -31,8 +31,13 @@ function Login() {
 
       if (!response.ok) {
         // Handle all non-2XX requests
-        const errorData = await response.json();
-        logger.error("Error:", errorData);
+        if (response.status == 401) {
+          toast.error("Invalid username or password", {
+              position: "top-center", 
+              transition: Slide});
+        }
+        
+        // TODO make specific responses based on http code returned
         return;
       }
 
@@ -42,12 +47,12 @@ function Login() {
         setUser(userDataNoPassword);
 
         navigate(import.meta.env.VITE_PATH_HOME);
-        toast("Logged in");
+        toast.success("Logged in");
       }
 
       else {
         logger.log("Server returned an invalid response.");
-        toast("Server returned an invalid response.");
+        toast.error("Server returned an invalid response.");
       }
 
     }

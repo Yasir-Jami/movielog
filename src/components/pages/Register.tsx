@@ -4,8 +4,7 @@ import { toast } from "react-toastify";
 import "@styles/Register.css";
 import { Mail, Lock } from "lucide-react";
 import AuthHeader from "@components/ui/AuthHeader";
-
-let registerUrl: string = `${import.meta.env.VITE_API_BASE_URL}${import.meta.env.VITE_API_USERS}${import.meta.env.VITE_API_REGISTER}`;
+import { useNavigate } from 'react-router-dom';
 
 interface RegisterFormValues {
   email: string,
@@ -13,8 +12,11 @@ interface RegisterFormValues {
   confirmPassword: string,
 }
 
+const registerUrl: string = `${import.meta.env.VITE_API_BASE_URL}${import.meta.env.VITE_API_USERS}${import.meta.env.VITE_API_REGISTER}`;
+
 function Register() {
   const {register, handleSubmit} = useForm<RegisterFormValues>();
+  const navigate = useNavigate();
   // Play loading spinner
   
   const onSubmit: SubmitHandler<RegisterFormValues> = async (data) => {
@@ -36,7 +38,8 @@ function Register() {
       }
 
       const result = await response.json();
-      toast("User successfully registered");
+      toast.success("Registration successful");
+      navigate("/login");
       logger.log("Registration response:" + result);
     }
     catch (error) {

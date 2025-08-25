@@ -1,16 +1,17 @@
 .no-movies {
   display: flex;
   justify-content: center;
-  background-color: gainsboro;
   margin-top: 1rem;
   height: 80%;
+  border: dotted;
   border-radius: 0.25rem;
+  background-color: white;
   transition: scale 0.16s;
   cursor: pointer;
 }
 
 .no-movies:hover {
-  scale: 1.02;
+  scale: 1.008;
 }
 
 .no-movies-text {

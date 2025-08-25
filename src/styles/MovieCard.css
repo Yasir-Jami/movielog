@@ -42,6 +42,7 @@
   align-self: start;
   color: grey;
   gap: 0.25rem;
+  max-width: 90%;
 }
 
 .movie-card__year {

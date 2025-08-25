@@ -1,6 +1,6 @@
 import "/src/styles/MovieListContainer.css";
 import { useState } from "react";
-import { MovieGridProps, MovieList, AddMovieModalDisplay } from "types";
+import { MovieList, MovieInfo, MovieGridProps, AddMovieModalDisplay } from "types";
 import MovieGrid from "@components/ui/MovieGrid";
 import MovieSearch from "@components/ui/MovieSearch";
 import AddMovie from "@components/ui/AddMovie";
@@ -8,10 +8,10 @@ import AddMovie from "@components/ui/AddMovie";
 
 interface MovieListContainerProps {
   currentMovieList: MovieList,
-  updateCurrentList: () => Promise<void>,
+  addNewMovieToList: React.Dispatch<React.SetStateAction<MovieList>>,
 }
 
-function MovieListContainer({currentMovieList, updateCurrentList}: MovieListContainerProps) {
+function MovieListContainer({currentMovieList, addNewMovieToList}: MovieListContainerProps) {
   const [addMoviemodalVisibility, setAddMovieModalVisibility] = useState<AddMovieModalDisplay>(AddMovieModalDisplay.Invisible);
   const movieList: MovieList = currentMovieList;
   let content: React.JSX.Element = <></>;
@@ -21,13 +21,14 @@ function MovieListContainer({currentMovieList, updateCurrentList}: MovieListCont
     movieArray: movieList?.movies || [],
     movieCount: movieList?.movies?.length || 0,
   }
+
+  content = <MovieGrid currentMovieList={currentMovieList}/>;
   
-  //if (movieProps.movieCount == 0) {
-  //  content = <NoMovies setModalVisibility={setAddMovieModalVisibility}/>;
-  //} 
-  //else {
-    content = <MovieGrid currentMovieList={currentMovieList}/>;
-  //}
+  /*
+  if (movieProps.movieCount == 0) {
+    content = <NoMovies setModalVisibility={setAddMovieModalVisibility}/>;
+  }
+  */
 
   return (
     <div className="list-container">
@@ -41,8 +42,9 @@ function MovieListContainer({currentMovieList, updateCurrentList}: MovieListCont
       modalVisibility={addMoviemodalVisibility} 
       setModalVisibility={setAddMovieModalVisibility} 
       currentMovieList={currentMovieList}
-      updateCurrentList={updateCurrentList}
+      addNewMovieToList={addNewMovieToList}
       />
+      
     </div>
       {content}
     </div>

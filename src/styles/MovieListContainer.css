@@ -17,6 +17,7 @@
 
 .movie-actions {
   display: flex;
+  justify-content: space-between;
 }
 
 .movie-grid {
