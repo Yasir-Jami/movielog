@@ -19,6 +19,13 @@ enum ModalTypes {
     Custom="add-movie__modal-content--custom"
 };
 
+const addMovieErrorNotification = (errorReason: string) => {
+  toast.error(errorReason, {
+    position: "bottom-center",
+    transition: Slide,
+  })
+}
+
 async function addMovieToList(
   movie: MovieInfo, 
   movieList: MovieList, 
@@ -38,12 +45,6 @@ async function addMovieToList(
     console.log(response);
     if (!response.ok) {
       let errorReason = "" as string;
-      const addMovieErrorNotification = (errorReason: string) => {
-        toast.error(errorReason, {
-          position: "bottom-center",
-          transition: Slide,
-        });
-      }
 
       if (response.status == 409) {
         errorReason = `${movie.Title} is already in ${movieList.listName}`;

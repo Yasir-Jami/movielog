@@ -20,7 +20,8 @@ function MovieSearch({movieFilters, filterBySearch}: MovieSearchProps) {
           className="movie-search__textbox" 
           type="text" 
           placeholder={placeholderText} 
-        />
+          onChange={e => {movieFilters.SearchFilter = e.target.value; console.log(movieFilters.SearchFilter); filterBySearch(movieFilters)}}
+          /> 
       </div>
     </div>
   )

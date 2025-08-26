@@ -1,6 +1,6 @@
 import "/src/styles/MovieListContainer.css";
 import { useState } from "react";
-import { MovieList, MovieGridProps, AddMovieModalDisplay, MovieFilters } from "types";
+import { MovieList, MovieGridProps, AddMovieModalDisplay, MovieFilters, Genres } from "types";
 import MovieGrid from "@components/ui/MovieGrid";
 import MovieSearch from "@components/ui/MovieSearch";
 import AddMovie from "@components/ui/AddMovie";
@@ -11,8 +11,31 @@ interface MovieListContainerProps {
   addNewMovieToList: React.Dispatch<React.SetStateAction<MovieList>>,
 }
 
+const genres: Genres = {
+  Action: false,
+  Adventure: false,
+  Animation: false,
+  Comedy: false,
+  Crime: false,
+  Documentary: false,
+  Drama: false,
+  Family: false,
+  Fantasy: false,
+  Horror: false,
+  Musical: false,
+  Mystery: false,
+  Romance: false,
+  Sport: false,
+  Thriller: false,
+  Western: false,
+}
+
 function MovieListContainer({currentMovieList, addNewMovieToList}: MovieListContainerProps) {
-  const [movieFilters, setMovieFilters] = useState<MovieFilters>({} as MovieFilters);
+  const [movieFilters, setMovieFilters] = useState<MovieFilters>({
+    SearchFilter: "",
+    GenreFilter: genres,
+    FavoriteFilter: false,
+  } as MovieFilters);
   const [addMoviemodalVisibility, setAddMovieModalVisibility] = useState<AddMovieModalDisplay>(AddMovieModalDisplay.Invisible);
   const movieList: MovieList = currentMovieList;
   let content: React.JSX.Element = <></>;
@@ -25,6 +48,7 @@ function MovieListContainer({currentMovieList, addNewMovieToList}: MovieListCont
 
   content = <MovieGrid 
   currentMovieList={currentMovieList} 
+  currentMovieFilters={movieFilters}
   setMovieFilters={setMovieFilters}
   />;
   

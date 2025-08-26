@@ -46,7 +46,7 @@ export interface ApiError extends ErrorInfo {
   status?: number,
 }
 
-interface Genre {
+export interface Genres {
   Action: boolean,
   Adventure: boolean,
   Animation: boolean,
@@ -67,7 +67,7 @@ interface Genre {
 
 export interface MovieFilters {
   SearchFilter: string,
-  GenreFilter: Genre,
+  GenreFilter: Genres,
   FavoriteFilter: boolean,
 }
 
