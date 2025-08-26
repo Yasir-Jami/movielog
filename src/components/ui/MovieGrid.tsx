@@ -6,47 +6,48 @@ import { SetStateAction } from "react";
 interface MovieGridProps {
   currentMovieList: MovieList,
   currentMovieFilters: MovieFilters,
-  setMovieFilters: React.Dispatch<SetStateAction<MovieFilters>>;
+  setMovieFilters: React.Dispatch<SetStateAction<MovieFilters>>,
+  setMovieCount: React.Dispatch<SetStateAction<number>>,
 }
 
 function filterMovies(
   movieArray: MovieInfo[], 
   filters: MovieFilters, 
   updateMovieFilters: React.Dispatch<SetStateAction<MovieFilters>>): MovieInfo[] {
-  console.log("Current search filter:", filters.SearchFilter);
-  filters.SearchFilter = "green";
-  let filteredList = movieArray.filter((movie) => movie.Title.toLowerCase().includes(filters.SearchFilter.toLowerCase()));
-  console.log(filteredList);
-  updateMovieFilters(filters);
-
-  return filteredList;
+    const newFilters: MovieFilters = filters;
+    console.log("Current search filter:", filters.SearchFilter);
+    filters.SearchFilter = "green";
+    let filteredMovies = movieArray.filter((movie) => movie.Title.toLowerCase().includes(filters.SearchFilter.toLowerCase()));
+    console.log(filteredMovies);
+    updateMovieFilters(filters);
+    return filteredMovies;
 }
 
-/*
 function sortMovies(movieArray: MovieInfo[]): MovieInfo[] {
 
   return sortedList
 }
-*/
 
-function MovieGrid({currentMovieList, currentMovieFilters, setMovieFilters}: MovieGridProps) {
-  const filteredMovies = filterMovies(currentMovieList.movies, currentMovieFilters, setMovieFilters);
-  const movieCount = filteredMovies?.length || 0;
-  console.log(movieCount);
 
-  // TODO Need to update moviefilters and movie list to ensure the correct count
-
-  //movieArray = currentMovieList.movies;
-  // Filter before showing
+function MovieGrid({
+  currentMovieList, 
+  currentMovieFilters, 
+  setMovieFilters, 
+  setMovieCount}: MovieGridProps
+) {
+  let movieArray = {} as MovieInfo[];
+  movieArray = filterMovies(currentMovieList.movies, currentMovieFilters, setMovieFilters);
+  movieArray = sortMovies(movieArray);
+  const movieCount = movieArray?.length || 0;
+  setMovieCount(movieCount);
   
   return (
     <div className="movie-grid">
       {[...Array(movieCount)].map((_, i) => (
-          <MovieCard key={i} {...filteredMovies[i]}/>
+          <MovieCard key={i} {...movieArray[i]}/>
       ))}
     </div>
   )
-
 }
 
 export default MovieGrid;

@@ -36,24 +36,27 @@ function MovieListContainer({currentMovieList, addNewMovieToList}: MovieListCont
     GenreFilter: genres,
     FavoriteFilter: false,
   } as MovieFilters);
+  const [currentMovieCount, setMovieCount] = useState<number>(0);
   const [addMoviemodalVisibility, setAddMovieModalVisibility] = useState<AddMovieModalDisplay>(AddMovieModalDisplay.Invisible);
   const movieList: MovieList = currentMovieList;
+  
   let content: React.JSX.Element = <></>;
   
-  const movieProps: MovieGridProps = {
+  const movieListProps: MovieGridProps = {
     movieListName: movieList?.listName || "Watching",
     movieArray: movieList?.movies || [],
-    movieCount: movieList?.movies?.length || 0,
+    movieCount: currentMovieCount,
   }
 
   content = <MovieGrid 
   currentMovieList={currentMovieList} 
   currentMovieFilters={movieFilters}
   setMovieFilters={setMovieFilters}
+  setMovieCount={setMovieCount}
   />;
   
   /*
-  if (movieProps.movieCount == 0) {
+  if (currentMovieCount == 0) {
     content = <NoMovies setModalVisibility={setAddMovieModalVisibility}/>;
   }
   */
@@ -61,8 +64,8 @@ function MovieListContainer({currentMovieList, addNewMovieToList}: MovieListCont
   return (
     <div className="list-container">
       <div className="list-container__metadata">
-        <h2 className="list-container__list-name">{movieProps.movieListName}</h2>
-        <p className="list-container__movie-count">{movieProps.movieCount} movies</p>
+        <h2 className="list-container__list-name">{movieListProps.movieListName}</h2>
+        <p className="list-container__movie-count">{movieListProps.movieCount} movies</p>
       </div>
     <div className="movie-actions">
       <MovieSearch movieFilters={movieFilters} filterBySearch={setMovieFilters}/>
