@@ -46,6 +46,36 @@ export interface ApiError extends ErrorInfo {
   status?: number,
 }
 
+interface Genre {
+  Action: boolean,
+  Adventure: boolean,
+  Animation: boolean,
+  Comedy: boolean,
+  Crime: boolean,
+  Documentary: boolean,
+  Drama: boolean,
+  Family: boolean,
+  Fantasy: boolean,
+  Horror: boolean,
+  Musical: boolean,
+  Mystery: boolean,
+  Romance: boolean,
+  Sport: boolean,
+  Thriller: boolean,
+  Western: boolean,
+}
+
+export interface MovieFilters {
+  SearchFilter: string,
+  GenreFilter: Genre,
+  FavoriteFilter: boolean,
+}
+
+export enum MovieSortMethod {
+  Default = 0,
+  Alphanumerically = 1,
+  Rating = 2
+}
 
 /* Enums */
 export enum AddMovieModalDisplay {

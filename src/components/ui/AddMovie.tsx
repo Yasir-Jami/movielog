@@ -46,7 +46,7 @@ async function addMovieToList(
       }
 
       if (response.status == 409) {
-        errorReason = `${movie.Title} already exists in "${movieList.listName}"`;
+        errorReason = `${movie.Title} is already in ${movieList.listName}`;
       }
       else {
         errorReason = "Error adding a new movie";

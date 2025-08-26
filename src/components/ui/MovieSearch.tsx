@@ -1,7 +1,14 @@
+import { SetStateAction } from "react";
 import "/src/styles/MovieSearch.css"
 import { Search } from "lucide-react";
+import { MovieFilters } from "types";
 
-function MovieSearch() {
+interface MovieSearchProps {
+  movieFilters: MovieFilters;
+  filterBySearch: React.Dispatch<SetStateAction<MovieFilters>>;
+}
+
+function MovieSearch({movieFilters, filterBySearch}: MovieSearchProps) {
   const placeholderText = "Search movies...";
   
   return (

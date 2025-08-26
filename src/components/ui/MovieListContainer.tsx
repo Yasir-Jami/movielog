@@ -1,6 +1,6 @@
 import "/src/styles/MovieListContainer.css";
 import { useState } from "react";
-import { MovieList, MovieInfo, MovieGridProps, AddMovieModalDisplay } from "types";
+import { MovieList, MovieGridProps, AddMovieModalDisplay, MovieFilters } from "types";
 import MovieGrid from "@components/ui/MovieGrid";
 import MovieSearch from "@components/ui/MovieSearch";
 import AddMovie from "@components/ui/AddMovie";
@@ -12,6 +12,7 @@ interface MovieListContainerProps {
 }
 
 function MovieListContainer({currentMovieList, addNewMovieToList}: MovieListContainerProps) {
+  const [movieFilters, setMovieFilters] = useState<MovieFilters>({} as MovieFilters);
   const [addMoviemodalVisibility, setAddMovieModalVisibility] = useState<AddMovieModalDisplay>(AddMovieModalDisplay.Invisible);
   const movieList: MovieList = currentMovieList;
   let content: React.JSX.Element = <></>;
@@ -22,7 +23,10 @@ function MovieListContainer({currentMovieList, addNewMovieToList}: MovieListCont
     movieCount: movieList?.movies?.length || 0,
   }
 
-  content = <MovieGrid currentMovieList={currentMovieList}/>;
+  content = <MovieGrid 
+  currentMovieList={currentMovieList} 
+  setMovieFilters={setMovieFilters}
+  />;
   
   /*
   if (movieProps.movieCount == 0) {
@@ -37,14 +41,13 @@ function MovieListContainer({currentMovieList, addNewMovieToList}: MovieListCont
         <p className="list-container__movie-count">{movieProps.movieCount} movies</p>
       </div>
     <div className="movie-actions">
-      <MovieSearch />
+      <MovieSearch movieFilters={movieFilters} filterBySearch={setMovieFilters}/>
       <AddMovie 
       modalVisibility={addMoviemodalVisibility} 
       setModalVisibility={setAddMovieModalVisibility} 
       currentMovieList={currentMovieList}
       addNewMovieToList={addNewMovieToList}
       />
-      
     </div>
       {content}
     </div>

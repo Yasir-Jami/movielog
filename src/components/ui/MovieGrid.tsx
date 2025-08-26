@@ -1,9 +1,11 @@
 import "@styles/MovieListContainer.css"
 import MovieCard from "@components/ui/MovieCard";
-import { MovieList, MovieInfo, Filters, SortMethods } from "types";
+import { MovieList, MovieInfo, MovieFilters, MovieSortMethod } from "types";
+import { SetStateAction } from "react";
 
 interface MovieGridProps {
   currentMovieList: MovieList,
+  setMovieFilters: React.Dispatch<SetStateAction<MovieFilters>>;
 }
 
 function filterMovies(movieArray: MovieList, filters: Filters): MovieInfo[] {
