@@ -4,11 +4,20 @@ import { Search } from "lucide-react";
 import { MovieFilters } from "types";
 
 interface MovieSearchProps {
-  movieFilters: MovieFilters;
-  filterBySearch: React.Dispatch<SetStateAction<MovieFilters>>;
+  movieFilters: MovieFilters,
+  setMovieFilters: React.Dispatch<SetStateAction<MovieFilters>>,
 }
 
-function MovieSearch({movieFilters, filterBySearch}: MovieSearchProps) {
+function filterByKeyword(searchTerm: string, movieFilters: MovieFilters, setMovieFilters: React.Dispatch<SetStateAction<MovieFilters>>) {
+  const filters = {} as MovieFilters;
+  //TODO Check performance on this
+  filters.SearchFilter = searchTerm;
+  filters.FavoriteFilter = movieFilters.FavoriteFilter;
+  filters.GenreFilter = movieFilters.GenreFilter;
+  setMovieFilters(filters);
+}
+
+function MovieSearch({movieFilters, setMovieFilters}: MovieSearchProps) {
   const placeholderText = "Search movies...";
   
   return (
@@ -20,7 +29,7 @@ function MovieSearch({movieFilters, filterBySearch}: MovieSearchProps) {
           className="movie-search__textbox" 
           type="text" 
           placeholder={placeholderText} 
-          onChange={e => {movieFilters.SearchFilter = e.target.value; console.log(movieFilters.SearchFilter); filterBySearch(movieFilters)}}
+          onChange={(e) => {filterByKeyword(e.target.value, movieFilters, setMovieFilters)}}
           /> 
       </div>
     </div>

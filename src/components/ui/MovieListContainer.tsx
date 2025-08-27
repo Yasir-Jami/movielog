@@ -1,9 +1,10 @@
 import "/src/styles/MovieListContainer.css";
 import { useState } from "react";
-import { MovieList, MovieGridProps, AddMovieModalDisplay, MovieFilters, Genres } from "types";
+import { MovieList, MovieGridProps, AddMovieModalDisplay, MovieFilters, Genres, MovieSortMethod } from "types";
 import MovieGrid from "@components/ui/MovieGrid";
 import MovieSearch from "@components/ui/MovieSearch";
 import AddMovie from "@components/ui/AddMovie";
+//import MovieFilter from "./MovieFilter";
 //import NoMovies from "@components/ui/NoMovies";
 
 interface MovieListContainerProps {
@@ -36,6 +37,7 @@ function MovieListContainer({currentMovieList, addNewMovieToList}: MovieListCont
     GenreFilter: genres,
     FavoriteFilter: false,
   } as MovieFilters);
+  const [movieSortMethod, setMovieSortMethod] = useState<MovieSortMethod>(MovieSortMethod.Default);
   const [currentMovieCount, setMovieCount] = useState<number>(0);
   const [addMoviemodalVisibility, setAddMovieModalVisibility] = useState<AddMovieModalDisplay>(AddMovieModalDisplay.Invisible);
   const movieList: MovieList = currentMovieList;
@@ -50,9 +52,10 @@ function MovieListContainer({currentMovieList, addNewMovieToList}: MovieListCont
 
   content = <MovieGrid 
   currentMovieList={currentMovieList} 
-  currentMovieFilters={movieFilters}
-  setMovieFilters={setMovieFilters}
+  currentMovieCount={currentMovieCount}
   setMovieCount={setMovieCount}
+  currentMovieFilters={movieFilters}
+  currentMovieSortMethod={movieSortMethod}
   />;
   
   /*
@@ -68,7 +71,8 @@ function MovieListContainer({currentMovieList, addNewMovieToList}: MovieListCont
         <p className="list-container__movie-count">{movieListProps.movieCount} movies</p>
       </div>
     <div className="movie-actions">
-      <MovieSearch movieFilters={movieFilters} filterBySearch={setMovieFilters}/>
+      <MovieSearch movieFilters={movieFilters} setMovieFilters={setMovieFilters}/>
+      {/*<MovieFilter/>*/}
       <AddMovie 
       modalVisibility={addMoviemodalVisibility} 
       setModalVisibility={setAddMovieModalVisibility} 
