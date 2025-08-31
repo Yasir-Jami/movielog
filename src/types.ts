@@ -51,7 +51,7 @@ export type GenreEntry = {
   filterApplied: boolean
 };
 
-export interface Genre {
+export interface Genres {
   Action: GenreEntry,
   Adventure: GenreEntry,
   Animation: GenreEntry,
@@ -72,7 +72,7 @@ export interface Genre {
 
 export interface MovieFilters {
   SearchFilter: string,
-  GenreFilter: Genre,
+  GenreFilter: Genres,
   FavoriteFilter: boolean,
   FilteredByKeyword: boolean,
   FilteredByGenre: boolean,

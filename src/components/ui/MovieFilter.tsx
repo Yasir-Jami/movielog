@@ -1,6 +1,8 @@
-import "@styles/MovieFilters.css";
+import "@styles/MovieFilter.css";
+import { MovieFilters, Genres, GenreEntry } from "types";
+import { ListFilter, Heart, ArrowUpAZ, ArrowDownAZ, Filter } from "lucide-react";
 import { useState } from "react";
-import { MovieFilters, Genre, GenreEntry } from "types";
+
 
 interface MovieFilterProps {
   movieFilters: MovieFilters,
@@ -11,8 +13,12 @@ interface MovieFilterCheckboxProps extends GenreEntry {
   onChange: (checked: boolean) => void;
 }
 
-function MovieFilterCheckbox({name, filterApplied, onChange}: MovieFilterCheckboxProps) {
+enum FilterDisplayMode {
+  hidden = "movie-filters-container--hidden",
+  visible = "movie-filters-container--visible",
+}
 
+function MovieFilterCheckbox({name, filterApplied, onChange}: MovieFilterCheckboxProps) {
   return(
     <>
       <label className="genre-filter-label">
@@ -27,11 +33,16 @@ function MovieFilterCheckbox({name, filterApplied, onChange}: MovieFilterCheckbo
       </label>
     </>
   )
+}
+
+function FavoriteFilter() {
 
 }
 
-function MovieFilter({movieFilters, setMovieFilters}: MovieFilterProps) { 
-  const handleCheckboxChange = (genreKey: keyof Genre) => (checked: boolean) => {
+function MovieFilter({movieFilters, setMovieFilters}: MovieFilterProps) {
+  const [filtersDisplayMode, setFilterDisplayMode] = useState<FilterDisplayMode>(FilterDisplayMode.hidden);
+
+  const handleCheckboxChange = (genreKey: keyof Genres) => (checked: boolean) => {
     const newFilters: MovieFilters = {
       ...movieFilters,
       GenreFilter: {
@@ -50,31 +61,47 @@ function MovieFilter({movieFilters, setMovieFilters}: MovieFilterProps) {
       Object.entries(movieFilters.GenreFilter).map(([key, value]) => [
       key,
       {...value, filterApplied: false},
-    ])) as Genre;
+    ])) as Genres;
 
     const newFilters: MovieFilters = {
       ...movieFilters,
       GenreFilter: clearedGenreFilter,
     }
-    
     setMovieFilters(newFilters);
+  }
+
+  const toggleFiltersDisplay = () => {
+    if (filtersDisplayMode == FilterDisplayMode.hidden) {
+      setFilterDisplayMode(FilterDisplayMode.visible);
+    }
+    else {
+      setFilterDisplayMode(FilterDisplayMode.hidden);
+    }
   }
 
   return (
     <div className="movie-filters">
-      <button className="clear-genre-button" onClick={clearAllGenreFilters}>Clear all</button>
-      {Object.entries(movieFilters.GenreFilter).map(([key, genre]) => (
-        <MovieFilterCheckbox
-        key={key}
-        name={genre.name}
-        filterApplied={genre.filterApplied}
-        onChange={handleCheckboxChange(key as keyof Genre)}
-        />
-      ))}
+      <ListFilter className="movie-filters-icon" onClick={toggleFiltersDisplay}></ListFilter>
+      {/* 
+      <ArrowUpAZ></ArrowUpAZ>
+      <ArrowDownAZ></ArrowDownAZ>
+      */}
+      <div className={filtersDisplayMode}>
+        <div className="genre-filters">
+          <button className="clear-genre-button" onClick={clearAllGenreFilters}>Clear all</button>
+          {Object.entries(movieFilters.GenreFilter).map(([key, genre]) => (
+            <MovieFilterCheckbox
+            key={key}
+            name={genre.name}
+            filterApplied={genre.filterApplied}
+            onChange={handleCheckboxChange(key as keyof Genres)}
+            />
+          ))}
+        </div>
+        <div className="favorite-filter"><Heart></Heart></div>
+      </div>
     </div>
   )
-
 }
-
 
 export default MovieFilter;

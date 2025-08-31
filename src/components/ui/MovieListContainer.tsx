@@ -1,6 +1,6 @@
 import "/src/styles/MovieListContainer.css";
 import { useState } from "react";
-import { MovieList, MovieGridProps, AddMovieModalDisplay, MovieFilters, Genre, MovieSortMethod } from "types";
+import { MovieList, MovieGridProps, AddMovieModalDisplay, MovieFilters, Genres, MovieSortMethod } from "types";
 import MovieGrid from "@components/ui/MovieGrid";
 import MovieSearch from "@components/ui/MovieSearch";
 import AddMovie from "@components/ui/AddMovie";
@@ -11,7 +11,7 @@ interface MovieListContainerProps {
   addNewMovieToList: React.Dispatch<React.SetStateAction<MovieList>>,
 }
 
-const genres: Genre = {
+const genres: Genres = {
   Action: { name: "Action", filterApplied: false },
   Adventure: { name: "Adventure", filterApplied: false },
   Animation: { name: "Animation", filterApplied: false },
