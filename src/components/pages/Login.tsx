@@ -1,7 +1,7 @@
 import "@styles/Login.css";
 import { useForm, SubmitHandler, /*SubmitErrorHandler*/ } from 'react-hook-form';
 import { UseAuth } from '@components/contexts/AuthContext.tsx';
-import { toast, Slide } from "react-toastify";
+import { toast } from "react-toastify";
 import { Mail, Lock } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import AuthHeader from "@components/ui/AuthHeader";

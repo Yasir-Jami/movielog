@@ -3,7 +3,7 @@ import Sidebar from "@components/ui/Sidebar";
 import MovieListContainer from "@components/ui/MovieListContainer";
 import { MovieList } from "types";
 import { useEffect, useState } from "react";
-import { toast, Slide } from "react-toastify";
+import { toast } from "react-toastify";
 
 async function getMovieList(listName: string) {
   const url = `${import.meta.env.VITE_API_BASE_URL}${import.meta.env.VITE_API_MOVIE_LISTS}${import.meta.env.VITE_API_RETRIEVE_LIST}`;

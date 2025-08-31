@@ -4,7 +4,7 @@ import { AddMovieModalDisplay } from "types";
 import { MovieInfo, MovieList } from "types";
 import { useState } from "react";
 import { Plus } from "lucide-react";
-import { toast, Slide } from "react-toastify";
+import { toast } from "react-toastify";
 
 interface AddMovieProps {
   currentMovieList: MovieList,
