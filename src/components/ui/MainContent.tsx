@@ -1,7 +1,9 @@
+import "@styles/Loading.css";
 import Sidebar from "@components/ui/Sidebar";
 import MovieListContainer from "@components/ui/MovieListContainer";
-import { MovieList, MovieInfo } from "types";
-import React, { useEffect, useState } from "react";
+import { MovieList } from "types";
+import { useEffect, useState } from "react";
+import { toast, Slide } from "react-toastify";
 
 async function getMovieList(listName: string) {
   const url = `${import.meta.env.VITE_API_BASE_URL}${import.meta.env.VITE_API_MOVIE_LISTS}${import.meta.env.VITE_API_RETRIEVE_LIST}`;
@@ -32,37 +34,59 @@ function MainContent () {
     movies: [],
   }
   
+  const [renderPhase, setRenderPhase] = useState<string>("loading");
   const [selectedList, setSelectedList] = useState<string>(placeholderList.listName);
   const [currentMovieList, setCurrentMovieList] = useState<MovieList>(placeholderList);
 
-  /*
-  function addNewMovieToList(
-    movieList: MovieList, 
-    movie: MovieInfo, 
-    setCurrentMovieList: React.Dispatch<React.SetStateAction<MovieList>>) {
-    logger.log("Movie:", movie);
-    logger.log("Movie array:", movieList.movies);
-    movieList.movies.push(movie);
-    logger.log("Movie array after adding movie:", movieList.movies);
-  
-    //setCurrentMovieList(movieList);
+  let content = {} as React.JSX.Element;
+
+  if (renderPhase == "loading") {
+     content = 
+     <>
+      <div className="loading-spinner">
+        Loading...
+      </div>
+     </>
   }
-  */
+
+  else (
+    content =
+     <>
+        <Sidebar onSelectList={setSelectedList} selectedListName={currentMovieList.listName}/>
+        <MovieListContainer currentMovieList={currentMovieList} addNewMovieToList={setCurrentMovieList}/>
+     </>
+  )
 
   async function getListData() {
+      const tempList = {
+        listName: selectedList,
+        movies: [],
+      } as MovieList;
+      setCurrentMovieList(tempList);
       const retrievedList = await getMovieList(selectedList);
-      setCurrentMovieList(retrievedList);
+      if (Object.keys(retrievedList).length !== 0) {
+        setCurrentMovieList(retrievedList);
+      }
+      else {
+        toast.error("Failed to retrieve list from server", {
+          position: "bottom-center",
+          transition: Slide,
+        })
+      }
   }
   
   useEffect(() => {
     getListData();
-  }, [selectedList])  
-  
+  }, [selectedList]);
+
+  useEffect(() => {
+    setRenderPhase("main");
+  });
+
   // On success
   return (
-    <div className="main">
-      <Sidebar onSelectList={setSelectedList} selectedListName={currentMovieList.listName}/>
-      <MovieListContainer currentMovieList={currentMovieList} addNewMovieToList={setCurrentMovieList}/>
+    <div className={renderPhase}>
+      {content}
     </div>
   )
 }

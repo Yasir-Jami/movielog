@@ -31,7 +31,7 @@ async function addMovieToList(
   movieList: MovieList, 
   addNewMovieToList: React.Dispatch<React.SetStateAction<MovieList>>) {
   const url = `${import.meta.env.VITE_API_BASE_URL}${import.meta.env.VITE_API_MOVIE_LISTS}${import.meta.env.VITE_API_ADD_MOVIE}`;
-  console.log(movie);
+  logger.log(movie);
   
   await fetch(url, {
     method: 'POST',
@@ -42,7 +42,7 @@ async function addMovieToList(
     body: JSON.stringify( { movie: movie, listName: movieList.listName } ),
   })
   .then(response => {
-    console.log(response);
+    logger.log(response);
     if (!response.ok) {
       let errorReason = "" as string;
 

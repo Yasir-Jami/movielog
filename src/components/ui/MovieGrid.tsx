@@ -2,6 +2,8 @@ import "@styles/MovieListContainer.css"
 import MovieCard from "@components/ui/MovieCard";
 import { MovieList, MovieInfo, MovieFilters, MovieSortMethod } from "types";
 import { SetStateAction, useEffect } from "react";
+import { checkIfFiltered, applyGenreFilters } from "@components/utils/MovieFilterUtils";
+import MovieFilter from "./MovieFilter";
 
 interface MovieGridProps {
   currentMovieList: MovieList,
@@ -15,8 +17,14 @@ function filterMovies(
   movieArray: MovieInfo[], 
   filters: MovieFilters, 
   ): MovieInfo[] {
-    //console.log("Current search filter:", filters.SearchFilter);
+    //logger.log("Current search filter:", filters.SearchFilter);
     let filteredMovies = movieArray.filter((movie) => movie.Title.toLowerCase().includes(filters.SearchFilter.toLowerCase()));
+    /*
+    if (filters.FilteredByGenre) {
+      filteredMovies = applyGenreFilters(movieArray, filters);
+    }
+    */
+    
     //let filteredMovies = movieArray.filter((movie) => movie.Genre?.toLowerCase().includes(filters.SearchFilter.toLowerCase()));
     return filteredMovies;
 }
@@ -39,15 +47,17 @@ function sortMovies(movieArray: MovieInfo[], sortMethod: MovieSortMethod): Movie
 
 function MovieGrid({
   currentMovieList, 
-  currentMovieCount,
   setMovieCount, 
   currentMovieFilters, 
   currentMovieSortMethod}: MovieGridProps
 ) {
-  let movieArray = {} as MovieInfo[];
-  movieArray = filterMovies(currentMovieList.movies, currentMovieFilters);
+  let movieArray = currentMovieList?.movies || [];
+  const isFiltered = checkIfFiltered(currentMovieFilters);
+  
+  if (isFiltered && movieArray.length != 0) {
+    movieArray = filterMovies(movieArray, currentMovieFilters);
+  } 
   if (currentMovieSortMethod != MovieSortMethod.Default) {
-    console.log(currentMovieSortMethod);
     movieArray = sortMovies(movieArray, currentMovieSortMethod);
   }
 
