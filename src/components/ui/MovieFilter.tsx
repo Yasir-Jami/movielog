@@ -45,8 +45,24 @@ function MovieFilter({movieFilters, setMovieFilters}: MovieFilterProps) {
     setMovieFilters(newFilters);
   }
 
+  const clearAllGenreFilters = () => {
+    const clearedGenreFilter = Object.fromEntries(
+      Object.entries(movieFilters.GenreFilter).map(([key, value]) => [
+      key,
+      {...value, filterApplied: false},
+    ])) as Genre;
+
+    const newFilters: MovieFilters = {
+      ...movieFilters,
+      GenreFilter: clearedGenreFilter,
+    }
+    
+    setMovieFilters(newFilters);
+  }
+
   return (
     <div className="movie-filters">
+      <button className="clear-genre-button" onClick={clearAllGenreFilters}>Clear all</button>
       {Object.entries(movieFilters.GenreFilter).map(([key, genre]) => (
         <MovieFilterCheckbox
         key={key}
