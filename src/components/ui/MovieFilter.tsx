@@ -1,23 +1,60 @@
 import "@styles/MovieFilters.css";
-import { MovieFilters } from "types";
+import { useState } from "react";
+import { MovieFilters, Genre, GenreEntry } from "types";
 
 interface MovieFilterProps {
   movieFilters: MovieFilters,
+  setMovieFilters: React.Dispatch<React.SetStateAction<MovieFilters>>;
 }
 
-function MovieFilter({movieFilters}: MovieFilterProps) {
-  console.log(movieFilters.GenreFilter);
-  Object.values(movieFilters.GenreFilter).forEach(genre => {
-    logger.log(genre.name);
-    logger.log(genre.filterApplied);
-  })
+interface MovieFilterCheckboxProps extends GenreEntry {
+  onChange: (checked: boolean) => void;
+}
+
+function MovieFilterCheckbox({name, filterApplied, onChange}: MovieFilterCheckboxProps) {
+
+  return(
+    <>
+      <label className="genre-filter-label">
+        <input 
+        className="genre-filter-checkbox" 
+        type="checkbox" 
+        name={name} 
+        checked={filterApplied}
+        onChange={(e) => {onChange(e.target.checked)}}
+        />
+      {name}
+      </label>
+    </>
+  )
+
+}
+
+function MovieFilter({movieFilters, setMovieFilters}: MovieFilterProps) { 
+  const handleCheckboxChange = (genreKey: keyof Genre) => (checked: boolean) => {
+    const newFilters: MovieFilters = {
+      ...movieFilters,
+      GenreFilter: {
+        ...movieFilters.GenreFilter,
+        [genreKey]: {
+          ...movieFilters.GenreFilter[genreKey],
+          filterApplied: checked,
+        }
+      }
+    }
+    setMovieFilters(newFilters);
+  }
 
   return (
     <div className="movie-filters">
-      {/*
-      <label htmlFor="ActionGenre">Action</label>
-      <input type="checkbox" id="ActionGenre" name="Action"></input>
-       */}
+      {Object.entries(movieFilters.GenreFilter).map(([key, genre]) => (
+        <MovieFilterCheckbox
+        key={key}
+        name={genre.name}
+        filterApplied={genre.filterApplied}
+        onChange={handleCheckboxChange(key as keyof Genre)}
+        />
+      ))}
     </div>
   )
 

@@ -46,7 +46,7 @@ export interface ApiError extends ErrorInfo {
   status?: number,
 }
 
-type GenreEntry = {
+export type GenreEntry = {
   name: string, 
   filterApplied: boolean
 };
