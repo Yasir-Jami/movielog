@@ -41,7 +41,6 @@ function FavoriteFilter() {
 
 function MovieFilter({movieFilters, setMovieFilters}: MovieFilterProps) {
   const [filtersDisplayMode, setFilterDisplayMode] = useState<FilterDisplayMode>(FilterDisplayMode.hidden);
-
   const handleCheckboxChange = (genreKey: keyof Genres) => (checked: boolean) => {
     const newFilters: MovieFilters = {
       ...movieFilters,

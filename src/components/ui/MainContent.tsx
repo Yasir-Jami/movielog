@@ -68,10 +68,7 @@ function MainContent () {
         setCurrentMovieList(retrievedList);
       }
       else {
-        toast.error("Failed to retrieve list from server", {
-          position: "bottom-center",
-          transition: Slide,
-        })
+        toast.error("Failed to retrieve list from server");
       }
   }
   

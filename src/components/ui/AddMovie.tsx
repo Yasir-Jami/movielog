@@ -20,10 +20,7 @@ enum ModalTypes {
 };
 
 const addMovieErrorNotification = (errorReason: string) => {
-  toast.error(errorReason, {
-    position: "bottom-center",
-    transition: Slide,
-  })
+  toast.error(errorReason);
 }
 
 async function addMovieToList(
@@ -63,9 +60,7 @@ async function addMovieToList(
     newList.movies = movieList.movies;
     newList.movies.push(data.movie);
     addNewMovieToList(newList);
-    toast.success(data.message, {
-      position: "bottom-center",
-    })
+    toast.success(data.message);
   })
   .catch(err => logger.error("Error:", err)); 
 }

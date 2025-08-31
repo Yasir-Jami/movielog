@@ -34,7 +34,7 @@ function Login() {
         if (response.status == 401) {
           toast.error("Invalid username or password", {
               position: "top-center", 
-              transition: Slide});
+            });
         }
         
         // TODO make specific responses based on http code returned
