@@ -76,7 +76,7 @@ function MovieGrid({
       <div 
       className="add-movie-card" 
       onClick={() => {setAddMovieModalVisibility(AddMovieModalDisplay.Visible)}}>
-        <Plus className="add-movie-card-button" size={42}></Plus>
+        <Plus className="add-movie-card-button" size={42} stroke-width={1.5}></Plus>
         <p className="add-movie-card-text">Add New Movie</p>
         <p className="add-movie-card-subtext">Click to add a movie to this list</p>
       </div>
