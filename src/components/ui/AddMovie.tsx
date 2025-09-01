@@ -11,7 +11,6 @@ interface AddMovieProps {
   modalVisibility: AddMovieModalDisplay,
   setModalVisibility: React.Dispatch<React.SetStateAction<AddMovieModalDisplay>>,
   addNewMovieToList: React.Dispatch<React.SetStateAction<MovieList>>,
-  //addMovieToList: () => Promise<void>,
 }
 
 enum ModalTypes {

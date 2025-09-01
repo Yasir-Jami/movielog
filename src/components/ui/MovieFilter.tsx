@@ -1,12 +1,13 @@
 import "@styles/MovieFilter.css";
-import { MovieFilters, Genres, GenreEntry } from "types";
-import { ListFilter, Heart, ArrowUpAZ, ArrowDownAZ, Filter } from "lucide-react";
+import { MovieFilters, Genres, GenreEntry, MovieSortMethod } from "types";
+//import { ListFilter, Heart, ArrowUpAZ, ArrowDownAZ, Filter } from "lucide-react";
+import { ListFilter, Heart } from "lucide-react";
 import { useState } from "react";
-
 
 interface MovieFilterProps {
   movieFilters: MovieFilters,
-  setMovieFilters: React.Dispatch<React.SetStateAction<MovieFilters>>;
+  setMovieFilters: React.Dispatch<React.SetStateAction<MovieFilters>>,
+  setMovieSortMethod: React.Dispatch<React.SetStateAction<MovieSortMethod>>,
 }
 
 interface MovieFilterCheckboxProps extends GenreEntry {
@@ -35,9 +36,11 @@ function MovieFilterCheckbox({name, filterApplied, onChange}: MovieFilterCheckbo
   )
 }
 
+/*
 function FavoriteFilter() {
 
 }
+*/
 
 function MovieFilter({movieFilters, setMovieFilters}: MovieFilterProps) {
   const [filtersDisplayMode, setFilterDisplayMode] = useState<FilterDisplayMode>(FilterDisplayMode.hidden);
@@ -86,8 +89,8 @@ function MovieFilter({movieFilters, setMovieFilters}: MovieFilterProps) {
       <ArrowDownAZ></ArrowDownAZ>
       */}
       <div className={filtersDisplayMode}>
+        <p className="filters-header">Filters</p>
         <div className="genre-filters">
-          <button className="clear-genre-button" onClick={clearAllGenreFilters}>Clear all</button>
           {Object.entries(movieFilters.GenreFilter).map(([key, genre]) => (
             <MovieFilterCheckbox
             key={key}
@@ -97,7 +100,11 @@ function MovieFilter({movieFilters, setMovieFilters}: MovieFilterProps) {
             />
           ))}
         </div>
-        <div className="favorite-filter"><Heart></Heart></div>
+        <button className="clear-genre-button" onClick={clearAllGenreFilters}>Clear all</button>
+        <div className="favorite-filter"><Heart fill="red"></Heart>
+          <p>Favorite</p>
+        </div>
+        {/* Set fill to none when not selected */}
       </div>
     </div>
   )

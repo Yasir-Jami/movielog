@@ -1,9 +1,10 @@
 import "@styles/MovieListContainer.css"
+import "@styles/MovieCard.css"
 import MovieCard from "@components/ui/MovieCard";
-import { MovieList, MovieInfo, MovieFilters, MovieSortMethod } from "types";
+import { MovieList, MovieInfo, MovieFilters, MovieSortMethod, AddMovieModalDisplay } from "types";
 import { SetStateAction, useEffect } from "react";
-import { checkIfFiltered, applyGenreFilters } from "@components/utils/MovieFilterUtils";
-import MovieFilter from "./MovieFilter";
+import { checkIfFiltered } from "@components/utils/MovieFilterUtils";
+import { Plus } from "lucide-react";
 
 interface MovieGridProps {
   currentMovieList: MovieList,
@@ -11,6 +12,7 @@ interface MovieGridProps {
   setMovieCount: React.Dispatch<SetStateAction<number>>,
   currentMovieFilters: MovieFilters,
   currentMovieSortMethod: MovieSortMethod,
+  setAddMovieModalVisibility: React.Dispatch<SetStateAction<AddMovieModalDisplay>>,
 }
 
 function filterMovies(
@@ -31,16 +33,14 @@ function filterMovies(
 
 function sortMovies(movieArray: MovieInfo[], sortMethod: MovieSortMethod): MovieInfo[] {
   let sortedMovies = movieArray;
-
-  /*
+  
   if (sortMethod = MovieSortMethod.Alphanumerically) {
-
+    logger.log(`Using ${sortMethod}`);
   }
 
   else if (sortMethod = MovieSortMethod.Rating) { 
-
+    logger.log(`Using ${sortMethod}`);
   }
-  */
 
   return sortedMovies;
 }
@@ -49,12 +49,12 @@ function MovieGrid({
   currentMovieList, 
   setMovieCount, 
   currentMovieFilters, 
-  currentMovieSortMethod}: MovieGridProps
+  currentMovieSortMethod,
+  setAddMovieModalVisibility}: MovieGridProps
 ) {
   let movieArray = currentMovieList?.movies || [];
-  const isFiltered = checkIfFiltered(currentMovieFilters);
-  
-  if (isFiltered && movieArray.length != 0) {
+    
+  if (movieArray.length != 0 && checkIfFiltered(currentMovieFilters)) {
     movieArray = filterMovies(movieArray, currentMovieFilters);
   } 
   if (currentMovieSortMethod != MovieSortMethod.Default) {
@@ -67,11 +67,19 @@ function MovieGrid({
   }, [movieCount])
   
   return (
-    <div className="movie-grid"
+    <div 
+    className="movie-grid"
     onChange={() => {setMovieCount(movieCount)}}>
       {[...Array(movieCount)].map((_, i) => (
           <MovieCard key={i} {...movieArray[i]}/>
       ))}
+      <div 
+      className="add-movie-card" 
+      onClick={() => {setAddMovieModalVisibility(AddMovieModalDisplay.Visible)}}>
+        <Plus className="add-movie-card-button" size={42}></Plus>
+        <p className="add-movie-card-text">Add New Movie</p>
+        <p className="add-movie-card-subtext">Click to add a movie to this list</p>
+      </div>
     </div>
   )
 }

@@ -57,6 +57,7 @@ function MovieListContainer({currentMovieList, addNewMovieToList}: MovieListCont
   setMovieCount={setMovieCount}
   currentMovieFilters={movieFilters}
   currentMovieSortMethod={movieSortMethod}
+  setAddMovieModalVisibility={setAddMovieModalVisibility}
   />;
 
   return (
@@ -67,7 +68,7 @@ function MovieListContainer({currentMovieList, addNewMovieToList}: MovieListCont
       </div>
     <div className="movie-actions">
       <MovieSearch movieFilters={movieFilters} setMovieFilters={setMovieFilters}/>
-      <MovieFilter movieFilters={movieFilters} setMovieFilters={setMovieFilters}/>
+      <MovieFilter movieFilters={movieFilters} setMovieFilters={setMovieFilters} setMovieSortMethod={setMovieSortMethod}/>
       <AddMovie 
       modalVisibility={addMoviemodalVisibility} 
       setModalVisibility={setAddMovieModalVisibility} 
