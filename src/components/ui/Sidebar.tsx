@@ -84,7 +84,7 @@ function Sidebar({onSelectList, selectedListName}: SidebarProps) {
         ))}
         */}
         
-        <CreateMovieList />
+        {/*<CreateMovieList />*/}
       </div>
     )
   }
