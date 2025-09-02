@@ -1,5 +1,5 @@
 import styles from "@styles/Sidebar.module.css";
-import CreateMovieList from "@components/ui/CreateMovieList";
+//import CreateMovieList from "@components/ui/CreateMovieList";
 import { SidebarItemProps } from "types";
 import { useState } from "react";
 import playButtonIcon from "/src/assets/svgs/play-button.svg";
