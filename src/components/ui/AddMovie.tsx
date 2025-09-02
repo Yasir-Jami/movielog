@@ -54,10 +54,10 @@ async function addMovieToList(
     }
     return response.json()})
   .then(data => {
-    let newList = {} as MovieList;
-    newList.listName = movieList.listName;
-    newList.movies = movieList.movies;
-    newList.movies.push(data.movie);
+    let newList: MovieList = {
+      ...movieList,
+      movies: [...movieList.movies, data.movie],
+    };
     addNewMovieToList(newList);
     toast.success(data.message);
   })
