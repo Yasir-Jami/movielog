@@ -1,6 +1,8 @@
-# [movielog](https://movielog.ca)
+# movielog
 
-Web application for keeping track of movies you're watching. Makes it easy to build and manage your own backlog.
+**Web application for keeping track of movies you're watching. Makes it easy to build and manage your own backlog.**
+
+**Visit website at: https://www.movielog.ca**
 
 ### Main Page
 
@@ -13,28 +15,25 @@ Web application for keeping track of movies you're watching. Makes it easy to bu
 ![alt text](https://github.com/Yasir-Jami/movielog/blob/049e5edba18de6ac3a48c65311aa240e8bef00b6/images/movielog_register_page_mobile.png)
 
 ## Features
-
-* **User Accounts** - Register or log in to save your lists across devices
-* **User Lists**:
+* **Movie Lists** - Save your movies to pre-made lists:
   * Watching
   * Watched
-  * To Watch
-* **Create Custom Lists** to suit your own categories and preferences
-* **Movie Cards** displaying info about movies:
+  * Watch Later
+* **User Accounts** - Register and log in to access your lists across devices
+* **Movie Cards** - Displays info about movies you have saved:
   * Title
   * Release Year
   * and Genre
-* *(To be Added)* **Search** - Find movies matching your search term
+* **List Search** - Find movies in your list by inputting a keyword
+* *(To be Added)* **Custom Movie Lists** - Create your own lists to suit your preferences
 * *(To be Added)* **Favorites Filter** - View only your favorites
-* *(To be Added)* **Advanced Filters** - Sort which movies you see and how, e.g., by genre, alphabetically, etc.
+* *(To be Added)* **Advanced Filters** - Sort and filter the movies you see (alphabetically, by genre, etc.)
 * *(To be Added)* **Bulk Select** - Select multiple movies to move, delete, or favorite at once
 
-
 ## Built using
-
 * **React** for interactive and responsive UI
 * **External API [OMDb](https://www.omdbapi.com/)** to retrieve the necessary metadata for movies
-* **Custom Web Server** hosted on a cloud instance to retrieve, store, and update user and movie-related data
+* **Custom Web Server** hosted on an AWS instance to retrieve, store, and update user and movie-related data
 
 ## Installation
 
