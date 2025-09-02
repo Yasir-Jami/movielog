@@ -9,7 +9,7 @@
   border-radius: 0.5rem;
   box-shadow: 0px 0px 10px -3px rgba(0, 0, 0, 1);
   transition: all 0.5s ease-in-out;
-  background-color: rgb(39, 39, 39); 
+  background-color: rgb(39, 39, 39);
 }
 
 .sidebar--hidden {
@@ -85,7 +85,7 @@
   align-items: center;
   justify-content: start;
   border-style: none;
-  background-color: white;
+  background: white;
   border-radius: 0.50rem;
   height: 3rem;
   width: 12rem;
@@ -95,8 +95,32 @@
   cursor: pointer;
 }
 
-.sidebar__item:hover {
+.sidebar__item:hover, .sidebar__item--active:hover {
   background-color: rgb(243, 242, 242);
+}
+
+.sidebar__item--selected {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: start;
+  border-style: none;
+  background-color: rgb(187, 247, 208);
+  border-radius: 0.50rem;
+  height: 3rem;
+  width: 12rem;
+  margin-bottom: 0.75rem;
+  transition: 0.08s;
+  border: 2px solid grey;
+  cursor: pointer;
+}
+
+.sidebar__overlay {
+  background-color: orange;
+}
+
+.sidebar__overlay--active {
+  
 }
 
 .sidebar__item-label {

@@ -4,12 +4,13 @@ import { AddMovieModalDisplay } from "types";
 import { MovieInfo, MovieList } from "types";
 import { useState } from "react";
 import { Plus } from "lucide-react";
+import { toast } from "react-toastify";
 
 interface AddMovieProps {
+  currentMovieList: MovieList,
   modalVisibility: AddMovieModalDisplay,
   setModalVisibility: React.Dispatch<React.SetStateAction<AddMovieModalDisplay>>,
-  currentMovieList: MovieList,
-  updateCurrentList: () => Promise<void>,
+  addNewMovieToList: React.Dispatch<React.SetStateAction<MovieList>>,
 }
 
 enum ModalTypes {
@@ -17,11 +18,16 @@ enum ModalTypes {
     Custom="add-movie__modal-content--custom"
 };
 
+const addMovieErrorNotification = (errorReason: string) => {
+  toast.error(errorReason);
+}
+
 async function addMovieToList(
   movie: MovieInfo, 
   movieList: MovieList, 
-  updateCurrentList: () => Promise<void>) {
+  addNewMovieToList: React.Dispatch<React.SetStateAction<MovieList>>) {
   const url = `${import.meta.env.VITE_API_BASE_URL}${import.meta.env.VITE_API_MOVIE_LISTS}${import.meta.env.VITE_API_ADD_MOVIE}`;
+  logger.log(movie);
   
   await fetch(url, {
     method: 'POST',
@@ -31,19 +37,38 @@ async function addMovieToList(
     },
     body: JSON.stringify( { movie: movie, listName: movieList.listName } ),
   })
-  .then(res => res.json())
+  .then(response => {
+    logger.log(response);
+    if (!response.ok) {
+      let errorReason = "" as string;
+
+      if (response.status == 409) {
+        errorReason = `${movie.Title} is already in ${movieList.listName}`;
+      }
+      else {
+        errorReason = "Error adding a new movie";
+      }
+
+      addMovieErrorNotification(errorReason);
+      throw new Error("HTTP Error " + response.statusText);
+    }
+    return response.json()})
   .then(data => {
-    logger.log(data);
-    updateCurrentList();
+    let newList = {} as MovieList;
+    newList.listName = movieList.listName;
+    newList.movies = movieList.movies;
+    newList.movies.push(data.movie);
+    addNewMovieToList(newList);
+    toast.success(data.message);
   })
   .catch(err => logger.error("Error:", err)); 
 }
 
-function AddMovie({modalVisibility, setModalVisibility, currentMovieList, updateCurrentList}: AddMovieProps) {
+function AddMovie({modalVisibility, setModalVisibility, currentMovieList, addNewMovieToList}: AddMovieProps) {
   const [modalType, setModalType] = useState<ModalTypes>(ModalTypes.Default);
 
   const handleMovieSelection = (selectedMovie: MovieInfo) => {
-    addMovieToList(selectedMovie, currentMovieList, updateCurrentList);
+    addMovieToList(selectedMovie, currentMovieList, addNewMovieToList);
   }
 
   function AddMovieModal() {
@@ -109,7 +134,7 @@ function AddMovie({modalVisibility, setModalVisibility, currentMovieList, update
   return (
     <div className="add-movie">
       <AddMovieModal />
-      <div className="add-movie__button" onClick={() => {setModalVisibility(AddMovieModalDisplay.Visible)}}>
+      <div className="add-movie__button" onClick={() => {setModalVisibility(AddMovieModalDisplay.Visible);}}>
         <Plus className="add-movie__plus-sign"/>
         <p className="add-movie__text">Add Movie</p>
       </div>

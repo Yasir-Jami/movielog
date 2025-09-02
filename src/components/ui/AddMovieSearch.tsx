@@ -66,14 +66,14 @@ function AddMovieSearch({setModalVisibility, onMovieSelect}: AddMovieSearchProps
 
   return (
     <div>
-      <form className="add-movie-modal__form">
+      <div className="add-movie-modal__form" onSubmit={() => {}}>
         <input 
         className="add-movie-modal__search" 
         name="movie-title" 
         placeholder="Search for a movie..." 
         value={movieInput}
         onChange={e => setMovieInput(e.target.value)}/>
-      </form>
+      </div>
 
       <div className="add-movie__search">
         {results.map((result, index) => (

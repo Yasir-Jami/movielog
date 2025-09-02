@@ -4,7 +4,6 @@ import ErrorFallback from "./ErrorFallback.tsx";
 import Home from './components/pages/Home.tsx';
 import Login from './components/pages/Login.tsx';
 import Register from './components/pages/Register.tsx';
-import Favorites from '@components/ui/Favorites.tsx';
 
 const Layout = () => {
   return (
@@ -25,7 +24,6 @@ const AppRoutes = createBrowserRouter([
       { index: true, element: <Home />},
       { path: "home", element: <Home />},
       { path: "movies", element: <Home />},
-      { path: "favorites", element: <Favorites />},
       { path: "login", element: <Login />},
       { path: "register", element: <Register />},
     ],

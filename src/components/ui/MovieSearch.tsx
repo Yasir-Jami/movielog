@@ -1,8 +1,33 @@
+import { SetStateAction } from "react";
 import "/src/styles/MovieSearch.css"
 import { Search } from "lucide-react";
+import { MovieFilters } from "types";
 
-function MovieSearch() {
-  const placeholderText = "Search movies...";
+interface MovieSearchProps {
+  movieFilters: MovieFilters,
+  setMovieFilters: React.Dispatch<SetStateAction<MovieFilters>>,
+}
+
+//TODO Reduce cpu usage
+function filterByKeyword(searchTerm: string, movieFilters: MovieFilters, setMovieFilters: React.Dispatch<SetStateAction<MovieFilters>>) {
+  let isFilteredByKeyword = true;
+  if (searchTerm.length == 0) {
+    isFilteredByKeyword = false;
+  }
+  
+  const filters = {
+    SearchFilter: searchTerm,
+    GenreFilter: movieFilters.GenreFilter,
+    FavoriteFilter: movieFilters.FavoriteFilter,
+    FilteredByKeyword: isFilteredByKeyword,
+    FilteredByGenre: movieFilters.FilteredByGenre,
+  } as MovieFilters;
+  
+  setMovieFilters(filters);
+}
+
+function MovieSearch({movieFilters, setMovieFilters}: MovieSearchProps) {
+  const searchPlaceholderText = "Search list...";
   
   return (
     <div className="movie-search">
@@ -12,8 +37,9 @@ function MovieSearch() {
           name="movie-searchbar"
           className="movie-search__textbox" 
           type="text" 
-          placeholder={placeholderText} 
-        />
+          placeholder={searchPlaceholderText} 
+          onChange={(e) => {filterByKeyword(e.target.value, movieFilters, setMovieFilters)}}
+          /> 
       </div>
     </div>
   )

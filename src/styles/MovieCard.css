@@ -42,6 +42,7 @@
   align-self: start;
   color: grey;
   gap: 0.25rem;
+  max-width: 90%;
 }
 
 .movie-card__year {
@@ -88,4 +89,52 @@
     font-size: 0.8rem;
   }
 
+  .add-movie-card {
+    width: 10rem;
+    height: 20rem;
+  }
+}
+
+.add-movie-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 20rem;
+  width: 11rem;
+  margin-bottom: 1rem;
+  border-radius: 1rem;
+  border: solid 1px;
+  padding: 1rem;
+  background-color: white;
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+.add-movie-card:hover {
+  transform: scale(1.03);
+}
+
+.add-movie-card-button {
+  color: white;
+  background-color: #f97316;
+  border-radius: 2rem;
+  margin-bottom: 1rem;
+  padding: 0.20rem;
+}
+
+.add-movie-card-text {
+  font-size: 1.125rem;
+  font-weight: 600;
+  text-align: center;
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+  transition: color 0.3s;
+}
+
+.add-movie-card-subtext {
+  font-size: .875rem;
+  color: #6b7280;
+  margin: 0;
+  text-align: center;
 }

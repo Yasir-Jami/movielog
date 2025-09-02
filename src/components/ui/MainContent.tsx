@@ -1,7 +1,9 @@
+import "@styles/Loading.css";
 import Sidebar from "@components/ui/Sidebar";
 import MovieListContainer from "@components/ui/MovieListContainer";
 import { MovieList } from "types";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 async function getMovieList(listName: string) {
   const url = `${import.meta.env.VITE_API_BASE_URL}${import.meta.env.VITE_API_MOVIE_LISTS}${import.meta.env.VITE_API_RETRIEVE_LIST}`;
@@ -31,23 +33,57 @@ function MainContent () {
     listName: "Watching",
     movies: [],
   }
+  
+  const [renderPhase, setRenderPhase] = useState<string>("loading");
   const [selectedList, setSelectedList] = useState<string>(placeholderList.listName);
   const [currentMovieList, setCurrentMovieList] = useState<MovieList>(placeholderList);
 
+  let content = {} as React.JSX.Element;
+
+  if (renderPhase == "loading") {
+     content = 
+     <>
+      <div className="loading-spinner">
+        Loading...
+      </div>
+     </>
+  }
+
+  else (
+    content =
+     <>
+        <Sidebar onSelectList={setSelectedList} selectedListName={currentMovieList.listName}/>
+        <MovieListContainer currentMovieList={currentMovieList} addNewMovieToList={setCurrentMovieList}/>
+     </>
+  )
+
   async function getListData() {
+      const tempList = {
+        listName: selectedList,
+        movies: [],
+      } as MovieList;
+      setCurrentMovieList(tempList);
       const retrievedList = await getMovieList(selectedList);
-      setCurrentMovieList(retrievedList);
+      if (Object.keys(retrievedList).length !== 0) {
+        setCurrentMovieList(retrievedList);
+      }
+      else {
+        toast.error("Failed to retrieve list from server");
+      }
   }
   
   useEffect(() => {
     getListData();
-  }, [selectedList])
-  
+  }, [selectedList]);
+
+  useEffect(() => {
+    setRenderPhase("main");
+  });
+
   // On success
   return (
-    <div className="main">
-      <Sidebar onSelectList={setSelectedList}/>
-      <MovieListContainer currentMovieList={currentMovieList} updateCurrentList={getListData}/>
+    <div className={renderPhase}>
+      {content}
     </div>
   )
 }

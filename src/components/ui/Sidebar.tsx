@@ -1,5 +1,5 @@
 import styles from "@styles/Sidebar.module.css";
-import CreateMovieList from "@components/ui/CreateMovieList";
+//import CreateMovieList from "@components/ui/CreateMovieList";
 import { SidebarItemProps } from "types";
 import { useState } from "react";
 import playButtonIcon from "/src/assets/svgs/play-button.svg";
@@ -9,19 +9,24 @@ import sidebarChevron from "/src/assets/svgs/left-chevron.svg";
 
 interface SidebarProps {
   onSelectList: React.Dispatch<React.SetStateAction<string>>;
+  selectedListName: string,
 }
 
-function Sidebar({onSelectList}: SidebarProps) {
+function Sidebar({onSelectList, selectedListName}: SidebarProps) {
   const [sidebarActive, setSidebarActive] = useState<boolean>(true);
   const [sidebarButton, setSidebarButton] = useState<boolean>(true);
 
   const SideBarItem = (props: SidebarItemProps) => {
     const {itemLabel, itemIcon}: SidebarItemProps = props;
+    const sidebarStyle = 
+    itemLabel == selectedListName 
+    ? styles["sidebar__item--selected"]
+    : styles.sidebar__item;
     
     return (
-      <div className={styles.sidebar__item} onClick={() => {onSelectList(itemLabel)}}>
-        <img className={styles["sidebar__item-icon"]} src={itemIcon}/>
-        <p className={styles["sidebar__item-label"]}>{itemLabel}</p>
+      <div className={sidebarStyle} onClick={() => {onSelectList(itemLabel)}}>
+          <img className={styles["sidebar__item-icon"]} src={itemIcon}/>
+          <p className={styles["sidebar__item-label"]}>{itemLabel}</p>
       </div>
     )
   }
@@ -79,7 +84,7 @@ function Sidebar({onSelectList}: SidebarProps) {
         ))}
         */}
         
-        <CreateMovieList />
+        {/*<CreateMovieList />*/}
       </div>
     )
   }

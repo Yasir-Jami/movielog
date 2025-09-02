@@ -1,0 +1,11 @@
+.movie-filters {
+  display: none;
+}
+
+.movie-filters-container--visible {
+  
+}
+
+.movie-filters-container--hidden {
+  display: none;
+}

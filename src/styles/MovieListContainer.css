@@ -17,6 +17,14 @@
 
 .movie-actions {
   display: flex;
+  justify-content: space-between;
+  /*
+  background-color: white;
+  padding: 0.6rem;
+  border-radius: 1rem;
+  border: solid 1px;
+  transition: height 0.3s;
+  */
 }
 
 .movie-grid {

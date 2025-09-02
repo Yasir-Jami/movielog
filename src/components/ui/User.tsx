@@ -12,10 +12,10 @@ function User() {
   if (user && isAuthenticated) {
     content = (
       <>
-      <a href="/"><button className="user-auth__logout-button" onClick={logout}>
-        Logout
-        <LogOut className="user-auth__login-icon" size={16} />
-      </button></a>
+        <a href="/"><button className="user-auth__logout-button" onClick={logout}>
+          <LogOut className="user-auth__login-icon" size={16} />
+          Logout
+        </button></a>
       </>
     )
   }

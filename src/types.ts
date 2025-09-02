@@ -46,6 +46,44 @@ export interface ApiError extends ErrorInfo {
   status?: number,
 }
 
+export type GenreEntry = {
+  name: string, 
+  filterApplied: boolean
+};
+
+export interface Genres {
+  Action: GenreEntry,
+  Adventure: GenreEntry,
+  Animation: GenreEntry,
+  Comedy: GenreEntry,
+  Crime: GenreEntry,
+  Documentary: GenreEntry,
+  Drama: GenreEntry,
+  Family: GenreEntry,
+  Fantasy: GenreEntry,
+  Horror: GenreEntry,
+  Musical: GenreEntry,
+  Mystery: GenreEntry,
+  Romance: GenreEntry,
+  Sport: GenreEntry,
+  Thriller: GenreEntry,
+  Western: GenreEntry,
+}
+
+export interface MovieFilters {
+  SearchFilter: string,
+  GenreFilter: Genres,
+  FavoriteFilter: boolean,
+  FilteredByKeyword: boolean,
+  FilteredByGenre: boolean,
+  isFiltered: boolean, // applying a filter increments this variable by 1
+}
+
+export enum MovieSortMethod {
+  Default = 0,
+  Alphanumerically = 1,
+  Rating = 2
+}
 
 /* Enums */
 export enum AddMovieModalDisplay {
