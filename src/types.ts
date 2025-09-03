@@ -20,6 +20,12 @@ export interface MovieGridProps {
   movieArray: Array<MovieInfo>,
 }
 
+export interface MovieCardProps {
+  movieInfo: MovieInfo,
+  handleDeleteMovie: (id: string) => void,
+  handleFavoriteMovie: (id: string) => void,
+}
+
 export interface MovieQuery {
   Title?: string,
   ImdbId?: string,

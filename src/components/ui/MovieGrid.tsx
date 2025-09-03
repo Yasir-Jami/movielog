@@ -1,7 +1,7 @@
 import "@styles/MovieListContainer.css"
 import "@styles/MovieCard.css"
 import MovieCard from "@components/ui/MovieCard";
-import { MovieList, MovieInfo, MovieFilters, MovieSortMethod, AddMovieModalDisplay } from "types";
+import { MovieList, MovieInfo, MovieCardProps, MovieFilters, MovieSortMethod, AddMovieModalDisplay } from "types";
 import { SetStateAction, useEffect } from "react";
 import { checkIfFiltered } from "@components/utils/MovieFilterUtils";
 import { Plus } from "lucide-react";
@@ -64,7 +64,23 @@ function MovieGrid({
   const movieCount = movieArray?.length || 0;
   useEffect(() => {
     setMovieCount(movieCount);
-  }, [movieCount])
+  }, [movieCount]);
+
+  function handleDeleteMovie(id: string) {
+    console.log("Movie deleted");
+    // Call API
+  }
+
+  function handleFavoriteMovie(id: string) {
+    console.log("Movie favorited");
+    // Call API
+  }
+
+  const movieCardProps = {
+    movieInfo: movieArray[1],
+    handleDeleteMovie: handleDeleteMovie,
+    handleFavoriteMovie: handleFavoriteMovie,
+  } as MovieCardProps;
   
   return (
     <div 

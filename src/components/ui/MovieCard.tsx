@@ -1,14 +1,31 @@
 import "@styles/MovieCard.css";
-import { MovieInfo } from "types";
-import { Calendar, Drama } from "lucide-react";
+import { useState } from "react";
+import { MovieInfo, MovieCardProps } from "types";
+import { Calendar, Drama, Heart, Trash2 } from "lucide-react";
 import ImageNotFound from "assets/svgs/image-not-found.svg";
 
 function MovieCard(props: MovieInfo) {
   const { Title, Poster, Year, Genre } = props;
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  const toggleFavorite = () => {
+    setIsFavorite(prevIsFavorite => !prevIsFavorite);
+    console.log(isFavorite);
+  }
 
   return(
     <div className="movie-card">
-      <div className="movie-card__image-overlay"></div>
+        <span className={`movie-card-favorite-wrapper ${isFavorite ? "active" : ""}`} >
+          <Heart 
+          className={`movie-card-favorite-icon ${isFavorite ? "active" : ""}`} 
+          fill="none" 
+          size={24}
+          onClick={toggleFavorite}
+          ></Heart>
+        </span>
+        <span className="movie-card-delete-wrapper">
+          <Trash2 className="movie-card-delete-icon"></Trash2>
+        </span>
         <img 
         className="movie-card__image" 
         alt={Title} 
