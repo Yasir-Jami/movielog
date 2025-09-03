@@ -52,7 +52,7 @@ function MovieGrid({
   currentMovieSortMethod,
   setAddMovieModalVisibility}: MovieGridProps
 ) {
-  let movieArray = currentMovieList?.movies || [];
+  let movieArray = currentMovieList?.movies || [] as MovieInfo[];
     
   if (movieArray.length != 0 && checkIfFiltered(currentMovieFilters)) {
     movieArray = filterMovies(movieArray, currentMovieFilters);
@@ -67,27 +67,26 @@ function MovieGrid({
   }, [movieCount]);
 
   function handleDeleteMovie(id: string) {
-    console.log("Movie deleted");
+    console.log(`Movie with id ${id} deleted`);
     // Call API
   }
 
   function handleFavoriteMovie(id: string) {
-    console.log("Movie favorited");
+    console.log(`Movie with id ${id} favorited`);
     // Call API
   }
-
-  const movieCardProps = {
-    movieInfo: movieArray[1],
-    handleDeleteMovie: handleDeleteMovie,
-    handleFavoriteMovie: handleFavoriteMovie,
-  } as MovieCardProps;
   
   return (
     <div 
     className="movie-grid"
     onChange={() => {setMovieCount(movieCount)}}>
-      {[...Array(movieCount)].map((_, i) => (
-          <MovieCard key={i} {...movieArray[i]}/>
+      {movieArray.map((movie, i) => (
+          <MovieCard 
+          key={i} 
+          movie={movie}
+          handleFavoriteMovie={handleFavoriteMovie}
+          handleDeleteMovie={handleDeleteMovie}
+          />
       ))}
       <div 
       className="add-movie-card" 

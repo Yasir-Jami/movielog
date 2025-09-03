@@ -4,7 +4,7 @@ export interface MovieInfo {
   Year?: string,
   Plot?: string,
   Genre?: string,
-  ImdbRating?: string,
+  imdbRating?: string,
   imdbID?: string,
 }
 
@@ -21,14 +21,9 @@ export interface MovieGridProps {
 }
 
 export interface MovieCardProps {
-  movieInfo: MovieInfo,
+  movie: MovieInfo,
   handleDeleteMovie: (id: string) => void,
   handleFavoriteMovie: (id: string) => void,
-}
-
-export interface MovieQuery {
-  Title?: string,
-  ImdbId?: string,
 }
 
 export interface SidebarProps {

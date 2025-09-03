@@ -29,7 +29,7 @@ async function SearchForMovie({ searchTerm } : {searchTerm: string}) {
       Title: movie.Title,
       Poster: movie.Poster,
       Year: movie.Year,
-      ImdbID: movie.imdbID,
+      imdbID: movie.imdbID,
     }));
 
     return searchResults;
@@ -96,7 +96,7 @@ function AddMovieSearch({setModalVisibility, onMovieSelect}: AddMovieSearchProps
             {/*
             <div className="search-result-rating">
               <Star className="search-result-star" size={8}/>
-              <span className="search-result-rating-value">{result.ImdbRating}</span>
+              <span className="search-result-rating-value">{result.imdbRating}</span>
             </div>
             */}
           </div>
