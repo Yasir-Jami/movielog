@@ -1,10 +1,10 @@
 import "@styles/MovieListContainer.css"
 import "@styles/MovieCard.css"
 import MovieCard from "@components/ui/MovieCard";
-import { MovieList, MovieInfo, MovieCardProps, MovieFilters, MovieSortMethod, AddMovieModalDisplay } from "types";
+import { MovieList, MovieInfo, MovieFilters, MovieSortMethod, AddMovieModalDisplay } from "types";
 import { SetStateAction, useEffect } from "react";
 import { checkIfFiltered } from "@components/utils/MovieFilterUtils";
-import { Plus } from "lucide-react";
+import { Plus, Search } from "lucide-react";
 
 interface MovieGridProps {
   currentMovieList: MovieList,
@@ -75,9 +75,8 @@ function MovieGrid({
     console.log(`Movie with id ${id} favorited`);
     // Call API
   }
-  
-  return (
-    <div 
+
+  let movieGridContent: React.JSX.Element = <div 
     className="movie-grid"
     onChange={() => {setMovieCount(movieCount)}}>
       {movieArray.map((movie, i) => (
@@ -96,6 +95,24 @@ function MovieGrid({
         <p className="add-movie-card-subtext">Click to add a movie to this list</p>
       </div>
     </div>
+
+    if (movieCount == 0 && checkIfFiltered(currentMovieFilters)) {
+      movieGridContent = 
+      <div className="no-movies">
+        <span className="no-movies-wrapper">
+          <Search className="no-movies-icon" size={64}></Search>
+          <h3 className="no-movies-text">
+            No movies match your current filters.
+          </h3>
+        </span>
+        
+      </div>
+    }
+  
+  return (
+    <>
+    {movieGridContent}
+    </>
   )
 }
 

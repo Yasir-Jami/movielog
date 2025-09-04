@@ -55,7 +55,6 @@ function MovieCard({movie, handleFavoriteMovie, handleDeleteMovie}: MovieCardPro
             <p className="movie-card__genre-text">{movie.Genre}</p> 
           </span>
         </div>
-        
     </div>
   )
 }

@@ -125,7 +125,6 @@ function AddMovie({modalVisibility, setModalVisibility, currentMovieList, addNew
           onClick={() => setModalVisibility(AddMovieModalDisplay.Invisible)}>
             Cancel
           </span>
-          <span className="add-movie__modal-add-button">Add</span>
         </div>
       </div>
     )
