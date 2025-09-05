@@ -2,7 +2,7 @@ import "@styles/AddMovie.css";
 import AddMovieSearch from "@components/ui/AddMovieSearch";
 import { AddMovieModalDisplay } from "types";
 import { MovieInfo, MovieList } from "types";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Plus } from "lucide-react";
 import { toast } from "react-toastify";
 
@@ -71,6 +71,12 @@ function AddMovie({modalVisibility, setModalVisibility, currentMovieList, addNew
     addMovieToList(selectedMovie, currentMovieList, addNewMovieToList);
   }
 
+  
+  const onClose = () => {
+    
+  }
+  
+
   function AddMovieModal() {
     let modalVisible = modalVisibility;
     let modalDisplayType = modalType;
@@ -133,7 +139,7 @@ function AddMovie({modalVisibility, setModalVisibility, currentMovieList, addNew
   return (
     <div className="add-movie">
       <AddMovieModal />
-      <div className="add-movie__button" onClick={() => {setModalVisibility(AddMovieModalDisplay.Visible);}}>
+      <div className="add-movie__button" onClick={() => {setModalVisibility(AddMovieModalDisplay.Visible)}}>
         <Plus className="add-movie__plus-sign"/>
         <p className="add-movie__text">Add Movie</p>
       </div>

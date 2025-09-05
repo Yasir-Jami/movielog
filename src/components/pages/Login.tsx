@@ -32,9 +32,7 @@ function Login() {
       if (!response.ok) {
         // Handle all non-2XX requests
         if (response.status == 401) {
-          toast.error("Invalid username or password", {
-              position: "top-center", 
-            });
+          toast.error("Invalid username or password");
         }
         
         // TODO make specific responses based on http code returned

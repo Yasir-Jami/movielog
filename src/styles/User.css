@@ -15,10 +15,6 @@
   font-weight: 500;
 }
 
-.user-auth__login-button:hover, .user-auth__logout-button:hover {
-  
-}
-
 .user-auth__register-button {
   display: flex;
   align-items: center;
@@ -28,9 +24,6 @@
   border-radius: 0.25rem;
   font-weight: 500;
 }
-.user-auth__register-button:hover {
- 
-}
 
 .user-auth__login-icon {
   margin-right: 0.5rem;
@@ -38,6 +31,25 @@
 
 .user-auth__register-icon {
   margin-right: 0.5rem;
+}
+
+.user-auth__logged-in {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.user-auth__profile {
+  display: flex;
+}
+
+.user-auth__icon {
+  margin-right: 0.6rem;
+}
+
+.user-auth__email {
+  margin-right: 2rem;
+  font-weight: 600;
 }
 
 @media (max-width: 480px) {
