@@ -1,19 +1,17 @@
 import "@styles/AddMovieSearch.css";
-import { MovieInfo } from "types";
+import { MovieMetadata } from "types";
 import { AddMovieModalDisplay } from "types";
 import ImageNotFound from "assets/svgs/image-not-found.svg";
-//import DummyMovieInfo from "tests/DummyMovieData";
-//import { Star } from "lucide-react";
 import { useState, useEffect } from "react";
 
 interface AddMovieSearchProps {
   setModalVisibility: React.Dispatch<React.SetStateAction<AddMovieModalDisplay>>;
-  onMovieSelect: (movie: MovieInfo) => void,
+  onMovieSelect: (movie: MovieMetadata) => void,
 }
 
 async function SearchForMovie({ searchTerm } : {searchTerm: string}) {
   const url = `${import.meta.env.VITE_API_BASE_URL}${import.meta.env.VITE_API_MOVIES}${import.meta.env.VITE_API_SEARCH_MOVIES}`;
-  let searchResults: MovieInfo[] = [];
+  let searchResults: MovieMetadata[] = [];
 
   await fetch(url, {
     method: 'POST',
@@ -25,7 +23,7 @@ async function SearchForMovie({ searchTerm } : {searchTerm: string}) {
   })
   .then(res => res.json())
   .then(data => {
-    searchResults = (data.Search || []).map((movie: MovieInfo) => ({
+    searchResults = (data.Search || []).map((movie: MovieMetadata) => ({
       Title: movie.Title,
       Poster: movie.Poster,
       Year: movie.Year,
@@ -42,7 +40,7 @@ async function SearchForMovie({ searchTerm } : {searchTerm: string}) {
 function AddMovieSearch({setModalVisibility, onMovieSelect}: AddMovieSearchProps) {
   const [movieInput, setMovieInput] = useState<string>('');
   const [debouncedInput, setDebouncedInput] = useState<string>('');
-  const [results, setResults] = useState<MovieInfo[]>([]);
+  const [results, setResults] = useState<MovieMetadata[]>([]);
 
   useEffect(() => {
     const handler = setTimeout(() => setDebouncedInput(movieInput), 400);

@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 
 async function getMovieList(listName: string) {
   const url = `${import.meta.env.VITE_API_BASE_URL}${import.meta.env.VITE_API_MOVIE_LISTS}${import.meta.env.VITE_API_RETRIEVE_LIST}`;
-  let list = {} as MovieList;
+  let retrievedList = {} as MovieList;
   
   await fetch(url, {
     method: 'POST',
@@ -18,14 +18,15 @@ async function getMovieList(listName: string) {
     body: JSON.stringify({ listName })
   })
   .then(res => res.json())
-  .then(data => {
-    list.listName = data.listWithMovies.listName || "Watching";
-    list.movies = data.listWithMovies.movies || [];
-    return list;
+  .then(movielist => {
+    //console.log(JSON.stringify(movielist, null, 2));
+    retrievedList.listName = movielist.listName;
+    retrievedList.movies = movielist.movies;
+    return retrievedList;
   })
-  .catch(err => logger.error("Error:", err));
-
-  return list;
+  .catch(err => console.error("Error:", err));
+  
+  return retrievedList;
 }
 
 function MainContent () {

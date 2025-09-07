@@ -20,7 +20,7 @@ function filterMovies(
   filters: MovieFilters, 
   ): MovieInfo[] {
     //logger.log("Current search filter:", filters.SearchFilter);
-    let filteredMovies = movieArray.filter((movie) => movie.Title.toLowerCase().includes(filters.SearchFilter.toLowerCase()));
+    let filteredMovies = movieArray.filter((movie) => movie.movieMeta.Title.toLowerCase().includes(filters.SearchFilter.toLowerCase()));
     /*
     if (filters.FilteredByGenre) {
       filteredMovies = applyGenreFilters(movieArray, filters);
@@ -52,7 +52,7 @@ function MovieGrid({
   currentMovieSortMethod,
   setAddMovieModalVisibility}: MovieGridProps
 ) {
-  let movieArray = currentMovieList?.movies || [] as MovieInfo[];
+  let movieArray: MovieInfo[] = currentMovieList?.movies || [];
     
   if (movieArray.length != 0 && checkIfFiltered(currentMovieFilters)) {
     movieArray = filterMovies(movieArray, currentMovieFilters);

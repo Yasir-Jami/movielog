@@ -1,8 +1,9 @@
 import "@styles/AddMovie.css";
 import AddMovieSearch from "@components/ui/AddMovieSearch";
-import { AddMovieModalDisplay } from "types";
+import { AddMovieModalDisplay, MovieMetadata } from "types";
 import { MovieInfo, MovieList } from "types";
 import { useState, useRef } from "react";
+import { getUserEmail } from "@components/utils/UserUtils";
 import { Plus } from "lucide-react";
 import { toast } from "react-toastify";
 
@@ -23,11 +24,12 @@ const addMovieErrorNotification = (errorReason: string) => {
 }
 
 async function addMovieToList(
-  movie: MovieInfo, 
+  movie: MovieMetadata, 
   movieList: MovieList, 
-  addNewMovieToList: React.Dispatch<React.SetStateAction<MovieList>>) {
+  addNewMovieToList: React.Dispatch<React.SetStateAction<MovieList>>, 
+  email: string) {
   const url = `${import.meta.env.VITE_API_BASE_URL}${import.meta.env.VITE_API_MOVIE_LISTS}${import.meta.env.VITE_API_ADD_MOVIE}`;
-  logger.log(movie);
+  console.log("MovieInfo before sending: ", movie);
   
   await fetch(url, {
     method: 'POST',
@@ -35,7 +37,7 @@ async function addMovieToList(
     headers: {
       'Content-type': 'application/json',
     },
-    body: JSON.stringify( { movie: movie, listName: movieList.listName } ),
+    body: JSON.stringify( { email: email, movieMeta: movie, listName: movieList.listName } ),
   })
   .then(response => {
     logger.log(response);
@@ -48,7 +50,6 @@ async function addMovieToList(
       else {
         errorReason = "Error adding a new movie";
       }
-
       addMovieErrorNotification(errorReason);
       throw new Error("HTTP Error " + response.statusText);
     }
@@ -66,11 +67,11 @@ async function addMovieToList(
 
 function AddMovie({modalVisibility, setModalVisibility, currentMovieList, addNewMovieToList}: AddMovieProps) {
   const [modalType, setModalType] = useState<ModalTypes>(ModalTypes.Default);
+  const email = getUserEmail();
 
-  const handleMovieSelection = (selectedMovie: MovieInfo) => {
-    addMovieToList(selectedMovie, currentMovieList, addNewMovieToList);
+  const handleMovieSelection = (selectedMovie: MovieMetadata) => {
+    addMovieToList(selectedMovie, currentMovieList, addNewMovieToList, email);
   }
-
   
   const onClose = () => {
     

@@ -1,4 +1,4 @@
-export interface MovieInfo {
+export interface MovieMetadata {
   Title: string,
   Poster: string,
   Year?: string,
@@ -6,6 +6,13 @@ export interface MovieInfo {
   Genre?: string,
   imdbRating?: string,
   imdbID?: string,
+}
+
+export interface MovieInfo {
+  imdbID?: string,
+  isFavorite: boolean,
+  rating: number,
+  movieMeta: MovieMetadata,
 }
 
 export interface MovieList {

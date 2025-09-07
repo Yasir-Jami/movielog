@@ -6,18 +6,15 @@ import ImageNotFound from "assets/svgs/image-not-found.svg";
 
 function MovieCard({movie, handleFavoriteMovie, handleDeleteMovie}: MovieCardProps) {
   const [isFavorite, setIsFavorite] = useState(false);
-
-  console.log(movie);
-
   const toggleFavorite = () => {
     setIsFavorite(prevIsFavorite => !prevIsFavorite);
-    if (movie.imdbID) 
-      handleFavoriteMovie(movie.imdbID);
+    if (movie.movieMeta.imdbID) 
+      handleFavoriteMovie(movie.movieMeta.imdbID);
   }
 
   const deleteMovie = () => {
-    if (movie.imdbID) 
-      handleDeleteMovie(movie.imdbID);
+    if (movie.movieMeta.imdbID) 
+      handleDeleteMovie(movie.movieMeta.imdbID);
   }
 
   return(
@@ -39,20 +36,20 @@ function MovieCard({movie, handleFavoriteMovie, handleDeleteMovie}: MovieCardPro
         </span>
         <img 
         className="movie-card__image" 
-        alt={movie.Title} 
-        src={movie.Poster} 
+        alt={movie.movieMeta.Title} 
+        src={movie.movieMeta.Poster} 
         onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = ImageNotFound}}></img>
         
         {/* Movie Metadata */}
-        <p className="movie-card__title">{movie.Title}</p>
+        <p className="movie-card__title">{movie.movieMeta.Title}</p>
         <div className="movie-card__metadata">
           <span className="movie-card__year">
             <Calendar className="movie-card__calendar"/>
-            <p className="movie-card__year-text">{movie.Year}</p>
+            <p className="movie-card__year-text">{movie.movieMeta.Year}</p>
           </span>
           <span className="movie-card__genre">
             <Drama className="movie-card__mask"/>
-            <p className="movie-card__genre-text">{movie.Genre}</p> 
+            <p className="movie-card__genre-text">{movie.movieMeta.Genre}</p> 
           </span>
         </div>
     </div>
