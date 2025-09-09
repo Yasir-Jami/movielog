@@ -44,16 +44,16 @@ function MainContent () {
   if (renderPhase == "loading") {
      content = 
      <>
-      <div className="loading-spinner">
-        Loading...
-      </div>
+      <span className="loader"></span>
      </>
   }
 
   else (
     content =
      <>
+     {/*
         <Sidebar onSelectList={setSelectedList} selectedListName={currentMovieList.listName}/>
+    */}
         <MovieListContainer currentMovieList={currentMovieList} addNewMovieToList={setCurrentMovieList}/>
      </>
   )

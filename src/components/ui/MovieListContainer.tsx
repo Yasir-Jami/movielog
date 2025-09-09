@@ -65,7 +65,7 @@ function MovieListContainer({currentMovieList, addNewMovieToList}: MovieListCont
       currentMovieFilters={movieFilters}
       currentMovieSortMethod={movieSortMethod}
       setAddMovieModalVisibility={setAddMovieModalVisibility}
-      />;
+      />
     </div>
   )
 }
