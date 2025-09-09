@@ -1,4 +1,3 @@
-import "@styles/Loading.css";
 import Sidebar from "@components/ui/Sidebar";
 import MovieListContainer from "@components/ui/MovieListContainer";
 import { MovieList } from "types";
