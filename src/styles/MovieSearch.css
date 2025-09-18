@@ -1,7 +1,7 @@
 .movie-search__textbox {
   height: 2.5rem;
-  width: 30%;
-  min-width: 200px;
+  width: 50%;
+  min-width: 18rem;
   padding-left: 2.5rem;
   padding-right: 1rem;
   padding-top: 0.25rem;

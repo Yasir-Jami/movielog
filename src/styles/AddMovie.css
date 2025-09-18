@@ -1,5 +1,10 @@
 /* Add Movie Button */
 
+.add-movie {
+  position: absolute;
+  right: 4%;
+}
+
 .add-movie__button {
   display: flex;
   width: 12%;

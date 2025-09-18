@@ -13,7 +13,6 @@
 }
 
 html, body {
-  background: linear-gradient(to bottom right, #fff8e1, #ffecb3, #fff8e1);
   z-index: 0;
   background-attachment: fixed;
 }
