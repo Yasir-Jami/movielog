@@ -1,6 +1,4 @@
 import "/src/styles/Header.css"
-import User from "./User.tsx"
-import { Film } from "lucide-react"
 import { useNavigate } from "react-router-dom"
 
 function Header(){
@@ -11,21 +9,9 @@ function Header(){
       <div className="header__container">
         <div className="header__content">
           <div className="header__brand">
-            <div className="header__logo-container" onClick={() => navigate('/')}>
-              <Film className="header__logo" />
-            </div>
-            <div>
-              <h1 className="header__title" onClick={() => navigate('/')}>movielog</h1>
-              <p className="header__subtitle">Your personal movie backlog</p>
-            </div>
-          </div>
-
-          <div className="header__actions">
-            {/* Auth Buttons */}
-              <User/>
+            <h1 className="header__title" onClick={() => navigate('/')}>movielog</h1>
           </div>
         </div>
-
       </div>
     </div>
   )

@@ -2,7 +2,7 @@ import "/src/styles/MovieListContainer.css";
 import { useState } from "react";
 import { MovieList, AddMovieModalDisplay, MovieFilters, Genres, MovieSortMethod } from "types";
 import MovieGrid from "@components/ui/MovieGrid";
-import MovieSearch from "@components/ui/MovieSearch";
+import ListSearch from "@components/ui/ListSearch";
 import AddMovie from "@components/ui/AddMovie";
 import MovieFilter from "./MovieFilter";
 
@@ -48,7 +48,7 @@ function MovieListContainer({currentMovieList, addNewMovieToList}: MovieListCont
           <h2 className="list-container__list-name">{currentMovieList.listName}</h2>
           <p className="list-container__movie-count">{currentMovieCount} movies</p>
         </div>
-        <hr></hr>
+        
         <MovieGrid 
         currentMovieList={currentMovieList} 
         currentMovieCount={currentMovieCount}
@@ -58,7 +58,7 @@ function MovieListContainer({currentMovieList, addNewMovieToList}: MovieListCont
         setAddMovieModalVisibility={setAddMovieModalVisibility}
         />
         <div className="movie-actions">
-          <MovieSearch movieFilters={movieFilters} setMovieFilters={setMovieFilters}/>
+          <ListSearch movieFilters={movieFilters} setMovieFilters={setMovieFilters}/>
           <MovieFilter movieFilters={movieFilters} setMovieFilters={setMovieFilters} setMovieSortMethod={setMovieSortMethod}/>
           <AddMovie 
           modalVisibility={addMoviemodalVisibility} 

@@ -1,7 +1,8 @@
 .user-auth {
   display: flex;
+  position: absolute;
+  right: 7%;
   align-items: end;
-  margin-right: 5rem;
   gap: 1rem;
 }
 

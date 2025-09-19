@@ -37,6 +37,7 @@ function MainContent () {
   const [renderPhase, setRenderPhase] = useState<string>("loading");
   const [selectedList, setSelectedList] = useState<string>(placeholderList.listName);
   const [currentMovieList, setCurrentMovieList] = useState<MovieList>(placeholderList);
+  const [selectedTab, setSelectedTab] = useState<string>("");
 
   let content = {} as React.JSX.Element;
 
