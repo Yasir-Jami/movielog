@@ -33,16 +33,21 @@ export interface MovieCardProps {
   handleFavoriteMovie: (id: string) => void,
 }
 
-export interface SidebarProps {
-  selectedList: number,
-}
-
-export interface SidebarItemProps {
+export interface SidebarTabProps {
   itemId: number,
-  itemLabel: string,
-  itemIcon?: string,
+  itemLabel: MainContentTab,
+  itemIcon?: React.JSX.Element,
   itemCount?: number,
 }
+
+export interface ListCardProps {
+  listId: number,
+  listName: string,
+  itemIcon?: string,
+  movieCount?: number,
+  listDescription?: string,
+}
+
 
 export interface ErrorInfo {
   message: string,
@@ -98,3 +103,12 @@ export enum AddMovieModalDisplay {
     Invisible="add-movie__modal",
     Visible="add-movie__modal--active"
 };
+
+
+export enum MainContentTab {
+  Home = "Home",
+  Lists = "Lists",
+  Reviews = "Reviews",
+  Settings = "Settings",
+  Login = "Login",
+}

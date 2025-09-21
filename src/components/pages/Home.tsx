@@ -1,23 +1,21 @@
-import MainContent from "@components/ui/MainContent";
-import Header from '@components/ui/Header';
 import "@styles/index.css";
+import { MainContentTab } from "types";
+import { useState } from "react";
+import Header from "@components/ui/Header";
+import Sidebar from "@components/ui/Sidebar";
+import MainContent from "@components/ui/MainContent";
 
 export default function Home() {
-  //const [isReady, setIsReady] = useState(false);
+  const [selectedTab, setSelectedTab] = useState<MainContentTab>(MainContentTab.Home);
+  const [sidebarOpen, setSidebarOpen] = useState<boolean>(true);
 
-  /*
-  if (!isReady) {
-    return(
-      <div className="loading">Loading...</div>
-    )
-  }
-
-  else if (isReady) {
-  */
  return (
-  <div>
-  <Header/>
-  <MainContent />
+  <>
+  <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}/>
+  <div className="home-page">
+    <Sidebar onSelectTab={setSelectedTab} selectedTab={selectedTab} setSidebarOpen={setSidebarOpen} sidebarOpen={sidebarOpen}/>
+    <MainContent selectedTab={selectedTab}/>
   </div>
+  </>
   )
 }

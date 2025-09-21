@@ -1,13 +1,24 @@
 .header {
+  position: sticky;
   top: 0;
   z-index: 100;
   min-width: 320px;
 }
 
-.header__content {
+.header__container {
   display: flex;
+  border-radius: 1rem;
   margin-top: 1rem;
-  align-items: start;
+  margin-left: 1rem;
+  align-items: center;
+}
+
+.header__menu {
+  cursor: pointer;
+}
+
+.header__menu:hover {
+  background-color: rgb(240, 240, 240);
 }
 
 .header__title {
@@ -16,19 +27,6 @@
   font-weight: 700;
   cursor: pointer;
   margin-left: 1rem;
-}
-
-.header button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.3rem 1.2rem;
-  font-size: 1rem;
-  font-weight: 600;
-  font-family: 'Segoe UI';
-  font-style: normal;
-  cursor: pointer;
-  line-height: 1.5rem;
-  transition: border-color 0.16s;
 }
 
 @media (max-width: 768px) {
@@ -43,18 +41,6 @@
   .header__logo-container {
     padding-top: 0.65rem;
   }
-
-  .header button {
-    border-radius: 8px;
-    border: 1px solid transparent;
-    padding: 0.3em 1.2em;
-    font-size: 1em;
-    font-weight: 600;
-    font-family: 'Segoe UI';
-    font-style: normal;
-    line-height: inherit;
-    margin-left: 1rem;
-  } 
 }
 
 /* Auth Header */

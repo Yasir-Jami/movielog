@@ -1,17 +1,20 @@
 import "/src/styles/Header.css"
 import { useNavigate } from "react-router-dom"
+import { Menu } from "lucide-react";
 
-function Header(){
+interface HeaderProps {
+  sidebarOpen: boolean,
+  setSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>,
+}
+
+function Header({sidebarOpen, setSidebarOpen}: HeaderProps){
   const navigate = useNavigate();
 
   return (
     <div className="header">
       <div className="header__container">
-        <div className="header__content">
-          <div className="header__brand">
-            <h1 className="header__title" onClick={() => navigate('/')}>movielog</h1>
-          </div>
-        </div>
+        <Menu className="header__menu" onClick={() => {setSidebarOpen}}/>
+        <h1 className="header__title" onClick={() => navigate('/')}>movielog</h1>
       </div>
     </div>
   )

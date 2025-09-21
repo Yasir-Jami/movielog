@@ -1,8 +1,13 @@
-import Sidebar from "@components/ui/Sidebar";
+//import Sidebar from "@components/ui/Sidebar";
 import MovieListContainer from "@components/ui/MovieListContainer";
-import { MovieList } from "types";
+import { useNavigate } from "react-router-dom";
+import { MainContentTab, MovieList } from "types";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+
+interface MainContentProps {
+  selectedTab: MainContentTab,
+}
 
 async function getMovieList(listName: string) {
   const url = `${import.meta.env.VITE_API_BASE_URL}${import.meta.env.VITE_API_MOVIE_LISTS}${import.meta.env.VITE_API_RETRIEVE_LIST}`;
@@ -28,7 +33,7 @@ async function getMovieList(listName: string) {
   return retrievedList;
 }
 
-function MainContent () {
+function MainContent ({selectedTab}: MainContentProps) {
   const placeholderList: MovieList = {
     listName: "Watching",
     movies: [],
@@ -37,26 +42,41 @@ function MainContent () {
   const [renderPhase, setRenderPhase] = useState<string>("loading");
   const [selectedList, setSelectedList] = useState<string>(placeholderList.listName);
   const [currentMovieList, setCurrentMovieList] = useState<MovieList>(placeholderList);
-  const [selectedTab, setSelectedTab] = useState<string>("");
+  const navigate = useNavigate();
 
   let content = {} as React.JSX.Element;
 
   if (renderPhase == "loading") {
-     content = 
-     <>
-      <span className="loader"></span>
-     </>
+     content = (<span className="loader"/>)
   }
 
-  else (
-    content =
-     <>
-     {/*
-        <Sidebar onSelectList={setSelectedList} selectedListName={currentMovieList.listName}/>
-    */}
-        <MovieListContainer currentMovieList={currentMovieList} addNewMovieToList={setCurrentMovieList}/>
-     </>
-  )
+  else {
+    switch(selectedTab) {
+      case MainContentTab.Home:
+        console.log("Home tab");
+        content = <MovieListContainer currentMovieList={currentMovieList} addNewMovieToList={setCurrentMovieList}/>;
+        break;
+      case MainContentTab.Lists:
+        console.log("Lists tab");
+        content = <></>;
+        break;
+      case MainContentTab.Reviews:
+        console.log("Reviews tab");
+        content = <></>;
+        break;
+      case MainContentTab.Settings:
+        console.log("Settings tab");
+        content = <></>;
+        break;
+      case MainContentTab.Login:
+        console.log("Switching to login page");
+        navigate("/login");
+        break;
+      default:
+        console.log("");
+        content = <MovieListContainer currentMovieList={currentMovieList} addNewMovieToList={setCurrentMovieList}/>;
+    }
+  }
 
   async function getListData() {
       const tempList = {
