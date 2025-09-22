@@ -1,11 +1,9 @@
 import "@styles/AddMovieSearch.css";
 import { MovieMetadata } from "types";
-import { AddMovieModalDisplay } from "types";
 import ImageNotFound from "assets/svgs/image-not-found.svg";
 import { useState, useEffect } from "react";
 
 interface AddMovieSearchProps {
-  setModalVisibility: React.Dispatch<React.SetStateAction<AddMovieModalDisplay>>;
   onMovieSelect: (movie: MovieMetadata) => void,
 }
 
@@ -37,7 +35,7 @@ async function SearchForMovie({ searchTerm } : {searchTerm: string}) {
   return searchResults;
 }
 
-function AddMovieSearch({setModalVisibility, onMovieSelect}: AddMovieSearchProps) {
+function AddMovieSearch({onMovieSelect}: AddMovieSearchProps) {
   const [movieInput, setMovieInput] = useState<string>('');
   const [debouncedInput, setDebouncedInput] = useState<string>('');
   const [results, setResults] = useState<MovieMetadata[]>([]);
@@ -64,21 +62,19 @@ function AddMovieSearch({setModalVisibility, onMovieSelect}: AddMovieSearchProps
 
   return (
     <div>
-      <div className="add-movie-modal__form" onSubmit={() => {}}>
-        <input 
-        className="add-movie-modal__search" 
+      <input 
+        className="add-movie__searchbox" 
         name="movie-title" 
         placeholder="Search for a movie..." 
         value={movieInput}
         onChange={e => setMovieInput(e.target.value)}/>
-      </div>
 
       <div className="add-movie__search">
         {results.map((result, index) => (
           <div 
           className="add-movie__search-result" 
           key={result.imdbID || `${result.Title}--${index}`} 
-          onClick={() => {setModalVisibility(AddMovieModalDisplay.Invisible); onMovieSelect(result)}}>
+          onClick={() => {onMovieSelect(result)}}>
             <img 
             className="search-result-poster" 
             src={result.Poster} 

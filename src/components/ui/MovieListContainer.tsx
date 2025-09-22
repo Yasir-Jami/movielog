@@ -40,7 +40,6 @@ function MovieListContainer({currentMovieList, addNewMovieToList}: MovieListCont
   } as MovieFilters);
   const [movieSortMethod, setMovieSortMethod] = useState<MovieSortMethod>(MovieSortMethod.Default);
   const [currentMovieCount, setMovieCount] = useState<number>(0);
-  const [addMoviemodalVisibility, setAddMovieModalVisibility] = useState<AddMovieModalDisplay>(AddMovieModalDisplay.Invisible);
 
   return (
       <div className="list-container">
@@ -55,17 +54,10 @@ function MovieListContainer({currentMovieList, addNewMovieToList}: MovieListCont
         setMovieCount={setMovieCount}
         currentMovieFilters={movieFilters}
         currentMovieSortMethod={movieSortMethod}
-        setAddMovieModalVisibility={setAddMovieModalVisibility}
         />
         <div className="movie-actions">
           <ListSearch movieFilters={movieFilters} setMovieFilters={setMovieFilters}/>
           <MovieFilter movieFilters={movieFilters} setMovieFilters={setMovieFilters} setMovieSortMethod={setMovieSortMethod}/>
-          <AddMovie 
-          modalVisibility={addMoviemodalVisibility} 
-          setModalVisibility={setAddMovieModalVisibility} 
-          currentMovieList={currentMovieList}
-          addNewMovieToList={addNewMovieToList}
-        />
       </div>
     </div>
   )

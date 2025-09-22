@@ -1,23 +1,14 @@
 import "@styles/AddMovie.css";
-import AddMovieSearch from "@components/ui/AddMovieSearch";
-import { AddMovieModalDisplay, MovieMetadata } from "types";
-import { MovieInfo, MovieList } from "types";
-import { useState, useRef } from "react";
+import { MovieMetadata } from "types";
+import { MovieList } from "types";
 import { getUserEmail } from "@components/utils/UserUtils";
-import { Plus } from "lucide-react";
 import { toast } from "react-toastify";
+import AddMovieSearch from "./AddMovieSearch";
 
 interface AddMovieProps {
   currentMovieList: MovieList,
-  modalVisibility: AddMovieModalDisplay,
-  setModalVisibility: React.Dispatch<React.SetStateAction<AddMovieModalDisplay>>,
-  addNewMovieToList: React.Dispatch<React.SetStateAction<MovieList>>,
+  updateCurrentList: React.Dispatch<React.SetStateAction<MovieList>>,
 }
-
-enum ModalTypes {
-    Default="add-movie__modal-content--default",
-    Custom="add-movie__modal-content--custom"
-};
 
 const addMovieErrorNotification = (errorReason: string) => {
   toast.error(errorReason);
@@ -26,7 +17,7 @@ const addMovieErrorNotification = (errorReason: string) => {
 async function addMovieToList(
   movie: MovieMetadata, 
   movieList: MovieList, 
-  addNewMovieToList: React.Dispatch<React.SetStateAction<MovieList>>, 
+  updateCurrentList: React.Dispatch<React.SetStateAction<MovieList>>, 
   email: string) {
   const url = `${import.meta.env.VITE_API_BASE_URL}${import.meta.env.VITE_API_MOVIE_LISTS}${import.meta.env.VITE_API_ADD_MOVIE}`;
   console.log("MovieInfo before sending: ", movie);
@@ -59,91 +50,22 @@ async function addMovieToList(
       ...movieList,
       movies: [...movieList.movies, data.movie],
     };
-    addNewMovieToList(newList);
+    updateCurrentList(newList);
     toast.success(data.message);
   })
   .catch(err => logger.error("Error:", err)); 
 }
 
-function AddMovie({modalVisibility, setModalVisibility, currentMovieList, addNewMovieToList}: AddMovieProps) {
-  const [modalType, setModalType] = useState<ModalTypes>(ModalTypes.Default);
+function AddMovie({currentMovieList, updateCurrentList}: AddMovieProps) {
   const email = getUserEmail();
 
   const handleMovieSelection = (selectedMovie: MovieMetadata) => {
-    addMovieToList(selectedMovie, currentMovieList, addNewMovieToList, email);
+    addMovieToList(selectedMovie, currentMovieList, updateCurrentList, email);
   }
-  
-  const onClose = () => {
-    
-  }
-  
-
-  function AddMovieModal() {
-    let modalVisible = modalVisibility;
-    let modalDisplayType = modalType;
-
-    return (
-      <div className={modalVisible}>
-        <ModalToDisplay modalType={modalDisplayType}/>
-      </div>
-    )
-  }
-
-  function ModalToDisplay({ modalType } : { modalType: ModalTypes } ): React.JSX.Element {
-    let modalContent: React.JSX.Element = <></>;
-
-    // Default display
-    if (modalType == ModalTypes.Default) {
-      modalContent = (
-        <div className={modalType}>
-          <AddMovieSearch setModalVisibility={setModalVisibility} onMovieSelect={handleMovieSelection}/>
-        </div>
-      )
-    }
-
-    // Custom movie display
-    else if (modalType == ModalTypes.Custom) {
-      modalContent = (
-        <div className={modalType}>
-          <form className="add-movie-modal__form">
-            <p>Title</p>
-            <p>Year</p>
-            <p>Genre</p>
-          </form>
-        </div>
-      )
-    }
-
-    return(
-      <div className="add-movie__modal-container">
-        <h3 className="add-movie__modal-header">Add New Movie</h3>
-        <span 
-          className="add-movie__modal-default-tab" 
-          onClick={() => {setModalType(ModalTypes.Default)}}>
-        </span>
-        <span
-          className="add-movie__modal-custom-tab" 
-          onClick={() => {setModalType(ModalTypes.Custom)}}>
-        </span>
-        {modalContent}
-        <div className="add-movie__modal-buttons">
-          <span 
-          className="add-movie__modal-close-button"
-          onClick={() => setModalVisibility(AddMovieModalDisplay.Invisible)}>
-            Cancel
-          </span>
-        </div>
-      </div>
-    )
-}
 
   return (
     <div className="add-movie">
-      <AddMovieModal />
-      <div className="add-movie__button" onClick={() => {setModalVisibility(AddMovieModalDisplay.Visible)}}>
-        <Plus className="add-movie__plus-sign"/>
-        <p className="add-movie__text">Add Movie</p>
-      </div>
+      <AddMovieSearch onMovieSelect={handleMovieSelection}/>
     </div>
   )
 }

@@ -1,10 +1,5 @@
 /* Add Movie Button */
 
-.add-movie {
-  position: absolute;
-  right: 4%;
-}
-
 .add-movie__button {
   display: flex;
   width: 12%;
@@ -53,26 +48,6 @@
 .add-movie__modal-header {
   margin-bottom: 0.50rem;
   color: black;
-}
-
-.add-movie-modal__search {
-  height: 2.5rem;
-  width: 100%;
-  min-width: 200px;
-  padding-left: 0.75rem;
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
-  background-color: white;
-  border: 1px solid;
-  border-radius: 0.50rem;
-  border-color: #e5e7eb;
-  color: black;
-}
-
-.add-movie-modal__search:focus {
-  border-color: #f97316;
-  box-shadow: 0 0 0 2px #f973161a;
-  outline: none;
 }
 
 .add-movie__modal-buttons {

@@ -7,6 +7,8 @@ import { toast } from "react-toastify";
 
 interface MainContentProps {
   selectedTab: MainContentTab,
+  currentMovieList: MovieList,
+  setCurrentMovieList: React.Dispatch<React.SetStateAction<MovieList>>,
 }
 
 async function getMovieList(listName: string) {
@@ -23,7 +25,6 @@ async function getMovieList(listName: string) {
   })
   .then(res => res.json())
   .then(movielist => {
-    //console.log(JSON.stringify(movielist, null, 2));
     retrievedList.listName = movielist.listName;
     retrievedList.movies = movielist.movies;
     return retrievedList;
@@ -33,15 +34,9 @@ async function getMovieList(listName: string) {
   return retrievedList;
 }
 
-function MainContent ({selectedTab}: MainContentProps) {
-  const placeholderList: MovieList = {
-    listName: "Watching",
-    movies: [],
-  }
-  
+function MainContent ({currentMovieList, setCurrentMovieList, selectedTab}: MainContentProps) {
   const [renderPhase, setRenderPhase] = useState<string>("loading");
-  const [selectedList, setSelectedList] = useState<string>(placeholderList.listName);
-  const [currentMovieList, setCurrentMovieList] = useState<MovieList>(placeholderList);
+  const [selectedList, setSelectedList] = useState<string>("Watching");
   const navigate = useNavigate();
 
   let content = {} as React.JSX.Element;

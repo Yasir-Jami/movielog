@@ -12,7 +12,6 @@ interface MovieGridProps {
   setMovieCount: React.Dispatch<SetStateAction<number>>,
   currentMovieFilters: MovieFilters,
   currentMovieSortMethod: MovieSortMethod,
-  setAddMovieModalVisibility: React.Dispatch<SetStateAction<AddMovieModalDisplay>>,
 }
 
 function filterMovies(
@@ -49,8 +48,7 @@ function MovieGrid({
   currentMovieList, 
   setMovieCount, 
   currentMovieFilters, 
-  currentMovieSortMethod,
-  setAddMovieModalVisibility}: MovieGridProps
+  currentMovieSortMethod}: MovieGridProps
 ) {
   let movieArray: MovieInfo[] = currentMovieList?.movies || [];
     
@@ -89,7 +87,7 @@ function MovieGrid({
       ))}
       <div 
       className="add-movie-card" 
-      onClick={() => {setAddMovieModalVisibility(AddMovieModalDisplay.Visible)}}>
+      onClick={() => {}}>
         <Plus className="add-movie-card-button" size={40} strokeWidth={1.75}></Plus>
         <p className="add-movie-card-text">Add New Movie</p>
         <p className="add-movie-card-subtext">Click to add a movie to this list</p>
@@ -105,7 +103,6 @@ function MovieGrid({
             No movies match your current filters.
           </h3>
         </span>
-        
       </div>
     }
   

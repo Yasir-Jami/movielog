@@ -8,7 +8,6 @@ interface ListSearchProps {
   setMovieFilters: React.Dispatch<SetStateAction<MovieFilters>>,
 }
 
-//TODO Reduce cpu usage
 function filterByKeyword(searchTerm: string, movieFilters: MovieFilters, setMovieFilters: React.Dispatch<SetStateAction<MovieFilters>>) {
   let isFilteredByKeyword = true;
   if (searchTerm.length == 0) {

@@ -1,12 +1,13 @@
 .header {
   position: sticky;
-  top: 0;
+  top: 2%;
   z-index: 100;
   min-width: 320px;
 }
 
 .header__container {
   display: flex;
+  gap: 1rem;
   border-radius: 1rem;
   margin-top: 1rem;
   margin-left: 1rem;
@@ -48,7 +49,6 @@
 .auth-header__container {
   display: flex;
   align-items: center;
-  max-width: 1280px;
   margin: 0 auto;
 }
 
@@ -64,5 +64,9 @@
 }
 
 .auth-header__title {
+  font-family: Inter-Regular;
+  font-size: 1.875rem;
+  font-weight: 700;
   cursor: pointer;
+  margin-left: 1rem;
 }
