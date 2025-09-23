@@ -10,10 +10,14 @@ interface SidebarProps {
 }
 
 function Sidebar({selectedTab, onSelectTab, sidebarOpen}: SidebarProps) {
-  const SideBarItem = (props: SidebarTabProps) => {
+  const SidebarItem = (props: SidebarTabProps) => {
     const {itemLabel, itemIcon}: SidebarTabProps = props;
     const isSelected = itemLabel === selectedTab;
-    const sidebarItemStyle = `${styles.sidebar__item} ${isSelected ? styles.selected : ""}`;
+    let sidebarItemStyle = `${styles.sidebar__item} ${isSelected ? styles.selected : ""}`;
+    sidebarItemStyle = `${sidebarItemStyle} ${sidebarOpen ? "" : styles.hidden}`;
+
+    console.log(sidebarItemStyle);
+    console.log(sidebarOpen);
     
     return (
       <div className={sidebarItemStyle} onClick={() => {onSelectTab(itemLabel)}}>
@@ -53,23 +57,21 @@ function Sidebar({selectedTab, onSelectTab, sidebarOpen}: SidebarProps) {
     return (
       <div className={styles.sidebar__list}>
         {[...Array(sidebarTabProps.length)].map((_, i) => (
-          <SideBarItem key={i} {...sidebarTabProps[i]}/>
+          <SidebarItem key={i} {...sidebarTabProps[i]}/>
         ))}
       </div>
     )
   }
 
   function sidebarStatus(): string {
-    const sidebarStyle = `${styles.sidebar} ${sidebarOpen ? styles.hidden : ""}`;
+    const sidebarStyle = `${styles.sidebar} ${sidebarOpen ? "" : styles.hidden}`;
     return sidebarStyle;
   }
 
   return (
     <div className={sidebarStatus()}>
-      <div className={styles.sidebar__container}>
         <SidebarTabs />  
         <User/>
-      </div>
     </div>
   );
 }

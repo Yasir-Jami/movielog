@@ -2,22 +2,17 @@
   display: flex;
   flex-direction: column;
   position: sticky;
-  top: 5rem;
-  overflow: hidden;
+  top: 6rem;
   min-width: 250px;
-  height: auto;
+  height: calc(100vh - 6rem);
   box-shadow: 0px 0px 10px -3px rgba(0, 0, 0, 1);
-  transition: all 0.5s ease-in;
+  transition: min-width 0.26s ease-in;
 }
 
 .hidden {
   min-width: 0px;
   max-width: 0px;
-  transition: all 0.5s ease-in;
-}
-
-.sidebar__container {
-  flex: 1;
+  transition: min-width 0.26s ease-out;
 }
 
 .sidebar__list {
@@ -63,7 +58,7 @@
 }
 
 .selected {
-  background-color: rgb(187, 247, 208);
+  background-color: rgb(185, 241, 248);
 }
 
 .selected:hover {

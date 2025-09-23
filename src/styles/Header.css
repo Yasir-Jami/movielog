@@ -1,8 +1,10 @@
 .header {
-  position: sticky;
+  position: fixed;
+  width: 100%;
   top: 0;
   z-index: 100;
   min-width: 320px;
+  height: 6rem;
   background-color: white;
   box-shadow: 0px 1px 1px rgb(0, 0, 0, 1);
   padding: 1rem 0;
@@ -10,11 +12,9 @@
 
 .header__container {
   display: flex;
-  gap: 1rem;
-  border-radius: 1rem;
-  margin-top: 1rem;
-  margin-left: 1rem;
   align-items: center;
+  gap: 0.7rem;
+  margin: 1rem 1rem;
 }
 
 .header__menu {
