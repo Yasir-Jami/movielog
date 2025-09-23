@@ -1,9 +1,8 @@
 import "/src/styles/MovieListContainer.css";
 import { useState } from "react";
-import { MovieList, AddMovieModalDisplay, MovieFilters, Genres, MovieSortMethod } from "types";
+import { MovieList, MovieFilters, Genres, MovieSortMethod } from "types";
 import MovieGrid from "@components/ui/MovieGrid";
 import ListSearch from "@components/ui/ListSearch";
-import AddMovie from "@components/ui/AddMovie";
 import MovieFilter from "./MovieFilter";
 
 interface MovieListContainerProps {

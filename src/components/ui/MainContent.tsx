@@ -1,4 +1,3 @@
-//import Sidebar from "@components/ui/Sidebar";
 import MovieListContainer from "@components/ui/MovieListContainer";
 import { useNavigate } from "react-router-dom";
 import { MainContentTab, MovieList } from "types";

@@ -17,26 +17,25 @@ export default function Home() {
   const [currentMovieList, setCurrentMovieList] = useState<MovieList>(placeholderMovieList);
 
  return (
-  <>
-  <Header 
-  currentMovieList={currentMovieList} 
-  updateCurrentList={setCurrentMovieList}
-  sidebarOpen={sidebarOpen} 
-  setSidebarOpen={setSidebarOpen}
-  />
-  <div className="home-page">
-    <Sidebar 
-    onSelectTab={setSelectedTab} 
-    selectedTab={selectedTab} 
-    setSidebarOpen={setSidebarOpen} 
-    sidebarOpen={sidebarOpen}
-    />
-    <MainContent 
-    selectedTab={selectedTab} 
+  <div className="main-content">
+    <Header 
     currentMovieList={currentMovieList} 
-    setCurrentMovieList={setCurrentMovieList}
+    updateCurrentList={setCurrentMovieList}
+    sidebarOpen={sidebarOpen} 
+    setSidebarOpen={setSidebarOpen}
     />
+    <div className="home-page">
+      <Sidebar 
+      selectedTab={selectedTab} 
+      onSelectTab={setSelectedTab} 
+      sidebarOpen={sidebarOpen}
+      />
+      <MainContent 
+      selectedTab={selectedTab} 
+      currentMovieList={currentMovieList} 
+      setCurrentMovieList={setCurrentMovieList}
+      />
+    </div>
   </div>
-  </>
   )
 }

@@ -1,4 +1,4 @@
-import "@styles/AddMovieSearch.css";
+import "@styles/AddMovie.css";
 import { MovieMetadata } from "types";
 import ImageNotFound from "assets/svgs/image-not-found.svg";
 import { useState, useEffect } from "react";
@@ -61,15 +61,15 @@ function AddMovieSearch({onMovieSelect}: AddMovieSearchProps) {
   }, [debouncedInput]);
 
   return (
-    <div>
+    <div className="add-movie__search">
       <input 
-        className="add-movie__searchbox" 
+        className="add-movie__input" 
         name="movie-title" 
         placeholder="Search for a movie..." 
         value={movieInput}
         onChange={e => setMovieInput(e.target.value)}/>
 
-      <div className="add-movie__search">
+      <div className="add-movie__results-container">
         {results.map((result, index) => (
           <div 
           className="add-movie__search-result" 

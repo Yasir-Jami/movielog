@@ -1,32 +1,22 @@
 import styles from "@styles/Sidebar.module.css";
 import User from "@components/ui/User";
 import { MainContentTab, SidebarTabProps } from "types";
-import { useState } from "react";
 import { House, List, Settings, NotepadText } from "lucide-react";
 
 interface SidebarProps {
   selectedTab: MainContentTab,
   onSelectTab: React.Dispatch<React.SetStateAction<MainContentTab>>;
   sidebarOpen: boolean,
-  setSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>,
 }
 
-function Sidebar({onSelectTab, selectedTab}: SidebarProps) {
-  const [sidebarActive, setSidebarActive] = useState<boolean>(true);
-  const [sidebarButton, setSidebarButton] = useState<boolean>(false);
-
+function Sidebar({selectedTab, onSelectTab, sidebarOpen}: SidebarProps) {
   const SideBarItem = (props: SidebarTabProps) => {
     const {itemLabel, itemIcon}: SidebarTabProps = props;
-    const sidebarStyle = 
-    itemLabel == selectedTab 
-    ? styles["sidebar__item.hidden"]
-    : styles.sidebar__item;
-
-    console.log("Selected tab:", selectedTab);
-    console.log("Sidebar style:", sidebarStyle);
+    const isSelected = itemLabel === selectedTab;
+    const sidebarItemStyle = `${styles.sidebar__item} ${isSelected ? styles.selected : ""}`;
     
     return (
-      <div className={sidebarStyle} onClick={() => {onSelectTab(itemLabel)}}>
+      <div className={sidebarItemStyle} onClick={() => {onSelectTab(itemLabel)}}>
         {itemIcon}
         <p className={styles["sidebar__label"]}>{itemLabel}</p>
       </div>
@@ -69,19 +59,9 @@ function Sidebar({onSelectTab, selectedTab}: SidebarProps) {
     )
   }
 
-  function toggleSidebar() {
-    setSidebarActive(prev => !prev);
-    setSidebarButton(prev => !prev);
-  }
-
   function sidebarStatus(): string {
-    const style = sidebarActive ?  styles.sidebar : styles["sidebar--hidden"];
-    return style;
-  }
-
-  function sidebarButtonStatus(): string {
-    const style = sidebarButton ? styles.sidebar__chevron : styles["sidebar__chevron--closed"];
-    return style;
+    const sidebarStyle = `${styles.sidebar} ${sidebarOpen ? styles.hidden : ""}`;
+    return sidebarStyle;
   }
 
   return (

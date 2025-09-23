@@ -17,6 +17,8 @@
 
 html, body {
   z-index: 0;
+  height: 100%;
+  margin: 0;
   background-attachment: fixed;
 }
 
@@ -72,7 +74,11 @@ h1 {
 
 .home-page {
   display: flex;
-  
+}
+
+.main-content {
+  display: grid;
+  height: 100vh;
 }
 
 @keyframes mainContentFadeIn {
