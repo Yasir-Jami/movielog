@@ -6,13 +6,14 @@
   min-width: 250px;
   height: calc(100vh - 6rem);
   box-shadow: 0px 0px 10px -3px rgba(0, 0, 0, 1);
-  transition: min-width 0.26s ease-in;
+  transition: all 0.26s ease-in;
 }
 
 .hidden {
   min-width: 0px;
   max-width: 0px;
-  transition: min-width 0.26s ease-out;
+  width: 0px;
+  transition: all 0.26s ease-out;
 }
 
 .sidebar__list {
@@ -62,7 +63,7 @@
 }
 
 .selected:hover {
-  background-color: rgb(192, 255, 214);
+  background-color: rgb(133, 232, 245);
 } 
 
 .sidebar__item-label {

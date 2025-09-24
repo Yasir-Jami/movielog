@@ -1,12 +1,29 @@
 import "@styles/MovieCard.css";
 import { useState } from "react";
 import { MovieCardProps } from "types";
-import { Calendar, Drama, EllipsisVertical, Heart, Trash2 } from "lucide-react";
+import { Calendar, EllipsisVertical, Heart, Trash2 } from "lucide-react";
 import ImageNotFound from "assets/svgs/image-not-found.svg";
 
 function MovieCard({movie, handleFavoriteMovie, handleDeleteMovie}: MovieCardProps) {
   const [isFavorite, setIsFavorite] = useState(false);
   const [actionsButtonClicked, setActionsButtonClicked] = useState(false);
+  
+  // Display genres as bubbles
+  const MovieGenresDisplay = () => {
+    let genresMap;
+    if (movie.movieMeta.Genre) {
+      const genres: Array<string> = movie.movieMeta.Genre.split(",");
+      genresMap = genres.map((genre) => (
+        <span className="movie-card__genre">{genre}</span>
+      ));
+    }
+
+    return (
+      <span className="movie-card__genres">
+        {genresMap}
+      </span>
+    )
+  }
   
   const toggleFavorite = () => {
     setIsFavorite(prevIsFavorite => !prevIsFavorite);
@@ -61,10 +78,7 @@ function MovieCard({movie, handleFavoriteMovie, handleDeleteMovie}: MovieCardPro
             <Calendar className="movie-card__calendar"/>
             <p className="movie-card__year-text">{movie.movieMeta.Year}</p>
           </span>
-          <span className="movie-card__genre">
-            <Drama className="movie-card__mask"/>
-            <p className="movie-card__genre-text">{movie.movieMeta.Genre}</p> 
-          </span>
+          <MovieGenresDisplay/>
         </div>
     </div>
   )
