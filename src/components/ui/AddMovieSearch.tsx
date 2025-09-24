@@ -39,42 +39,34 @@ function AddMovieSearch({onMovieSelect}: AddMovieSearchProps) {
   const [movieInput, setMovieInput] = useState<string>('');
   const [debouncedInput, setDebouncedInput] = useState<string>('');
   const [results, setResults] = useState<MovieMetadata[]>([]);
+  const [resultsLoading, setResultsLoading] = useState<boolean>(true);
+  
+  let resultsContent: React.JSX.Element = <></>;
 
-  useEffect(() => {
-    const handler = setTimeout(() => setDebouncedInput(movieInput), 400);
-    return () => clearTimeout(handler);
-  }, [movieInput]);
+  if (resultsLoading && (debouncedInput.length > 0)) {
+    resultsContent = (
+      <div className="add-movie__search-loading">
+        <span className="add-movie__search-loading-spinner"/>
+      </div>
+    )
+  }
 
-  useEffect(() => {
-    if (debouncedInput.trim() === '') {
-      setResults([]);
-      return;
-    }
+  else if ((debouncedInput.length > 0) && (results.length == 0)) {
+    resultsContent = (
+      <div className="add-movie__search-no-results">
+        <p className="add-movie__search-no-results-text">No results found.</p>
+      </div>
+    )
+  }
 
-    async function fetchAndSetMovies() {
-      const movies = await SearchForMovie({ searchTerm: debouncedInput });
-      logger.log("Movies:", movies);
-      setResults(movies);
-    }
-
-    fetchAndSetMovies();
-  }, [debouncedInput]);
-
-  return (
-    <div className="add-movie__search">
-      <input 
-        className="add-movie__input" 
-        name="movie-title" 
-        placeholder="Search for a movie..." 
-        value={movieInput}
-        onChange={e => setMovieInput(e.target.value)}/>
-
+  else {
+    resultsContent = (
       <div className="add-movie__results-container">
         {results.map((result, index) => (
           <div 
           className="add-movie__search-result" 
           key={result.imdbID || `${result.Title}--${index}`} 
-          onClick={() => {onMovieSelect(result)}}>
+          onClick={() => {onMovieSelect(result); setMovieInput(""); setDebouncedInput("")}}>
             <img 
             className="search-result-poster" 
             src={result.Poster} 
@@ -96,6 +88,45 @@ function AddMovieSearch({onMovieSelect}: AddMovieSearchProps) {
           </div>
         ))}
       </div>
+    );
+  }
+
+  // Debounced input handler
+  useEffect(() => {
+    const searchInputHandler = setTimeout(() => {
+      setDebouncedInput(movieInput), 400;
+      setResultsLoading(true);}
+    );
+    return () => clearTimeout(searchInputHandler);
+  }, [movieInput]);
+
+  // Show results from API based on user input
+  useEffect(() => {
+    if (debouncedInput.trim() === '') {
+      setResults([]);
+      setResultsLoading(false);
+      return;
+    }
+
+    async function fetchAndSetMovies() {
+      const movies = await SearchForMovie({ searchTerm: debouncedInput });
+      setResults(movies);
+      setResultsLoading(false);
+    }
+
+    fetchAndSetMovies();
+  }, [debouncedInput]);
+
+  return (
+    <div className="add-movie__search">
+      <input 
+        className="add-movie__input" 
+        name="movie-title" 
+        placeholder="Search for a movie..." 
+        value={movieInput}
+        onChange={e => setMovieInput(e.target.value)}
+      />
+      {resultsContent}
     </div>
   )
 }

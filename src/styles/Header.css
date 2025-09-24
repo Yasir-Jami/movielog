@@ -12,14 +12,14 @@
 
 .header__container {
   display: flex;
-  align-items: center;
+  height: 100%;
   gap: 0.7rem;
   margin: 1rem 1rem;
 }
 
 .header__menu {
   position: relative;
-  top: 0.12rem;
+  top: 0.60rem;
   cursor: pointer;
 }
 
