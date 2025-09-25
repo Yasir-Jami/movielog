@@ -75,7 +75,6 @@ function MovieCard({movie, handleFavoriteMovie, handleDeleteMovie}: MovieCardPro
         <p className="movie-card__title">{movie.movieMeta.Title}</p>
         <div className="movie-card__metadata">
           <span className="movie-card__year">
-            <Calendar className="movie-card__calendar"/>
             <p className="movie-card__year-text">{movie.movieMeta.Year}</p>
           </span>
           <MovieGenresDisplay/>

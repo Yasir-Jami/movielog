@@ -1,0 +1,31 @@
+.movie-list-selector {
+  display: grid;
+  margin: 2rem auto;
+  width: 80%;
+  position: relative;
+  top: 6rem;
+  gap: 1.5rem;
+  height: 100%;
+}
+
+.movie-list-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: 5rem;
+  height: 20%;
+}
+
+.movie-list-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+}
+
+.movie-list-name {
+  
+
+}
+
+.movie-list-movie-count {
+
+}

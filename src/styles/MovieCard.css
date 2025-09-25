@@ -124,18 +124,19 @@
 .movie-card__metadata {
   display: flex;
   flex-direction: column;
-  margin-top: 0.75rem;
-  margin-left: 0.25rem;
+  margin-top: 0.65rem;
+  margin-left: 0.75rem;
   align-self: start;
   color: rgb(58, 58, 58);
-  gap: 0.25rem;
-  max-width: 90%;
+  gap: 0.5rem;
+  max-width: 95%;
 }
 
 .movie-card__year {
   display: flex;
   font-family: "Inter-Regular";
   font-size: 0.85rem;
+  margin-bottom: 0.50rem;
 }
 
 .movie-card__calendar {
@@ -148,14 +149,13 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.50rem;
-  margin-left: 0.50rem;
 }
 
 .movie-card__genre {
   background-color: #EBEBEB;
   padding: 0.2rem 0.55rem;
   border-radius: 0.25rem;
-  font-family: Inter-Regular;
+  
   color: #0A0A0A;
   font-size: 0.75rem;
 }

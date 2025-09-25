@@ -1,7 +1,7 @@
 import "@styles/MovieListContainer.css"
 import "@styles/MovieCard.css"
 import MovieCard from "@components/ui/MovieCard";
-import { MovieList, MovieInfo, MovieFilters, MovieSortMethod, AddMovieModalDisplay } from "types";
+import { MovieList, MovieInfo, MovieFilters, MovieSortMethod } from "types";
 import { SetStateAction, useEffect } from "react";
 import { checkIfFiltered } from "@components/utils/MovieFilterUtils";
 import { Plus, Search } from "lucide-react";
@@ -85,13 +85,6 @@ function MovieGrid({
           handleDeleteMovie={handleDeleteMovie}
           />
       ))}
-      <div 
-      className="add-movie-card" 
-      onClick={() => {}}>
-        <Plus className="add-movie-card-button" size={40} strokeWidth={1.75}></Plus>
-        <p className="add-movie-card-text">Add New Movie</p>
-        <p className="add-movie-card-subtext">Click to add a movie to this list</p>
-      </div>
     </div>
 
     if (movieCount == 0 && checkIfFiltered(currentMovieFilters)) {

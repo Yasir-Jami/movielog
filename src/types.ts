@@ -15,22 +15,26 @@ export interface MovieInfo {
   movieMeta: MovieMetadata,
 }
 
+export interface MovieCardProps {
+  movie: MovieInfo,
+  handleDeleteMovie: (id: string) => void,
+  handleFavoriteMovie: (id: string) => void,
+}
+
 export interface MovieList {
   listId?: number,
   listName: string,
   movies: MovieInfo[],
+  
+  // For movielist card 
+  itemIcon?: string,
+  listDescription?: string,
 }
 
 export interface MovieGridProps {
   movieListName: string,
   movieCount: number,
   movieArray: Array<MovieInfo>,
-}
-
-export interface MovieCardProps {
-  movie: MovieInfo,
-  handleDeleteMovie: (id: string) => void,
-  handleFavoriteMovie: (id: string) => void,
 }
 
 export interface SidebarTabProps {
@@ -40,15 +44,6 @@ export interface SidebarTabProps {
   itemCount?: number,
 }
 
-export interface ListCardProps {
-  listId: number,
-  listName: string,
-  itemIcon?: string,
-  movieCount?: number,
-  listDescription?: string,
-}
-
-
 export interface ErrorInfo {
   message: string,
   status?: number,
@@ -57,6 +52,15 @@ export interface ErrorInfo {
 export interface ApiError extends ErrorInfo {
   message: string,
   status?: number,
+}
+
+export interface MovieFilters {
+  SearchFilter: string,
+  GenreFilter: Genres,
+  FavoriteFilter: boolean,
+  FilteredByKeyword: boolean,
+  FilteredByGenre: boolean,
+  isFiltered: boolean, // applying a filter increments this variable by 1
 }
 
 export type GenreEntry = {
@@ -83,27 +87,7 @@ export interface Genres {
   Western: GenreEntry,
 }
 
-export interface MovieFilters {
-  SearchFilter: string,
-  GenreFilter: Genres,
-  FavoriteFilter: boolean,
-  FilteredByKeyword: boolean,
-  FilteredByGenre: boolean,
-  isFiltered: boolean, // applying a filter increments this variable by 1
-}
-
-export enum MovieSortMethod {
-  Default = 0,
-  Alphanumerically = 1,
-  Rating = 2
-}
-
 /* Enums */
-export enum AddMovieModalDisplay {
-    Invisible="add-movie__modal",
-    Visible="add-movie__modal--active"
-};
-
 
 export enum MainContentTab {
   Home = "Home",
@@ -111,4 +95,10 @@ export enum MainContentTab {
   Reviews = "Reviews",
   Settings = "Settings",
   Login = "Login",
+}
+
+export enum MovieSortMethod {
+  Default = 0,
+  Alphanumerically = 1,
+  Rating = 2
 }

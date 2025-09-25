@@ -1,4 +1,5 @@
 import MovieListContainer from "@components/ui/MovieListContainer";
+import MovieListSelector from "@components/ui/MovieListSelector";
 import { useNavigate } from "react-router-dom";
 import { MainContentTab, MovieList } from "types";
 import { useEffect, useState } from "react";
@@ -52,7 +53,7 @@ function MainContent ({currentMovieList, setCurrentMovieList, selectedTab}: Main
         break;
       case MainContentTab.Lists:
         console.log("Lists tab");
-        content = <></>;
+        content = <MovieListSelector/>;
         break;
       case MainContentTab.Reviews:
         console.log("Reviews tab");
