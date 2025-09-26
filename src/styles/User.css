@@ -54,7 +54,9 @@
 
 .user-auth__logged-in {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  margin-left: 1rem;
+  gap: 1rem;
   align-items: center;
 }
 
@@ -63,7 +65,7 @@
 }
 
 .user-auth__icon {
-  margin-right: 0.6rem;
+  margin-right: 0.5rem;
 }
 
 .user-auth__email {

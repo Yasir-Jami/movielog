@@ -7,7 +7,6 @@ import MovieFilter from "./MovieFilter";
 
 interface MovieListContainerProps {
   currentMovieList: MovieList,
-  addNewMovieToList: React.Dispatch<React.SetStateAction<MovieList>>,
 }
 
 const genres: Genres = {
@@ -29,7 +28,7 @@ const genres: Genres = {
   Western: { name: "Western", filterApplied: false },
 }
 
-function MovieListContainer({currentMovieList, addNewMovieToList}: MovieListContainerProps) {
+function MovieListContainer({currentMovieList}: MovieListContainerProps) {
   const [movieFilters, setMovieFilters] = useState<MovieFilters>({
     SearchFilter: "",
     GenreFilter: genres,
