@@ -4,7 +4,7 @@ import MovieCard from "@components/ui/MovieCard";
 import { MovieList, MovieInfo, MovieFilters, MovieSortMethod } from "types";
 import { SetStateAction, useEffect } from "react";
 import { checkIfFiltered } from "@components/utils/MovieFilterUtils";
-import { Plus, Search } from "lucide-react";
+import { Search } from "lucide-react";
 
 interface MovieGridProps {
   currentMovieList: MovieList,
@@ -59,10 +59,8 @@ function MovieGrid({
     movieArray = sortMovies(movieArray, currentMovieSortMethod);
   }
 
-  const movieCount = movieArray?.length || 0;
-  useEffect(() => {
-    setMovieCount(movieCount);
-  }, [movieCount]);
+  const movieCount = movieArray?.length;
+  setMovieCount(movieCount);
 
   function handleDeleteMovie(id: string) {
     console.log(`Movie with id ${id} deleted`);

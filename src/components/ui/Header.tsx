@@ -18,7 +18,9 @@ function Header({currentMovieList, updateCurrentList, sidebarOpen, setSidebarOpe
   return (
     <div className="header">
       <div className="header__container">
-        <Menu className="header__menu" onClick={handleSidebarState}/>
+        <span className="header__menu-wrapper">
+          <Menu className="header__menu" onClick={handleSidebarState}/>
+        </span>
         <h1 className="header__title">movielog</h1>
         <AddMovie currentMovieList={currentMovieList} updateCurrentList={updateCurrentList}/>
       </div>

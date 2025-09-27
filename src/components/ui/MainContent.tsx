@@ -49,7 +49,7 @@ function MainContent ({currentMovieList, setCurrentMovieList, selectedTab}: Main
     switch(selectedTab) {
       case MainContentTab.Home:
         console.log("Home tab");
-        content = <MovieListContainer currentMovieList={currentMovieList} addNewMovieToList={setCurrentMovieList}/>;
+        content = <MovieListContainer currentMovieList={currentMovieList}/>;
         break;
       case MainContentTab.Lists:
         console.log("Lists tab");
@@ -68,8 +68,8 @@ function MainContent ({currentMovieList, setCurrentMovieList, selectedTab}: Main
         navigate("/login");
         break;
       default:
-        console.log("");
-        content = <MovieListContainer currentMovieList={currentMovieList} addNewMovieToList={setCurrentMovieList}/>;
+        console.log("Default tab");
+        content = <MovieListContainer currentMovieList={currentMovieList}/>;
     }
   }
 
