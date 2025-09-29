@@ -1,31 +1,28 @@
-import "/src/styles/Header.css"
-import User from "./User.tsx"
-import { Film } from "lucide-react"
-import { useNavigate } from "react-router-dom"
+import "/src/styles/Header.css";
+import { Menu } from "lucide-react";
+import { MovieList } from "types";
+import AddMovie from "./AddMovie";
 
-function Header(){
-  const navigate = useNavigate();
+interface HeaderProps {
+  sidebarOpen: boolean,
+  setSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>,
+  currentMovieList: MovieList,
+  updateCurrentList: React.Dispatch<React.SetStateAction<MovieList>>,
+}
+
+function Header({currentMovieList, updateCurrentList, setSidebarOpen}: HeaderProps){
+  const handleSidebarState = () => {
+    setSidebarOpen(prev => !prev);
+  }
 
   return (
     <div className="header">
       <div className="header__container">
-        <div className="header__content">
-          <div className="header__brand">
-            <div className="header__logo-container" onClick={() => navigate('/')}>
-              <Film className="header__logo" />
-            </div>
-            <div>
-              <h1 className="header__title" onClick={() => navigate('/')}>movielog</h1>
-              <p className="header__subtitle">Your personal movie backlog</p>
-            </div>
-          </div>
-
-          <div className="header__actions">
-            {/* Auth Buttons */}
-              <User/>
-          </div>
-        </div>
-
+        <span className="header__menu-wrapper">
+          <Menu className="header__menu" onClick={handleSidebarState}/>
+        </span>
+        <h1 className="header__title">movielog</h1>
+        <AddMovie currentMovieList={currentMovieList} updateCurrentList={updateCurrentList}/>
       </div>
     </div>
   )

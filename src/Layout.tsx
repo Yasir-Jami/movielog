@@ -8,9 +8,7 @@ import Register from './components/pages/Register.tsx';
 const Layout = () => {
   return (
     <>
-    <main className="main-content">
       <Outlet />
-    </main>
     </>
   );
 };

@@ -1,17 +1,42 @@
-export interface MovieInfo {
+export interface MovieMetadata {
   Title: string,
   Poster: string,
   Year?: string,
   Plot?: string,
   Genre?: string,
-  ImdbRating?: string,
+  imdbRating?: string,
   imdbID?: string,
+}
+
+export interface MovieInfo {
+  imdbID?: string,
+  isFavorite: boolean,
+  rating: number,
+  movieMeta: MovieMetadata,
+}
+
+export interface MovieCardProps {
+  movie: MovieInfo,
+  handleDeleteMovie: (id: string) => void,
+  handleFavoriteMovie: (id: string) => void,
 }
 
 export interface MovieList {
   listId?: number,
   listName: string,
   movies: MovieInfo[],
+  itemIcon?: string,
+  listDescription?: string,
+}
+
+export interface MovieListCardProps {
+  movieList?: MovieList,
+  listId?: number,
+  listName: string,
+  numberOfMovies: number,
+  listTags?: string[],
+  listDescription?: string,
+  setSelectedTab?: React.Dispatch<React.SetStateAction<MainContentTab>>,
 }
 
 export interface MovieGridProps {
@@ -20,19 +45,10 @@ export interface MovieGridProps {
   movieArray: Array<MovieInfo>,
 }
 
-export interface MovieQuery {
-  Title?: string,
-  ImdbId?: string,
-}
-
-export interface SidebarProps {
-  selectedList: number,
-}
-
-export interface SidebarItemProps {
+export interface SidebarTabProps {
   itemId: number,
-  itemLabel: string,
-  itemIcon?: string,
+  itemLabel: MainContentTab,
+  itemIcon?: React.JSX.Element,
   itemCount?: number,
 }
 
@@ -44,6 +60,15 @@ export interface ErrorInfo {
 export interface ApiError extends ErrorInfo {
   message: string,
   status?: number,
+}
+
+export interface MovieFilters {
+  SearchFilter: string,
+  GenreFilter: Genres,
+  FavoriteFilter: boolean,
+  FilteredByKeyword: boolean,
+  FilteredByGenre: boolean,
+  isFiltered: boolean, // applying a filter increments this variable by 1
 }
 
 export type GenreEntry = {
@@ -70,13 +95,14 @@ export interface Genres {
   Western: GenreEntry,
 }
 
-export interface MovieFilters {
-  SearchFilter: string,
-  GenreFilter: Genres,
-  FavoriteFilter: boolean,
-  FilteredByKeyword: boolean,
-  FilteredByGenre: boolean,
-  isFiltered: boolean, // applying a filter increments this variable by 1
+/* Enums */
+
+export enum MainContentTab {
+  Home = "Home",
+  Lists = "Lists",
+  Reviews = "Reviews",
+  Settings = "Settings",
+  Login = "Login",
 }
 
 export enum MovieSortMethod {
@@ -84,9 +110,3 @@ export enum MovieSortMethod {
   Alphanumerically = 1,
   Rating = 2
 }
-
-/* Enums */
-export enum AddMovieModalDisplay {
-    Invisible="add-movie__modal",
-    Visible="add-movie__modal--active"
-};

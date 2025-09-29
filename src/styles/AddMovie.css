@@ -1,116 +1,121 @@
-/* Add Movie Button */
-
-.add-movie__button {
-  display: flex;
-  width: 12%;
-  min-width: 140px;
-  top: 8%;
-  left: 76%;
-  padding-top: 0.50rem;
-  padding-bottom: 0.50rem;
-  padding-left: 0.75rem;
-  gap: 0.50rem;
-  background-color: #f97316;
-  color: white;
-  border-radius: 0.35rem;
-  cursor: pointer;
-  transition: all 0.16s;
+.add-movie {
+  position: relative;
+  margin: 0 15%;
+  min-width: 50vw;
 }
 
-.add-movie__button:hover {
-  background-color: #ea580c;
+.add-movie__search {
+  width: 50vw;
 }
 
-/* Add Movie Modal */
-.add-movie__modal {
-  display: none;
-}
-
-.add-movie__modal--active {
-  position: fixed;
-  z-index: 101;
-  left: 0;
-  top: 0;
-  width: 100%; 
-  height: 100%; 
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4);
-}
-
-.add-movie__modal-container {
-  width: 100%;
-  max-width: 30rem;
-  margin: 15% auto;
-  padding: 2rem;
-  background-color: #fefefe;
-  border: 1px solid #888;
-  border-radius: 1rem;
-}
-
-.add-movie__modal-header {
-  margin-bottom: 0.50rem;
-  color: black;
-}
-
-.add-movie-modal__search {
+.add-movie__input {
   height: 2.5rem;
   width: 100%;
-  min-width: 200px;
-  padding-left: 0.75rem;
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
+  padding-left: 0.75rem;
   background-color: white;
-  border: 1px solid;
+  border: 1px solid #e5e7eb;
   border-radius: 0.50rem;
-  border-color: #e5e7eb;
   color: black;
 }
 
-.add-movie-modal__search:focus {
+.add-movie__input:focus {
   border-color: #f97316;
   box-shadow: 0 0 0 2px #f973161a;
   outline: none;
 }
 
-.add-movie__modal-buttons {
+.add-movie__search-loading {
+  position: relative;
+  height: 60rem;
+  background-color: rgb(245, 245, 245, 0.9);
+  border: 1px solid black
+}
+
+.add-movie__search-loading-spinner {
+  position: absolute;
+  top: 30%;
+  left: 45%;
+  width: 100px;
+  height: 100px;
+  border: 8px solid orange;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  animation: loader-rotation 1s linear infinite;
+}
+
+@keyframes loader-rotation {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
+}
+
+.add-movie__search-no-results {
+  background-color: white;
+  border: 1px solid black;
+  border-top: none;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-movie__search-no-results-text {
+  color: black;
+  line-height: normal;
+  font-family: "Inter-Regular";
+}
+
+.add-movie__results-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 50vw;
+  z-index: 200;
+}
+
+.add-movie__search-result {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  gap: 1rem;
+  color: black;
+  background-color: white;
+  font-family: "Inter-Regular";
+  border: 1px solid;
+  cursor: pointer;
+}
+
+.add-movie__search-result:hover {
+  background-color: rgb(243, 243, 243);
+}
+
+.search-result-metadata {
   display: flex;
   align-items: center;
-  justify-content: end;
-  margin-top: 1rem;
+}
+
+.search-result-poster {
+  width: 12%;
+}
+
+.search-result-genre {
+  text-overflow: ellipsis;
+}
+
+.search-result-year {
+  min-width: 4rem;
   margin-right: 1rem;
-  gap: 1.50rem;
+  position: absolute;
+  right: 0%;
 }
 
-.add-movie__modal-add-button {
-  padding: 0.35rem;
-  height: 2.25rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  border: none;
-  border-radius: 0.35rem;
-  color: white;
-  background-color: #f97316;
-  cursor: pointer;
-  transition: all 0.16s;
-}
-
-.add-movie__modal-close-button {
-  padding: 0.35rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  height: 2.25rem;
-  border: 1px solid #e5e7eb;
-  border-radius: 0.35rem;
-  background-color: white;
-  color: #1f2937;
-  cursor: pointer;
-  transition: all 0.16s;
-}
-
-.add-movie__modal-close-button:hover, .add-movie__modal-close:focus {
-  background-color: rgb(243, 242, 242);
-}
-
-.add-movie__modal-add-button:hover, .add-movie__modal-add:focus {
-  background-color: #ea580c;
+@media (max-width: 480px) {
+  .search-result-year {
+    margin-left: 1rem;
+  }
 }

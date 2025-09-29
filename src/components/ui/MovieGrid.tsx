@@ -1,10 +1,10 @@
 import "@styles/MovieListContainer.css"
 import "@styles/MovieCard.css"
 import MovieCard from "@components/ui/MovieCard";
-import { MovieList, MovieInfo, MovieFilters, MovieSortMethod, AddMovieModalDisplay } from "types";
-import { SetStateAction, useEffect } from "react";
+import { MovieList, MovieInfo, MovieFilters, MovieSortMethod } from "types";
+import { SetStateAction } from "react";
 import { checkIfFiltered } from "@components/utils/MovieFilterUtils";
-import { Plus } from "lucide-react";
+import { Search } from "lucide-react";
 
 interface MovieGridProps {
   currentMovieList: MovieList,
@@ -12,7 +12,6 @@ interface MovieGridProps {
   setMovieCount: React.Dispatch<SetStateAction<number>>,
   currentMovieFilters: MovieFilters,
   currentMovieSortMethod: MovieSortMethod,
-  setAddMovieModalVisibility: React.Dispatch<SetStateAction<AddMovieModalDisplay>>,
 }
 
 function filterMovies(
@@ -20,7 +19,7 @@ function filterMovies(
   filters: MovieFilters, 
   ): MovieInfo[] {
     //logger.log("Current search filter:", filters.SearchFilter);
-    let filteredMovies = movieArray.filter((movie) => movie.Title.toLowerCase().includes(filters.SearchFilter.toLowerCase()));
+    let filteredMovies = movieArray.filter((movie) => movie.movieMeta.Title.toLowerCase().includes(filters.SearchFilter.toLowerCase()));
     /*
     if (filters.FilteredByGenre) {
       filteredMovies = applyGenreFilters(movieArray, filters);
@@ -49,10 +48,9 @@ function MovieGrid({
   currentMovieList, 
   setMovieCount, 
   currentMovieFilters, 
-  currentMovieSortMethod,
-  setAddMovieModalVisibility}: MovieGridProps
+  currentMovieSortMethod}: MovieGridProps
 ) {
-  let movieArray = currentMovieList?.movies || [];
+  let movieArray: MovieInfo[] = currentMovieList?.movies || [];
     
   if (movieArray.length != 0 && checkIfFiltered(currentMovieFilters)) {
     movieArray = filterMovies(movieArray, currentMovieFilters);
@@ -61,26 +59,48 @@ function MovieGrid({
     movieArray = sortMovies(movieArray, currentMovieSortMethod);
   }
 
-  const movieCount = movieArray?.length || 0;
-  useEffect(() => {
-    setMovieCount(movieCount);
-  }, [movieCount])
-  
-  return (
-    <div 
+  const movieCount = movieArray?.length;
+  setMovieCount(movieCount);
+
+  function handleDeleteMovie(id: string) {
+    console.log(`Movie with id ${id} deleted`);
+    // Call API
+  }
+
+  function handleFavoriteMovie(id: string) {
+    console.log(`Movie with id ${id} favorited`);
+    // Call API
+  }
+
+  let movieGridContent: React.JSX.Element = <div 
     className="movie-grid"
     onChange={() => {setMovieCount(movieCount)}}>
-      {[...Array(movieCount)].map((_, i) => (
-          <MovieCard key={i} {...movieArray[i]}/>
+      {movieArray.map((movie, i) => (
+          <MovieCard 
+          key={i} 
+          movie={movie}
+          handleFavoriteMovie={handleFavoriteMovie}
+          handleDeleteMovie={handleDeleteMovie}
+          />
       ))}
-      <div 
-      className="add-movie-card" 
-      onClick={() => {setAddMovieModalVisibility(AddMovieModalDisplay.Visible)}}>
-        <Plus className="add-movie-card-button" size={40} strokeWidth={1.75}></Plus>
-        <p className="add-movie-card-text">Add New Movie</p>
-        <p className="add-movie-card-subtext">Click to add a movie to this list</p>
-      </div>
     </div>
+
+    if (movieCount == 0 && checkIfFiltered(currentMovieFilters)) {
+      movieGridContent = 
+      <div className="no-movies">
+        <span className="no-movies-wrapper">
+          <Search className="no-movies-icon" size={64}></Search>
+          <h3 className="no-movies-text">
+            No movies match your current filters.
+          </h3>
+        </span>
+      </div>
+    }
+  
+  return (
+    <>
+    {movieGridContent}
+    </>
   )
 }
 

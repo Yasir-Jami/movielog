@@ -1,13 +1,21 @@
-import "@styles/Loading.css";
-import Sidebar from "@components/ui/Sidebar";
 import MovieListContainer from "@components/ui/MovieListContainer";
-import { MovieList } from "types";
+import MovieListSelector from "@components/ui/MovieListSelector";
+import Placeholder from "@components/ui/Placeholder";
+import { useNavigate } from "react-router-dom";
+import { MainContentTab, MovieList } from "types";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
+interface MainContentProps {
+  selectedTab: MainContentTab,
+  currentMovieList: MovieList,
+  setCurrentMovieList: React.Dispatch<React.SetStateAction<MovieList>>,
+  setSelectedTab: React.Dispatch<React.SetStateAction<MainContentTab>>,
+}
+
 async function getMovieList(listName: string) {
   const url = `${import.meta.env.VITE_API_BASE_URL}${import.meta.env.VITE_API_MOVIE_LISTS}${import.meta.env.VITE_API_RETRIEVE_LIST}`;
-  let list = {} as MovieList;
+  let retrievedList = {} as MovieList;
   
   await fetch(url, {
     method: 'POST',
@@ -18,44 +26,57 @@ async function getMovieList(listName: string) {
     body: JSON.stringify({ listName })
   })
   .then(res => res.json())
-  .then(data => {
-    list.listName = data.listWithMovies.listName || "Watching";
-    list.movies = data.listWithMovies.movies || [];
-    return list;
+  .then(movielist => {
+    retrievedList.listName = movielist.listName;
+    retrievedList.movies = movielist.movies;
+    return retrievedList;
   })
-  .catch(err => logger.error("Error:", err));
-
-  return list;
+  .catch(err => console.error("Error:", err));
+  
+  return retrievedList;
 }
 
-function MainContent () {
-  const placeholderList: MovieList = {
-    listName: "Watching",
-    movies: [],
-  }
-  
+function MainContent ({currentMovieList, setCurrentMovieList, selectedTab, setSelectedTab}: MainContentProps) {
   const [renderPhase, setRenderPhase] = useState<string>("loading");
-  const [selectedList, setSelectedList] = useState<string>(placeholderList.listName);
-  const [currentMovieList, setCurrentMovieList] = useState<MovieList>(placeholderList);
+  const [selectedList, setSelectedList] = useState<string>("Watching");
+  const navigate = useNavigate();
 
   let content = {} as React.JSX.Element;
 
   if (renderPhase == "loading") {
-     content = 
-     <>
-      <div className="loading-spinner">
-        Loading...
-      </div>
-     </>
+     content = (<span className="loader"/>)
   }
 
-  else (
-    content =
-     <>
-        <Sidebar onSelectList={setSelectedList} selectedListName={currentMovieList.listName}/>
-        <MovieListContainer currentMovieList={currentMovieList} addNewMovieToList={setCurrentMovieList}/>
-     </>
-  )
+  else {
+    switch(selectedTab) {
+      case MainContentTab.Home:
+        logger.log("Home tab");
+        content = <MovieListContainer currentMovieList={currentMovieList}/>;
+        break;
+      case MainContentTab.Lists:
+        logger.log("Lists tab");
+        content = <MovieListSelector 
+        currentMovieList={currentMovieList} 
+        setSelectedTab={setSelectedTab} 
+        setSelectedList={setSelectedList}/>;
+        break;
+      case MainContentTab.Reviews:
+        logger.log("Reviews tab");
+        content = <Placeholder/>;
+        break;
+      case MainContentTab.Settings:
+        logger.log("Settings tab");
+        content = <Placeholder/>;
+        break;
+      case MainContentTab.Login:
+        logger.log("Switching to login page");
+        navigate("/login");
+        break;
+      default:
+        logger.log("Default tab");
+        content = <MovieListContainer currentMovieList={currentMovieList}/>;
+    }
+  }
 
   async function getListData() {
       const tempList = {

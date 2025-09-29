@@ -1,29 +1,83 @@
 import "@styles/MovieCard.css";
-import { MovieInfo } from "types";
-import { Calendar, Drama } from "lucide-react";
+import { useState } from "react";
+import { MovieCardProps } from "types";
+import { EllipsisVertical, Heart, Trash2 } from "lucide-react";
 import ImageNotFound from "assets/svgs/image-not-found.svg";
 
-function MovieCard(props: MovieInfo) {
-  const { Title, Poster, Year, Genre } = props;
+function MovieCard({movie, handleFavoriteMovie, handleDeleteMovie}: MovieCardProps) {
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [actionsButtonClicked, setActionsButtonClicked] = useState(false);
+  
+  // Display genres as bubbles
+  const MovieGenres = () => {
+    let genresMap;
+    if (movie.movieMeta.Genre) {
+      const genres: Array<string> = movie.movieMeta.Genre.split(",");
+      genresMap = genres.map((genre, i) => (
+        <span className="movie-card__genre" key={i}>{genre}</span>
+      ));
+    }
+
+    return (
+      <div className="movie-card__genres">
+        {genresMap}
+      </div>
+    )
+  }
+  
+  const toggleFavorite = () => {
+    setIsFavorite(prevIsFavorite => !prevIsFavorite);
+    if (movie.movieMeta.imdbID) 
+      handleFavoriteMovie(movie.movieMeta.imdbID);
+  }
+
+  const deleteMovie = () => {
+    if (movie.movieMeta.imdbID) 
+      handleDeleteMovie(movie.movieMeta.imdbID);
+  }
+
+  const handleActionsButtonClicked = () => {
+    setActionsButtonClicked(prev => !prev);
+  }
 
   return(
     <div className="movie-card">
-      <div className="movie-card__image-overlay"></div>
+        {/* Movie Poster and Icons */}
+        <span className="movie-card-actions-button" onClick={handleActionsButtonClicked}>
+            <EllipsisVertical className="movie-card-actions-icon"/>
+        </span>
+        <div className="movie-card-actions">
+          <div className={`movie-card-actions-items ${actionsButtonClicked ? "active" : ""}`}>
+            <span 
+            className={`movie-card-favorite-wrapper ${isFavorite ? "active" : ""}`}
+            onClick={toggleFavorite}>
+            <Heart 
+            className={`movie-card-favorite-icon ${isFavorite ? "active" : ""}`} 
+            fill="none" 
+            size={24}
+            />
+            </span>
+            Favorite Movie
+            <span 
+            className="movie-card-delete-wrapper"
+            onClick={deleteMovie}>
+              <Trash2 className="movie-card-delete-icon"></Trash2>
+            </span>
+          </div>
+        </div>
         <img 
         className="movie-card__image" 
-        alt={Title} 
-        src={Poster} 
+        alt={movie.movieMeta.Title} 
+        src={movie.movieMeta.Poster} 
         onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = ImageNotFound}}></img>
-        <p className="movie-card__title">{Title}</p>
+        
+        {/* Movie Metadata */}
         <div className="movie-card__metadata">
+          <p className="movie-card__title">{movie.movieMeta.Title}</p>
           <span className="movie-card__year">
-            <Calendar className="movie-card__calendar"/>
-            <p className="movie-card__year-text">{Year}</p>
+            <p className="movie-card__year-text">{movie.movieMeta.Year}</p>
           </span>
-          <span className="movie-card__genre">
-            <Drama className="movie-card__mask"/>
-            <p className="movie-card__genre-text">{Genre}</p> 
-          </span>
+          <MovieGenres/>
         </div>
     </div>
   )

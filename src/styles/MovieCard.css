@@ -1,56 +1,141 @@
 .movie-card {
   display: flex;
+  position: relative;
   flex-direction: column;
   align-items: center;
   background-color: white;
-  width: 11rem;
+  height: 28rem;
+  width: 14rem;
   border-radius: 1rem;
-  margin-bottom: 1rem;
+  border: 1px solid gray;
   transition: transform 0.2s;
 }
 
 .movie-card:hover {
-  transform: scale(1.03);
+  transform: scale(1.01);
 }
 
-.movie-card__image-overlay {
+.movie-card-actions-button {
+  display: none;
+  position: absolute;
+  top: 0.50rem;
+  right: 0.50rem;
+  z-index: 1;
+  background-color: white;
+  border: 0.04rem grey solid;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.08s;
+}
+
+.movie-card-actions {
+  display: none;
+  position: absolute;
+  flex-direction: column;
+  background-color: green;
+}
+
+.movie-card-actions-button:hover {
+  background-color: rgb(241, 241, 241);
+}
+
+.movie-card-actions-items {
+  display: none;
+}
+
+.movie-card-actions-items.active {
   
+  display: flex;
+}
+
+.movie-card-favorite-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-self: start;
+  background-color: #ffffffe6;
+  border-radius: 0.375rem;
+  margin: 14.5rem 0.50rem;
+  cursor: pointer;
+}
+
+.movie-card-favorite-wrapper:hover {
+  background-color: white;
+}
+
+.movie-card-favorite-wrapper.active {
+  background-color: red;
+}
+
+.movie-card-favorite-wrapper.active:hover {
+  background-color: rgb(230, 3, 3);
+}
+
+.movie-card-favorite-icon {
+  
+}
+
+.movie-card-favorite-icon.active {
+  fill: white;
+  stroke-width: 0;
+}
+
+.movie-card-delete-wrapper {
+  display: flex;
+  align-self: end;
+  background-color: #ffffffe6;
+  margin: 14.5rem 0.50rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+}
+
+.movie-card-delete-wrapper:hover {
+  background-color: white;
+}
+
+.movie-card-delete-icon {
+  
+}
+
+.movie-card-delete-icon:hover {
+  fill: red;
 }
 
 .movie-card__image {
   width: 100%;
-  height: 68%;
+  height: 65%;
   border-top-left-radius: inherit;
   border-top-right-radius: inherit;
-  object-fit: cover;
-}
-
-.movie-card__title {
-  font-family: Inter-Bold;
-  font-size: 1rem;
-  color: black;
-  align-self: start;
-  margin-left: 0.75rem;
-  margin-top: 0.50rem;
+  object-fit: fill;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none;    /* Firefox */
+  -ms-user-select: none;     /* IE 10+ */
+  user-select: none;         /* Standard */
 }
 
 .movie-card__metadata {
   display: flex;
   flex-direction: column;
-  margin-top: 0.75rem;
-  margin-left: 0.25rem;
+  margin-top: 0.65rem;
+  margin-left: 0.75rem;
   align-self: start;
-  color: grey;
-  gap: 0.25rem;
-  max-width: 90%;
+  color: rgb(58, 58, 58);
+  gap: 0.5rem;
+  max-width: 95%;
+}
+
+.movie-card__title {
+  font-family: Inter-Bold;
+  font-size: 0.95rem;
+  color: black;
+  align-self: start;
+  margin: 0;
 }
 
 .movie-card__year {
   display: flex;
-  font-family: Inter-Regular;
-  margin-right: 0.25rem;
-  margin-left: -0.15rem;
+  font-family: "Inter-Regular";
   font-size: 0.85rem;
+  margin-bottom: 0.50rem;
 }
 
 .movie-card__calendar {
@@ -59,10 +144,19 @@
   margin-right: 0.25rem;
 }
 
-.movie-card__genre {
+.movie-card__genres {
   display: flex;
-  font-family: Inter-Regular;
-  font-size: 0.85rem; 
+  flex-wrap: wrap;
+  gap: 0.50rem;
+}
+
+.movie-card__genre {
+  background-color: #EBEBEB;
+  padding: 0.2rem 0.55rem;
+  border-radius: 0.25rem;
+  
+  color: #0A0A0A;
+  font-size: 0.75rem;
 }
 
 .movie-card__mask {
@@ -100,8 +194,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 20rem;
-  width: 11rem;
+  height: 28rem;
+  width: 14rem;
   margin-bottom: 1rem;
   border-radius: 1rem;
   border: solid 1px;
@@ -112,7 +206,7 @@
 }
 
 .add-movie-card:hover {
-  transform: scale(1.03);
+  
 }
 
 .add-movie-card-button {

@@ -1,14 +1,12 @@
 import "/src/styles/MovieListContainer.css";
 import { useState } from "react";
-import { MovieList, MovieGridProps, AddMovieModalDisplay, MovieFilters, Genres, MovieSortMethod } from "types";
+import { MovieList, MovieFilters, Genres, MovieSortMethod } from "types";
 import MovieGrid from "@components/ui/MovieGrid";
-import MovieSearch from "@components/ui/MovieSearch";
-import AddMovie from "@components/ui/AddMovie";
+import ListSearch from "@components/ui/ListSearch";
 import MovieFilter from "./MovieFilter";
 
 interface MovieListContainerProps {
   currentMovieList: MovieList,
-  addNewMovieToList: React.Dispatch<React.SetStateAction<MovieList>>,
 }
 
 const genres: Genres = {
@@ -30,7 +28,7 @@ const genres: Genres = {
   Western: { name: "Western", filterApplied: false },
 }
 
-function MovieListContainer({currentMovieList, addNewMovieToList}: MovieListContainerProps) {
+function MovieListContainer({currentMovieList}: MovieListContainerProps) {
   const [movieFilters, setMovieFilters] = useState<MovieFilters>({
     SearchFilter: "",
     GenreFilter: genres,
@@ -40,39 +38,25 @@ function MovieListContainer({currentMovieList, addNewMovieToList}: MovieListCont
   } as MovieFilters);
   const [movieSortMethod, setMovieSortMethod] = useState<MovieSortMethod>(MovieSortMethod.Default);
   const [currentMovieCount, setMovieCount] = useState<number>(0);
-  const [addMoviemodalVisibility, setAddMovieModalVisibility] = useState<AddMovieModalDisplay>(AddMovieModalDisplay.Invisible);
-  const movieList: MovieList = currentMovieList;
-  
-  const movieListProps: MovieGridProps = {
-    movieListName: movieList?.listName || "Watching",
-    movieArray: movieList?.movies || [],
-    movieCount: currentMovieCount,
-  }
 
   return (
-    <div className="list-container">
-      <div className="list-container__metadata">
-        <h2 className="list-container__list-name">{movieListProps.movieListName}</h2>
-        <p className="list-container__movie-count">{movieListProps.movieCount} movies</p>
+      <div className="list-container">
+        <div className="list-container__metadata">
+          <h2 className="list-container__list-name">{currentMovieList.listName}</h2>
+          <p className="list-container__movie-count">{currentMovieCount} movies</p>
+        </div>
+        
+        <MovieGrid 
+        currentMovieList={currentMovieList} 
+        currentMovieCount={currentMovieCount}
+        setMovieCount={setMovieCount}
+        currentMovieFilters={movieFilters}
+        currentMovieSortMethod={movieSortMethod}
+        />
+        <div className="movie-actions">
+          <ListSearch movieFilters={movieFilters} setMovieFilters={setMovieFilters}/>
+          <MovieFilter movieFilters={movieFilters} setMovieFilters={setMovieFilters} setMovieSortMethod={setMovieSortMethod}/>
       </div>
-    <div className="movie-actions">
-      <MovieSearch movieFilters={movieFilters} setMovieFilters={setMovieFilters}/>
-      <MovieFilter movieFilters={movieFilters} setMovieFilters={setMovieFilters} setMovieSortMethod={setMovieSortMethod}/>
-      <AddMovie 
-      modalVisibility={addMoviemodalVisibility} 
-      setModalVisibility={setAddMovieModalVisibility} 
-      currentMovieList={currentMovieList}
-      addNewMovieToList={addNewMovieToList}
-      />
-    </div>
-      <MovieGrid 
-      currentMovieList={currentMovieList} 
-      currentMovieCount={currentMovieCount}
-      setMovieCount={setMovieCount}
-      currentMovieFilters={movieFilters}
-      currentMovieSortMethod={movieSortMethod}
-      setAddMovieModalVisibility={setAddMovieModalVisibility}
-      />;
     </div>
   )
 }

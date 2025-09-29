@@ -1,7 +1,10 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   font-weight: 400;
-
+  --font-weight-base: 400;
+  --font-stretch-base: 100%;
+  --font-style-base: normal;
+  --font-optical-sizing-base: auto;
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
@@ -13,8 +16,9 @@
 }
 
 html, body {
-  background: linear-gradient(to bottom right, #fff8e1, #ffecb3, #fff8e1);
   z-index: 0;
+  height: 100%;
+  margin: 0;
   background-attachment: fixed;
 }
 
@@ -63,38 +67,173 @@ h1 {
   color: #1F2937;
 }
 
-.loading {
-  display: flex;
-  width: 80%;
-  height: 150%;
-  left: 11%;
-  top: 12%;
-}
-
 .main {
+  flex-grow: 1;
+  
+}
+
+.home-page {
   display: flex;
 }
 
-/* --- Fonts --- */
-
-/* Open Sans */
-@font-face {
-  font-family: OpenSans-Regular;
-  src: url(/fonts/OpenSans/OpenSans-Regular.ttf);
+.main-content {
+  display: grid;
+  height: 100vh;
 }
 
+@keyframes mainContentFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(80px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+.loader {
+  position: fixed;
+  top: 40%;
+  right: 50%;
+  width: 100px;
+  height: 100px;
+  border: 7px solid orange;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  animation: loader-rotation 1s linear infinite;
+}
+
+@keyframes loader-rotation {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
+}
+
+.placeholder {
+  position: relative;
+  right: 3rem;
+  font-family: "Inter-Regular";
+  font-size: 2rem;
+  display: flex;
+  justify-content: center; /* Horizontally centers content */
+  align-items: center;    /* Vertically centers content */
+  height: 100vh;
+}
+
+/* 
+--- Fonts --- 
+NOTE: Fonts with suffixes such as Lato-Regular should be used as is.
+*/
+
+/* Arimo */
 @font-face {
-  font-family: OpenSans-Bold;
-  src: url(/fonts/OpenSans/OpenSans-Bold.ttf);
+  font-family: "Arimo";
+  src: url(/fonts/Arimo-VariableFont_wght.ttf) format('truetype-variations');
+  font-weight: 100 900;
+  font-style: normal;
+  font-stretch: 100%;
+  font-display: swap;
+  font-optical-sizing: auto;
+}
+
+/* DMSans */
+@font-face {
+  font-family: "DMSans";
+  src: url(/fonts/DMSans-VariableFont_opsz,wght) format('truetype-variations');
+  font-weight: 100 900;
+  font-style: normal;
+  font-stretch: 100%;
+  font-display: swap;
+  font-optical-sizing: auto;
 }
 
 /* Inter */
 @font-face {
-  font-family: Inter-Regular;
-  src: url(/fonts/Inter/Inter_18pt-Regular.ttf);
+  font-family: "Inter";
+  src: url(/fonts/Inter-VariableFont_opsz,wght.ttf) format('truetype-variations');
+  font-weight: 100 900;
+  font-style: normal;
+  font-stretch: 100%;
+  font-display: swap;
+  font-optical-sizing: auto;
 }
 
 @font-face {
-  font-family: Inter-Bold;
-  src: url(/fonts/Inter/Inter_18pt-Bold.ttf);
+  font-family: "Inter-Regular";
+  src: url(/fonts/Inter-VariableFont_opsz,wght.ttf) format('truetype-variations');
+  font-weight: 550;
+  font-style: normal;
+  font-stretch: 100%;
+  font-display: swap;
+  font-optical-sizing: auto;
+}
+
+@font-face {
+  font-family: "Inter-Bold";
+  src: url(/fonts/Inter-VariableFont_opsz,wght.ttf) format('truetype-variations');
+  font-weight: 700;
+  font-style: normal;
+  font-stretch: 100%;
+  font-display: swap;
+  font-optical-sizing: auto;
+}
+
+/* Lato */
+@font-face {
+  font-family: "Lato-Regular";
+  src: url(/fonts/Lato-Regular.ttf) format('truetype-variations');
+}
+
+/* NotoSansJP */
+@font-face {
+  font-family: "NotoSansJP";
+  src: url(/fonts/NotoSansJP-VariableFont_wght.ttf) format('truetype-variations');
+  font-weight: 100 900;
+  font-style: normal;
+  font-stretch: 100%;
+  font-display: swap;
+  font-optical-sizing: auto;
+}
+
+/* NunitoSans */
+@font-face {
+  font-family: "NunitoSans";
+  src: url(/fonts/NunitoSans-VariableFont_YTLC,opsz,wdth,wght.ttf) format('truetype-variations');
+  font-weight: 100 900;
+  font-style: normal;
+  font-stretch: 100%;
+  font-display: swap;
+  font-optical-sizing: auto;
+}
+
+/* Open Sans */
+@font-face {
+  font-family: "OpenSans";
+  src: url(/fonts/OpenSans-VariableFont_wdth,wght.ttf) format('truetype-variations');
+  font-weight: 100 900;
+  font-style: normal;
+  font-stretch: 100%;
+  font-display: swap;
+  font-optical-sizing: auto;
+}
+
+/* Oswald */
+@font-face {
+  font-family: "Oswald";
+  src: url(/fonts/Oswald-VariableFont_wght.ttf) format('truetype-variations');
+  font-weight: 100 900;
+  font-style: normal;
+  font-stretch: 100%;
+  font-display: swap;
+  font-optical-sizing: auto;
+}
+
+/* Poppins */
+@font-face {
+  font-family: "Poppins-Regular";
+  src: url(/fonts/Poppins-Regular.ttf) format('truetype-variations');
 }
