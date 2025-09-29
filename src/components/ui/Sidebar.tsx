@@ -15,9 +15,6 @@ function Sidebar({selectedTab, onSelectTab, sidebarOpen}: SidebarProps) {
     const isSelected = itemLabel === selectedTab;
     let sidebarItemStyle = `${styles.sidebar__item} ${isSelected ? styles.selected : ""}`;
     //sidebarItemStyle = `${sidebarItemStyle} ${sidebarOpen ? "" : styles.hidden}`;
-
-    console.log(sidebarItemStyle);
-    console.log(sidebarOpen);
     
     return (
       <div className={sidebarItemStyle} onClick={() => {onSelectTab(itemLabel)}}>

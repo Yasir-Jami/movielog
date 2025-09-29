@@ -48,27 +48,27 @@ function MainContent ({currentMovieList, setCurrentMovieList, selectedTab}: Main
   else {
     switch(selectedTab) {
       case MainContentTab.Home:
-        console.log("Home tab");
+        logger.log("Home tab");
         content = <MovieListContainer currentMovieList={currentMovieList}/>;
         break;
       case MainContentTab.Lists:
-        console.log("Lists tab");
+        logger.log("Lists tab");
         content = <MovieListSelector/>;
         break;
       case MainContentTab.Reviews:
-        console.log("Reviews tab");
+        logger.log("Reviews tab");
         content = <></>;
         break;
       case MainContentTab.Settings:
-        console.log("Settings tab");
+        logger.log("Settings tab");
         content = <></>;
         break;
       case MainContentTab.Login:
-        console.log("Switching to login page");
+        logger.log("Switching to login page");
         navigate("/login");
         break;
       default:
-        console.log("Default tab");
+        logger.log("Default tab");
         content = <MovieListContainer currentMovieList={currentMovieList}/>;
     }
   }

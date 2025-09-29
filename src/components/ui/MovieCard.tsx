@@ -1,7 +1,7 @@
 import "@styles/MovieCard.css";
 import { useState } from "react";
 import { MovieCardProps } from "types";
-import { Calendar, EllipsisVertical, Heart, Trash2 } from "lucide-react";
+import { EllipsisVertical, Heart, Trash2 } from "lucide-react";
 import ImageNotFound from "assets/svgs/image-not-found.svg";
 
 function MovieCard({movie, handleFavoriteMovie, handleDeleteMovie}: MovieCardProps) {
@@ -9,19 +9,19 @@ function MovieCard({movie, handleFavoriteMovie, handleDeleteMovie}: MovieCardPro
   const [actionsButtonClicked, setActionsButtonClicked] = useState(false);
   
   // Display genres as bubbles
-  const MovieGenresDisplay = () => {
+  const MovieGenres = () => {
     let genresMap;
     if (movie.movieMeta.Genre) {
       const genres: Array<string> = movie.movieMeta.Genre.split(",");
-      genresMap = genres.map((genre) => (
-        <span className="movie-card__genre">{genre}</span>
+      genresMap = genres.map((genre, i) => (
+        <span className="movie-card__genre" key={i}>{genre}</span>
       ));
     }
 
     return (
-      <span className="movie-card__genres">
+      <div className="movie-card__genres">
         {genresMap}
-      </span>
+      </div>
     )
   }
   
@@ -72,12 +72,12 @@ function MovieCard({movie, handleFavoriteMovie, handleDeleteMovie}: MovieCardPro
         onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = ImageNotFound}}></img>
         
         {/* Movie Metadata */}
-        <p className="movie-card__title">{movie.movieMeta.Title}</p>
         <div className="movie-card__metadata">
+          <p className="movie-card__title">{movie.movieMeta.Title}</p>
           <span className="movie-card__year">
             <p className="movie-card__year-text">{movie.movieMeta.Year}</p>
           </span>
-          <MovieGenresDisplay/>
+          <MovieGenres/>
         </div>
     </div>
   )

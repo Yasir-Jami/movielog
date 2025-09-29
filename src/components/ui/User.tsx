@@ -29,12 +29,9 @@ function User() {
     content = (
       <>
         <button className="user-auth__login-button" onClick={() => navigate('/login')}>
-          <LogIn className="user-auth__login-icon" size={16} />
           Login
         </button>
-
         <button className="user-auth__register-button" onClick={() => navigate('/register')}>
-          <UserPlus className="user-auth__register-icon" size={16} />
           Register
         </button>
       </>

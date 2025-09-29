@@ -1,5 +1,5 @@
 import "/src/styles/MovieListContainer.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MovieList, MovieFilters, Genres, MovieSortMethod } from "types";
 import MovieGrid from "@components/ui/MovieGrid";
 import ListSearch from "@components/ui/ListSearch";

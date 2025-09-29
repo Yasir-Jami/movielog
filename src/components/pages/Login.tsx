@@ -67,7 +67,7 @@ function Login() {
       <AuthHeader />
       <div className="login-container">
         <form className="login-form" onSubmit={handleSubmit(onSubmit, /*onError*/)} action={loginUrl} method="POST">
-          <h1 className="login-form-header">Log in to your account</h1>
+          <h1 className="login-form-header">Login to your account</h1>
           
           {/*Email field*/}
           <div className="email-field">
@@ -87,7 +87,7 @@ function Login() {
             {...register("password", {required: true})}></input>
           </div>
           
-          <button type="submit" className="login-button">Log In</button>
+          <button type="submit" className="login-button">Login</button>
         </form>
         
         <div className="login-messages">

@@ -2,7 +2,7 @@ import "@styles/MovieListContainer.css"
 import "@styles/MovieCard.css"
 import MovieCard from "@components/ui/MovieCard";
 import { MovieList, MovieInfo, MovieFilters, MovieSortMethod } from "types";
-import { SetStateAction, useEffect } from "react";
+import { SetStateAction } from "react";
 import { checkIfFiltered } from "@components/utils/MovieFilterUtils";
 import { Search } from "lucide-react";
 

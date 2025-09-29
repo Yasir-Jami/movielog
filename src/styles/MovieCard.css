@@ -8,7 +8,6 @@
   width: 14rem;
   border-radius: 1rem;
   border: 1px solid gray;
-  
   transition: transform 0.2s;
 }
 
@@ -112,15 +111,6 @@
   user-select: none;         /* Standard */
 }
 
-.movie-card__title {
-  font-family: Inter-Bold;
-  font-size: 0.95rem;
-  color: black;
-  align-self: start;
-  margin-left: 0.75rem;
-  margin-top: 0.50rem;
-}
-
 .movie-card__metadata {
   display: flex;
   flex-direction: column;
@@ -130,6 +120,14 @@
   color: rgb(58, 58, 58);
   gap: 0.5rem;
   max-width: 95%;
+}
+
+.movie-card__title {
+  font-family: Inter-Bold;
+  font-size: 0.95rem;
+  color: black;
+  align-self: start;
+  margin: 0;
 }
 
 .movie-card__year {
