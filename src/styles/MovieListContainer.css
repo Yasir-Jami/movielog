@@ -30,7 +30,6 @@
   background-color: white;
   padding: 0.8rem;
   border-radius: 1rem;
-  z-index: 105;
   bottom: 0.4rem;
   border: solid 1px;
   transition: height 0.3s;
@@ -40,6 +39,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
   gap: 1rem;
+  min-height: 65vh;
 }
 
 .no-movies {
