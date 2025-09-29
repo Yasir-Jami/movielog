@@ -10,7 +10,7 @@ interface HeaderProps {
   updateCurrentList: React.Dispatch<React.SetStateAction<MovieList>>,
 }
 
-function Header({currentMovieList, updateCurrentList, sidebarOpen, setSidebarOpen}: HeaderProps){
+function Header({currentMovieList, updateCurrentList, setSidebarOpen}: HeaderProps){
   const handleSidebarState = () => {
     setSidebarOpen(prev => !prev);
   }

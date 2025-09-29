@@ -34,6 +34,7 @@ export default function Home() {
       selectedTab={selectedTab} 
       currentMovieList={currentMovieList} 
       setCurrentMovieList={setCurrentMovieList}
+      setSelectedTab={setSelectedTab}
       />
     </div>
   </div>

@@ -25,10 +25,18 @@ export interface MovieList {
   listId?: number,
   listName: string,
   movies: MovieInfo[],
-  
-  // For movielist card 
   itemIcon?: string,
   listDescription?: string,
+}
+
+export interface MovieListCardProps {
+  movieList?: MovieList,
+  listId?: number,
+  listName: string,
+  numberOfMovies: number,
+  listTags?: string[],
+  listDescription?: string,
+  setSelectedTab?: React.Dispatch<React.SetStateAction<MainContentTab>>,
 }
 
 export interface MovieGridProps {

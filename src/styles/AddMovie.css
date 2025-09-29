@@ -71,17 +71,16 @@
 }
 
 .add-movie__results-container {
-  display: grid;
-  place-items: center;
-  grid-template-columns: repeat(auto-fill, minmax(5rem, 1fr));
+  display: flex;
   flex-direction: column;
-  position: fixed;
+  justify-content: space-between;
   width: 50vw;
   z-index: 200;
 }
 
 .add-movie__search-result {
   display: flex;
+  flex-grow: 1;
   align-items: center;
   gap: 1rem;
   color: black;
@@ -97,16 +96,11 @@
 
 .search-result-metadata {
   display: flex;
-  align-items: end;
-  justify-content: space-between;
+  align-items: center;
 }
 
 .search-result-poster {
   width: 12%;
-}
-
-.search-result-title {
-  max-width: 60%;
 }
 
 .search-result-genre {
@@ -116,6 +110,8 @@
 .search-result-year {
   min-width: 4rem;
   margin-right: 1rem;
+  position: absolute;
+  right: 0%;
 }
 
 @media (max-width: 480px) {

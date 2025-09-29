@@ -113,6 +113,17 @@ h1 {
   }
 }
 
+.placeholder {
+  position: relative;
+  right: 3rem;
+  font-family: "Inter-Regular";
+  font-size: 2rem;
+  display: flex;
+  justify-content: center; /* Horizontally centers content */
+  align-items: center;    /* Vertically centers content */
+  height: 100vh;
+}
+
 /* 
 --- Fonts --- 
 NOTE: Fonts with suffixes such as Lato-Regular should be used as is.

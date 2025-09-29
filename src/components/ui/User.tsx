@@ -1,7 +1,7 @@
 import "/src/styles/User.css"
 import { useNavigate } from "react-router-dom";
 import { UseAuth } from "@components/contexts/AuthContext";
-import { LogIn, LogOut, UserPlus, User as UserIcon } from "lucide-react";
+import { LogOut, User as UserIcon } from "lucide-react";
 
 function User() {
   const {user, isAuthenticated, logout} = UseAuth();

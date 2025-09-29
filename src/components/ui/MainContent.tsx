@@ -1,5 +1,6 @@
 import MovieListContainer from "@components/ui/MovieListContainer";
 import MovieListSelector from "@components/ui/MovieListSelector";
+import Placeholder from "@components/ui/Placeholder";
 import { useNavigate } from "react-router-dom";
 import { MainContentTab, MovieList } from "types";
 import { useEffect, useState } from "react";
@@ -9,6 +10,7 @@ interface MainContentProps {
   selectedTab: MainContentTab,
   currentMovieList: MovieList,
   setCurrentMovieList: React.Dispatch<React.SetStateAction<MovieList>>,
+  setSelectedTab: React.Dispatch<React.SetStateAction<MainContentTab>>,
 }
 
 async function getMovieList(listName: string) {
@@ -34,7 +36,7 @@ async function getMovieList(listName: string) {
   return retrievedList;
 }
 
-function MainContent ({currentMovieList, setCurrentMovieList, selectedTab}: MainContentProps) {
+function MainContent ({currentMovieList, setCurrentMovieList, selectedTab, setSelectedTab}: MainContentProps) {
   const [renderPhase, setRenderPhase] = useState<string>("loading");
   const [selectedList, setSelectedList] = useState<string>("Watching");
   const navigate = useNavigate();
@@ -53,15 +55,18 @@ function MainContent ({currentMovieList, setCurrentMovieList, selectedTab}: Main
         break;
       case MainContentTab.Lists:
         logger.log("Lists tab");
-        content = <MovieListSelector/>;
+        content = <MovieListSelector 
+        currentMovieList={currentMovieList} 
+        setSelectedTab={setSelectedTab} 
+        setSelectedList={setSelectedList}/>;
         break;
       case MainContentTab.Reviews:
         logger.log("Reviews tab");
-        content = <></>;
+        content = <Placeholder/>;
         break;
       case MainContentTab.Settings:
         logger.log("Settings tab");
-        content = <></>;
+        content = <Placeholder/>;
         break;
       case MainContentTab.Login:
         logger.log("Switching to login page");

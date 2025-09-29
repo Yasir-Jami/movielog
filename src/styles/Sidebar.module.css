@@ -36,10 +36,10 @@
   position: relative;
   align-items: center;
   justify-content: start;
-  border-style: none;
   background: white;
   height: 4rem;
   width: 15rem;
+  border: transparent;
   transition: all 0.26s ease-in;
   cursor: pointer;
 }
