@@ -4,6 +4,7 @@ import MovieCard from "@components/ui/MovieCard";
 import { MovieList, MovieInfo, MovieFilters, MovieSortMethod } from "types";
 import { SetStateAction, useEffect } from "react";
 import { checkIfFiltered, clearAllFilters } from "@components/utils/MovieFilterUtils";
+import { useMovieSearchRef } from "@components/contexts/MovieSearchContext";
 import { Search } from "lucide-react";
 
 interface MovieGridProps {
@@ -64,7 +65,13 @@ function MovieGrid({
   const movieCount = movieArray?.length ?? 0;
   useEffect(() => {
     setMovieCount(movieCount);
-  }, [currentMovieList])
+  }, [currentMovieList]);
+
+  const movieSearchRef = useMovieSearchRef();
+
+  const handleFocusMovieSearch = () => {
+    movieSearchRef?.current?.focus();
+  }
 
   function handleDeleteMovie(id: string) {
     console.log(`Movie with id ${id} deleted`);
@@ -113,12 +120,13 @@ function MovieGrid({
             <h3 className="no-movies-text">
               Start your list by adding a movie
             </h3>
-            <button className="no-movies-clear-filters-button">Search</button>
+            <button 
+            className="no-movies-clear-filters-button" 
+            onClick={handleFocusMovieSearch}>Search</button>
           </div>
         </div>
       )}
     }
-          
   
   return (
     <>

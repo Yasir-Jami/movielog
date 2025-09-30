@@ -44,8 +44,11 @@
 
 .no-movies {
   width: 100%;
-  margin: auto;
   min-height: 65vh;
+  display: flex;
+  align-items: start;
+  margin-top: 5rem;
+  justify-content: center;
 }
 
 .no-movies-wrapper {
