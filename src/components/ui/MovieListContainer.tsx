@@ -4,29 +4,13 @@ import { MovieList, MovieFilters, Genres, MovieSortMethod } from "types";
 import MovieGrid from "@components/ui/MovieGrid";
 import ListSearch from "@components/ui/ListSearch";
 import MovieFilter from "./MovieFilter";
+import { defaultGenreFilters } from "@components/utils/MovieFilterUtils";
 
 interface MovieListContainerProps {
   currentMovieList: MovieList,
 }
 
-const genres: Genres = {
-  Action: { name: "Action", filterApplied: false },
-  Adventure: { name: "Adventure", filterApplied: false },
-  Animation: { name: "Animation", filterApplied: false },
-  Comedy: { name: "Comedy", filterApplied: false },
-  Crime: { name: "Crime", filterApplied: false },
-  Documentary: { name: "Documentary", filterApplied: false },
-  Drama: { name: "Drama", filterApplied: false },
-  Family: { name: "Family", filterApplied: false },
-  Fantasy: { name: "Fantasy", filterApplied: false },
-  Horror: { name: "Horror", filterApplied: false },
-  Musical: { name: "Musical", filterApplied: false },
-  Mystery: { name: "Mystery", filterApplied: false },
-  Romance: { name: "Romance", filterApplied: false },
-  Sport: { name: "Sport", filterApplied: false },
-  Thriller: { name: "Thriller", filterApplied: false },
-  Western: { name: "Western", filterApplied: false },
-}
+const genres: Genres = defaultGenreFilters();
 
 function MovieListContainer({currentMovieList}: MovieListContainerProps) {
   const [movieFilters, setMovieFilters] = useState<MovieFilters>({
@@ -51,6 +35,7 @@ function MovieListContainer({currentMovieList}: MovieListContainerProps) {
         currentMovieCount={currentMovieCount}
         setMovieCount={setMovieCount}
         currentMovieFilters={movieFilters}
+        setMovieFilters={setMovieFilters}
         currentMovieSortMethod={movieSortMethod}
         />
         <div className="movie-actions">

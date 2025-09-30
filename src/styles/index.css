@@ -20,12 +20,17 @@ html, body {
   height: 100%;
   margin: 0;
   background-attachment: fixed;
+  background-color: #FFF;
 }
 
 a {
   font-weight: 500;
   color: #646cff;
   text-decoration: inherit;
+}
+
+p {
+  color: #000;
 }
 
 input {
@@ -36,6 +41,11 @@ h1 {
   font-size: 3.2em;
   line-height: 1.1;
   font-family: Inter-Regular;
+  color: #000;
+}
+
+h1, h2, h3, p, button {
+  color: #000;
 }
 
 @media (prefers-color-scheme: light) {
@@ -69,7 +79,7 @@ h1 {
 
 .main {
   flex-grow: 1;
-  
+  background-color: #FFF;
 }
 
 .home-page {
@@ -122,6 +132,7 @@ h1 {
   justify-content: center; /* Horizontally centers content */
   align-items: center;    /* Vertically centers content */
   height: 100vh;
+  color: #000;
 }
 
 /* 

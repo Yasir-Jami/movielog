@@ -2,6 +2,7 @@ import "@styles/AddMovie.css";
 import { MovieMetadata } from "types";
 import ImageNotFound from "assets/svgs/image-not-found.svg";
 import { useState, useEffect } from "react";
+import { useMovieSearchRef } from "@components/contexts/MovieSearchContext";
 
 interface AddMovieSearchProps {
   onMovieSelect: (movie: MovieMetadata) => void,
@@ -40,6 +41,7 @@ function AddMovieSearch({onMovieSelect}: AddMovieSearchProps) {
   const [debouncedInput, setDebouncedInput] = useState<string>('');
   const [results, setResults] = useState<MovieMetadata[]>([]);
   const [resultsLoading, setResultsLoading] = useState<boolean>(true);
+  const movieSearchRef = useMovieSearchRef();
   
   let resultsContent: React.JSX.Element = <></>;
 
@@ -125,6 +127,7 @@ function AddMovieSearch({onMovieSelect}: AddMovieSearchProps) {
         placeholder="Search for a movie..." 
         value={movieInput}
         onChange={e => setMovieInput(e.target.value)}
+        ref={movieSearchRef}
       />
       {resultsContent}
     </div>

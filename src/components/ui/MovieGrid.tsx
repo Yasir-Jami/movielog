@@ -2,8 +2,9 @@ import "@styles/MovieListContainer.css"
 import "@styles/MovieCard.css"
 import MovieCard from "@components/ui/MovieCard";
 import { MovieList, MovieInfo, MovieFilters, MovieSortMethod } from "types";
-import { SetStateAction } from "react";
-import { checkIfFiltered } from "@components/utils/MovieFilterUtils";
+import { SetStateAction, useEffect } from "react";
+import { checkIfFiltered, resetAllFilters } from "@components/utils/MovieFilterUtils";
+import { useMovieSearchRef } from "@components/contexts/MovieSearchContext";
 import { Search } from "lucide-react";
 
 interface MovieGridProps {
@@ -11,6 +12,7 @@ interface MovieGridProps {
   currentMovieCount: number,
   setMovieCount: React.Dispatch<SetStateAction<number>>,
   currentMovieFilters: MovieFilters,
+  setMovieFilters: React.Dispatch<SetStateAction<MovieFilters>>,
   currentMovieSortMethod: MovieSortMethod,
 }
 
@@ -48,6 +50,7 @@ function MovieGrid({
   currentMovieList, 
   setMovieCount, 
   currentMovieFilters, 
+  setMovieFilters,
   currentMovieSortMethod}: MovieGridProps
 ) {
   let movieArray: MovieInfo[] = currentMovieList?.movies || [];
@@ -59,8 +62,16 @@ function MovieGrid({
     movieArray = sortMovies(movieArray, currentMovieSortMethod);
   }
 
-  const movieCount = movieArray?.length;
-  setMovieCount(movieCount);
+  const movieCount = movieArray?.length ?? 0;
+  useEffect(() => {
+    setMovieCount(movieCount);
+  }, [currentMovieList]);
+
+  const movieSearchRef = useMovieSearchRef();
+
+  const handleFocusMovieSearch = () => {
+    movieSearchRef?.current?.focus();
+  }
 
   function handleDeleteMovie(id: string) {
     console.log(`Movie with id ${id} deleted`);
@@ -85,16 +96,36 @@ function MovieGrid({
       ))}
     </div>
 
-    if (movieCount == 0 && checkIfFiltered(currentMovieFilters)) {
-      movieGridContent = 
-      <div className="no-movies">
-        <span className="no-movies-wrapper">
-          <Search className="no-movies-icon" size={64}></Search>
-          <h3 className="no-movies-text">
-            No movies match your current filters.
-          </h3>
-        </span>
-      </div>
+    if (movieCount == 0) {
+      if (checkIfFiltered(currentMovieFilters)) {
+        movieGridContent = (
+        <div className="no-movies">
+          <div className="no-movies-wrapper">
+            <Search className="no-movies-icon" size={64}></Search>
+            <h3 className="no-movies-text">
+              No movies match your current filters.
+            </h3>
+            <button 
+            className="no-movies-search-button" 
+            onClick={() => {setMovieFilters(resetAllFilters(currentMovieFilters)); console.log(currentMovieFilters); }}>Clear Filters</button>
+          </div>
+        </div>
+        )
+      
+      }
+      else {
+        movieGridContent = (
+        <div className="no-movies">
+          <div className="no-movies-wrapper">
+            <h3 className="no-movies-text">
+              Start your list by adding a movie
+            </h3>
+            <button 
+            className="no-movies-clear-filters-button" 
+            onClick={handleFocusMovieSearch}>Search</button>
+          </div>
+        </div>
+      )}
     }
   
   return (

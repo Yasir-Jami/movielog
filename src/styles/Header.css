@@ -27,6 +27,7 @@
   width: 36px;
   border-radius: 50%;
   cursor: pointer;
+  color: #000;
   transition: background-color 0.2s;
 }
 
