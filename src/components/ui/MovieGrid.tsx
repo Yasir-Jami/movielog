@@ -3,8 +3,8 @@ import "@styles/MovieCard.css"
 import MovieCard from "@components/ui/MovieCard";
 import { MovieList, MovieInfo, MovieFilters, MovieSortMethod } from "types";
 import { SetStateAction, useEffect } from "react";
-import { checkIfFiltered, resetAllFilters } from "@components/utils/MovieFilterUtils";
-import { useMovieSearchRef } from "@components/contexts/MovieSearchContext";
+import { checkIfFiltered, clearAllFilters } from "@components/utils/MovieFilterUtils";
+import { useMovieInputRef } from "@components/contexts/MovieInputContext";
 import { Search } from "lucide-react";
 
 interface MovieGridProps {
@@ -67,10 +67,18 @@ function MovieGrid({
     setMovieCount(movieCount);
   }, [currentMovieList]);
 
-  const movieSearchRef = useMovieSearchRef();
+  const movieSearchRef = useMovieInputRef()?.movieSearchRef;
+  const listSearchRef = useMovieInputRef()?.listSearchRef;
 
   const handleFocusMovieSearch = () => {
     movieSearchRef?.current?.focus();
+  }
+
+  const handleClearFilters = () => {
+    if (listSearchRef.current) {
+      listSearchRef.current.value = "";
+    }
+    setMovieFilters(clearAllFilters(currentMovieFilters));
   }
 
   function handleDeleteMovie(id: string) {
@@ -107,7 +115,7 @@ function MovieGrid({
             </h3>
             <button 
             className="no-movies-search-button" 
-            onClick={() => {setMovieFilters(resetAllFilters(currentMovieFilters)); console.log(currentMovieFilters); }}>Clear Filters</button>
+            onClick={handleClearFilters}>Clear Filters</button>
           </div>
         </div>
         )
