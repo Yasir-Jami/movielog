@@ -1,4 +1,4 @@
-import { SetStateAction } from "react";
+import { ChangeEvent, SetStateAction } from "react";
 import "/src/styles/ListSearch.css"
 import { Search } from "lucide-react";
 import { MovieFilters } from "types";
@@ -15,11 +15,9 @@ function filterByKeyword(searchTerm: string, movieFilters: MovieFilters, setMovi
   }
   
   const filters = {
+    ...movieFilters,
     SearchFilter: searchTerm,
-    GenreFilter: movieFilters.GenreFilter,
-    FavoriteFilter: movieFilters.FavoriteFilter,
     FilteredByKeyword: isFilteredByKeyword,
-    FilteredByGenre: movieFilters.FilteredByGenre,
   } as MovieFilters;
   
   setMovieFilters(filters);
@@ -27,6 +25,10 @@ function filterByKeyword(searchTerm: string, movieFilters: MovieFilters, setMovi
 
 function ListSearch({movieFilters, setMovieFilters}: ListSearchProps) {
   const searchPlaceholderText = "Search list...";
+
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+    filterByKeyword(event.target.value, movieFilters, setMovieFilters);
+  }
   
   return (
     <div className="list-search">
@@ -37,7 +39,7 @@ function ListSearch({movieFilters, setMovieFilters}: ListSearchProps) {
           className="list-search__textbox" 
           type="text" 
           placeholder={searchPlaceholderText} 
-          onChange={(e) => {filterByKeyword(e.target.value, movieFilters, setMovieFilters)}}
+          onChange={handleInputChange}
           /> 
       </div>
     </div>
