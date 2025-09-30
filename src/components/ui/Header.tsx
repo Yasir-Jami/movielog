@@ -18,8 +18,8 @@ function Header({currentMovieList, updateCurrentList, setSidebarOpen}: HeaderPro
   return (
     <div className="header">
       <div className="header__container">
-        <span className="header__menu-wrapper">
-          <Menu className="header__menu" onClick={handleSidebarState}/>
+        <span className="header__menu-wrapper" onClick={handleSidebarState}>
+          <Menu className="header__menu"/>
         </span>
         <h1 className="header__title">movielog</h1>
         <AddMovie currentMovieList={currentMovieList} updateCurrentList={updateCurrentList}/>
