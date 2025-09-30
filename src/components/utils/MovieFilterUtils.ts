@@ -45,7 +45,7 @@ export function applyGenreFilters(movieArray: MovieMetadata[], filters: MovieFil
   return movieArray;
 }
 
-export function resetAllFilters(filters: MovieFilters): MovieFilters {
+export function clearAllFilters(filters: MovieFilters): MovieFilters {
   filters = {
     SearchFilter: "",
     GenreFilter: defaultGenreFilters(),

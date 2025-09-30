@@ -2,6 +2,7 @@ import { ChangeEvent, SetStateAction } from "react";
 import "/src/styles/ListSearch.css"
 import { Search } from "lucide-react";
 import { MovieFilters } from "types";
+import { useMovieInputRef } from "@components/contexts/MovieInputContext";
 
 interface ListSearchProps {
   movieFilters: MovieFilters,
@@ -25,6 +26,7 @@ function filterByKeyword(searchTerm: string, movieFilters: MovieFilters, setMovi
 
 function ListSearch({movieFilters, setMovieFilters}: ListSearchProps) {
   const searchPlaceholderText = "Search list...";
+  const listSearchRef = useMovieInputRef()?.listSearchRef;
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     filterByKeyword(event.target.value, movieFilters, setMovieFilters);
@@ -40,6 +42,7 @@ function ListSearch({movieFilters, setMovieFilters}: ListSearchProps) {
           type="text" 
           placeholder={searchPlaceholderText} 
           onChange={handleInputChange}
+          ref={listSearchRef}
           /> 
       </div>
     </div>

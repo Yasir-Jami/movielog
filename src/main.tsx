@@ -5,16 +5,16 @@ import AppRoutes from "./Layout.tsx"
 import { AuthProvider } from './components/contexts/AuthContext.tsx';
 import { ToastContainer, Slide } from "react-toastify";
 import logger from './logger.ts';
-import { MovieSearchProvider } from '@components/contexts/MovieSearchContext.tsx';
+import { MovieInputProvider } from '@components/contexts/MovieInputContext.tsx';
 
 globalThis.logger = logger;
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <AuthProvider>
-      <MovieSearchProvider>
+      <MovieInputProvider>
         <RouterProvider router={AppRoutes}/>
-      </MovieSearchProvider>
+      </MovieInputProvider>
       <ToastContainer
         theme="colored"           // Default theme (light, dark, colored)
         transition={Slide}        // Default transition
