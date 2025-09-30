@@ -1,4 +1,4 @@
-import { MovieFilters, MovieInfo } from "types";
+import { MovieFilters, MovieInfo, MovieMetadata } from "types";
 
 export function checkIfFiltered(filters: MovieFilters): boolean {
   if (filters.FilteredByGenre || filters.FilteredByKeyword || filters.FavoriteFilter) {
@@ -17,9 +17,22 @@ export function checkGenreFilters(filters: MovieFilters): boolean {
   return true;
 }
 
-export function applyGenreFilters(movieArray: MovieInfo[], filters: MovieFilters): MovieInfo[] {
+export function applyGenreFilters(movieArray: MovieMetadata[], filters: MovieFilters): MovieMetadata[] {
   console.log(movieArray);
   console.log(filters);
 
   return movieArray;
+}
+
+export function clearAllFilters(filters: MovieFilters): MovieFilters {
+  filters = {
+    SearchFilter: {},
+    GenreFilter: {},
+    FavoriteFilter: {},
+    FilteredByKeyword: {},
+    FilteredByGenre: {},
+  } as MovieFilters;
+  console.log("filters cleared")
+
+  return filters;
 }

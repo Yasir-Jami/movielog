@@ -51,6 +51,7 @@ function MovieListContainer({currentMovieList}: MovieListContainerProps) {
         currentMovieCount={currentMovieCount}
         setMovieCount={setMovieCount}
         currentMovieFilters={movieFilters}
+        setMovieFilters={setMovieFilters}
         currentMovieSortMethod={movieSortMethod}
         />
         <div className="movie-actions">

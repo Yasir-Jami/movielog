@@ -45,6 +45,7 @@
 .no-movies {
   width: 100%;
   margin: auto;
+  min-height: 65vh;
 }
 
 .no-movies-wrapper {
@@ -63,6 +64,56 @@
 
 .no-movies-text {
   margin-bottom: 1rem;
+  font-family: "Inter-Regular";
+  font-size: 1.5rem;
+}
+
+.no-movies-search-button {
+  border: none;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  background-color: green;
+  color: black;
+  padding: 0.65rem 3.5rem;
+  position: relative;
+  margin-top: 1rem;
+  border: 1px grey solid;
+  border-radius: 0.25rem;
+  background-color: white;
+  color: black;
+  font-family: "Inter-Regular";
+  cursor: pointer;
+  transition: color 0.16s;
+  transition: background-color 0.16s;
+}
+
+.no-movies-search-button:hover {
+  background-color: black;
+  color: white;
+}
+
+.no-movies-clear-filters-button {
+  border: none;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  background-color: green;
+  color: black;
+  padding: 0.65rem 3.5rem;
+  position: relative;
+  margin-top: 1rem;
+  border: 1px grey solid;
+  border-radius: 0.25rem;
+  background-color: white;
+  color: black;
+  font-family: "Inter-Regular";
+  cursor: pointer;
+  transition: color 0.16s;
+  transition: background-color 0.16s;
+}
+
+.no-movies-clear-filters-button:hover {
+  background-color: black;
+  color: white;
 }
 
 @media (max-width: 480px) {

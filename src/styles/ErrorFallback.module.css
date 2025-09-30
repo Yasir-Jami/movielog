@@ -15,7 +15,7 @@
 
 .error-fallback__button {
   background: none;
-  border-style: none;
+  border: 1px grey solid;
   background-color: white;
   border-radius: 0.75rem;
   padding: 0.50rem;
@@ -27,9 +27,4 @@
 
 .error-fallback__button:hover {
   background-color: rgb(250, 249, 249);
-}
-
-.error-fallback__search {
-
-
 }
