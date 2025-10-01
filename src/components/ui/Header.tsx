@@ -1,7 +1,7 @@
-import "/src/styles/Header.css";
 import { Menu } from "lucide-react";
 import { MovieList } from "types";
 import AddMovie from "./AddMovie";
+import styles from "@styles/Header.module.css";
 
 interface HeaderProps {
   sidebarOpen: boolean,
@@ -16,12 +16,12 @@ function Header({currentMovieList, updateCurrentList, setSidebarOpen}: HeaderPro
   }
 
   return (
-    <div className="header">
-      <div className="header__container">
-        <span className="header__menu-wrapper" onClick={handleSidebarState}>
-          <Menu className="header__menu"/>
+    <div className={styles["header"]}>
+      <div className={styles["header__container"]}>
+        <span className={styles["header__menu-wrapper"]} onClick={handleSidebarState}>
+          <Menu className={styles["header__menu"]}/>
         </span>
-        <h1 className="header__title">movielog</h1>
+        <h1 className={styles["header__title"]}>movielog</h1>
         <AddMovie currentMovieList={currentMovieList} updateCurrentList={updateCurrentList}/>
       </div>
     </div>

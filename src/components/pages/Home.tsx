@@ -26,6 +26,8 @@ export default function Home() {
     />
     <div className="home-page">
       <Sidebar 
+      currentMovieList={currentMovieList} 
+      updateCurrentList={setCurrentMovieList}
       selectedTab={selectedTab} 
       onSelectTab={setSelectedTab} 
       sidebarOpen={sidebarOpen}
