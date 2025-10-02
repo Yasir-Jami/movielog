@@ -1,6 +1,7 @@
 .list-container {
   display: grid;
   margin: auto;
+  height: 100%;
   width: 80%;
   position: relative;
   gap: 1.5rem;
