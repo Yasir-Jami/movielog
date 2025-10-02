@@ -75,28 +75,26 @@
 @media (max-width: 768px) {
   .sidebar, .sidebar.hidden {
     display: flex;
+    position: fixed;
     height: auto;
     width: 100vw;
+    border-bottom: 1px black solid;
+    box-shadow: none;
   }
 
   .hidden {
-    box-shadow: none;
     transform: translateY(-100%);
     margin-left: 0;
+    border-bottom: none;
     transition: all 0.26s ease-out;
   }
 
   .sidebar__list {
-    flex-direction: row;
     flex-wrap: nowrap;
-    width: auto;
   }
 
   .sidebar__item {
-    
-  }
-
-  .sidebar__icon {
-    display: none;
+    display: flex;
+    width: 100%;
   }
 }

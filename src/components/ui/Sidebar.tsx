@@ -12,13 +12,22 @@ interface SidebarProps {
 }
 
 function Sidebar({selectedTab, onSelectTab, sidebarOpen}: SidebarProps) {
+  const handleTabSelection = (itemLabel: MainContentTab) => {
+    onSelectTab(itemLabel);
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "auto",
+    });
+  }
+
   const SidebarItem = (props: SidebarTabProps) => {
     const {itemLabel, itemIcon}: SidebarTabProps = props;
     const isSelected = itemLabel === selectedTab;
     let sidebarItemStyle = `${styles.sidebar__item} ${isSelected ? styles.selected : ""}`;
     
     return (
-      <div className={sidebarItemStyle} onClick={() => {onSelectTab(itemLabel)}}>
+      <div className={sidebarItemStyle} onClick={() => {handleTabSelection(itemLabel)}}>
         {itemIcon}
         <p className={styles["sidebar__label"]}>{itemLabel}</p>
       </div>
