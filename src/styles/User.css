@@ -73,17 +73,8 @@
   font-weight: 600;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .user-auth {
-    margin-right: 0;
-  }
-
-  .user-auth__register-button {
     display: none;
-  }
-
-  .user-auth__login-icon {
-    margin-right: 0.5rem;
-    margin-left: 0;
   }
 }

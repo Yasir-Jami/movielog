@@ -21,6 +21,7 @@ html, body {
   margin: 0;
   background-attachment: fixed;
   background-color: #FFF;
+  
 }
 
 a {
@@ -80,10 +81,20 @@ h1 {
 .main {
   flex-grow: 1;
   background-color: #FFF;
+  position: relative;
+  margin-top: 6rem;
 }
 
 .home-page {
   display: flex;
+  flex-grow: 1;
+}
+
+@media (max-width: 768px) {
+  .home-page {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .main-content {
@@ -125,7 +136,6 @@ h1 {
 
 .placeholder {
   position: relative;
-  right: 3rem;
   font-family: "Inter-Regular";
   font-size: 2rem;
   display: flex;

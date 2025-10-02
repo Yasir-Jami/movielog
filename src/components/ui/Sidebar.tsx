@@ -1,23 +1,33 @@
 import styles from "@styles/Sidebar.module.css";
 import User from "@components/ui/User";
-import { MainContentTab, SidebarTabProps } from "types";
+import { MainContentTab, MovieList, SidebarTabProps } from "types";
 import { House, List, Settings, NotepadText } from "lucide-react";
 
 interface SidebarProps {
   selectedTab: MainContentTab,
   onSelectTab: React.Dispatch<React.SetStateAction<MainContentTab>>;
   sidebarOpen: boolean,
+  currentMovieList: MovieList,
+  updateCurrentList: React.Dispatch<React.SetStateAction<MovieList>>
 }
 
 function Sidebar({selectedTab, onSelectTab, sidebarOpen}: SidebarProps) {
+  const handleTabSelection = (itemLabel: MainContentTab) => {
+    onSelectTab(itemLabel);
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "auto",
+    });
+  }
+
   const SidebarItem = (props: SidebarTabProps) => {
     const {itemLabel, itemIcon}: SidebarTabProps = props;
     const isSelected = itemLabel === selectedTab;
     let sidebarItemStyle = `${styles.sidebar__item} ${isSelected ? styles.selected : ""}`;
-    //sidebarItemStyle = `${sidebarItemStyle} ${sidebarOpen ? "" : styles.hidden}`;
     
     return (
-      <div className={sidebarItemStyle} onClick={() => {onSelectTab(itemLabel)}}>
+      <div className={sidebarItemStyle} onClick={() => {handleTabSelection(itemLabel)}}>
         {itemIcon}
         <p className={styles["sidebar__label"]}>{itemLabel}</p>
       </div>

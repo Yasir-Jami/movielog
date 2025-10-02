@@ -167,8 +167,7 @@
 
 @media (max-width: 720px) {
   .movie-card {
-    width: 10rem;
-    height: 20rem;
+    height: 100%; 
   }
 
   .movie-card__title {

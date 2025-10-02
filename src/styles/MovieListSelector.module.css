@@ -3,7 +3,7 @@
   display: grid;
   margin: auto;
   width: 80%;
-  margin-top: 10rem;
+  margin-top: 2rem;
 }
 
 .movie-list-grid {
@@ -88,8 +88,8 @@
   justify-content: center;
   border: 1px grey solid;
   border-radius: 0.25rem;
-  background-color: white;
-  color: black;
+  background-color: #FFFFFF;
+  color: #000000;
   font-family: "Inter-Regular";
   cursor: pointer;
   transition: color 0.16s;
@@ -97,6 +97,6 @@
 }
 
 .movie-list-button:hover {
-  background-color: #000;
-  color: white;
+  background-color: #000000;
+  color: #FFFFFF;
 }
