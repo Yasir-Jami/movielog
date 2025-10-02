@@ -1,6 +1,7 @@
 import "@styles/AddMovie.css";
 import { MovieMetadata } from "types";
 import ImageNotFound from "assets/svgs/image-not-found.svg";
+import {X} from "lucide-react";
 import { useState, useEffect } from "react";
 import { useMovieInputRef } from "@components/contexts/MovieInputContext";
 
@@ -42,33 +43,54 @@ function AddMovieSearch({onMovieSelect}: AddMovieSearchProps) {
   const [results, setResults] = useState<MovieMetadata[]>([]);
   const [resultsLoading, setResultsLoading] = useState<boolean>(true);
   const movieSearchRef = useMovieInputRef()?.movieSearchRef;
+
+  const handleClearButtonClicked = () => {
+    setMovieInput(""); 
+    setDebouncedInput("");
+  }
+
+  const handleMovieSelected = (result: MovieMetadata) => {
+    setMovieInput(""); 
+    setDebouncedInput("");
+    onMovieSelect(result);
+  }
   
   let resultsContent: React.JSX.Element = <></>;
+  let clearSearchbarContent: React.JSX.Element = <></>;
 
-  if (resultsLoading && (debouncedInput.length > 0)) {
-    resultsContent = (
+  if (debouncedInput.length > 0) {
+    clearSearchbarContent = (
+      <div 
+      className="add-movie__input-clear-button-wrapper"
+      onClick={handleClearButtonClicked}>
+        <X className="add-movie__input-clear-button"/>
+      </div>
+    )
+    
+    if (resultsLoading) {
+      resultsContent = (
       <div className="add-movie__search-loading">
         <span className="add-movie__search-loading-spinner"/>
       </div>
-    )
-  }
-
-  else if ((debouncedInput.length > 0) && (results.length == 0)) {
-    resultsContent = (
+      )
+    }
+    else if (results.length == 0) {
+      resultsContent = (
       <div className="add-movie__search-no-results">
         <p className="add-movie__search-no-results-text">No results found.</p>
       </div>
-    )
-  }
-
-  else {
+      )
+    }
+    else {
     resultsContent = (
       <div className="add-movie__results-container">
         {results.map((result, index) => (
           <div 
           className="add-movie__search-result" 
           key={result.imdbID || `${result.Title}--${index}`} 
-          onClick={() => {onMovieSelect(result); setMovieInput(""); setDebouncedInput("")}}>
+          onClick={() => {handleMovieSelected(result)}}>
+            <span className="add-movie__search-result-wrapper"></span>
+            <button className="add-movie__search-result-wrapper-button">Add to Current List</button>
             <img 
             className="search-result-poster" 
             src={result.Poster} 
@@ -90,7 +112,8 @@ function AddMovieSearch({onMovieSelect}: AddMovieSearchProps) {
           </div>
         ))}
       </div>
-    );
+      );
+    }
   }
 
   // Debounced input handler
@@ -129,6 +152,7 @@ function AddMovieSearch({onMovieSelect}: AddMovieSearchProps) {
         onChange={e => setMovieInput(e.target.value)}
         ref={movieSearchRef}
       />
+      {clearSearchbarContent}
       {resultsContent}
     </div>
   )

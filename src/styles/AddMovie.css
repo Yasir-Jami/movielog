@@ -26,6 +26,33 @@
   outline: none;
 }
 
+.add-movie__input-clear-button-wrapper {
+  position: absolute;
+  top: 0.2rem;
+  right: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 36px;
+  width: 36px;
+  cursor: pointer;
+  color: #000;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.add-movie__input-clear-button-wrapper:hover {
+  background-color: rgb(240, 240, 240);
+}
+
+.add-movie__input-clear-button-wrapper:active {
+  background-color: rgb(230, 230, 230);
+}
+
+.add-movie__input-clear-button {
+  
+}
+
 .add-movie__search-loading {
   position: relative;
   height: 60rem;
@@ -72,26 +99,69 @@
 
 .add-movie__results-container {
   display: flex;
+  position: relative;
   flex-direction: column;
+  flex-wrap: wrap;
   justify-content: space-between;
   width: 50vw;
-  z-index: 200;
 }
 
 .add-movie__search-result {
+  position: relative;
   display: flex;
-  flex-grow: 1;
-  align-items: center;
   gap: 1rem;
   color: black;
   background-color: white;
   font-family: "Inter-Regular";
   border: 1px solid;
   cursor: pointer;
+  height: 8rem;
 }
 
-.add-movie__search-result:hover {
+.add-movie__search-result-wrapper {
+  background-color: green;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+}
+
+.add-movie__search-result:hover .add-movie__search-result-wrapper {
   background-color: rgb(243, 243, 243);
+  opacity: 20%;
+  visibility: visible;
+}
+
+.add-movie__search-result-wrapper-button {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  justify-self: center;
+  width: 12rem;
+  padding: 1rem;
+  margin-left: 40%;
+  border: 1px grey solid;
+  border-radius: 0.25rem;
+  background-color: #000000;
+  color: #FFFFFF;
+  font-family: "Inter-Regular";
+  cursor: pointer;
+  visibility: hidden;
+  z-index: 100;
+}
+
+.add-movie__search-result:hover .add-movie__search-result-wrapper-button {
+  visibility: visible;
+}
+
+.add-movie__search-result-wrapper-button:active {
+  background-color: #FFFFFF;
+  color: #000000;
 }
 
 .search-result-metadata {
