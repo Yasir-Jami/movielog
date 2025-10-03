@@ -3,38 +3,59 @@ import { MovieListCardProps, MovieList, MainContentTab } from "types";
 import MovieListCard from "@components/ui/MovieListCard";
 
 interface MovieListSelectorProps {
+  userMovieLists: MovieList[],
   currentMovieList: MovieList,
-  setSelectedList: React.Dispatch<React.SetStateAction<string>>
-  setSelectedTab: React.Dispatch<React.SetStateAction<MainContentTab>>,
+  setCurrentMovieList: React.Dispatch<React.SetStateAction<MovieList>>,
+  setSelectedTab: React.Dispatch<React.SetStateAction<MainContentTab>>
 }
 
-function MovieListSelector({currentMovieList, setSelectedTab}: MovieListSelectorProps) {
+function MovieListSelector({userMovieLists, currentMovieList, setCurrentMovieList, setSelectedTab}: MovieListSelectorProps) {
+  // Default lists
   const watchingList: MovieListCardProps = {
-    listId: 0,
+    movieList: currentMovieList,
     listName: "Watching",
-    numberOfMovies: currentMovieList.movies?.length || 0,
+    movieCount: currentMovieList.movies?.length || 0,
     listDescription: "Movies you're watching",
     listTags: ["Default"],
+    setCurrentMovieList: setCurrentMovieList,
     setSelectedTab: setSelectedTab,
   };
 
   const watchLaterList: MovieListCardProps = {
-    listId: 1,
+    movieList: currentMovieList,
     listName: "Watch Later",
-    numberOfMovies: 0,
+    movieCount: 0,
     listDescription: "Movies to watch",
     listTags: ["Default"],
+    setCurrentMovieList: setCurrentMovieList,
+    setSelectedTab: setSelectedTab,
   };
 
   const watchedList: MovieListCardProps = {
-    listId: 2,
+    movieList: currentMovieList,
     listName: "Watched",
-    numberOfMovies: 0,
+    movieCount: 0,
     listDescription: "Movies you've watched",
     listTags: ["Default"],
+    setCurrentMovieList: setCurrentMovieList,
+    setSelectedTab: setSelectedTab,
   };
 
-  const movieListArray: MovieListCardProps[] = [watchingList, watchLaterList, watchedList];
+  // Create default lists
+  const defaultLists = ["Watching", "Watch Later", "Watched"];
+  //const movieListArray: MovieListCardProps[] = [watchingList, watchLaterList, watchedList];
+  const movieListArray: MovieListCardProps[] = userMovieLists.map((list) => {
+    const movieListCard: MovieListCardProps = {
+      movieList: list,
+      listName: list.listName,
+      movieCount: list.movies?.length ?? 0,
+      listDescription: list.listDescription,
+      listTags: defaultLists.includes(list.listName) ? [""] : ["Default"],
+      setCurrentMovieList: setCurrentMovieList,
+      setSelectedTab: setSelectedTab,
+    }
+    return movieListCard;
+  });
 
   return (
     <div className={styles["movie-list-selector"]}>

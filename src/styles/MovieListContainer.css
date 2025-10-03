@@ -1,7 +1,7 @@
 .list-container {
   display: grid;
   margin: auto;
-  height: 100%;
+  
   width: 80%;
   position: relative;
   gap: 1.5rem;
@@ -45,11 +45,9 @@
 }
 
 .no-movies {
-  position: relative;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: start;
+  top: 200%;
+  position: relative;
 }
 
 .no-movies-wrapper {
@@ -120,6 +118,10 @@
 }
 
 @media (max-width: 768px) {
+  .list-container {
+    height: auto;
+  }
+  
   .list-container__metadata {
     display: flex;
     align-items: center;
@@ -129,12 +131,12 @@
     place-items: center;
   }
 
-  .movie-actions {
-    width: 100%;
-  }
-
   .no-movies {
     margin: auto;
+  }
+
+  .movie-actions {
+    width: 100%;
   }
 
 }

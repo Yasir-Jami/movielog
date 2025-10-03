@@ -22,21 +22,22 @@ export interface MovieCardProps {
 }
 
 export interface MovieList {
+  movies: MovieInfo[],
   listId?: number,
   listName: string,
-  movies: MovieInfo[],
-  itemIcon?: string,
+  listTags?: string[],
   listDescription?: string,
+  itemIcon?: string,
 }
 
 export interface MovieListCardProps {
-  movieList?: MovieList,
-  listId?: number,
+  movieList: MovieList,
   listName: string,
-  numberOfMovies: number,
+  movieCount: number,
   listTags?: string[],
   listDescription?: string,
-  setSelectedTab?: React.Dispatch<React.SetStateAction<MainContentTab>>,
+  setCurrentMovieList: React.Dispatch<React.SetStateAction<MovieList>>,
+  setSelectedTab: React.Dispatch<React.SetStateAction<MainContentTab>>
 }
 
 export interface MovieGridProps {

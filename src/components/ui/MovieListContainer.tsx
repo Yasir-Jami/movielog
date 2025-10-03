@@ -23,13 +23,28 @@ function MovieListContainer({currentMovieList}: MovieListContainerProps) {
   const [movieSortMethod, setMovieSortMethod] = useState<MovieSortMethod>(MovieSortMethod.Default);
   const [currentMovieCount, setMovieCount] = useState<number>(0);
 
+  let movieActionsContent: React.JSX.Element = <></>;
+  if (currentMovieCount > 0) {
+    movieActionsContent = 
+    (
+      <div className="movie-actions">
+          <ListSearch 
+          movieFilters={movieFilters} 
+          setMovieFilters={setMovieFilters}/>
+          <MovieFilter 
+          movieFilters={movieFilters} 
+          setMovieFilters={setMovieFilters} 
+          setMovieSortMethod={setMovieSortMethod}/>
+      </div>
+    )
+  }
+
   return (
       <div className="list-container">
         <div className="list-container__metadata">
           <h2 className="list-container__list-name">{currentMovieList.listName}</h2>
           <p className="list-container__movie-count">{currentMovieCount} movies</p>
         </div>
-        
         <MovieGrid 
         currentMovieList={currentMovieList} 
         currentMovieCount={currentMovieCount}
@@ -38,10 +53,7 @@ function MovieListContainer({currentMovieList}: MovieListContainerProps) {
         setMovieFilters={setMovieFilters}
         currentMovieSortMethod={movieSortMethod}
         />
-        <div className="movie-actions">
-          <ListSearch movieFilters={movieFilters} setMovieFilters={setMovieFilters}/>
-          <MovieFilter movieFilters={movieFilters} setMovieFilters={setMovieFilters} setMovieSortMethod={setMovieSortMethod}/>
-      </div>
+        {movieActionsContent}
     </div>
   )
 }
