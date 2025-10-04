@@ -23,7 +23,7 @@ function MovieListSelector({userMovieLists, setCurrentMovieList, setSelectedTab}
   
   for (const defaultList of defaultLists) {
     let defaultListCard = {} as MovieListCardProps;
-    const userList = userMovieLists.find(
+    const userList = userMovieLists?.find(
       (userList) => userList.listName === defaultList.listName
     );
 
@@ -46,7 +46,7 @@ function MovieListSelector({userMovieLists, setCurrentMovieList, setSelectedTab}
 
   let customListCards: MovieListCardProps[] = [];
 
-  if (userMovieLists.length != 0) {
+  if (userMovieLists?.length != 0) {
     customListCards = userMovieLists.map((userList) => {
       let movieListCard = {} as MovieListCardProps;
       if (!defaultLists.some(defaultList => defaultList.listName === userList.listName)) {
