@@ -37,7 +37,9 @@ function MovieListCard({
       <div className={styles["movie-list-metadata"]}>
         <div className={styles["movie-list-name-and-count"]}>
           <p className={styles["movie-list-name"]}>{listName}</p>
-          <p className={styles["movie-list-movie-count"]}>{movieCount} movies</p>
+          <p className={styles["movie-list-movie-count"]}>
+            {movieCount} {(movieCount > 1 || movieCount === 0) ? "movies" : "movie"}
+          </p>
         </div>
         <ListTags/>
         <p className={styles["movie-list-description"]}>{listDescription}</p>

@@ -43,7 +43,9 @@ function MovieListContainer({currentMovieList}: MovieListContainerProps) {
       <div className="list-container">
         <div className="list-container__metadata">
           <h2 className="list-container__list-name">{currentMovieList.listName}</h2>
-          <p className="list-container__movie-count">{currentMovieCount} movies</p>
+          <p className="list-container__movie-count">
+            {currentMovieCount} {(currentMovieCount > 1 || currentMovieCount === 0) ? "movies" : "movie"}
+          </p>
         </div>
         <MovieGrid 
         currentMovieList={currentMovieList} 
