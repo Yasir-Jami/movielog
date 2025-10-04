@@ -9,59 +9,68 @@ interface MovieListSelectorProps {
   setSelectedTab: React.Dispatch<React.SetStateAction<MainContentTab>>
 }
 
+interface DefaultList {
+  listName: string,
+  listDescription: string,
+}
+
 function MovieListSelector({userMovieLists, currentMovieList, setCurrentMovieList, setSelectedTab}: MovieListSelectorProps) {
-  // Default lists
-  const watchingList: MovieListCardProps = {
-    movieList: currentMovieList,
-    listName: "Watching",
-    movieCount: currentMovieList.movies?.length || 0,
-    listDescription: "Movies you're watching",
-    listTags: ["Default"],
-    setCurrentMovieList: setCurrentMovieList,
-    setSelectedTab: setSelectedTab,
-  };
+  let movieListCards: MovieListCardProps[] = [];
+  const defaultLists: DefaultList[] = [
+    {listName: "Watching", listDescription: "Movies you're watching"},
+    {listName: "Watch Later", listDescription: "Movies to watch"},
+    {listName: "Watched", listDescription: "Movies you've watched"},
+  ];
+  
+  for (const defaultList of defaultLists) {
+    let defaultListCard = {} as MovieListCardProps;
+    const userList = userMovieLists.find(
+      (userList) => userList.listName === defaultList.listName
+    );
 
-  const watchLaterList: MovieListCardProps = {
-    movieList: currentMovieList,
-    listName: "Watch Later",
-    movieCount: 0,
-    listDescription: "Movies to watch",
-    listTags: ["Default"],
-    setCurrentMovieList: setCurrentMovieList,
-    setSelectedTab: setSelectedTab,
-  };
-
-  const watchedList: MovieListCardProps = {
-    movieList: currentMovieList,
-    listName: "Watched",
-    movieCount: 0,
-    listDescription: "Movies you've watched",
-    listTags: ["Default"],
-    setCurrentMovieList: setCurrentMovieList,
-    setSelectedTab: setSelectedTab,
-  };
-
-  // Create default lists
-  const defaultLists = ["Watching", "Watch Later", "Watched"];
-  //const movieListArray: MovieListCardProps[] = [watchingList, watchLaterList, watchedList];
-  const movieListArray: MovieListCardProps[] = userMovieLists.map((list) => {
-    const movieListCard: MovieListCardProps = {
-      movieList: list,
-      listName: list.listName,
-      movieCount: list.movies?.length ?? 0,
-      listDescription: list.listDescription,
-      listTags: defaultLists.includes(list.listName) ? [""] : ["Default"],
+    defaultListCard = {
+    movieList: {
+      movies: userList ? userList?.movies : [],
+      listName: defaultList.listName,
+      listTags: ["Default"],
+      listDescription: defaultList.listDescription,
+    },
+      listName: defaultList.listName,
+      movieCount: userList?.movies.length ?? 0,
+      listDescription: defaultList.listDescription,
+      listTags: ["Default"],
       setCurrentMovieList: setCurrentMovieList,
       setSelectedTab: setSelectedTab,
     }
-    return movieListCard;
-  });
+    movieListCards.push(defaultListCard);
+  }
+
+  let customListCards: MovieListCardProps[] = [];
+
+  if (userMovieLists.length != 0) {
+    customListCards = userMovieLists.map((userList) => {
+      let movieListCard = {} as MovieListCardProps;
+      if (!defaultLists.some(defaultList => defaultList.listName === userList.listName)) {
+        movieListCard = {
+          movieList: userList,
+          listName: userList.listName,
+          movieCount: userList.movies?.length ?? 0,
+          listDescription: userList.listDescription,
+          listTags: userList.listTags,
+          setCurrentMovieList: setCurrentMovieList,
+          setSelectedTab: setSelectedTab,
+        }
+      }
+      return movieListCard;
+    }).filter((userList) => userList === undefined);
+    movieListCards.push(...customListCards);
+  }
 
   return (
     <div className={styles["movie-list-selector"]}>
       <div 
       className={styles["movie-list-grid"]}>
-      {movieListArray.map((movielist, i) => (
+      {movieListCards.map((movielist, i) => (
           <MovieListCard 
           key={i}
           {...movielist}

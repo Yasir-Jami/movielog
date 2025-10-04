@@ -6,12 +6,13 @@ function MovieListCard({
   movieCount, 
   listDescription, 
   listTags, 
+  movieList,
   setSelectedTab, 
   setCurrentMovieList}: MovieListCardProps) {
     // Change list then change tab
   const handleListSelection = () => {
     setSelectedTab(MainContentTab.Home);
-    //setCurrentMovieList(listName);
+    setCurrentMovieList(movieList);
   }
   
   // TODO Create "AddTags" modal which allows you to apply custom and premade tags to a list

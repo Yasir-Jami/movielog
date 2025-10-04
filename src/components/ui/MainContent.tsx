@@ -15,28 +15,27 @@ interface MainContentProps {
 
 async function retrieveUserLists() {
   const url = `${import.meta.env.VITE_API_BASE_URL}${import.meta.env.VITE_API_MOVIE_LISTS}${import.meta.env.VITE_API_RETRIEVE_LIST}`;
-  let retrievedLists = {} as MovieList[];
 
-  await fetch(url, {
+  try {
+    const res = await fetch(url, {
     method: 'POST',
     credentials: 'include',
     headers: {
       'Content-type': 'application/json',
-    }
-  })
-  .then(res => res.json())
-  .then(movielists => {
-    retrievedLists = movielists
-    return retrievedLists;
-  })
-  .catch(err => console.error("Error:", err));
-  
-  return retrievedLists;
+    }});
+    const movieLists: MovieList[] = await res.json();
+    return movieLists;
+  }
+
+  catch (err) {
+    console.error("Error:", err);
+    return [];
+  }
 }
 
 function MainContent ({currentMovieList, setCurrentMovieList, selectedTab, setSelectedTab}: MainContentProps) {
   const [renderPhase, setRenderPhase] = useState<string>("loading");
-  const userMovieLists = {} as MovieList[];
+  const [userLists, setUserLists] = useState<MovieList[]>([]);
   const navigate = useNavigate();
 
   let content = {} as React.JSX.Element;
@@ -48,40 +47,34 @@ function MainContent ({currentMovieList, setCurrentMovieList, selectedTab, setSe
   else {
     switch(selectedTab) {
       case MainContentTab.Home:
-        logger.log(`{MainContentTab.Home} tab`);
         content = <MovieListContainer currentMovieList={currentMovieList}/>;
         break;
       case MainContentTab.Lists:
-        logger.log("Lists tab");
         content = <MovieListSelector 
-        userMovieLists={userMovieLists}
+        userMovieLists={userLists}
         currentMovieList={currentMovieList} 
         setCurrentMovieList={setCurrentMovieList}
         setSelectedTab={setSelectedTab}/>;
         break;
       case MainContentTab.Reviews:
-        logger.log("Reviews tab");
         content = <Placeholder/>;
         break;
       case MainContentTab.Settings:
-        logger.log("Settings tab");
         content = <Placeholder/>;
         break;
       case MainContentTab.Login:
-        logger.log("Switching to login page");
         navigate("/login");
         break;
       default:
-        logger.log("Default tab");
         content = <MovieListContainer currentMovieList={currentMovieList}/>;
     }
   }
 
   async function getAllLists() {
-    const retrieveLists = await retrieveUserLists();
-    console.log(retrieveLists);
-    if (retrieveLists && Object.keys(retrieveLists).length !== 0) {
-      setCurrentMovieList(retrieveLists[0]); // Change to id set in localstorage, changes when selecting a list in lists tab
+    const retrievedLists = await retrieveUserLists();
+    if (retrievedLists && Object.keys(retrievedLists).length !== 0) {
+      setUserLists(retrievedLists);
+      setCurrentMovieList(retrievedLists[0]); // Change to ID set in localstorage
     }
     else {
       toast.error("Failed to retrieve list from server");
