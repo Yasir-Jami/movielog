@@ -9,6 +9,9 @@
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
 
+  /* UI Constants */
+  --header-height: 6rem;
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -141,7 +144,7 @@ h1 {
   display: flex;
   justify-content: center; /* Horizontally centers content */
   align-items: center;    /* Vertically centers content */
-  height: 100vh;
+  height: calc(100vh - var(--header-height));
   color: #000;
 }
 

@@ -13,32 +13,29 @@ interface MainContentProps {
   setSelectedTab: React.Dispatch<React.SetStateAction<MainContentTab>>,
 }
 
-async function getMovieList(listName: string) {
+async function retrieveUserLists() {
   const url = `${import.meta.env.VITE_API_BASE_URL}${import.meta.env.VITE_API_MOVIE_LISTS}${import.meta.env.VITE_API_RETRIEVE_LIST}`;
-  let retrievedList = {} as MovieList;
-  
-  await fetch(url, {
+
+  try {
+    const res = await fetch(url, {
     method: 'POST',
     credentials: 'include',
     headers: {
       'Content-type': 'application/json',
-    },
-    body: JSON.stringify({ listName })
-  })
-  .then(res => res.json())
-  .then(movielist => {
-    retrievedList.listName = movielist.listName;
-    retrievedList.movies = movielist.movies;
-    return retrievedList;
-  })
-  .catch(err => console.error("Error:", err));
-  
-  return retrievedList;
+    }});
+    const movieLists: MovieList[] = await res.json();
+    return movieLists;
+  }
+
+  catch (err) {
+    console.error("Error:", err);
+    return [];
+  }
 }
 
 function MainContent ({currentMovieList, setCurrentMovieList, selectedTab, setSelectedTab}: MainContentProps) {
   const [renderPhase, setRenderPhase] = useState<string>("loading");
-  const [selectedList, setSelectedList] = useState<string>("Watching");
+  const [userLists, setUserLists] = useState<MovieList[]>([]);
   const navigate = useNavigate();
 
   let content = {} as React.JSX.Element;
@@ -50,52 +47,42 @@ function MainContent ({currentMovieList, setCurrentMovieList, selectedTab, setSe
   else {
     switch(selectedTab) {
       case MainContentTab.Home:
-        logger.log("Home tab");
         content = <MovieListContainer currentMovieList={currentMovieList}/>;
         break;
       case MainContentTab.Lists:
-        logger.log("Lists tab");
         content = <MovieListSelector 
-        currentMovieList={currentMovieList} 
-        setSelectedTab={setSelectedTab} 
-        setSelectedList={setSelectedList}/>;
+        userMovieLists={userLists}
+        setCurrentMovieList={setCurrentMovieList}
+        setSelectedTab={setSelectedTab}/>;
         break;
       case MainContentTab.Reviews:
-        logger.log("Reviews tab");
         content = <Placeholder/>;
         break;
       case MainContentTab.Settings:
-        logger.log("Settings tab");
         content = <Placeholder/>;
         break;
       case MainContentTab.Login:
-        logger.log("Switching to login page");
         navigate("/login");
         break;
       default:
-        logger.log("Default tab");
         content = <MovieListContainer currentMovieList={currentMovieList}/>;
     }
   }
 
-  async function getListData() {
-      const tempList = {
-        listName: selectedList,
-        movies: [],
-      } as MovieList;
-      setCurrentMovieList(tempList);
-      const retrievedList = await getMovieList(selectedList);
-      if (Object.keys(retrievedList).length !== 0) {
-        setCurrentMovieList(retrievedList);
-      }
-      else {
-        toast.error("Failed to retrieve list from server");
-      }
+  async function getAllLists() {
+    const retrievedLists = await retrieveUserLists();
+    if (retrievedLists && Object.keys(retrievedLists).length !== 0) {
+      setUserLists(retrievedLists);
+      setCurrentMovieList(retrievedLists[0]); // Change to ID set in localstorage
+    }
+    else {
+      toast.error("Failed to retrieve list from server");
+    }
   }
   
   useEffect(() => {
-    getListData();
-  }, [selectedList]);
+    getAllLists();
+  }, []);
 
   useEffect(() => {
     setRenderPhase("main");

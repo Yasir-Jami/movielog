@@ -13,7 +13,7 @@ export default function Home() {
   }
   
   const [selectedTab, setSelectedTab] = useState<MainContentTab>(MainContentTab.Home);
-  const [sidebarOpen, setSidebarOpen] = useState<boolean>(true);
+  const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
   const [currentMovieList, setCurrentMovieList] = useState<MovieList>(placeholderMovieList);
 
  return (

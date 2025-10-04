@@ -4,10 +4,14 @@
   top: 0;
   z-index: 100;
   min-width: 320px;
-  height: 6rem;
+  height: var(--header-height);
   background-color: white;
   box-shadow: 0px 1px 1px rgb(0, 0, 0, 0.3);
   padding: 1rem 0;
+}
+
+.hidden {
+  display: none;
 }
 
 .header__container {
