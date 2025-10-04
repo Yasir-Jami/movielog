@@ -52,7 +52,6 @@ function MainContent ({currentMovieList, setCurrentMovieList, selectedTab, setSe
       case MainContentTab.Lists:
         content = <MovieListSelector 
         userMovieLists={userLists}
-        currentMovieList={currentMovieList} 
         setCurrentMovieList={setCurrentMovieList}
         setSelectedTab={setSelectedTab}/>;
         break;

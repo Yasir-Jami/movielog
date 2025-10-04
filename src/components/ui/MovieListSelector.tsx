@@ -4,7 +4,6 @@ import MovieListCard from "@components/ui/MovieListCard";
 
 interface MovieListSelectorProps {
   userMovieLists: MovieList[],
-  currentMovieList: MovieList,
   setCurrentMovieList: React.Dispatch<React.SetStateAction<MovieList>>,
   setSelectedTab: React.Dispatch<React.SetStateAction<MainContentTab>>
 }
@@ -14,7 +13,7 @@ interface DefaultList {
   listDescription: string,
 }
 
-function MovieListSelector({userMovieLists, currentMovieList, setCurrentMovieList, setSelectedTab}: MovieListSelectorProps) {
+function MovieListSelector({userMovieLists, setCurrentMovieList, setSelectedTab}: MovieListSelectorProps) {
   let movieListCards: MovieListCardProps[] = [];
   const defaultLists: DefaultList[] = [
     {listName: "Watching", listDescription: "Movies you're watching"},
