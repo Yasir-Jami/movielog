@@ -1,18 +1,20 @@
 import "/src/styles/MovieListContainer.css";
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 import { MovieList, MovieFilters, Genres, MovieSortMethod } from "types";
 import MovieGrid from "@components/ui/MovieGrid";
 import ListSearch from "@components/ui/ListSearch";
 import MovieFilter from "./MovieFilter";
 import { defaultGenreFilters } from "@components/utils/MovieFilterUtils";
+import { ArrowLeft } from "lucide-react";
 
 interface MovieListContainerProps {
   currentMovieList: MovieList,
+  handleBackButton: () => void,
 }
 
 const genres: Genres = defaultGenreFilters();
 
-function MovieListContainer({currentMovieList}: MovieListContainerProps) {
+function MovieListContainer({currentMovieList, handleBackButton}: MovieListContainerProps) {
   const [movieFilters, setMovieFilters] = useState<MovieFilters>({
     SearchFilter: "",
     GenreFilter: genres,
@@ -40,23 +42,29 @@ function MovieListContainer({currentMovieList}: MovieListContainerProps) {
   }
 
   return (
-      <div className="list-container">
-        <div className="list-container__metadata">
-          <h2 className="list-container__list-name">{currentMovieList.listName}</h2>
-          <p className="list-container__movie-count">
-            {currentMovieCount} {(currentMovieCount > 1 || currentMovieCount === 0) ? "movies" : "movie"}
-          </p>
-        </div>
-        <MovieGrid 
-        currentMovieList={currentMovieList} 
-        currentMovieCount={currentMovieCount}
-        setMovieCount={setMovieCount}
-        currentMovieFilters={movieFilters}
-        setMovieFilters={setMovieFilters}
-        currentMovieSortMethod={movieSortMethod}
-        />
-        {movieActionsContent}
+    <div className="list-container">
+      <div className="list-return-button">
+        <ArrowLeft className="list-return-button-icon"></ArrowLeft>
+        <p className="list-return-button-text" onClick={handleBackButton}>Back to Lists</p>
+      </div>
+      <div className="list-container__grid">
+      <div className="list-container__metadata">
+        <h2 className="list-container__list-name">{currentMovieList.listName}</h2>
+        <p className="list-container__movie-count">
+          {currentMovieCount} {(currentMovieCount > 1 || currentMovieCount === 0) ? "movies" : "movie"}
+        </p>
+      </div>
+      <MovieGrid 
+      currentMovieList={currentMovieList} 
+      currentMovieCount={currentMovieCount}
+      setMovieCount={setMovieCount}
+      currentMovieFilters={movieFilters}
+      setMovieFilters={setMovieFilters}
+      currentMovieSortMethod={movieSortMethod}
+      />
+      {movieActionsContent}
     </div>
+  </div>
   )
 }
 

@@ -1,7 +1,29 @@
 .list-container {
+  
+}
+
+.list-return-button {
+  position: absolute;
+  display: flex;
+  gap: 0.5rem;
+  cursor: pointer;
+  z-index: 200;
+  top: 5%;
+  left: 10%;
+}
+
+.list-return-button-icon {
+  position: relative;
+}
+
+.list-return-button-text {
+  position: relative;
+  top: 0.1rem;
+}
+
+.list-container__grid {
   display: grid;
   margin: auto;
-  
   width: 80%;
   position: relative;
   gap: 1.5rem;
@@ -16,6 +38,7 @@
   grid-row: 1;
   grid-column: 1;
   display: flex;
+  align-items: center;
   flex-direction: column;
   
   margin-top: 2rem;

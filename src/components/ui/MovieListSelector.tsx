@@ -1,11 +1,13 @@
 import styles from "@styles/MovieListSelector.module.css";
-import { MovieListCardProps, MovieList, MainContentTab } from "types";
+import { MovieListCardProps, MovieList } from "types";
 import MovieListCard from "@components/ui/MovieListCard";
+import { useState } from "react";
+import MovieListContainer from "./MovieListContainer";
 
 interface MovieListSelectorProps {
   userMovieLists: MovieList[],
+  currentMovieList: MovieList,
   setCurrentMovieList: React.Dispatch<React.SetStateAction<MovieList>>,
-  setSelectedTab: React.Dispatch<React.SetStateAction<MainContentTab>>
 }
 
 interface DefaultList {
@@ -13,7 +15,17 @@ interface DefaultList {
   listDescription: string,
 }
 
-function MovieListSelector({userMovieLists, setCurrentMovieList, setSelectedTab}: MovieListSelectorProps) {
+function MovieListSelector({userMovieLists, currentMovieList, setCurrentMovieList}: MovieListSelectorProps) {
+  const [listSelected, setListSelected] = useState(false);
+  const handleListSelection = (movieList: MovieList) => {
+    setListSelected(true);
+    setCurrentMovieList(movieList);
+  }
+
+  const handleBackButton = () => {
+    setListSelected(false);
+  }
+  
   let movieListCards: MovieListCardProps[] = [];
   const defaultLists: DefaultList[] = [
     {listName: "Watching", listDescription: "Movies you're watching"},
@@ -41,7 +53,7 @@ function MovieListSelector({userMovieLists, setCurrentMovieList, setSelectedTab}
       listDescription: defaultList.listDescription,
       listTags: ["Default"],
       setCurrentMovieList: setCurrentMovieList,
-      setSelectedTab: setSelectedTab,
+      handleListSelection: handleListSelection,
     }
     movieListCards.push(defaultListCard);
   }
@@ -56,15 +68,22 @@ function MovieListSelector({userMovieLists, setCurrentMovieList, setSelectedTab}
         listDescription: userList.listDescription,
         listTags: userList.listTags,
         setCurrentMovieList: setCurrentMovieList,
-        setSelectedTab: setSelectedTab,
+        handleListSelection: handleListSelection,
       }
     }
     return movieListCard;
   }).filter((userList) => userList === undefined);
-  
   movieListCards.push(...customListCards);
 
-  return (
+  let loadedContent: React.JSX.Element = <></>;
+
+  if (listSelected) {
+    loadedContent = <MovieListContainer 
+    currentMovieList={currentMovieList} 
+    handleBackButton={handleBackButton}/>
+  }
+  else {
+    loadedContent = 
     <div className={styles["movie-list-selector"]}>
       <div 
       className={styles["movie-list-grid"]}>
@@ -72,10 +91,13 @@ function MovieListSelector({userMovieLists, setCurrentMovieList, setSelectedTab}
           <MovieListCard 
           key={i}
           {...movielist}
-          />
-      ))}
+          />))}
       </div>
     </div>
+  }
+
+  return (
+    <>{loadedContent}</>
   );
 }
 

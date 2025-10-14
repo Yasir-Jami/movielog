@@ -37,7 +37,7 @@ export interface MovieListCardProps {
   listTags?: string[],
   listDescription?: string,
   setCurrentMovieList: React.Dispatch<React.SetStateAction<MovieList>>,
-  setSelectedTab: React.Dispatch<React.SetStateAction<MainContentTab>>
+  handleListSelection: (currentMovieList: MovieList) => void,
 }
 
 export interface MovieGridProps {

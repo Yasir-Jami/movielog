@@ -1,5 +1,5 @@
 import styles from "@styles/MovieListSelector.module.css";
-import { MainContentTab, MovieListCardProps } from "types";
+import { MovieListCardProps } from "types";
 
 function MovieListCard({
   listName, 
@@ -7,13 +7,8 @@ function MovieListCard({
   listDescription, 
   listTags, 
   movieList,
-  setSelectedTab, 
-  setCurrentMovieList}: MovieListCardProps) {
+  handleListSelection}: MovieListCardProps) {
     // Change list then change tab
-  const handleListSelection = () => {
-    setSelectedTab(MainContentTab.Home);
-    setCurrentMovieList(movieList);
-  }
   
   // TODO Create "AddTags" modal which allows you to apply custom and premade tags to a list
   const ListTags = () => {
@@ -46,7 +41,7 @@ function MovieListCard({
       </div>
       <button 
       className={styles["movie-list-button"]} 
-      onClick={handleListSelection}>View List</button>
+      onClick={() => {handleListSelection(movieList)}}>View List</button>
     </div>
   )
 }

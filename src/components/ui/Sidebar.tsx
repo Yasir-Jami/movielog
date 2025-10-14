@@ -35,31 +35,25 @@ function Sidebar({selectedTab, onSelectTab, sidebarOpen}: SidebarProps) {
   }
 
   const SidebarTabs = () => {
-    const homeTab: SidebarTabProps = {
-      itemId: 0,
-      itemLabel: MainContentTab.Home,
-      itemIcon: <House className={styles.sidebar__icon}/>,
-    }
-
     const listsTab: SidebarTabProps = {
-      itemId: 1,
+      itemId: 0,
       itemLabel: MainContentTab.Lists,
       itemIcon: <List className={styles.sidebar__icon}/>,
     }
 
     const reviewsTab: SidebarTabProps = {
-      itemId: 2,
+      itemId: 1,
       itemLabel: MainContentTab.Reviews,
       itemIcon: <NotepadText className={styles.sidebar__icon}/>,
     }
 
     const settingsTab: SidebarTabProps = {
-      itemId: 3,
+      itemId: 2,
       itemLabel: MainContentTab.Settings,
       itemIcon: <Settings className={styles.sidebar__icon}/>,
     }
 
-    const sidebarTabProps: SidebarTabProps[] = [homeTab, listsTab, reviewsTab, settingsTab];
+    const sidebarTabProps: SidebarTabProps[] = [listsTab, reviewsTab, settingsTab];
 
     return (
       <div className={styles.sidebar__list}>
