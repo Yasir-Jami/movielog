@@ -83,13 +83,14 @@ h1 {
 
 .main {
   flex-grow: 1;
-  background-color: #FFF;
+  background-color: #F9FAFB;
   position: relative;
   margin-top: 6rem;
 }
 
 .home-page {
   display: flex;
+  background: #F9FAFB;
   flex-grow: 1;
 }
 

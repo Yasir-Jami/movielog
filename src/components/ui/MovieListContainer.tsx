@@ -1,5 +1,5 @@
 import "/src/styles/MovieListContainer.css";
-import { SetStateAction, useState } from "react";
+import { useState } from "react";
 import { MovieList, MovieFilters, Genres, MovieSortMethod } from "types";
 import MovieGrid from "@components/ui/MovieGrid";
 import ListSearch from "@components/ui/ListSearch";
@@ -43,9 +43,9 @@ function MovieListContainer({currentMovieList, handleBackButton}: MovieListConta
 
   return (
     <div className="list-container">
-      <div className="list-return-button">
+      <div className="list-return-button" onClick={handleBackButton}>
         <ArrowLeft className="list-return-button-icon"></ArrowLeft>
-        <p className="list-return-button-text" onClick={handleBackButton}>Back to Lists</p>
+        <p className="list-return-button-text">Back to Lists</p>
       </div>
       <div className="list-container__grid">
       <div className="list-container__metadata">

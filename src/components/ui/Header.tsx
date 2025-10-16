@@ -2,6 +2,8 @@ import { Menu } from "lucide-react";
 import { MovieList } from "types";
 import AddMovie from "./AddMovie";
 import styles from "@styles/Header.module.css";
+import { useState } from "react";
+import useIsMobile from "hooks/useIsMobile";
 
 interface HeaderProps {
   sidebarOpen: boolean,
@@ -11,6 +13,9 @@ interface HeaderProps {
 }
 
 function Header({currentMovieList, updateCurrentList, setSidebarOpen}: HeaderProps){
+  const [searchBarOpen, setSearchBarOpen] = useState<boolean>(false);
+  const isMobile = useIsMobile();
+  
   const handleSidebarState = () => {
     setSidebarOpen(prev => !prev);
   }
@@ -18,11 +23,15 @@ function Header({currentMovieList, updateCurrentList, setSidebarOpen}: HeaderPro
   return (
     <div className={styles["header"]}>
       <div className={styles["header__container"]}>
-        <span className={styles["header__menu-wrapper"]} onClick={handleSidebarState}>
+        <span className={`${styles["header__menu-wrapper"]} ${searchBarOpen && isMobile ? styles.hidden : ""}`} onClick={handleSidebarState}>
           <Menu className={styles["header__menu"]}/>
         </span>
-        <h1 className={styles["header__title"]}>movielog</h1>
-        <AddMovie currentMovieList={currentMovieList} updateCurrentList={updateCurrentList}/>
+        <h1 className={`${styles["header__title"]} ${searchBarOpen && isMobile ? styles.hidden : ""}`}>movielog</h1>
+        <AddMovie 
+        currentMovieList={currentMovieList} 
+        updateCurrentList={updateCurrentList}
+        searchBarOpen={searchBarOpen} 
+        setSearchBarOpen={setSearchBarOpen}/>
       </div>
     </div>
   )

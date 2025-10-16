@@ -1,12 +1,14 @@
 import "@styles/AddMovie.css";
 import { MovieMetadata } from "types";
 import ImageNotFound from "assets/svgs/image-not-found.svg";
-import {X} from "lucide-react";
+import { X, Search } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useMovieInputRef } from "@components/contexts/MovieInputContext";
 
 interface AddMovieSearchProps {
   onMovieSelect: (movie: MovieMetadata) => void,
+  searchBarOpen: boolean,
+  setSearchBarOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 async function SearchForMovie({ searchTerm } : {searchTerm: string}) {
@@ -37,7 +39,7 @@ async function SearchForMovie({ searchTerm } : {searchTerm: string}) {
   return searchResults;
 }
 
-function AddMovieSearch({onMovieSelect}: AddMovieSearchProps) {
+function AddMovieSearch({onMovieSelect, searchBarOpen, setSearchBarOpen}: AddMovieSearchProps) {
   const [movieInput, setMovieInput] = useState<string>('');
   const [debouncedInput, setDebouncedInput] = useState<string>('');
   const [results, setResults] = useState<MovieMetadata[]>([]);
@@ -47,12 +49,19 @@ function AddMovieSearch({onMovieSelect}: AddMovieSearchProps) {
   const handleClearButtonClicked = () => {
     setMovieInput(""); 
     setDebouncedInput("");
+    setSearchBarOpen(true);
   }
 
   const handleMovieSelected = (result: MovieMetadata) => {
     setMovieInput(""); 
     setDebouncedInput("");
+    setSearchBarOpen(true);
     onMovieSelect(result);
+  }
+
+  const handleSearchButtonClick = () => {
+    setSearchBarOpen(prev => !prev);
+    
   }
   
   let resultsContent: React.JSX.Element = <></>;
@@ -145,7 +154,7 @@ function AddMovieSearch({onMovieSelect}: AddMovieSearchProps) {
   return (
     <div className="add-movie__search">
       <input 
-        className="add-movie__input" 
+        className={`add-movie__input ${searchBarOpen ? "" : "hidden"}`} 
         name="movie-title" 
         placeholder="Search for a movie..." 
         value={movieInput}
@@ -154,6 +163,10 @@ function AddMovieSearch({onMovieSelect}: AddMovieSearchProps) {
       />
       {clearSearchbarContent}
       {resultsContent}
+      <Search 
+      onClick={handleSearchButtonClick} 
+      className="add-movie__search-icon" 
+      size="28"></Search>
     </div>
   )
 }

@@ -8,6 +8,8 @@ import AddMovieSearch from "./AddMovieSearch";
 interface AddMovieProps {
   currentMovieList: MovieList,
   updateCurrentList: React.Dispatch<React.SetStateAction<MovieList>>,
+  searchBarOpen: boolean,
+  setSearchBarOpen: React.Dispatch<React.SetStateAction<boolean>>,
 }
 
 const addMovieErrorNotification = (errorReason: string) => {
@@ -56,7 +58,7 @@ async function addMovieToList(
   .catch(err => logger.error("Error:", err)); 
 }
 
-function AddMovie({currentMovieList, updateCurrentList}: AddMovieProps) {
+function AddMovie({currentMovieList, updateCurrentList, searchBarOpen, setSearchBarOpen}: AddMovieProps) {
   const email = getUserEmail();
 
   const handleMovieSelection = (selectedMovie: MovieMetadata) => {
@@ -65,7 +67,10 @@ function AddMovie({currentMovieList, updateCurrentList}: AddMovieProps) {
 
   return (
     <div className="add-movie">
-      <AddMovieSearch onMovieSelect={handleMovieSelection}/>
+      <AddMovieSearch 
+      onMovieSelect={handleMovieSelection} 
+      searchBarOpen={searchBarOpen} 
+      setSearchBarOpen={setSearchBarOpen}/>
     </div>
   )
 }
