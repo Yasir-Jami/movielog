@@ -9,13 +9,12 @@
 .movie-list-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
-  gap: 3rem;
+  gap: 1rem;
 }
 
 .movie-list-card {
   display: flex;
   flex-direction: column;
-  min-height: 15rem;
   padding: 0.5rem;
   border: 1px solid black;
   border-radius: 0.25rem;
@@ -71,7 +70,7 @@
 }
 
 .movie-list-description {
-  margin-top: 1rem;
+  margin: 1rem 0;
   color: #000;
 }
 
@@ -88,7 +87,7 @@
   justify-content: center;
   border: 1px grey solid;
   border-radius: 0.25rem;
-  background-color: #FFFFFF;
+  background-color: #F9FAFB;
   color: #000000;
   font-family: "Inter-Regular";
   cursor: pointer;

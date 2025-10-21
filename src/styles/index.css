@@ -10,7 +10,8 @@
   background-color: #242424;
 
   /* UI Constants */
-  --header-height: 6rem;
+  --header-height: 7%;
+  --add-movie-input-height: 2.5rem;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -23,8 +24,7 @@ html, body {
   height: 100%;
   margin: 0;
   background-attachment: fixed;
-  background-color: #FFF;
-  
+  background-color: #F9FAFB; 
 }
 
 a {
@@ -85,7 +85,7 @@ h1 {
   flex-grow: 1;
   background-color: #F9FAFB;
   position: relative;
-  margin-top: 6rem;
+  margin-top: calc(var(--header-height));
 }
 
 .home-page {
@@ -98,6 +98,10 @@ h1 {
   .home-page {
     display: flex;
     flex-direction: column;
+  }
+
+  .main {
+    margin-top: calc(var(--header-height) + 2rem);
   }
 }
 

@@ -1,9 +1,9 @@
 import "@styles/AddMovie.css";
 import { MovieMetadata } from "types";
-import ImageNotFound from "assets/svgs/image-not-found.svg";
 import { X, Search } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useMovieInputRef } from "@components/contexts/MovieInputContext";
+import useIsMobile from "hooks/useIsMobile";
 
 interface AddMovieSearchProps {
   onMovieSelect: (movie: MovieMetadata) => void,
@@ -44,7 +44,9 @@ function AddMovieSearch({onMovieSelect, searchBarOpen, setSearchBarOpen}: AddMov
   const [debouncedInput, setDebouncedInput] = useState<string>('');
   const [results, setResults] = useState<MovieMetadata[]>([]);
   const [resultsLoading, setResultsLoading] = useState<boolean>(true);
-  const movieSearchRef = useMovieInputRef()?.movieSearchRef;
+  const movieInputref = useMovieInputRef()?.movieSearchRef;
+  const movieSearchRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
 
   const handleClearButtonClicked = () => {
     setMovieInput(""); 
@@ -61,7 +63,6 @@ function AddMovieSearch({onMovieSelect, searchBarOpen, setSearchBarOpen}: AddMov
 
   const handleSearchButtonClick = () => {
     setSearchBarOpen(prev => !prev);
-    
   }
   
   let resultsContent: React.JSX.Element = <></>;
@@ -92,7 +93,7 @@ function AddMovieSearch({onMovieSelect, searchBarOpen, setSearchBarOpen}: AddMov
     }
     else {
     resultsContent = (
-      <div className="add-movie__results-container">
+      <div className={`add-movie__results-container ${(searchBarOpen || !isMobile) ? "" : "hidden"}`}>
         {results.map((result, index) => (
           <div 
           className="add-movie__search-result" 
@@ -100,11 +101,6 @@ function AddMovieSearch({onMovieSelect, searchBarOpen, setSearchBarOpen}: AddMov
           onClick={() => {handleMovieSelected(result)}}>
             <span className="add-movie__search-result-wrapper"></span>
             <button className="add-movie__search-result-wrapper-button">Add to Current List</button>
-            <img 
-            className="search-result-poster" 
-            src={result.Poster} 
-            alt="movie-image" 
-            onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = ImageNotFound}}></img>
             <div className="search-result-metadata">
               <span className="search-result-title">{result.Title}</span>
               <span className="search-result-year">{result.Year}</span>
@@ -124,6 +120,13 @@ function AddMovieSearch({onMovieSelect, searchBarOpen, setSearchBarOpen}: AddMov
       );
     }
   }
+
+  // Keep search bar open in desktop view
+  useEffect(() => {
+    if (!isMobile) {
+      setSearchBarOpen(true);
+    }
+  }, [isMobile]);
 
   // Debounced input handler
   useEffect(() => {
@@ -151,23 +154,40 @@ function AddMovieSearch({onMovieSelect, searchBarOpen, setSearchBarOpen}: AddMov
     fetchAndSetMovies();
   }, [debouncedInput]);
 
+  // Close input field when clicked outside
+  useEffect(() => {
+    function handleClickOutsideSearchBar(event: MouseEvent) {
+      if (movieSearchRef.current && !movieSearchRef.current.contains(event.target as Node)) {
+        setSearchBarOpen(false);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutsideSearchBar);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutsideSearchBar);
+    }
+  }, []);
+
   return (
-    <div className="add-movie__search">
+    <>
+    <div className={`add-movie__search ${(searchBarOpen || !isMobile) ? "" : "hidden"}`} ref={movieSearchRef}>
+      <Search className="add-movie__input-icon" size="18px"></Search>
       <input 
-        className={`add-movie__input ${searchBarOpen ? "" : "hidden"}`} 
+        className={`add-movie__input ${(searchBarOpen || !isMobile) ? "" : "hidden"}`} 
         name="movie-title" 
-        placeholder="Search for a movie..." 
+        placeholder="Search movies" 
         value={movieInput}
         onChange={e => setMovieInput(e.target.value)}
-        ref={movieSearchRef}
+        ref={movieInputref}
       />
       {clearSearchbarContent}
       {resultsContent}
-      <Search 
-      onClick={handleSearchButtonClick} 
-      className="add-movie__search-icon" 
-      size="28"></Search>
     </div>
+    <Search 
+      onClick={handleSearchButtonClick} 
+      className={`add-movie__search-icon ${searchBarOpen ? "hidden" : ""}`} 
+      size="28"></Search>
+    </>
   )
 }
 

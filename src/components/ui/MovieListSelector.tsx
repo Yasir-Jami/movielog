@@ -85,6 +85,7 @@ function MovieListSelector({userMovieLists, currentMovieList, setCurrentMovieLis
   else {
     loadedContent = 
     <div className={styles["movie-list-selector"]}>
+    <p className={styles["movie-list-selector-title"]}>Green</p>
       <div 
       className={styles["movie-list-grid"]}>
       {movieListCards.map((movielist, i) => (

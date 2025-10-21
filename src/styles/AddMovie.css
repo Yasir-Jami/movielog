@@ -1,11 +1,21 @@
 .add-movie {
-  position: relative;
-  margin: 0 15%;
-  min-width: 50vw;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateX(-50%);
+  left: 45%;
 }
 
 .add-movie__search {
-  width: 50vw;
+  min-width: 280px;
+  width: 100%;
+  width: 30rem;
+}
+
+.add-movie__input-icon {
+  position: absolute;
+  margin: 0.6rem 1rem;
 }
 
 .add-movie__search-icon {
@@ -13,11 +23,11 @@
 }
 
 .add-movie__input {
-  height: 2.5rem;
+  height: var(--add-movie-input-height);
   width: 100%;
-  padding: 0.25rem 0.75rem;
+  padding: 0.25rem 2.75rem;
   background-color: #FFF;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #acacad;
   border-radius: 0.50rem;
   color: black;
 }
@@ -30,13 +40,8 @@
 
 .add-movie__input-clear-button-wrapper {
   position: absolute;
-  top: 0.2rem;
+  top: 0.5rem;
   right: 0.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 36px;
-  width: 36px;
   cursor: pointer;
   color: #000;
   border-radius: 50%;
@@ -51,39 +56,16 @@
   background-color: rgb(230, 230, 230);
 }
 
-.add-movie__input-clear-button {
-  
-}
-
 .add-movie__search-loading {
-  position: relative;
-  height: 60rem;
+  position: absolute;
+  width: 100%;
   background-color: rgb(245, 245, 245, 0.9);
   border: 1px solid black
 }
 
-.add-movie__search-loading-spinner {
-  position: absolute;
-  top: 30%;
-  left: 45%;
-  width: 100px;
-  height: 100px;
-  border: 8px solid orange;
-  border-bottom-color: transparent;
-  border-radius: 50%;
-  animation: loader-rotation 1s linear infinite;
-}
-
-@keyframes loader-rotation {
-  0% {
-      transform: rotate(0deg);
-  }
-  100% {
-      transform: rotate(360deg);
-  }
-}
-
 .add-movie__search-no-results {
+  position: absolute;
+  width: 100%;
   background-color: white;
   border: 1px solid black;
   border-top: none;
@@ -100,15 +82,17 @@
 }
 
 .add-movie__results-container {
+  position: absolute;
   display: flex;
-  position: relative;
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: space-between;
-  width: 50vw;
+  width: 100%;
 }
 
 .add-movie__search-result {
+  height: 4rem;
+  width: 100%;
   position: relative;
   display: flex;
   gap: 1rem;
@@ -117,36 +101,27 @@
   font-family: "Inter-Regular";
   border: 1px solid;
   cursor: pointer;
-  height: 8rem;
 }
 
 .add-movie__search-result-wrapper {
-  background-color: green;
   position: absolute;
   height: 100%;
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   visibility: hidden;
 }
 
 .add-movie__search-result:hover .add-movie__search-result-wrapper {
   background-color: rgb(243, 243, 243);
+  background-color: green;
   opacity: 20%;
   visibility: visible;
 }
 
 .add-movie__search-result-wrapper-button {
   position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   align-self: center;
-  justify-self: center;
-  width: 12rem;
-  padding: 1rem;
-  margin-left: 40%;
+  margin: 30%;
+  padding: 0.5rem;
   border: 1px grey solid;
   border-radius: 0.25rem;
   background-color: #000000;
@@ -169,10 +144,13 @@
 .search-result-metadata {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0 1rem;
 }
 
-.search-result-poster {
-  width: 12%;
+.search-result-title {
+  overflow: ellipsis;
 }
 
 .search-result-genre {
@@ -180,28 +158,31 @@
 }
 
 .search-result-year {
-  min-width: 4rem;
-  margin-right: 1rem;
-  position: absolute;
-  right: 0%;
+  
+  
+  justify-self: end;
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 @media (max-width: 768px) {
-  .search-result-year {
-    margin-left: 1rem;
+  .add-movie {
+    transform: none;
+    left: auto;
+    margin: auto;
+    position: relative;
+  }
+
+  .add-movie__search {
+    width: 10rem;
   }
 
   .add-movie__input {
-    height: 2.5rem;
-    width: 100%;
     border: 1px solid #e5e7eb;
     border-radius: 0.50rem;
     color: black;
-    position: absolute;
   }
 
   .add-movie__search-icon {
@@ -209,5 +190,9 @@
     position: fixed;
     right: 1rem;
     top: calc((var(--header-height)/2) - 0.75rem);
+  }
+
+  .search-result-year {
+    margin-left: 1rem;
   }
 }
