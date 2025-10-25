@@ -51,13 +51,11 @@ function AddMovieSearch({onMovieSelect, searchBarOpen, setSearchBarOpen}: AddMov
   const handleClearButtonClicked = () => {
     setMovieInput(""); 
     setDebouncedInput("");
-    setSearchBarOpen(true);
   }
 
   const handleMovieSelected = (result: MovieMetadata) => {
     setMovieInput(""); 
     setDebouncedInput("");
-    setSearchBarOpen(true);
     onMovieSelect(result);
   }
 
@@ -67,6 +65,7 @@ function AddMovieSearch({onMovieSelect, searchBarOpen, setSearchBarOpen}: AddMov
   
   let resultsContent: React.JSX.Element = <></>;
   let clearSearchbarContent: React.JSX.Element = <></>;
+  let loadingContent: React.JSX.Element = <></>;
 
   if (debouncedInput.length > 0) {
     clearSearchbarContent = (
@@ -78,13 +77,16 @@ function AddMovieSearch({onMovieSelect, searchBarOpen, setSearchBarOpen}: AddMov
     )
     
     if (resultsLoading) {
-      resultsContent = (
-      <div className="add-movie__search-loading">
-        <span className="add-movie__search-loading-spinner"/>
-      </div>
+      loadingContent = (
+        <div className="add-movie__search-loading-wrapper">
+          <span className="add-movie__search-loading-spinner"/>
+        </div>
       )
     }
-    else if (results.length == 0) {
+    else {
+      loadingContent = <></>;
+    }
+    if (results.length == 0 && !resultsLoading) {
       resultsContent = (
       <div className="add-movie__search-no-results">
         <p className="add-movie__search-no-results-text">No results found.</p>
@@ -100,7 +102,6 @@ function AddMovieSearch({onMovieSelect, searchBarOpen, setSearchBarOpen}: AddMov
           key={result.imdbID || `${result.Title}--${index}`} 
           onClick={() => {handleMovieSelected(result)}}>
             <span className="add-movie__search-result-wrapper"></span>
-            <button className="add-movie__search-result-wrapper-button">Add to Current List</button>
             <div className="search-result-metadata">
               <span className="search-result-title">{result.Title}</span>
               <span className="search-result-year">{result.Year}</span>
@@ -147,8 +148,8 @@ function AddMovieSearch({onMovieSelect, searchBarOpen, setSearchBarOpen}: AddMov
 
     async function fetchAndSetMovies() {
       const movies = await SearchForMovie({ searchTerm: debouncedInput });
-      setResults(movies);
-      setResultsLoading(false);
+      
+      setResultsLoading(false);setResults(movies);
     }
 
     fetchAndSetMovies();
@@ -171,16 +172,20 @@ function AddMovieSearch({onMovieSelect, searchBarOpen, setSearchBarOpen}: AddMov
   return (
     <>
     <div className={`add-movie__search ${(searchBarOpen || !isMobile) ? "" : "hidden"}`} ref={movieSearchRef}>
-      <Search className="add-movie__input-icon" size="18px"></Search>
-      <input 
+      <div className="add-movie__search-bar">
+        <Search className="add-movie__input-icon" size="18px"></Search>
+        {loadingContent}
+        {clearSearchbarContent}
+        <input 
         className={`add-movie__input ${(searchBarOpen || !isMobile) ? "" : "hidden"}`} 
         name="movie-title" 
         placeholder="Search movies" 
+        ref={movieInputref}
         value={movieInput}
         onChange={e => setMovieInput(e.target.value)}
-        ref={movieInputref}
-      />
-      {clearSearchbarContent}
+        />
+      </div>
+      
       {resultsContent}
     </div>
     <Search 
