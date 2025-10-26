@@ -7,6 +7,7 @@
 .movie-list-selector-title {
   font-size: 2rem;
   margin-bottom: 2rem;
+  font-weight: 500;
 }
 
 .movie-list-grid {
@@ -17,11 +18,12 @@
 }
 
 .movie-list-card {
+  color: var(--color);
   height: 4rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   align-items: center;
-  border: 1px solid black;
+  border: 1px solid var(--color);
   margin-top: -1px;
   padding: 0.5rem 1rem;
   transition: box-shadow 0.16s;
@@ -35,11 +37,13 @@
 }
 
 .movie-list-name {
+  color: var(--color);
   font-family: "Inter-Bold";
   font-size: 1.3rem;
 }
 
 .movie-list-movie-count {
+  color: var(--color);
   font-family: "Inter-Regular";
 }
 
@@ -59,5 +63,5 @@
 }
 
 .movie-list-description {
-  color: #000;
+  color: var(--color);
 }

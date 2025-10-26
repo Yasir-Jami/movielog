@@ -1,4 +1,5 @@
 .list-return-button {
+  color: var(--color);
   position: absolute;
   display: flex;
   gap: 0.5rem;
@@ -13,6 +14,7 @@
 }
 
 .list-return-button-text {
+  color: var(--color);
   position: relative;
   top: 0.1rem;
 }
@@ -29,7 +31,11 @@
 
 .list-container__list-name {
   font-family: "NunitoSans";
-  color: black;
+  color: var(--color);
+}
+
+.list-container__movie-count {
+  color: var(--color);
 }
 
 .list-container__metadata {
@@ -40,7 +46,7 @@
   flex-direction: column;
   margin-top: 2rem;
   font-family: "Poppins-Regular";
-  color: black;
+  color: var(--color);
 }
 
 .movie-actions {
@@ -48,7 +54,7 @@
   display: flex;
   place-self: center;
   width: 80%;
-  background-color: #FFFFFF;
+  background-color: var(--secondary-background-color);
   padding: 0.8rem;
   border-radius: 1rem;
   bottom: 1rem;
@@ -92,15 +98,13 @@
   border: none;
   padding: 0.5rem;
   border-radius: 1rem;
-  background-color: green;
-  color: black;
+  color: var(--color);
   padding: 0.65rem 3.5rem;
   position: relative;
   margin-top: 1rem;
   border: 1px grey solid;
   border-radius: 0.25rem;
   background-color: var(--background-color);
-  color: black;
   font-family: "Inter-Regular";
   cursor: pointer;
   transition: color 0.16s;
@@ -108,23 +112,22 @@
 }
 
 .no-movies-search-button:hover {
-  background-color: black;
-  color: white;
+  color: var(--color);
+  background-color: var(--background-color);
 }
 
 .no-movies-clear-filters-button {
   border: none;
   padding: 0.5rem;
   border-radius: 1rem;
-  background-color: green;
-  color: black;
+  color: var(--color);
   padding: 0.65rem 3.5rem;
   position: relative;
   margin-top: 1rem;
   border: 1px grey solid;
   border-radius: 0.25rem;
   background-color: var(--background-color);
-  color: black;
+  color: var(--color);
   font-family: "Inter-Regular";
   cursor: pointer;
   transition: color 0.16s;
@@ -132,8 +135,8 @@
 }
 
 .no-movies-clear-filters-button:hover {
-  background-color: black;
-  color: white;
+  color: var(--color);
+  background-color: var(--background-color);
 }
 
 @media (max-width: 768px) {

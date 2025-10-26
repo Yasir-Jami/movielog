@@ -20,6 +20,7 @@
 }
 
 .add-movie__input-icon {
+  color: var(--color);
   position: absolute;
   margin: 1rem;
 }
@@ -32,10 +33,10 @@
   height: var(--add-movie-input-height);
   width: 100%;
   padding: 0.25rem 2.75rem;
-  background-color: #FFF;
+  background-color: var(--background-color);
+  color: var(--color);
   border: 1px solid #acacad;
   border-radius: 0.50rem;
-  color: black;
 }
 
 .add-movie__input:focus {
@@ -49,12 +50,12 @@
   top: 0.5rem;
   right: 1rem;
   cursor: pointer;
-  color: #000;
+  color: var(--color);
   transition: background-color 0.2s;
 }
 
 .add-movie__input-clear-button-wrapper:hover {
-  background-color: rgb(240, 240, 240);
+  background-color: var(--background-color);
 }
 
 .add-movie__input-clear-button-wrapper:active {
@@ -113,8 +114,8 @@
   position: relative;
   display: flex;
   gap: 1rem;
-  color: black;
-  background-color: white;
+  color: var(--color);
+  background-color: var(--background-color);
   font-family: "Inter-Regular";
   border: 1px solid;
   cursor: pointer;

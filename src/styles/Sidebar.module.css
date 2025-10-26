@@ -38,30 +38,22 @@
   position: relative;
   align-items: center;
   justify-content: start;
-  background: var(--background-color);
   height: 4rem;
   width: 15rem;
   border: transparent;
   transition: width translate 0.26s ease-in;
-  color: #000;
+  color: var(--color);
+  background-color: var(--background-color);
   cursor: pointer;
 }
 
-.sidebar__item:hover {
-  background-color: rgb(243, 242, 242);
-}
-
 .selected {
-  background-color: rgb(185, 241, 248);
-}
-
-.selected:hover {
-  background-color: rgb(133, 232, 245);
+  background-color: #e99750;
 } 
 
-.sidebar__item-label {
+.sidebar__label {
   font-family: Inter-Regular;
-  color: black;
+  color: var(--color);
   margin-left: 0.5rem;
   margin-bottom: 0.25rem;
 }

@@ -177,6 +177,7 @@ function AddMovieSearch({onMovieSelect, searchBarOpen, setSearchBarOpen}: AddMov
         {loadingContent}
         {clearSearchbarContent}
         <input 
+        type="text"
         className={`add-movie__input ${(searchBarOpen || !isMobile) ? "" : "hidden"}`} 
         name="movie-title" 
         placeholder="Search movies" 
