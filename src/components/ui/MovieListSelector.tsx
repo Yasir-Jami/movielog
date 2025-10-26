@@ -1,5 +1,5 @@
 import styles from "@styles/MovieListSelector.module.css";
-import { MovieListCardProps, MovieList } from "types";
+import { MovieListCardProps, MovieList, ViewType } from "types";
 import MovieListCard from "@components/ui/MovieListCard";
 import { useState } from "react";
 import MovieListContainer from "./MovieListContainer";
@@ -17,6 +17,7 @@ interface DefaultList {
 
 function MovieListSelector({userMovieLists, currentMovieList, setCurrentMovieList}: MovieListSelectorProps) {
   const [listSelected, setListSelected] = useState(false);
+  const [currentViewType, setViewType] = useState<ViewType>(ViewType.Detailed);
   const handleListSelection = (movieList: MovieList) => {
     setListSelected(true);
     setCurrentMovieList(movieList);
@@ -54,6 +55,7 @@ function MovieListSelector({userMovieLists, currentMovieList, setCurrentMovieLis
       listTags: ["Default"],
       setCurrentMovieList: setCurrentMovieList,
       handleListSelection: handleListSelection,
+      viewType: currentViewType,
     }
     movieListCards.push(defaultListCard);
   }
@@ -69,6 +71,7 @@ function MovieListSelector({userMovieLists, currentMovieList, setCurrentMovieLis
         listTags: userList.listTags,
         setCurrentMovieList: setCurrentMovieList,
         handleListSelection: handleListSelection,
+        viewType: currentViewType,
       }
     }
     return movieListCard;
@@ -85,9 +88,9 @@ function MovieListSelector({userMovieLists, currentMovieList, setCurrentMovieLis
   else {
     loadedContent = 
     <div className={styles["movie-list-selector"]}>
-    <p className={styles["movie-list-selector-title"]}>Green</p>
+    <p className={styles["movie-list-selector-title"]}>Your Lists</p>
       <div 
-      className={styles["movie-list-grid"]}>
+      className={`${styles["movie-list-grid"]} ${currentViewType}`}>
       {movieListCards.map((movielist, i) => (
           <MovieListCard 
           key={i}

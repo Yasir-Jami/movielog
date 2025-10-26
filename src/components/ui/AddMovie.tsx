@@ -1,7 +1,7 @@
 import "@styles/AddMovie.css";
 import { MovieMetadata } from "types";
 import { MovieList } from "types";
-import { getUserEmail } from "@components/utils/UserUtils";
+import { getUserEmail } from "utils/UserUtils";
 import { toast } from "react-toastify";
 import AddMovieSearch from "./AddMovieSearch";
 

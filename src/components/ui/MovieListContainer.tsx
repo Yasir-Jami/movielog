@@ -4,7 +4,7 @@ import { MovieList, MovieFilters, Genres, MovieSortMethod } from "types";
 import MovieGrid from "@components/ui/MovieGrid";
 import ListSearch from "@components/ui/ListSearch";
 import MovieFilter from "./MovieFilter";
-import { defaultGenreFilters } from "@components/utils/MovieFilterUtils";
+import { defaultGenreFilters } from "utils/MovieFilterUtils";
 import { ArrowLeft } from "lucide-react";
 
 interface MovieListContainerProps {
@@ -43,12 +43,12 @@ function MovieListContainer({currentMovieList, handleBackButton}: MovieListConta
 
   return (
     <div className="list-container">
-      <div className="list-return-button" onClick={handleBackButton}>
+      <div className="list-container__grid">
+      <div className="list-container__metadata">
+        <div className="list-return-button" onClick={handleBackButton}>
         <ArrowLeft className="list-return-button-icon"></ArrowLeft>
         <p className="list-return-button-text">Back to Lists</p>
       </div>
-      <div className="list-container__grid">
-      <div className="list-container__metadata">
         <h2 className="list-container__list-name">{currentMovieList.listName}</h2>
         <p className="list-container__movie-count">
           {currentMovieCount} {(currentMovieCount > 1 || currentMovieCount === 0) ? "movies" : "movie"}

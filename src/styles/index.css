@@ -7,7 +7,10 @@
   --font-optical-sizing-base: auto;
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  /*--background-color: #242424;*/
+  --background-color: #F9FAFB;
+  --color: #213547;
+  --secondary-color: #000;
 
   /* UI Constants */
   --header-height: 7%;
@@ -23,8 +26,8 @@ html, body {
   z-index: 0;
   height: 100%;
   margin: 0;
+  background-color: var(--background-color);
   background-attachment: fixed;
-  background-color: #F9FAFB; 
 }
 
 a {
@@ -52,13 +55,11 @@ h1, h2, h3, p, button {
   color: #000;
 }
 
-@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: dark) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
+    --color: #FFF;
+    --background-color: #0A0A0A;
+    --secondary-color: #FFF;
   }
   button {
     background-color: #f9f9f9;
@@ -82,15 +83,16 @@ h1 {
 }
 
 .main {
-  flex-grow: 1;
-  background-color: #F9FAFB;
   position: relative;
+  flex-grow: 1;
+  background-color: var(--background-color);
   margin-top: calc(var(--header-height));
+  margin-bottom: 1rem;
 }
 
 .home-page {
   display: flex;
-  background: #F9FAFB;
+  background: var(--background-color);
   flex-grow: 1;
 }
 
