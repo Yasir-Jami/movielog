@@ -5,6 +5,7 @@
 }
 
 .movie-list-selector-title {
+  color: var(--color);
   font-size: 2rem;
   margin-bottom: 2rem;
   font-weight: 500;
@@ -64,4 +65,18 @@
 
 .movie-list-description {
   color: var(--color);
+}
+
+@media (max-width: 768px) {
+  .movie-list-grid {
+    display: flex;
+    flex-direction: column;
+  }
+
+  
+
+  .movie-list-description {
+    display: none;
+    
+  }
 }

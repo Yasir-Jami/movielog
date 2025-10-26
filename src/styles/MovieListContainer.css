@@ -58,7 +58,7 @@
   padding: 0.8rem;
   border-radius: 1rem;
   bottom: 1rem;
-  border: solid 1px;
+  border: solid 1px var(--border-color);
   transition: height 0.3s;
 }
 
@@ -85,10 +85,12 @@
 }
 
 .no-movies-icon {
+  color: var(--color);
   margin-bottom: 1rem;
 }
 
 .no-movies-text {
+  color: var(--color);
   margin-bottom: 1rem;
   font-family: "Inter-Regular";
   font-size: 1.2rem;
@@ -112,8 +114,8 @@
 }
 
 .no-movies-search-button:hover {
-  color: var(--color);
-  background-color: var(--background-color);
+  color: var(--background-color);
+  background-color: var(--color);
 }
 
 .no-movies-clear-filters-button {
