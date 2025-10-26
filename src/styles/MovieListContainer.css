@@ -160,9 +160,8 @@
     gap: 1rem;
   }
 
-
   .movie-actions {
     width: 100%;
+    display: none;
   }
-
 }
