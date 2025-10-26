@@ -37,7 +37,8 @@ export interface MovieListCardProps {
   listTags?: string[],
   listDescription?: string,
   setCurrentMovieList: React.Dispatch<React.SetStateAction<MovieList>>,
-  setSelectedTab: React.Dispatch<React.SetStateAction<MainContentTab>>
+  handleListSelection: (currentMovieList: MovieList) => void,
+  viewType: ViewType,
 }
 
 export interface MovieGridProps {
@@ -110,4 +111,9 @@ export enum MovieSortMethod {
   Default = 0,
   Alphanumerically = 1,
   Rating = 2
+}
+
+export enum ViewType {
+  Detailed = "",
+  Compact = "compact",
 }

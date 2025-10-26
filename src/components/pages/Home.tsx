@@ -12,7 +12,7 @@ export default function Home() {
     movies: [],
   }
   
-  const [selectedTab, setSelectedTab] = useState<MainContentTab>(MainContentTab.Home);
+  const [selectedTab, setSelectedTab] = useState<MainContentTab>(MainContentTab.Lists);
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
   const [currentMovieList, setCurrentMovieList] = useState<MovieList>(placeholderMovieList);
 
@@ -36,7 +36,6 @@ export default function Home() {
       selectedTab={selectedTab} 
       currentMovieList={currentMovieList} 
       setCurrentMovieList={setCurrentMovieList}
-      setSelectedTab={setSelectedTab}
       />
     </div>
   </div>

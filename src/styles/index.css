@@ -7,10 +7,15 @@
   --font-optical-sizing-base: auto;
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  --background-color: #F9FAFB;
+  --secondary-background-color: #FFF;
+  --color: #213547;
+  --secondary-color: #000;
+  --border-color: #000;
 
   /* UI Constants */
-  --header-height: 6rem;
+  --header-height: 4rem;
+  --add-movie-input-height: 2.5rem;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -22,9 +27,8 @@ html, body {
   z-index: 0;
   height: 100%;
   margin: 0;
+  background-color: var(--background-color);
   background-attachment: fixed;
-  background-color: #FFF;
-  
 }
 
 a {
@@ -38,8 +42,9 @@ p {
 }
 
 input {
-  color: black;
+  color: var(--color);
 }
+
 
 h1 {
   font-size: 3.2em;
@@ -52,16 +57,20 @@ h1, h2, h3, p, button {
   color: #000;
 }
 
-@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: dark) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
+    --color: #FFF;
+    --secondary-color: #FFF;
+    --background-color: #0A0A0A;
+    --secondary-background-color: #222222;
+    --border-color: #FFF;
+    --highlight-color: rgb(110, 110, 110);
   }
   button {
     background-color: #f9f9f9;
+  }
+  input {
+    color: var(--color);
   }
 }
 
@@ -82,14 +91,16 @@ h1 {
 }
 
 .main {
-  flex-grow: 1;
-  background-color: #FFF;
   position: relative;
-  margin-top: 6rem;
+  flex-grow: 1;
+  background-color: var(--background-color);
+  margin-top: calc(var(--header-height) + 2rem);
+  margin-bottom: 1rem;
 }
 
 .home-page {
   display: flex;
+  background: var(--background-color);
   flex-grow: 1;
 }
 
@@ -97,6 +108,10 @@ h1 {
   .home-page {
     display: flex;
     flex-direction: column;
+  }
+
+  .main {
+    margin-top: calc(var(--header-height) + 2rem);
   }
 }
 

@@ -1,26 +1,52 @@
-.list-container {
-  display: grid;
-  margin: auto;
-  
-  width: 80%;
+.list-return-button {
+  color: var(--color);
+  position: absolute;
+  display: flex;
+  gap: 0.5rem;
+  cursor: pointer;
+  z-index: 20;
+  top: 5%;
+  left: 0;
+}
+
+.list-return-button-icon {
   position: relative;
-  gap: 1.5rem;
+}
+
+.list-return-button-text {
+  color: var(--color);
+  position: relative;
+  top: 0.1rem;
+}
+
+.list-container__grid {
+  position: relative;
+  display: grid;
+  grid-auto-rows: auto 1fr;
+  margin: auto;
+  width: 80%;
+  height: 100vh;
+  gap: 2rem;
 }
 
 .list-container__list-name {
   font-family: "NunitoSans";
-  color: black;
+  color: var(--color);
+}
+
+.list-container__movie-count {
+  color: var(--color);
 }
 
 .list-container__metadata {
   grid-row: 1;
   grid-column: 1;
   display: flex;
+  align-items: center;
   flex-direction: column;
-  
   margin-top: 2rem;
   font-family: "Poppins-Regular";
-  color: black;
+  color: var(--color);
 }
 
 .movie-actions {
@@ -28,25 +54,24 @@
   display: flex;
   place-self: center;
   width: 80%;
-  background-color: white;
+  background-color: var(--secondary-background-color);
   padding: 0.8rem;
   border-radius: 1rem;
   bottom: 1rem;
-  border: solid 1px;
+  border: solid 1px var(--border-color);
   transition: height 0.3s;
 }
 
 .movie-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
-  gap: 1rem;
-  min-height: 65vh;
   margin-bottom: 1rem;
+  gap: 1rem;
 }
 
 .no-movies {
+  margin-top: 20vh;
   width: 100%;
-  top: 200%;
   position: relative;
 }
 
@@ -56,14 +81,16 @@
   align-items: center;
   justify-content: center;
   border-radius: 1rem;
-  background-color: white;
+  background-color: var(--background-color);
 }
 
 .no-movies-icon {
+  color: var(--color);
   margin-bottom: 1rem;
 }
 
 .no-movies-text {
+  color: var(--color);
   margin-bottom: 1rem;
   font-family: "Inter-Regular";
   font-size: 1.2rem;
@@ -73,15 +100,13 @@
   border: none;
   padding: 0.5rem;
   border-radius: 1rem;
-  background-color: green;
-  color: black;
+  color: var(--color);
   padding: 0.65rem 3.5rem;
   position: relative;
   margin-top: 1rem;
   border: 1px grey solid;
   border-radius: 0.25rem;
-  background-color: white;
-  color: black;
+  background-color: var(--background-color);
   font-family: "Inter-Regular";
   cursor: pointer;
   transition: color 0.16s;
@@ -89,23 +114,22 @@
 }
 
 .no-movies-search-button:hover {
-  background-color: black;
-  color: white;
+  color: var(--background-color);
+  background-color: var(--color);
 }
 
 .no-movies-clear-filters-button {
   border: none;
   padding: 0.5rem;
   border-radius: 1rem;
-  background-color: green;
-  color: black;
+  color: var(--color);
   padding: 0.65rem 3.5rem;
   position: relative;
   margin-top: 1rem;
   border: 1px grey solid;
   border-radius: 0.25rem;
-  background-color: white;
-  color: black;
+  background-color: var(--background-color);
+  color: var(--color);
   font-family: "Inter-Regular";
   cursor: pointer;
   transition: color 0.16s;
@@ -113,30 +137,31 @@
 }
 
 .no-movies-clear-filters-button:hover {
-  background-color: black;
-  color: white;
+  color: var(--color);
+  background-color: var(--background-color);
 }
 
 @media (max-width: 768px) {
   .list-container {
     height: auto;
   }
-  
-  .list-container__metadata {
-    display: flex;
-    align-items: center;
+
+  .list-return-button-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .list-return-button-text {
+    display: none;
   }
 
   .movie-grid {
     place-items: center;
-  }
-
-  .no-movies {
-    margin: auto;
+    gap: 1rem;
   }
 
   .movie-actions {
     width: 100%;
+    display: none;
   }
-
 }

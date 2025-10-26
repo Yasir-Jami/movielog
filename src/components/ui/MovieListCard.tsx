@@ -1,5 +1,5 @@
 import styles from "@styles/MovieListSelector.module.css";
-import { MainContentTab, MovieListCardProps } from "types";
+import { MovieListCardProps } from "types";
 
 function MovieListCard({
   listName, 
@@ -7,13 +7,9 @@ function MovieListCard({
   listDescription, 
   listTags, 
   movieList,
-  setSelectedTab, 
-  setCurrentMovieList}: MovieListCardProps) {
+  handleListSelection, //viewType
+  }: MovieListCardProps) {
     // Change list then change tab
-  const handleListSelection = () => {
-    setSelectedTab(MainContentTab.Home);
-    setCurrentMovieList(movieList);
-  }
   
   // TODO Create "AddTags" modal which allows you to apply custom and premade tags to a list
   const ListTags = () => {
@@ -33,20 +29,13 @@ function MovieListCard({
     )
   }
   return (
-    <div className={styles["movie-list-card"]}>
-      <div className={styles["movie-list-metadata"]}>
-        <div className={styles["movie-list-name-and-count"]}>
-          <p className={styles["movie-list-name"]}>{listName}</p>
+    <div className={styles["movie-list-card"]} onClick={() => {handleListSelection(movieList)}}>
+        <p className={styles["movie-list-name"]}>{listName}</p>
           <p className={styles["movie-list-movie-count"]}>
-            {movieCount} {(movieCount > 1 || movieCount === 0) ? "movies" : "movie"}
+            {movieCount} {(movieCount !== 1) ? "movies" : "movie"}
           </p>
-        </div>
         <ListTags/>
         <p className={styles["movie-list-description"]}>{listDescription}</p>
-      </div>
-      <button 
-      className={styles["movie-list-button"]} 
-      onClick={handleListSelection}>View List</button>
     </div>
   )
 }

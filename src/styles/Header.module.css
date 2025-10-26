@@ -1,29 +1,26 @@
 .header {
   position: fixed;
   width: 100%;
+  min-width: 320px;
   top: 0;
   z-index: 100;
-  min-width: 320px;
   height: var(--header-height);
-  background-color: white;
-  box-shadow: 0px 1px 1px rgb(0, 0, 0, 0.3);
-  padding: 1rem 0;
-}
-
-.hidden {
-  display: none;
+  background-color: var(--background-color);
+  box-shadow: 0px 1px 1px #D0D5DD;
+  display: flex;
 }
 
 .header__container {
   display: flex;
-  height: 100%;
+  align-items: center;
   gap: 0.7rem;
-  margin: 1rem 1rem;
+  padding: 0 1rem;
+  width: 100%;
 }
 
 .header__menu-wrapper {
   position: relative;
-  top: 0.3rem;
+  top: 0.1rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,7 +28,7 @@
   width: 36px;
   border-radius: 50%;
   cursor: pointer;
-  color: #000;
+  color: var(--color);
   transition: background-color 0.2s;
 }
 
@@ -45,22 +42,13 @@
 
 .header__title {
   font-family: Inter-Regular;
-  font-size: 1.875rem;
+  font-size: 1.6rem;
   font-weight: 700;
+  color: var(--color);
 }
 
-@media (max-width: 768px) {
-  .header__subtitle {
-    display: none;
-  }
-
-  .header__brand {
-    gap: 0.25rem;
-  }
-
-  .header__logo-container {
-    padding-top: 0.65rem;
-  }
+.hidden {
+  display: none;
 }
 
 /* Auth Header */
@@ -72,7 +60,7 @@
 }
 
 .auth-header__logo {
-  color: black;
+  color: var(--color);
   height: 1.75rem;
   width: 2rem;
   transition: all 0.08s;

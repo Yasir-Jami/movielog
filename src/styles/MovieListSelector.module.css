@@ -1,63 +1,56 @@
 .movie-list-selector {
   position: relative;
-  display: grid;
   margin: auto;
   width: 80%;
-  margin-top: 2rem;
+}
+
+.movie-list-selector-title {
+  color: var(--color);
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  font-weight: 500;
 }
 
 .movie-list-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
-  gap: 3rem;
+  grid-auto-rows: auto;
+  width: 100%;
+  margin: auto;
 }
 
 .movie-list-card {
-  display: flex;
-  flex-direction: column;
-  min-height: 15rem;
-  padding: 0.5rem;
-  border: 1px solid black;
-  border-radius: 0.25rem;
+  color: var(--color);
+  height: 4rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  align-items: center;
+  border: 1px solid var(--color);
+  margin-top: -1px;
+  padding: 0.5rem 1rem;
   transition: box-shadow 0.16s;
+  transition: background-color 0.16s;
+  cursor: pointer;
 }
 
 .movie-list-card:hover {
-  box-shadow: 0px 5px 5px rgb(0, 0, 0, 0.05);
-}
-
-.movie-list-metadata {
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  margin-left: 1rem;
-  margin-top: 0.5rem;
-}
-
-.movie-list-name-and-count {
-  display: flex;
-  align-items: center;
-  width: 90%;
-  justify-content: space-between;
-  color: #000;
+  box-shadow: 0px 5px 10px rgb(0, 0, 0, 0.1);
+  background-color: #3a699948;
 }
 
 .movie-list-name {
+  color: var(--color);
   font-family: "Inter-Bold";
   font-size: 1.3rem;
 }
 
 .movie-list-movie-count {
+  color: var(--color);
   font-family: "Inter-Regular";
-  
 }
 
 .movie-list-tags {
   display: flex;
-  flex-wrap: wrap;
-  width: 90%;
   gap: 0.5rem;
-  margin-top: 1rem;
   font-family: "Inter-Regular";
 }
 
@@ -71,32 +64,33 @@
 }
 
 .movie-list-description {
-  margin-top: 1rem;
-  color: #000;
+  color: var(--color);
 }
 
-.movie-list-button {
-  position: relative;
-  height: 10%;
-  width: 90%;
-  margin-top: auto;
-  padding: 1rem;
-  bottom: 4%;
-  align-self: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px grey solid;
-  border-radius: 0.25rem;
-  background-color: #FFFFFF;
-  color: #000000;
-  font-family: "Inter-Regular";
-  cursor: pointer;
-  transition: color 0.16s;
-  transition: background-color 0.16s;
-}
+@media (max-width: 768px) {
+  .movie-list-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
 
-.movie-list-button:hover {
-  background-color: #000000;
-  color: #FFFFFF;
+  .movie-list-selector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .movie-list-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 8rem;
+    padding: 0;
+  }
+
+  .movie-list-description {
+    display: none;
+    
+  }
 }

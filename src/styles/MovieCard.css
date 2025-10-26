@@ -148,6 +148,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.50rem;
+  width: 90%;
 }
 
 .movie-card__genre {

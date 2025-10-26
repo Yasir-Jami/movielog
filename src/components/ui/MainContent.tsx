@@ -1,4 +1,3 @@
-import MovieListContainer from "@components/ui/MovieListContainer";
 import MovieListSelector from "@components/ui/MovieListSelector";
 import Placeholder from "@components/ui/Placeholder";
 import { useNavigate } from "react-router-dom";
@@ -10,7 +9,6 @@ interface MainContentProps {
   selectedTab: MainContentTab,
   currentMovieList: MovieList,
   setCurrentMovieList: React.Dispatch<React.SetStateAction<MovieList>>,
-  setSelectedTab: React.Dispatch<React.SetStateAction<MainContentTab>>,
 }
 
 async function retrieveUserLists() {
@@ -33,7 +31,7 @@ async function retrieveUserLists() {
   }
 }
 
-function MainContent ({currentMovieList, setCurrentMovieList, selectedTab, setSelectedTab}: MainContentProps) {
+function MainContent ({currentMovieList, setCurrentMovieList, selectedTab}: MainContentProps) {
   const [renderPhase, setRenderPhase] = useState<string>("loading");
   const [userLists, setUserLists] = useState<MovieList[]>([]);
   const navigate = useNavigate();
@@ -46,14 +44,12 @@ function MainContent ({currentMovieList, setCurrentMovieList, selectedTab, setSe
 
   else {
     switch(selectedTab) {
-      case MainContentTab.Home:
-        content = <MovieListContainer currentMovieList={currentMovieList}/>;
-        break;
       case MainContentTab.Lists:
         content = <MovieListSelector 
         userMovieLists={userLists}
+        currentMovieList={currentMovieList}
         setCurrentMovieList={setCurrentMovieList}
-        setSelectedTab={setSelectedTab}/>;
+        />;
         break;
       case MainContentTab.Reviews:
         content = <Placeholder/>;
@@ -65,7 +61,11 @@ function MainContent ({currentMovieList, setCurrentMovieList, selectedTab, setSe
         navigate("/login");
         break;
       default:
-        content = <MovieListContainer currentMovieList={currentMovieList}/>;
+        content = <MovieListSelector 
+        userMovieLists={userLists}
+        currentMovieList={currentMovieList}
+        setCurrentMovieList={setCurrentMovieList}
+        />;
     }
   }
 
@@ -73,7 +73,9 @@ function MainContent ({currentMovieList, setCurrentMovieList, selectedTab, setSe
     const retrievedLists = await retrieveUserLists();
     if (retrievedLists && Object.keys(retrievedLists).length !== 0) {
       setUserLists(retrievedLists);
-      setCurrentMovieList(retrievedLists[0]); // Change to ID set in localstorage
+      if (userLists.length != 0) {
+        setCurrentMovieList(retrievedLists[0]); // Change to ID set in localstorage
+      }
     }
     else {
       toast.error("Failed to retrieve list from server");

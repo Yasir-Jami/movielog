@@ -1,12 +1,14 @@
 import "@styles/AddMovie.css";
 import { MovieMetadata } from "types";
-import ImageNotFound from "assets/svgs/image-not-found.svg";
-import {X} from "lucide-react";
-import { useState, useEffect } from "react";
+import { X, Search } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
 import { useMovieInputRef } from "@components/contexts/MovieInputContext";
+import useIsMobile from "hooks/useIsMobile";
 
 interface AddMovieSearchProps {
   onMovieSelect: (movie: MovieMetadata) => void,
+  searchBarOpen: boolean,
+  setSearchBarOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 async function SearchForMovie({ searchTerm } : {searchTerm: string}) {
@@ -37,12 +39,14 @@ async function SearchForMovie({ searchTerm } : {searchTerm: string}) {
   return searchResults;
 }
 
-function AddMovieSearch({onMovieSelect}: AddMovieSearchProps) {
+function AddMovieSearch({onMovieSelect, searchBarOpen, setSearchBarOpen}: AddMovieSearchProps) {
   const [movieInput, setMovieInput] = useState<string>('');
   const [debouncedInput, setDebouncedInput] = useState<string>('');
   const [results, setResults] = useState<MovieMetadata[]>([]);
   const [resultsLoading, setResultsLoading] = useState<boolean>(true);
-  const movieSearchRef = useMovieInputRef()?.movieSearchRef;
+  const movieInputref = useMovieInputRef()?.movieSearchRef;
+  const movieSearchRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
 
   const handleClearButtonClicked = () => {
     setMovieInput(""); 
@@ -54,9 +58,14 @@ function AddMovieSearch({onMovieSelect}: AddMovieSearchProps) {
     setDebouncedInput("");
     onMovieSelect(result);
   }
+
+  const handleSearchButtonClick = () => {
+    setSearchBarOpen(prev => !prev);
+  }
   
   let resultsContent: React.JSX.Element = <></>;
   let clearSearchbarContent: React.JSX.Element = <></>;
+  let loadingContent: React.JSX.Element = <></>;
 
   if (debouncedInput.length > 0) {
     clearSearchbarContent = (
@@ -68,13 +77,16 @@ function AddMovieSearch({onMovieSelect}: AddMovieSearchProps) {
     )
     
     if (resultsLoading) {
-      resultsContent = (
-      <div className="add-movie__search-loading">
-        <span className="add-movie__search-loading-spinner"/>
-      </div>
+      loadingContent = (
+        <div className="add-movie__search-loading-wrapper">
+          <span className="add-movie__search-loading-spinner"/>
+        </div>
       )
     }
-    else if (results.length == 0) {
+    else {
+      loadingContent = <></>;
+    }
+    if (results.length == 0 && !resultsLoading) {
       resultsContent = (
       <div className="add-movie__search-no-results">
         <p className="add-movie__search-no-results-text">No results found.</p>
@@ -83,19 +95,13 @@ function AddMovieSearch({onMovieSelect}: AddMovieSearchProps) {
     }
     else {
     resultsContent = (
-      <div className="add-movie__results-container">
+      <div className={`add-movie__results-container ${(searchBarOpen || !isMobile) ? "" : "hidden"}`}>
         {results.map((result, index) => (
           <div 
           className="add-movie__search-result" 
           key={result.imdbID || `${result.Title}--${index}`} 
           onClick={() => {handleMovieSelected(result)}}>
             <span className="add-movie__search-result-wrapper"></span>
-            <button className="add-movie__search-result-wrapper-button">Add to Current List</button>
-            <img 
-            className="search-result-poster" 
-            src={result.Poster} 
-            alt="movie-image" 
-            onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = ImageNotFound}}></img>
             <div className="search-result-metadata">
               <span className="search-result-title">{result.Title}</span>
               <span className="search-result-year">{result.Year}</span>
@@ -116,6 +122,13 @@ function AddMovieSearch({onMovieSelect}: AddMovieSearchProps) {
     }
   }
 
+  // Keep search bar open in desktop view
+  useEffect(() => {
+    if (!isMobile) {
+      setSearchBarOpen(true);
+    }
+  }, [isMobile]);
+
   // Debounced input handler
   useEffect(() => {
     const searchInputHandler = setTimeout(() => {
@@ -135,26 +148,52 @@ function AddMovieSearch({onMovieSelect}: AddMovieSearchProps) {
 
     async function fetchAndSetMovies() {
       const movies = await SearchForMovie({ searchTerm: debouncedInput });
-      setResults(movies);
-      setResultsLoading(false);
+      
+      setResultsLoading(false);setResults(movies);
     }
 
     fetchAndSetMovies();
   }, [debouncedInput]);
 
+  // Close input field when clicked outside
+  useEffect(() => {
+    function handleClickOutsideSearchBar(event: MouseEvent) {
+      if (movieSearchRef.current && !movieSearchRef.current.contains(event.target as Node)) {
+        setSearchBarOpen(false);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutsideSearchBar);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutsideSearchBar);
+    }
+  }, []);
+
   return (
-    <div className="add-movie__search">
-      <input 
-        className="add-movie__input" 
+    <>
+    <div className={`add-movie__search ${(searchBarOpen || !isMobile) ? "" : "hidden"}`} ref={movieSearchRef}>
+      <div className="add-movie__search-bar">
+        <Search className="add-movie__input-icon" size="18px"></Search>
+        {loadingContent}
+        {clearSearchbarContent}
+        <input 
+        type="text"
+        className={`add-movie__input ${(searchBarOpen || !isMobile) ? "" : "hidden"}`} 
         name="movie-title" 
-        placeholder="Search for a movie..." 
+        placeholder="Search movies" 
+        ref={movieInputref}
         value={movieInput}
         onChange={e => setMovieInput(e.target.value)}
-        ref={movieSearchRef}
-      />
-      {clearSearchbarContent}
+        />
+      </div>
+      
       {resultsContent}
     </div>
+    <Search 
+      onClick={handleSearchButtonClick} 
+      className={`add-movie__search-icon ${searchBarOpen ? "hidden" : ""}`} 
+      size="28"></Search>
+    </>
   )
 }
 
