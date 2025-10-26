@@ -1,4 +1,3 @@
-import MovieListContainer from "@components/ui/MovieListContainer";
 import MovieListSelector from "@components/ui/MovieListSelector";
 import Placeholder from "@components/ui/Placeholder";
 import { useNavigate } from "react-router-dom";

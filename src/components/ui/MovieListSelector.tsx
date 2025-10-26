@@ -23,6 +23,12 @@ function MovieListSelector({userMovieLists, currentMovieList, setCurrentMovieLis
     setCurrentMovieList(movieList);
   }
 
+  const handleViewButton = () => {
+    setViewType(ViewType.Detailed);
+  }
+
+  logger.log(handleViewButton);
+
   const handleBackButton = () => {
     setListSelected(false);
   }

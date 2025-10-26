@@ -1,7 +1,7 @@
 import styles from "@styles/Sidebar.module.css";
 import User from "@components/ui/User";
 import { MainContentTab, MovieList, SidebarTabProps } from "types";
-import { House, List, Settings, NotepadText } from "lucide-react";
+import { List, Settings, NotepadText } from "lucide-react";
 
 interface SidebarProps {
   selectedTab: MainContentTab,

@@ -7,8 +7,8 @@ function MovieListCard({
   listDescription, 
   listTags, 
   movieList,
-  handleListSelection,
-  viewType}: MovieListCardProps) {
+  handleListSelection, //viewType
+  }: MovieListCardProps) {
     // Change list then change tab
   
   // TODO Create "AddTags" modal which allows you to apply custom and premade tags to a list
