@@ -16,7 +16,7 @@
   display: flex;
   align-items: center;
   height: var(--add-movie-input-height);
-  width: 30rem;
+  width: 100%;
 }
 
 .add-movie__input-icon {
@@ -27,6 +27,7 @@
 
 .add-movie__search-icon {
   display: none;
+  color: var(--color);
 }
 
 .add-movie__input {

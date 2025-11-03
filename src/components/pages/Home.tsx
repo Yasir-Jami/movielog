@@ -17,14 +17,14 @@ export default function Home() {
   const [currentMovieList, setCurrentMovieList] = useState<MovieList>(placeholderMovieList);
 
  return (
-  <div className="main-content">
+  <div className="home-page">
     <Header 
     currentMovieList={currentMovieList} 
     updateCurrentList={setCurrentMovieList}
     sidebarOpen={sidebarOpen} 
     setSidebarOpen={setSidebarOpen}
     />
-    <div className="home-page">
+    <div className="main-content">
       <Sidebar 
       currentMovieList={currentMovieList} 
       updateCurrentList={setCurrentMovieList}

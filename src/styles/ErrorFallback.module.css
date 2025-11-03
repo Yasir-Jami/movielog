@@ -6,6 +6,7 @@
   width: 100%;
   height: 20rem;
   margin: 18% auto;
+  color: var(--color);
 }
 
 .error-fallback__text {

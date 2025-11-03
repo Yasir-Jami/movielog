@@ -1,9 +1,10 @@
 // Main App layout
 import { createBrowserRouter, Outlet } from 'react-router-dom';
 import ErrorFallback from "./ErrorFallback.tsx";
-import Home from './components/pages/Home.tsx';
-import Login from './components/pages/Login.tsx';
-import Register from './components/pages/Register.tsx';
+import Home from "@components/pages/Home.tsx";
+import Login from "@components/pages/Login.tsx";
+import Register from "@components/pages/Register.tsx";
+import Landing from "@components/pages/Landing.tsx";
 
 const Layout = () => {
   return (
@@ -19,7 +20,7 @@ const AppRoutes = createBrowserRouter([
     element: <Layout />,
     errorElement: <ErrorFallback />,
     children: [
-      { index: true, element: <Home />},
+      { index: true, element: <Landing />},
       { path: "home", element: <Home />},
       { path: "movies", element: <Home />},
       { path: "login", element: <Login />},

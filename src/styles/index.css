@@ -99,13 +99,18 @@ h1 {
 }
 
 .home-page {
+  display: grid;
+  height: 100vh;
+}
+
+.main-content {
   display: flex;
   background: var(--background-color);
   flex-grow: 1;
 }
 
 @media (max-width: 768px) {
-  .home-page {
+  .main-content {
     display: flex;
     flex-direction: column;
   }
@@ -113,11 +118,6 @@ h1 {
   .main {
     margin-top: calc(var(--header-height) + 2rem);
   }
-}
-
-.main-content {
-  display: grid;
-  height: 100vh;
 }
 
 @keyframes mainContentFadeIn {

@@ -51,7 +51,7 @@ function MovieListContainer({currentMovieList, handleBackButton}: MovieListConta
       </div>
         <h2 className="list-container__list-name">{currentMovieList.listName}</h2>
         <p className="list-container__movie-count">
-          {currentMovieCount} {(currentMovieCount > 1 || currentMovieCount === 0) ? "movies" : "movie"}
+          {currentMovieCount} {(currentMovieCount !== 1) ? "movies" : "movie"}
         </p>
       </div>
       <MovieGrid 
