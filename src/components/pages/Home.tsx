@@ -26,11 +26,10 @@ export default function Home() {
     />
     <div className="main-content">
       <Sidebar 
-      currentMovieList={currentMovieList} 
-      updateCurrentList={setCurrentMovieList}
       selectedTab={selectedTab} 
       onSelectTab={setSelectedTab} 
       sidebarOpen={sidebarOpen}
+      setSidebarOpen={setSidebarOpen}
       />
       <MainContent 
       selectedTab={selectedTab} 

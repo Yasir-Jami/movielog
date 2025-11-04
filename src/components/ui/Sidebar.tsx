@@ -1,17 +1,18 @@
 import styles from "@styles/Sidebar.module.css";
 import User from "@components/ui/User";
-import { MainContentTab, MovieList, SidebarTabProps } from "types";
+import { MainContentTab, SidebarTabProps } from "types";
 import { List, Settings, NotepadText } from "lucide-react";
+import React, { useEffect, useRef } from "react";
 
 interface SidebarProps {
   selectedTab: MainContentTab,
   onSelectTab: React.Dispatch<React.SetStateAction<MainContentTab>>;
   sidebarOpen: boolean,
-  currentMovieList: MovieList,
-  updateCurrentList: React.Dispatch<React.SetStateAction<MovieList>>
+  setSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>,
 }
 
-function Sidebar({selectedTab, onSelectTab, sidebarOpen}: SidebarProps) {
+function Sidebar({selectedTab, onSelectTab, sidebarOpen, setSidebarOpen}: SidebarProps) {
+  const sidebarRef = useRef<HTMLDivElement | null>(null);
   const handleTabSelection = (itemLabel: MainContentTab) => {
     onSelectTab(itemLabel);
     window.scrollTo({
@@ -19,7 +20,21 @@ function Sidebar({selectedTab, onSelectTab, sidebarOpen}: SidebarProps) {
       left: 0,
       behavior: "auto",
     });
-  }
+    setSidebarOpen(false);
+  };
+
+  useEffect(() => {
+      function handleClickOutsideSearchBar(event: MouseEvent) {
+        if (sidebarRef.current && !sidebarRef.current.contains(event.target as Node)) {
+          setSidebarOpen(false);
+        }
+      }
+  
+      document.addEventListener('mousedown', handleClickOutsideSearchBar);
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutsideSearchBar);
+      }
+    }, []);
 
   const SidebarItem = (props: SidebarTabProps) => {
     const {itemLabel, itemIcon}: SidebarTabProps = props;
@@ -39,19 +54,19 @@ function Sidebar({selectedTab, onSelectTab, sidebarOpen}: SidebarProps) {
       itemId: 0,
       itemLabel: MainContentTab.Lists,
       itemIcon: <List className={styles.sidebar__icon}/>,
-    }
+    };
 
     const reviewsTab: SidebarTabProps = {
       itemId: 1,
       itemLabel: MainContentTab.Reviews,
       itemIcon: <NotepadText className={styles.sidebar__icon}/>,
-    }
+    };
 
     const settingsTab: SidebarTabProps = {
       itemId: 2,
       itemLabel: MainContentTab.Settings,
       itemIcon: <Settings className={styles.sidebar__icon}/>,
-    }
+    };
 
     const sidebarTabProps: SidebarTabProps[] = [listsTab, reviewsTab, settingsTab];
 
@@ -64,15 +79,23 @@ function Sidebar({selectedTab, onSelectTab, sidebarOpen}: SidebarProps) {
     )
   }
 
-  function sidebarStatus(): string {
+  const sidebarStatus = (): string => {
     const sidebarStyle = `${styles.sidebar} ${sidebarOpen ? "" : styles.hidden}`;
     return sidebarStyle;
   }
 
+  const sidebarOverlayStatus = (): string => {
+    const sidebarStyle = `${styles["sidebar-overlay"]} ${sidebarOpen ? "" : styles["hidden-overlay"]}`;
+    return sidebarStyle;
+  }
+
   return (
-    <div className={sidebarStatus()}>
-        <SidebarTabs />  
+    <div className={styles["sidebar-content"]}>
+      <div className={sidebarStatus()} ref={sidebarRef}>
+        <SidebarTabs/>
         <User/>
+      </div>
+      <div className={sidebarOverlayStatus()}></div>
     </div>
   );
 }

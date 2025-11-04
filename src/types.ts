@@ -12,7 +12,7 @@ export interface MovieInfo {
   imdbID?: string,
   isFavorite: boolean,
   rating: number,
-  movieMeta: MovieMetadata,
+  movieMeta: MovieMetadata, // replace with metadata
 }
 
 export interface MovieCardProps {
@@ -54,16 +54,6 @@ export interface SidebarTabProps {
   itemCount?: number,
 }
 
-export interface ErrorInfo {
-  message: string,
-  status?: number,
-}
-
-export interface ApiError extends ErrorInfo {
-  message: string,
-  status?: number,
-}
-
 export interface MovieFilters {
   SearchFilter: string,
   GenreFilter: Genres,
@@ -95,6 +85,12 @@ export interface Genres {
   Sport: GenreEntry,
   Thriller: GenreEntry,
   Western: GenreEntry,
+}
+
+export interface LoaderProps {
+  passedStyle?: React.CSSProperties,
+  color?: string,
+  size?: number,
 }
 
 /* Enums */

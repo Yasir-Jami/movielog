@@ -44,7 +44,7 @@ function Login() {
         const { password, ...userDataNoPassword } = userData;
         setUser(userDataNoPassword);
 
-        navigate(import.meta.env.VITE_PATH_HOME);
+        navigate("/home");
         toast.success("Logged in");
       }
 

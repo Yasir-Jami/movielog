@@ -42,11 +42,19 @@ function MovieCard({movie, handleFavoriteMovie, handleDeleteMovie}: MovieCardPro
 
   return(
     <div className="movie-card">
-        {/* Movie Poster and Icons */}
-        <span className="movie-card-actions-button" onClick={handleActionsButtonClicked}>
+        <div className="movie-card-details">
+        {/* Movie Metadata */}
+        <div className="movie-card__metadata">
+          <p className="movie-card__title">{movie.movieMeta.Title}</p>
+          <span className="movie-card__year">
+            <p className="movie-card__year-text">{movie.movieMeta.Year}</p>
+          </span>
+          <p className="movie-card__plot">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <MovieGenres/>
+        </div>
+          <span className="movie-card-actions-button" onClick={handleActionsButtonClicked}>
             <EllipsisVertical className="movie-card-actions-icon"/>
-        </span>
-        <div className="movie-card-actions">
+          </span>
           <div className={`movie-card-actions-items ${actionsButtonClicked ? "active" : ""}`}>
             <span 
             className={`movie-card-favorite-wrapper ${isFavorite ? "active" : ""}`}
@@ -65,20 +73,15 @@ function MovieCard({movie, handleFavoriteMovie, handleDeleteMovie}: MovieCardPro
             </span>
           </div>
         </div>
-        <img 
-        className="movie-card__image" 
-        alt={movie.movieMeta.Title} 
-        src={movie.movieMeta.Poster} 
-        onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = ImageNotFound}}></img>
-        
-        {/* Movie Metadata */}
-        <div className="movie-card__metadata">
-          <p className="movie-card__title">{movie.movieMeta.Title}</p>
-          <span className="movie-card__year">
-            <p className="movie-card__year-text">{movie.movieMeta.Year}</p>
-          </span>
-          <MovieGenres/>
+        <div className="movie-card__image-container">
+          <span className="movie-card-overlay"></span>
+          <img 
+          className="movie-card__image" 
+          alt={movie.movieMeta.Title} 
+          src={movie.movieMeta.Poster} 
+          onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = ImageNotFound}}></img>
         </div>
+          
     </div>
   )
 }

@@ -1,6 +1,10 @@
+.list-search {
+  width: 100%;
+}
+
 .list-search__textbox {
   height: 2.5rem;
-  width: 50%;
+  width: 30%;
   min-width: 18rem;
   padding-left: 2.5rem;
   padding-right: 1rem;

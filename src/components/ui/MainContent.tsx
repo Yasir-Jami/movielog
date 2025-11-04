@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { MainContentTab, MovieList } from "types";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { Loader } from "@components/ui/Loader";
 
 interface MainContentProps {
   selectedTab: MainContentTab,
@@ -21,8 +22,7 @@ async function retrieveUserLists() {
     headers: {
       'Content-type': 'application/json',
     }});
-    const movieLists: MovieList[] = await res.json();
-    return movieLists;
+    return await res.json() as MovieList[];
   }
 
   catch (err) {
@@ -32,14 +32,26 @@ async function retrieveUserLists() {
 }
 
 function MainContent ({currentMovieList, setCurrentMovieList, selectedTab}: MainContentProps) {
-  const [renderPhase, setRenderPhase] = useState<string>("loading");
-  const [userLists, setUserLists] = useState<MovieList[]>([]);
-  const navigate = useNavigate();
-
+  const [userLists, setUserLists] = useState<MovieList[] | null>(null);
   let content = {} as React.JSX.Element;
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    async function getAllLists() {
+      const retrievedLists = await retrieveUserLists();
+      if (retrievedLists && retrievedLists.length !== 0) {
+        setUserLists(retrievedLists);
+        setCurrentMovieList(retrievedLists[0]); // Change to ID set in localstorage
+      }
+      else {
+        toast.error("Failed to retrieve list from server");
+      }
+    }
+    getAllLists();
+  }, []);
 
-  if (renderPhase == "loading") {
-     content = (<span className="loader"/>)
+  if (!userLists) {
+     content = <Loader/>;
   }
 
   else {
@@ -69,30 +81,9 @@ function MainContent ({currentMovieList, setCurrentMovieList, selectedTab}: Main
     }
   }
 
-  async function getAllLists() {
-    const retrievedLists = await retrieveUserLists();
-    if (retrievedLists && Object.keys(retrievedLists).length !== 0) {
-      setUserLists(retrievedLists);
-      if (userLists.length != 0) {
-        setCurrentMovieList(retrievedLists[0]); // Change to ID set in localstorage
-      }
-    }
-    else {
-      toast.error("Failed to retrieve list from server");
-    }
-  }
-  
-  useEffect(() => {
-    getAllLists();
-  }, []);
-
-  useEffect(() => {
-    setRenderPhase("main");
-  });
-
   // On success
   return (
-    <div className={renderPhase}>
+    <div className="main">
       {content}
     </div>
   )

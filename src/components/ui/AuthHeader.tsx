@@ -7,7 +7,7 @@ function AuthHeader() {
   return (
     <div className={styles["auth-header"]}>
       <div className={styles["auth-header__container"]}>
-        <h1 className={styles["auth-header__title"]} onClick={() => navigate('/')}>movielog</h1>
+        <h1 className={styles["auth-header__title"]} onClick={() => navigate('/home')}>movielog</h1>
       </div>
     </div>
   )
