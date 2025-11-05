@@ -45,6 +45,7 @@ function MainContent ({currentMovieList, setCurrentMovieList, selectedTab}: Main
       }
       else {
         toast.error("Failed to retrieve list from server");
+        setUserLists([]); // TODO send a signal to display a page-wide error when server's down
       }
     }
     getAllLists();

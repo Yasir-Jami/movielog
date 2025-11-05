@@ -1,6 +1,23 @@
+.list-container {
+  --list-grid-width: 70%;
+}
+
+.list-container__grid {
+  position: relative;
+  display: grid;
+  grid-auto-rows: auto 1fr;
+  margin: auto;
+  width: var(--list-grid-width);
+}
+
+.list-container__info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .list-return-button {
   color: var(--color);
-  position: absolute;
   display: flex;
   gap: 0.5rem;
   cursor: pointer;
@@ -11,29 +28,6 @@
 
 .list-return-button-icon {
   position: sticky;
-}
-
-.list-return-button-text {
-  color: var(--color);
-  position: relative;
-}
-
-.list-container__grid {
-  position: relative;
-  display: grid;
-  grid-auto-rows: auto 1fr;
-  margin: auto;
-  width: 80%;
-  height: 100vh;
-}
-
-.list-container__list-name {
-  font-family: "NunitoSans";
-  color: var(--color);
-}
-
-.list-container__movie-count {
-  color: var(--color);
 }
 
 .list-container__metadata {
@@ -48,11 +42,44 @@
   color: var(--color);
 }
 
+.list-return-button-text {
+  color: var(--color);
+  position: relative;
+}
+
+.list-container__list-name {
+  font-family: "NunitoSans";
+  color: var(--color);
+}
+
+.list-container__movie-count {
+  color: var(--color);
+}
+
+.list-container__view-selector {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.list-container__view {
+  cursor: pointer;
+}
+
+.list-container__view-icon {
+  color: black;
+}
+
+.active-view {
+  color: orange;
+  fill: orange;
+}
+
 .movie-actions {
-  position: sticky;
+  position: fixed;
   place-self: center;
   display: flex;
-  width: 100%;
+  width: var(--list-grid-width);
   background-color: var(--secondary-background-color);
   padding: 0.8rem;
   border-top-left-radius: 1rem;
@@ -60,13 +87,15 @@
   bottom: 0;
   border: solid 1px var(--border-color);
   transition: height 0.3s;
+  z-index: 200;
 }
 
 .movie-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  grid-template-rows: min-content;
   column-gap: 0.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 4rem;
 }
 
 .no-movies {

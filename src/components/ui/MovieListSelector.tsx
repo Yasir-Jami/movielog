@@ -27,7 +27,7 @@ function MovieListSelector({userMovieLists, currentMovieList, setCurrentMovieLis
     setViewType(ViewType.Detailed);
   }
 
-  logger.log(handleViewButton);
+  //logger.log(handleViewButton);
 
   const handleBackButton = () => {
     setListSelected(false);

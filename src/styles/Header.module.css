@@ -51,6 +51,21 @@
   display: none;
 }
 
+.header__nav-list {
+  display: flex;
+  gap: 2rem;
+}
+
+.header__nav-item {
+  color: var(--color);
+  list-style-type: none;
+}
+
+.header__nav-item:hover {
+  color: #F64C00;
+  cursor: pointer;
+}
+
 /* Auth Header */
 
 .auth-header__container {
@@ -76,4 +91,10 @@
   font-weight: 700;
   cursor: pointer;
   margin-left: 1rem;
+}
+
+@media(max-width: 768px) {
+  .header__nav {
+    display: none;
+  }
 }

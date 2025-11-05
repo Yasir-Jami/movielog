@@ -1,15 +1,11 @@
 .add-movie {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transform: translateX(-50%);
-  left: 45%;
+  position: relative;
+  margin: 1.5rem;
 }
 
 .add-movie__search {
   min-width: 280px;
-  width: 30rem;
+  width: 25vw;
 }
 
 .add-movie__search-bar {

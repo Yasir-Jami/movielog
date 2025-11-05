@@ -8,6 +8,11 @@ export default defineConfig({
     react(), 
     tsconfigPaths(),
   ],
+  css: {
+    modules: {
+      generateScopedName: '[name]__[local]',
+    }
+  },
   base: '/',
   build: {
     outDir: 'dist/'

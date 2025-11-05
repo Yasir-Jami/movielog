@@ -24,16 +24,16 @@ function Sidebar({selectedTab, onSelectTab, sidebarOpen, setSidebarOpen}: Sideba
   };
 
   useEffect(() => {
-      function handleClickOutsideSearchBar(event: MouseEvent) {
-        if (sidebarRef.current && !sidebarRef.current.contains(event.target as Node)) {
-          setSidebarOpen(false);
-        }
+    function handleClickOutsideSearchBar(event: MouseEvent) {
+      if (sidebarRef.current && !sidebarRef.current.contains(event.target as Node)) {
+        setSidebarOpen(false);
       }
+    }
   
-      document.addEventListener('mousedown', handleClickOutsideSearchBar);
-      return () => {
-        document.removeEventListener('mousedown', handleClickOutsideSearchBar);
-      }
+    document.addEventListener('mousedown', handleClickOutsideSearchBar);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutsideSearchBar);
+    }
     }, []);
 
   const SidebarItem = (props: SidebarTabProps) => {
@@ -73,7 +73,7 @@ function Sidebar({selectedTab, onSelectTab, sidebarOpen, setSidebarOpen}: Sideba
     return (
       <div className={styles.sidebar__list}>
         {[...Array(sidebarTabProps.length)].map((_, i) => (
-          <SidebarItem key={i} {...sidebarTabProps[i]}/>
+          <SidebarItem key={sidebarTabProps[i].itemId} {...sidebarTabProps[i]}/>
         ))}
       </div>
     )

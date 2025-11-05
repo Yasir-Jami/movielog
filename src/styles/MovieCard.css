@@ -11,7 +11,6 @@
   position: absolute;
   height: 100%;
   opacity: 0%;
-  
 }
 
 .movie-card:hover .movie-card-details { 
@@ -24,7 +23,6 @@
 }
 
 .movie-card__image {
-  height: auto;
   width: 100%;
   object-fit: fill;
   aspect-ratio: 3/5;
@@ -85,6 +83,7 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 4;
+  line-clamp: 4;
 }
 
 .movie-card__genres {
@@ -163,10 +162,6 @@
   background-color: rgb(230, 3, 3);
 }
 
-.movie-card-favorite-icon {
-  
-}
-
 .movie-card-favorite-icon.active {
   fill: white;
   stroke-width: 0;
@@ -183,10 +178,6 @@
 
 .movie-card-delete-wrapper:hover {
   background-color: white;
-}
-
-.movie-card-delete-icon {
-  
 }
 
 .movie-card-delete-icon:hover {
