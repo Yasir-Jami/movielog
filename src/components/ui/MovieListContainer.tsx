@@ -1,84 +1,31 @@
 import "/src/styles/MovieListContainer.css";
 import { useState } from "react";
-import { MovieList, MovieFilters, Genres, MovieSortMethod } from "types";
+import { MovieList, MovieFilters, Genres, MovieSortMethod, ViewType, ViewTypeProps } from "types";
 import MovieGrid from "@components/ui/MovieGrid";
 import ListSearch from "@components/ui/ListSearch";
 import MovieFilter from "./MovieFilter";
 import { defaultGenreFilters } from "utils/MovieFilterUtils";
-import { ArrowLeft, List, LayoutList, LayoutGrid } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { Loader } from "@components/ui/Loader";
+import ViewSelector from "./ViewSelector";
 
 interface MovieListContainerProps {
   currentMovieList: MovieList,
   handleBackButton: () => void,
 }
 
-enum ListContainerView {
-  Card,
-  Compact,
-  Detailed,
-}
-
-interface ListContainerViewProps {
-  selectedContainerView: ListContainerView,
-  handleViewSelection: (view: ListContainerView) => void,
-}
-
-interface ListContainerViewItemProps {
-  itemViewType: ListContainerView,
-  itemIcon: React.JSX.Element,
-  listContainerViewProps: ListContainerViewProps,
-}
-
-const ListContainerViewItem = (props: ListContainerViewItemProps) => {
-  const {itemViewType, itemIcon, listContainerViewProps}: ListContainerViewItemProps = props;
-  const isSelected = itemViewType === listContainerViewProps.selectedContainerView;
-  
-  return (
-    <div className="list-container__view" onClick={() => {listContainerViewProps.handleViewSelection(itemViewType)}}>
-      {itemIcon}
-    </div>
-  )
-}
-
-const ListContainerViews = ({listContainerViewProps}: {listContainerViewProps: ListContainerViewProps}) => {
-    const size = 24; // icon size
-    const listContainerViews = [
-      {icon: LayoutGrid, type: ListContainerView.Card},
-      {icon: LayoutList, type: ListContainerView.Compact},
-      {icon: List, type: ListContainerView.Detailed},
-    ]
-
-    return (
-      <div className="list-container__view-selector">
-        {listContainerViews.map(({icon: Icon, type}, i) => {
-          const isSelected = type === listContainerViewProps.selectedContainerView;
-          const iconClass = `list-container__view-icon ${isSelected ? "active-view": ""}`;
-      
-          return (
-            <ListContainerViewItem 
-            key={i} 
-            itemViewType={type}
-            itemIcon={<Icon className={iconClass} size={size}/>}
-            listContainerViewProps={listContainerViewProps}
-            />
-          );
-        })}
-      </div>
-    )
-  }
-
 const genres: Genres = defaultGenreFilters();
 
 function MovieListContainer({currentMovieList, handleBackButton}: MovieListContainerProps) {
   // Container View Selection
-  const [selectedContainerView, setSelectedContainerView] = useState<ListContainerView>(ListContainerView.Card);
-  const handleViewSelection = (view: ListContainerView) => {
-    setSelectedContainerView(view);
+  const [selectedViewType, setSelectedViewType] = useState<ViewType>(ViewType.Card);
+  const handleViewSelection = (view: ViewType) => {
+    setSelectedViewType(view);
   }
-  const listContainerViewProps: ListContainerViewProps = {
-    selectedContainerView: selectedContainerView,
+  const viewTypeProps: ViewTypeProps = {
+    selectedViewType: selectedViewType,
     handleViewSelection: handleViewSelection,
+    className: "list-container",
   }
   
   // Sorting and filters
@@ -127,7 +74,7 @@ function MovieListContainer({currentMovieList, handleBackButton}: MovieListConta
             <p className="list-container__movie-count">
             {currentMovieCount} {(currentMovieCount !== 1) ? "movies" : "movie"}</p>
           </div>
-          <ListContainerViews listContainerViewProps={listContainerViewProps}/>
+          <ViewSelector {...viewTypeProps}/>
         </div>
         <MovieGrid 
         currentMovieList={currentMovieList} 

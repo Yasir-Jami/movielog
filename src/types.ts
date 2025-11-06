@@ -93,6 +93,18 @@ export interface LoaderProps {
   size?: number,
 }
 
+export interface ViewTypeProps {
+  selectedViewType: ViewType,
+  handleViewSelection: (view: ViewType) => void,
+  className: string,
+}
+
+export interface ViewTypeItemProps {
+  itemViewType: ViewType,
+  itemIcon: React.JSX.Element,
+  viewTypeProps: ViewTypeProps,
+}
+
 /* Enums */
 
 export enum MainContentTab {
@@ -110,6 +122,7 @@ export enum MovieSortMethod {
 }
 
 export enum ViewType {
-  Detailed = "",
-  Compact = "compact",
+  Card,
+  Detailed,
+  Compact,
 }

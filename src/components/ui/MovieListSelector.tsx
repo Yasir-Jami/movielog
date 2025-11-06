@@ -1,8 +1,9 @@
 import styles from "@styles/MovieListSelector.module.css";
-import { MovieListCardProps, MovieList, ViewType } from "types";
+import { MovieListCardProps, MovieList, ViewType, ViewTypeProps } from "types";
 import MovieListCard from "@components/ui/MovieListCard";
 import { useState } from "react";
 import MovieListContainer from "./MovieListContainer";
+import ViewSelector from "./ViewSelector";
 
 interface MovieListSelectorProps {
   userMovieLists: MovieList[],
@@ -17,20 +18,25 @@ interface DefaultList {
 
 function MovieListSelector({userMovieLists, currentMovieList, setCurrentMovieList}: MovieListSelectorProps) {
   const [listSelected, setListSelected] = useState(false);
-  const [currentViewType, setViewType] = useState<ViewType>(ViewType.Detailed);
+  const [selectedViewType, setSelectedViewType] = useState<ViewType>(ViewType.Detailed);
+
   const handleListSelection = (movieList: MovieList) => {
     setListSelected(true);
     setCurrentMovieList(movieList);
   }
 
-  const handleViewButton = () => {
-    setViewType(ViewType.Detailed);
-  }
-
-  //logger.log(handleViewButton);
-
   const handleBackButton = () => {
     setListSelected(false);
+  }
+
+  const handleViewSelection = (view: ViewType) => {
+    setSelectedViewType(view);
+  }
+  
+  const viewTypeProps: ViewTypeProps = {
+    selectedViewType: selectedViewType,
+    handleViewSelection: handleViewSelection,
+    className: "movie-list-selector",
   }
   
   let movieListCards: MovieListCardProps[] = [];
@@ -61,7 +67,7 @@ function MovieListSelector({userMovieLists, currentMovieList, setCurrentMovieLis
       listTags: ["Default"],
       setCurrentMovieList: setCurrentMovieList,
       handleListSelection: handleListSelection,
-      viewType: currentViewType,
+      viewType: selectedViewType,
     }
     movieListCards.push(defaultListCard);
   }
@@ -77,7 +83,7 @@ function MovieListSelector({userMovieLists, currentMovieList, setCurrentMovieLis
         listTags: userList.listTags,
         setCurrentMovieList: setCurrentMovieList,
         handleListSelection: handleListSelection,
-        viewType: currentViewType,
+        viewType: selectedViewType,
       }
     }
     return movieListCard;
@@ -94,9 +100,10 @@ function MovieListSelector({userMovieLists, currentMovieList, setCurrentMovieLis
   else {
     loadedContent = 
     <div className={styles["movie-list-selector"]}>
-    <p className={styles["movie-list-selector-title"]}>Your Lists</p>
+      <p className={styles["movie-list-selector-title"]}>Your Lists</p>
+      <ViewSelector {...viewTypeProps}></ViewSelector>
       <div 
-      className={`${styles["movie-list-grid"]} ${currentViewType}`}>
+      className={`${styles["movie-list-grid"]} ${selectedViewType}`}>
       {movieListCards.map((movielist, i) => (
           <MovieListCard 
           key={i}

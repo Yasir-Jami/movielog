@@ -56,25 +56,6 @@
   color: var(--color);
 }
 
-.list-container__view-selector {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-}
-
-.list-container__view {
-  cursor: pointer;
-}
-
-.list-container__view-icon {
-  color: black;
-}
-
-.active-view {
-  color: orange;
-  fill: orange;
-}
-
 .movie-actions {
   position: fixed;
   place-self: center;
