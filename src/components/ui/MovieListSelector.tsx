@@ -1,9 +1,10 @@
 import styles from "@styles/MovieListSelector.module.css";
-import { MovieListCardProps, MovieList, ViewType, ViewTypeProps } from "types";
+import { MovieListCardProps, MovieList, ViewType, ViewTypeProps, ModalModule, ModalProps, ModalModuleType } from "types";
 import MovieListCard from "@components/ui/MovieListCard";
 import { useState } from "react";
 import MovieListContainer from "./MovieListContainer";
 import ViewSelector from "./ViewSelector";
+import Modal from "@components/ui/Modal";
 
 interface MovieListSelectorProps {
   userMovieLists: MovieList[],
@@ -16,9 +17,22 @@ interface DefaultList {
   listDescription: string,
 }
 
+const modalModules: ModalModule[] = [
+    {label: "List Name", moduleType: ModalModuleType.Textbox},
+    {elementLabel: "Create", moduleType: ModalModuleType.Button},
+];
+
 function MovieListSelector({userMovieLists, currentMovieList, setCurrentMovieList}: MovieListSelectorProps) {
-  const [listSelected, setListSelected] = useState(false);
-  const [selectedViewType, setSelectedViewType] = useState<ViewType>(ViewType.Detailed);
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const [listSelected, setListSelected] = useState<boolean>(false);
+  const [selectedViewType, setSelectedViewType] = useState<ViewType>(ViewType.Card);
+
+  const modalProps: ModalProps = {
+    header: "Create List",
+    modalModules: modalModules,
+    modalOpen: modalOpen,
+    setModalOpen: setModalOpen,
+  }
 
   const handleListSelection = (movieList: MovieList) => {
     setListSelected(true);
@@ -31,6 +45,10 @@ function MovieListSelector({userMovieLists, currentMovieList, setCurrentMovieLis
 
   const handleViewSelection = (view: ViewType) => {
     setSelectedViewType(view);
+  }
+
+  const handleModalClick = () => {
+    setModalOpen(true);
   }
   
   const viewTypeProps: ViewTypeProps = {
@@ -67,6 +85,7 @@ function MovieListSelector({userMovieLists, currentMovieList, setCurrentMovieLis
       listTags: ["Default"],
       setCurrentMovieList: setCurrentMovieList,
       handleListSelection: handleListSelection,
+      handleModalClick: handleModalClick,
       viewType: selectedViewType,
     }
     movieListCards.push(defaultListCard);
@@ -83,6 +102,7 @@ function MovieListSelector({userMovieLists, currentMovieList, setCurrentMovieLis
         listTags: userList.listTags,
         setCurrentMovieList: setCurrentMovieList,
         handleListSelection: handleListSelection,
+        handleModalClick: handleModalClick,
         viewType: selectedViewType,
       }
     }
@@ -114,7 +134,10 @@ function MovieListSelector({userMovieLists, currentMovieList, setCurrentMovieLis
   }
 
   return (
-    <>{loadedContent}</>
+    <>
+    <Modal {...modalProps}/>
+    {loadedContent}
+    </>
   );
 }
 

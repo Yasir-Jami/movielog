@@ -7,7 +7,7 @@ import MovieFilter from "./MovieFilter";
 import { defaultGenreFilters } from "utils/MovieFilterUtils";
 import { ArrowLeft } from "lucide-react";
 import { Loader } from "@components/ui/Loader";
-import ViewSelector from "./ViewSelector";
+import ViewSelector from "@components/ui/ViewSelector";
 
 interface MovieListContainerProps {
   currentMovieList: MovieList,
@@ -28,7 +28,7 @@ function MovieListContainer({currentMovieList, handleBackButton}: MovieListConta
     className: "list-container",
   }
   
-  // Sorting and filters
+  // Sorting and Filters
   const [movieFilters, setMovieFilters] = useState<MovieFilters>({
     SearchFilter: "",
     GenreFilter: genres,
@@ -41,7 +41,6 @@ function MovieListContainer({currentMovieList, handleBackButton}: MovieListConta
   let content: React.JSX.Element = <></>;
   let movieActionsContent: React.JSX.Element = <></>;
   
-  // Could have skeleton while waiting for movie actions to render 
   if (currentMovieCount > 0) {
     movieActionsContent = 
     (

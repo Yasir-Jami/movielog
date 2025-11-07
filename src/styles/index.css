@@ -16,6 +16,7 @@
 
   /* UI Constants */
   --header-height: 4rem;
+  --main-margin: calc(var(--header-height) + 2rem);
   --add-movie-input-height: 2.5rem;
 
   font-synthesis: none;
@@ -96,7 +97,7 @@ h1 {
   position: relative;
   flex-grow: 1;
   background-color: var(--background-color);
-  margin-top: calc(var(--header-height) + 2rem);
+  margin-top: var(--main-margin);
   width: 100%;
 }
 
@@ -115,10 +116,6 @@ h1 {
   .main-content {
     display: flex;
     flex-direction: column;
-  }
-
-  .main {
-    margin-top: calc(var(--header-height) + 2rem);
   }
 }
 

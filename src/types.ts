@@ -38,6 +38,7 @@ export interface MovieListCardProps {
   listDescription?: string,
   setCurrentMovieList: React.Dispatch<React.SetStateAction<MovieList>>,
   handleListSelection: (currentMovieList: MovieList) => void,
+  handleModalClick: () => void,
   viewType: ViewType,
 }
 
@@ -105,6 +106,44 @@ export interface ViewTypeItemProps {
   viewTypeProps: ViewTypeProps,
 }
 
+
+/* 
+Modals
+
+Modal modules consist of two things:
+1. Label
+2. Type
+
+Label is the label of the text box they're given
+Type is the type of module,
+e.g., basic text box, dropdown menu, counter (for numerical values)
+
+All displayed in a grid view.
+*/
+
+export interface ModalProps {
+  header?: string,
+  modalModules: ModalModule[],
+  modalOpen: boolean,
+  setModalOpen: React.Dispatch<React.SetStateAction<boolean>>,
+}
+
+export interface ModalModule {
+  label?: string,
+  elementLabel?: string,
+  moduleType: ModalModuleType,
+}
+
+export enum ModalModuleType {
+  Textbox = "modal-textbox",
+  Dropdown = "modal-dropdown",
+  Counter = "modal-counter",
+  Date = "modal-date",
+  Button = "modal-button",
+  Aside = "modal-aside",
+  Special = "modal-special",
+}
+
 /* Enums */
 
 export enum MainContentTab {
@@ -122,7 +161,7 @@ export enum MovieSortMethod {
 }
 
 export enum ViewType {
-  Card,
-  Detailed,
-  Compact,
+  Card = "card",
+  Detailed = "detailed",
+  Compact = "compact",
 }

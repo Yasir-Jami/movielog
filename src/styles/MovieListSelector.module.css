@@ -18,11 +18,18 @@
   margin: auto;
 }
 
+/* If intending to change colors
+:global(.view-icon) {
+  fill: green;
+  color: green;
+}
+*/
+
 .movie-list-card {
   color: var(--color);
   height: 4rem;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(25%, 1fr));
   align-items: center;
   border: 1px solid var(--color);
   margin-top: -1px;
